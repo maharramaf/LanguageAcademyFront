@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | NovaLingua</title>
-  <meta name="description" content="NovaLingua learning portal dashboard preview.">
+  <title>Dashboard | MF Language Academy</title>
+  <meta name="description" content="MF Language Academy learning portal dashboard preview.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
   <div class="side-overlay" id="sideOverlay"></div>
   <div class="dash">
     <aside class="dash-sidebar" id="sidebar">
-      <a class="logo" href="index.html"><span class="logo-mark">N</span><span class="logo-text"><strong>NovaLingua</strong><small>Learning portal</small></span></a>
+      <a class="logo" href="index.html"><span class="logo-mark">MF</span><span class="logo-text"><strong>MF Language</strong><small>Academy</small></span></a>
       <nav class="dash-nav" aria-label="Portal">
         <button class="is-active" type="button" data-view-target="dashboard-section" data-title="Dashboard"><i class="bi bi-grid"></i> Dashboard</button>
         <button type="button" data-view-target="my-courses-section" data-title="My Courses"><i class="bi bi-book"></i> My Courses</button>
@@ -56,10 +56,10 @@
             <a class="btn btn-light" href="courses.html">Browse catalog</a>
           </div>
           <div class="dash-stats">
-            <article class="dash-stat"><span>Students</span><strong>1,000+</strong></article>
-            <article class="dash-stat"><span>Active courses</span><strong>20</strong></article>
-            <article class="dash-stat"><span>Teachers</span><strong>25</strong></article>
-            <article class="dash-stat"><span>Open messages</span><strong>8</strong></article>
+            <div class="dash-stat"><span>Students</span><strong>1,000+</strong></div>
+            <div class="dash-stat"><span>Active courses</span><strong>20</strong></div>
+            <div class="dash-stat"><span>Teachers</span><strong>25</strong></div>
+            <div class="dash-stat"><span>Open messages</span><strong>8</strong></div>
           </div>
           <div class="dash-split">
             <section class="panel">
@@ -115,9 +115,9 @@
 
         <section id="my-courses-section" class="dash-view">
           <div class="mini-grid">
-            <article class="mini-course"><img src="images/course-ielts.jpg" alt="IELTS class materials"><div><h3>IELTS Preparation</h3><p>Evening · 62% through the plan</p><div class="progress"><span style="width:62%"></span></div></div></article>
-            <article class="mini-course"><img src="images/course-beginner.jpg" alt="Beginner English materials"><div><h3>English Beginner</h3><p>Morning · 40% through the plan</p><div class="progress"><span style="width:40%"></span></div></div></article>
-            <article class="mini-course"><img src="images/course-german.jpg" alt="German class materials"><div><h3>German Language</h3><p>Weekend · 28% through the plan</p><div class="progress"><span style="width:28%"></span></div></div></article>
+            <div class="mini-course"><img src="images/course-ielts.jpg" alt="IELTS class materials"><div><h3>IELTS Preparation</h3><p>Evening · 62% through the plan</p><div class="progress"><span style="width:62%"></span></div></div></div>
+            <div class="mini-course"><img src="images/course-beginner.jpg" alt="Beginner English materials"><div><h3>English Beginner</h3><p>Morning · 40% through the plan</p><div class="progress"><span style="width:40%"></span></div></div></div>
+            <div class="mini-course"><img src="images/course-german.jpg" alt="German class materials"><div><h3>German Language</h3><p>Weekend · 28% through the plan</p><div class="progress"><span style="width:28%"></span></div></div></div>
           </div>
         </section>
 
@@ -142,12 +142,12 @@
 
         <section id="teachers-section" class="dash-view">
           <div class="mini-grid">
-            <article class="panel"><div class="person"><img src="images/teacher-elena.jpg" alt=""> Elena Marquez</div><p class="role">English Program Lead</p></article>
-            <article class="panel"><div class="person"><img src="images/teacher-daniel.jpg" alt=""> Daniel Okonkwo</div><p class="role">IELTS Instructor</p></article>
-            <article class="panel"><div class="person"><img src="images/teacher-sophie.jpg" alt=""> Sophie Laurent</div><p class="role">Spanish Instructor</p></article>
-            <article class="panel"><div class="person"><img src="images/teacher-markus.jpg" alt=""> Markus Weber</div><p class="role">German Instructor</p></article>
-            <article class="panel"><div class="person"><img src="images/teacher-aiko.jpg" alt=""> Aiko Tanaka</div><p class="role">Conversation Coach</p></article>
-            <article class="panel"><div class="person"><img src="images/teacher-james.jpg" alt=""> James Whitfield</div><p class="role">Business English</p></article>
+            <div class="panel"><div class="person"><img src="images/teacher-elena.jpg" alt=""> Elena Marquez</div><p class="role">English Program Lead</p></div>
+            <div class="panel"><div class="person"><img src="images/teacher-daniel.jpg" alt=""> Daniel Okonkwo</div><p class="role">IELTS Instructor</p></div>
+            <div class="panel"><div class="person"><img src="images/teacher-sophie.jpg" alt=""> Sophie Laurent</div><p class="role">Spanish Instructor</p></div>
+            <div class="panel"><div class="person"><img src="images/teacher-markus.jpg" alt=""> Markus Weber</div><p class="role">German Instructor</p></div>
+            <div class="panel"><div class="person"><img src="images/teacher-aiko.jpg" alt=""> Aiko Tanaka</div><p class="role">Conversation Coach</p></div>
+            <div class="panel"><div class="person"><img src="images/teacher-james.jpg" alt=""> James Whitfield</div><p class="role">Business English</p></div>
           </div>
         </section>
 
@@ -205,7 +205,7 @@
             <form data-form="profile" novalidate>
               <div class="form-row">
                 <div class="field"><label for="profile-name">Name</label><input id="profile-name" name="name" type="text" value="Maya Collins"><p class="field-error" data-error-for="name"></p></div>
-                <div class="field"><label for="profile-email">Email</label><input id="profile-email" name="email" type="email" value="maya@novalingua.school"><p class="field-error" data-error-for="email"></p></div>
+                <div class="field"><label for="profile-email">Email</label><input id="profile-email" name="email" type="email" value="maya@mflanguage.academy"><p class="field-error" data-error-for="email"></p></div>
               </div>
               <div class="field"><label for="profile-phone">Phone</label><input id="profile-phone" name="phone" type="tel" value="+1 555 014 2280"><p class="field-error" data-error-for="phone"></p></div>
               <div class="field"><label for="profile-bio">Bio</label><textarea id="profile-bio" name="bio">I place new students, keep the weekly schedule, and answer admissions questions.</textarea><p class="field-error" data-error-for="bio"></p></div>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | NovaLingua</title>
-  <meta name="description" content="Contact NovaLingua Language School about courses, schedules, and admissions.">
+  <title>Contact | MF Language Academy</title>
+  <meta name="description" content="Contact MF Language Academy about courses, schedules, and admissions.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,7 @@
     <div class="container topbar-inner">
       <div class="topbar-left">
         <a href="tel:+15550142280"><i class="bi bi-telephone"></i> +1 (555) 014-2280</a>
-        <a href="mailto:hello@novalingua.school"><i class="bi bi-envelope"></i> hello@novalingua.school</a>
+        <a href="mailto:hello@mflanguage.academy"><i class="bi bi-envelope"></i> hello@mflanguage.academy</a>
       </div>
       <div class="topbar-right">
         <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
@@ -31,7 +31,7 @@
     </div>
   </div>
     <div class="container header-inner">
-      <a class="logo" href="index.html"><span class="logo-mark">N</span><span class="logo-text"><strong>NovaLingua</strong><small>Language School</small></span></a>
+      <a class="logo" href="index.html"><span class="logo-mark">MF</span><span class="logo-text"><strong>MF Language</strong><small>Academy</small></span></a>
       <nav class="nav" aria-label="Primary">
         <ul class="nav-list">
           <li><a href="index.html">Home</a></li>
@@ -67,18 +67,18 @@
     <section id="contact-section" class="section">
       <div class="container contact-grid">
         <div class="info-stack">
-          <article class="info-card">
+          <div class="info-card">
             <div class="info-item"><div class="icon-bubble"><i class="bi bi-geo-alt"></i></div><div><h3>Address</h3><p>250 Language Plaza, 4th Floor<br>Boston, MA 02110</p></div></div>
-          </article>
-          <article class="info-card">
+          </div>
+          <div class="info-card">
             <div class="info-item"><div class="icon-bubble"><i class="bi bi-telephone"></i></div><div><h3>Phone</h3><p><a href="tel:+15550142280">+1 (555) 014-2280</a></p></div></div>
-          </article>
-          <article class="info-card">
-            <div class="info-item"><div class="icon-bubble"><i class="bi bi-envelope"></i></div><div><h3>Email</h3><p><a href="mailto:hello@novalingua.school">hello@novalingua.school</a></p></div></div>
-          </article>
-          <article class="info-card">
+          </div>
+          <div class="info-card">
+            <div class="info-item"><div class="icon-bubble"><i class="bi bi-envelope"></i></div><div><h3>Email</h3><p><a href="mailto:hello@mflanguage.academy">hello@mflanguage.academy</a></p></div></div>
+          </div>
+          <div class="info-card">
             <div class="info-item"><div class="icon-bubble"><i class="bi bi-clock"></i></div><div><h3>Office hours</h3><p>Mon–Fri 9:00–18:00<br>Sat 10:00–14:00</p></div></div>
-          </article>
+          </div>
         </div>
         <div class="contact-card">
           <form data-form="contact" novalidate>
@@ -134,34 +134,59 @@
           <h2>Questions before you join</h2>
         </div>
         <div class="accordion">
-          <article class="accordion-item is-open">
+          <div class="accordion-item is-open">
             <button class="accordion-trigger" type="button">Do I need a placement test? <i class="bi bi-plus-lg"></i></button>
             <div class="accordion-panel"><p>New students complete a short speaking check so we can suggest a level. It is a conversation, not a graded exam.</p></div>
-          </article>
-          <article class="accordion-item">
+          </div>
+          <div class="accordion-item">
             <button class="accordion-trigger" type="button">Can I study online? <i class="bi bi-plus-lg"></i></button>
             <div class="accordion-panel"><p>Yes. Live online groups follow the same plan, teacher, and certificate as campus classes.</p></div>
-          </article>
-          <article class="accordion-item">
+          </div>
+          <div class="accordion-item">
             <button class="accordion-trigger" type="button">How large are the classes? <i class="bi bi-plus-lg"></i></button>
             <div class="accordion-panel"><p>Most groups have 8 to 12 students, which leaves time for everyone to speak.</p></div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
+
+    <section id="newsletter-section" class="section section-alt">
+      <div class="container newsletter">
+        <div class="section-header">
+          <span class="eyebrow">Newsletter</span>
+          <h2>Course news, in your inbox</h2>
+          <p>New groups, exam dates, and study tips from MF Language Academy.</p>
+        </div>
+        <form class="newsletter-form" data-form="newsletter" novalidate>
+          <div class="field">
+            <label for="newsletter-email">Email</label>
+            <input id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="you@email.com">
+            <p class="field-error" data-error-for="email"></p>
+          </div>
+          <button class="btn btn-primary" type="submit">Subscribe</button>
+          <p class="form-note">Preview only. Nothing is sent.</p>
+          <div class="form-success" hidden>
+            <i class="bi bi-check-circle-fill"></i>
+            <h3>You are on the list</h3>
+            <p>This preview validated your email and did not send it anywhere.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
   </main>
   <footer class="footer">
     <div class="container footer-grid">
       <div>
-        <a class="logo" href="index.html"><span class="logo-mark">N</span><span class="logo-text"><strong>NovaLingua</strong><small>Language School</small></span></a>
-        <p style="margin-top:14px;">A Boston language school for people who want to speak clearly at work, in exams, and abroad.</p>
+        <a class="logo" href="index.html"><span class="logo-mark">MF</span><span class="logo-text"><strong>MF Language</strong><small>Academy</small></span></a>
+        <p style="margin-top:14px;">MF Language Academy helps adults speak clearly at work, in exams, and abroad.</p>
       </div>
       <div><h3>Quick Links</h3><div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="courses.html">Courses</a><a href="teachers.html">Teachers</a><a href="contact.html">Contact</a></div></div>
       <div><h3>Courses</h3><div class="footer-links"><a href="course-details.html?course=english-beginner">English Beginner</a><a href="course-details.html?course=ielts">IELTS Preparation</a><a href="course-details.html?course=business-english">Business English</a><a href="course-details.html?course=german">German Language</a><a href="course-details.html?course=spanish">Spanish Language</a></div></div>
-      <div><h3>Contact Information</h3><div class="footer-links"><span>250 Language Plaza, Boston</span><a href="tel:+15550142280">+1 (555) 014-2280</a><a href="mailto:hello@novalingua.school">hello@novalingua.school</a><span>Mon–Fri 9:00–18:00</span></div></div>
+      <div><h3>Contact Information</h3><div class="footer-links"><span>250 Language Plaza, Boston</span><a href="tel:+15550142280">+1 (555) 014-2280</a><a href="mailto:hello@mflanguage.academy">hello@mflanguage.academy</a><span>Mon–Fri 9:00–18:00</span></div></div>
       <div><h3>Social Media</h3><div class="footer-social"><a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a><a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a><a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a><a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a></div></div>
     </div>
-    <div class="container footer-bottom"><p>© 2026 NovaLingua Language School. All rights reserved.</p><p><a href="login.html">Login</a> · <a href="register.html">Register</a></p></div>
+    <div class="container footer-bottom"><p>© 2026 MF Language Academy. All rights reserved.</p><p><a href="login.html">Login</a> · <a href="register.html">Register</a></p></div>
   </footer>
   <button class="back-to-top" type="button" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
   <script src="js/navbar.js" defer></script>

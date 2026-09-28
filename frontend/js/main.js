@@ -147,10 +147,15 @@ function initSearch() {
   });
 
   const catalogInput = document.querySelector(".catalog-search");
+  if (catalogInput && query) catalogInput.value = query;
+}
+
+// 06. Course filtering
+function initCourseFilter() {
+  const catalogInput = document.querySelector(".catalog-search");
   const catalogEmpty = document.querySelector(".catalog-empty");
   const filterButtons = document.querySelectorAll("[data-filter]");
   if (!catalogInput && !filterButtons.length) return;
-  if (catalogInput && query) catalogInput.value = query;
 
   function applyCourseFilter() {
     const active = document.querySelector("[data-filter].is-active")?.dataset.filter || "all";
@@ -271,7 +276,7 @@ function initCoursePage() {
     const image = bind("image");
     image.src = course.image;
     image.alt = course.title + " course";
-    document.title = course.title + " | NovaLingua";
+    document.title = course.title + " | MF Language Academy";
 
     const learn = bind("learn");
     learn.innerHTML = "";
@@ -285,8 +290,8 @@ function initCoursePage() {
     const curriculum = bind("curriculum");
     curriculum.innerHTML = "";
     course.curriculum.forEach(function (block, index) {
-      const article = document.createElement("article");
-      article.className = "accordion-item" + (index === 0 ? " is-open" : "");
+      const blockEl = document.createElement("div");
+      blockEl.className = "accordion-item" + (index === 0 ? " is-open" : "");
       const button = document.createElement("button");
       button.type = "button";
       button.className = "accordion-trigger";
@@ -297,16 +302,16 @@ function initCoursePage() {
       const paragraph = document.createElement("p");
       paragraph.textContent = block[1];
       panel.appendChild(paragraph);
-      article.appendChild(button);
-      article.appendChild(panel);
+      blockEl.appendChild(button);
+      blockEl.appendChild(panel);
       button.addEventListener("click", function () {
-        const open = article.classList.contains("is-open");
+        const open = blockEl.classList.contains("is-open");
         curriculum.querySelectorAll(".accordion-item").forEach(function (item) {
           item.classList.remove("is-open");
         });
-        if (!open) article.classList.add("is-open");
+        if (!open) blockEl.classList.add("is-open");
       });
-      curriculum.appendChild(article);
+      curriculum.appendChild(blockEl);
     });
   }
 
@@ -349,20 +354,26 @@ function initModals() {
     if (event.key !== "Escape") return;
     document.querySelectorAll(".modal.is-open").forEach(closeModal);
   });
+}
 
+// 07. Teachers
+function initTeachers() {
   const teacherModal = document.querySelector('[data-modal="teacher"]') || document.getElementById("teacherModal");
+  if (!teacherModal) return;
+
   document.querySelectorAll("[data-teacher-open]").forEach(function (button) {
     button.addEventListener("click", function () {
-      if (!teacherModal) return;
       teacherModal.querySelector("[data-teacher='photo']").src = button.dataset.photo;
       teacherModal.querySelector("[data-teacher='photo']").alt = button.dataset.name;
       teacherModal.querySelector("[data-teacher='name']").textContent = button.dataset.name;
       teacherModal.querySelector("[data-teacher='role']").textContent = button.dataset.role;
       teacherModal.querySelector("[data-teacher='bio']").textContent = button.dataset.bio;
-      openModal(teacherModal);
+      teacherModal.hidden = false;
+      teacherModal.classList.add("is-open");
+      document.body.classList.add("nav-lock");
+      teacherModal.querySelector(".modal-close")?.focus();
     });
   });
-
 }
 
 function initDashboard() {
@@ -417,7 +428,7 @@ function initDashboard() {
   });
 
   document.querySelectorAll("[data-switch]").forEach(function (toggle) {
-    const key = "novalingua-setting-" + toggle.dataset.switch;
+    const key = "mf-setting-" + toggle.dataset.switch;
     const stored = localStorage.getItem(key);
     if (stored === "on") toggle.classList.add("is-on");
     if (stored === "off") toggle.classList.remove("is-on");
@@ -446,6 +457,8 @@ document.addEventListener("DOMContentLoaded", function () {
   initMobileMenu();
   initSearch();
   initCourseSlider();
+  initCourseFilter();
+  initTeachers();
   initTestimonials();
   initForms();
   initAnimations();

@@ -1,4 +1,4 @@
-/* 17. Responsive */
+/* 18. Responsive */
 @media (max-width: 1200px) {
   .teacher-grid { grid-template-columns: repeat(3, 1fr); }
   .footer-grid { grid-template-columns: 1.2fr 1fr 1fr; }
@@ -140,6 +140,7 @@
   .footer-bottom { flex-direction: column; }
   .auth-panel { padding: 28px 16px 40px; }
   .message-layout { grid-template-columns: 1fr; }
+  .newsletter { grid-template-columns: 1fr; padding: 24px; }
 }
 
 @media (max-width: 375px) {

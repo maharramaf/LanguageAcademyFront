@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>English Beginner | NovaLingua</title>
-  <meta name="description" content="Course details, curriculum, and enrollment preview for NovaLingua language programs.">
+  <title>English Beginner | MF Language Academy</title>
+  <meta name="description" content="Course details, curriculum, and enrollment preview for MF Language Academy language programs.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,7 @@
     <div class="container topbar-inner">
       <div class="topbar-left">
         <a href="tel:+15550142280"><i class="bi bi-telephone"></i> +1 (555) 014-2280</a>
-        <a href="mailto:hello@novalingua.school"><i class="bi bi-envelope"></i> hello@novalingua.school</a>
+        <a href="mailto:hello@mflanguage.academy"><i class="bi bi-envelope"></i> hello@mflanguage.academy</a>
       </div>
       <div class="topbar-right">
         <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
@@ -31,7 +31,7 @@
     </div>
   </div>
     <div class="container header-inner">
-      <a class="logo" href="index.html"><span class="logo-mark">N</span><span class="logo-text"><strong>NovaLingua</strong><small>Language School</small></span></a>
+      <a class="logo" href="index.html"><span class="logo-mark">MF</span><span class="logo-text"><strong>MF Language</strong><small>Academy</small></span></a>
       <nav class="nav" aria-label="Primary">
         <ul class="nav-list">
           <li><a href="index.html">Home</a></li>
@@ -82,22 +82,22 @@
           </ul>
           <h2>Curriculum</h2>
           <div class="accordion" data-bind="curriculum">
-            <article class="accordion-item is-open">
+            <div class="accordion-item is-open">
               <button class="accordion-trigger" type="button">Week 1–2 · Sounds and first conversations <i class="bi bi-plus-lg"></i></button>
               <div class="accordion-panel"><p>Pronunciation basics, greetings, and questions you will actually use.</p></div>
-            </article>
-            <article class="accordion-item">
+            </div>
+            <div class="accordion-item">
               <button class="accordion-trigger" type="button">Week 3–4 · Daily life <i class="bi bi-plus-lg"></i></button>
               <div class="accordion-panel"><p>Home, work, food, and telling the time with natural phrases.</p></div>
-            </article>
-            <article class="accordion-item">
+            </div>
+            <div class="accordion-item">
               <button class="accordion-trigger" type="button">Week 5–6 · Out in the city <i class="bi bi-plus-lg"></i></button>
               <div class="accordion-panel"><p>Directions, shopping, and polite requests.</p></div>
-            </article>
-            <article class="accordion-item">
+            </div>
+            <div class="accordion-item">
               <button class="accordion-trigger" type="button">Week 7–8 · Your story <i class="bi bi-plus-lg"></i></button>
               <div class="accordion-panel"><p>Past events, short presentations, and a final speaking check.</p></div>
-            </article>
+            </div>
           </div>
         </div>
         <aside class="side-card">
@@ -121,39 +121,64 @@
           <h2>Other courses to consider</h2>
         </div>
         <div class="course-grid">
-          <article class="course-card">
+          <div class="course-card">
             <div class="course-media"><img src="images/course-ielts.jpg" alt="IELTS notes" width="1000" height="700"><span class="badge">Exam</span></div>
             <div class="course-body">
               <h3>IELTS Preparation</h3>
               <p>Band-focused practice for all four papers.</p>
               <div class="course-foot"><span class="price">$260<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=ielts">View Course</a></div>
             </div>
-          </article>
-          <article class="course-card">
+          </div>
+          <div class="course-card">
             <div class="course-media"><img src="images/course-business.jpg" alt="Business workshop" width="1000" height="700"><span class="badge">Professional</span></div>
             <div class="course-body">
               <h3>Business English</h3>
               <p>Meetings, email, and short presentations.</p>
               <div class="course-foot"><span class="price">$240<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=business-english">View Course</a></div>
             </div>
-          </article>
-          <article class="course-card">
+          </div>
+          <div class="course-card">
             <div class="course-media"><img src="images/course-spanish.jpg" alt="Spanish course city" width="1000" height="700"><span class="badge">Beginner</span></div>
             <div class="course-body">
               <h3>Spanish Language</h3>
               <p>Travel dialogues and everyday grammar.</p>
               <div class="course-foot"><span class="price">$190<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=spanish">View Course</a></div>
             </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
+
+    <section id="newsletter-section" class="section section-alt">
+      <div class="container newsletter">
+        <div class="section-header">
+          <span class="eyebrow">Newsletter</span>
+          <h2>Course news, in your inbox</h2>
+          <p>New groups, exam dates, and study tips from MF Language Academy.</p>
+        </div>
+        <form class="newsletter-form" data-form="newsletter" novalidate>
+          <div class="field">
+            <label for="newsletter-email">Email</label>
+            <input id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="you@email.com">
+            <p class="field-error" data-error-for="email"></p>
+          </div>
+          <button class="btn btn-primary" type="submit">Subscribe</button>
+          <p class="form-note">Preview only. Nothing is sent.</p>
+          <div class="form-success" hidden>
+            <i class="bi bi-check-circle-fill"></i>
+            <h3>You are on the list</h3>
+            <p>This preview validated your email and did not send it anywhere.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
   </main>
   <footer class="footer">
     <div class="container footer-grid">
       <div>
-        <a class="logo" href="index.html"><span class="logo-mark">N</span><span class="logo-text"><strong>NovaLingua</strong><small>Language School</small></span></a>
-        <p style="margin-top:14px;">A Boston language school for people who want to speak clearly at work, in exams, and abroad.</p>
+        <a class="logo" href="index.html"><span class="logo-mark">MF</span><span class="logo-text"><strong>MF Language</strong><small>Academy</small></span></a>
+        <p style="margin-top:14px;">MF Language Academy helps adults speak clearly at work, in exams, and abroad.</p>
       </div>
       <div>
         <h3>Quick Links</h3>
@@ -171,7 +196,7 @@
       </div>
       <div>
         <h3>Contact Information</h3>
-        <div class="footer-links"><span>250 Language Plaza, Boston</span><a href="tel:+15550142280">+1 (555) 014-2280</a><a href="mailto:hello@novalingua.school">hello@novalingua.school</a><span>Mon–Fri 9:00–18:00</span></div>
+        <div class="footer-links"><span>250 Language Plaza, Boston</span><a href="tel:+15550142280">+1 (555) 014-2280</a><a href="mailto:hello@mflanguage.academy">hello@mflanguage.academy</a><span>Mon–Fri 9:00–18:00</span></div>
       </div>
       <div>
         <h3>Social Media</h3>
@@ -184,7 +209,7 @@
       </div>
     </div>
     <div class="container footer-bottom">
-      <p>© 2026 NovaLingua Language School. All rights reserved.</p>
+      <p>© 2026 MF Language Academy. All rights reserved.</p>
       <p><a href="login.html">Login</a> · <a href="register.html">Register</a></p>
     </div>
   </footer>

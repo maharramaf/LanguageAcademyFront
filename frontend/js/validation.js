@@ -1,7 +1,7 @@
 // 09. Forms
 function initForms() {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const rememberKey = "novalingua-remember-email";
+  const rememberKey = "mf-remember-email";
 
   function fieldOf(form, name) {
     return form.querySelector('[name="' + name + '"]');
@@ -102,6 +102,13 @@ function initForms() {
     else if (confirm !== password) checks.push(setError(registerForm, "confirm", "Passwords do not match."));
     else checks.push(setError(registerForm, "confirm", ""));
     if (checks.every(Boolean)) showSuccess(registerForm);
+  });
+
+  document.querySelectorAll('[data-form="newsletter"]').forEach(function (form) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (validateEmail(form, "email")) showSuccess(form);
+    });
   });
 
   document.querySelectorAll('[data-form="contact"]').forEach(function (form) {
