@@ -1,0 +1,455 @@
+const courses = {
+    "english-beginner": {
+      title: "English Beginner",
+      level: "Beginner",
+      duration: "8 weeks",
+      price: "$180",
+      lessons: "16 live lessons",
+      image: "images/course-beginner.jpg",
+      summary: "Build a confident foundation in everyday English, from greetings and travel to simple conversations at work and in the city.",
+      overview: "This course is for new learners who want clear structure, plenty of speaking time, and feedback they can use the same day. Classes stay small so every student is heard.",
+      learn: ["Introduce yourself and talk about daily routines", "Use present and past forms in simple stories", "Handle cafés, directions, and travel situations", "Build a personal vocabulary notebook"],
+      curriculum: [
+        ["Week 1–2 · Sounds and first conversations", "Pronunciation basics, greetings, and questions you will actually use."],
+        ["Week 3–4 · Daily life", "Home, work, food, and telling the time with natural phrases."],
+        ["Week 5–6 · Out in the city", "Directions, shopping, and polite requests."],
+        ["Week 7–8 · Your story", "Past events, short presentations, and a final speaking check."]
+      ]
+    },
+    "english-intermediate": {
+      title: "English Intermediate",
+      level: "Intermediate",
+      duration: "10 weeks",
+      price: "$210",
+      lessons: "20 live lessons",
+      image: "images/course-intermediate.jpg",
+      summary: "Move from careful sentences to fluent discussion. You will practice opinion, story, and workplace English.",
+      overview: "Learners at this level already know the basics. The course pushes accuracy and flow with debates, short writing, and real listening.",
+      learn: ["Hold a five-minute opinion conversation", "Use linking language in stories and emails", "Understand common fast speech", "Give and receive clear feedback"],
+      curriculum: [
+        ["Week 1–3 · Fluency habits", "Speaking frames, hesitation language, and listening for gist."],
+        ["Week 4–6 · Stories and opinions", "Narrative tenses, agreeing, and disagreeing politely."],
+        ["Week 7–8 · Work and study", "Meetings, summaries, and clearer emails."],
+        ["Week 9–10 · Showcase", "A short talk plus a personal progress plan."]
+      ]
+    },
+    ielts: {
+      title: "IELTS Preparation",
+      level: "Upper intermediate",
+      duration: "8 weeks",
+      price: "$260",
+      lessons: "16 live lessons",
+      image: "images/course-ielts.jpg",
+      summary: "Train for the Academic IELTS with timed tasks, score-focused feedback, and strategies for each paper.",
+      overview: "You will practice Listening, Reading, Writing, and Speaking every week. Teachers mark work with the public band descriptors so progress is visible.",
+      learn: ["Plan Task 1 and Task 2 under time pressure", "Build speaking answers for all three parts", "Avoid the errors that cost bands", "Sit two full mock tests"],
+      curriculum: [
+        ["Week 1–2 · Exam map", "Format, timing, and a diagnostic mock."],
+        ["Week 3–4 · Reading and listening", "Question types, traps, and speed."],
+        ["Week 5–6 · Writing", "Task structure, cohesion, and model feedback."],
+        ["Week 7–8 · Speaking and final mock", "Fluency drills and a full timed test."]
+      ]
+    },
+    "business-english": {
+      title: "Business English",
+      level: "Intermediate",
+      duration: "8 weeks",
+      price: "$240",
+      lessons: "16 live lessons",
+      image: "images/course-business.jpg",
+      summary: "Sound clear and credible in meetings, presentations, and professional email.",
+      overview: "The course uses realistic workplace scenarios: project updates, negotiations, and client calls. You leave with phrases you can reuse on Monday.",
+      learn: ["Lead a short meeting", "Write concise professional email", "Present results without reading slides", "Handle disagreement calmly"],
+      curriculum: [
+        ["Week 1–2 · Professional presence", "Introductions, small talk, and tone."],
+        ["Week 3–4 · Meetings", "Agendas, interrupting politely, and action points."],
+        ["Week 5–6 · Writing", "Email, chat, and short proposals."],
+        ["Week 7–8 · Presentations", "Structure, visuals, and questions from the room."]
+      ]
+    },
+    german: {
+      title: "German Language",
+      level: "Beginner",
+      duration: "10 weeks",
+      price: "$190",
+      lessons: "20 live lessons",
+      image: "images/course-german.jpg",
+      summary: "Start German with practical dialogues, clear grammar, and pronunciation you can trust.",
+      overview: "A1-focused classes cover sounds, cases in context, and the situations new arrivals need first: transport, housing, and introductions.",
+      learn: ["Introduce yourself in German", "Order, ask, and understand simple replies", "Use articles and present tense with confidence", "Read short everyday notices"],
+      curriculum: [
+        ["Week 1–3 · First contact", "Alphabet, sounds, and personal information."],
+        ["Week 4–6 · Around town", "Food, transport, and numbers."],
+        ["Week 7–8 · Grammar in use", "Present tense, questions, and modal verbs."],
+        ["Week 9–10 · Mini project", "A short dialogue presentation."]
+      ]
+    },
+    spanish: {
+      title: "Spanish Language",
+      level: "Beginner",
+      duration: "10 weeks",
+      price: "$190",
+      lessons: "20 live lessons",
+      image: "images/course-spanish.jpg",
+      summary: "Learn Spanish you can speak from the first class, with culture notes woven into every topic.",
+      overview: "Lessons balance conversation and grammar. You practice Latin American and Peninsular varieties so you can follow real speakers.",
+      learn: ["Talk about yourself, family, and plans", "Use present tense and gustar naturally", "Navigate travel conversations", "Understand slow, clear speech"],
+      curriculum: [
+        ["Week 1–3 · People and places", "Greetings, ser/estar, and descriptions."],
+        ["Week 4–6 · Routines", "Present tense, time, and daily verbs."],
+        ["Week 7–8 · Going out", "Food, directions, and polite requests."],
+        ["Week 9–10 · Stories", "Near future and a speaking showcase."]
+      ]
+    },
+    french: {
+      title: "French Beginner",
+      level: "Beginner",
+      duration: "10 weeks",
+      price: "$190",
+      lessons: "20 live lessons",
+      image: "images/course-french.jpg",
+      summary: "A friendly start in French, with pronunciation coaching and conversations for travel and study.",
+      overview: "You will get comfortable with sounds that feel new, then use them in café, travel, and classroom situations.",
+      learn: ["Pronounce French rhythms with more confidence", "Introduce yourself and ask simple questions", "Handle menus and tickets", "Write a short personal message"],
+      curriculum: [
+        ["Week 1–3 · Sounds and greetings", "Nasal vowels, rhythm, and introductions."],
+        ["Week 4–6 · Daily French", "Food, time, and preferences."],
+        ["Week 7–8 · On the move", "Transport and asking for help."],
+        ["Week 9–10 · Your portrait", "A short spoken and written profile."]
+      ]
+    },
+    conversation: {
+      title: "Conversation Workshop",
+      level: "All levels",
+      duration: "6 weeks",
+      price: "$150",
+      lessons: "12 live lessons",
+      image: "images/course-conversation.jpg",
+      summary: "A speaking-first workshop for learners who understand more than they say.",
+      overview: "Each session is built around a topic, useful chunks, and feedback on clarity. Homework is short audio, not long grammar sheets.",
+      learn: ["Speak for longer turns", "Ask follow-up questions", "Notice and reuse natural chunks", "Track your own progress"],
+      curriculum: [
+        ["Week 1–2 · Confidence", "Turn-taking and repair phrases."],
+        ["Week 3–4 · Opinions", "Stories from your week and current topics."],
+        ["Week 5 · Stories", "Past experiences and detail."],
+        ["Week 6 · Open studio", "Student-chosen topics and final feedback."]
+      ]
+    }
+};
+
+// 05. Search and course filtering
+function initSearch() {
+  const params = new URLSearchParams(window.location.search);
+  const query = (params.get("q") || "").trim();
+
+  document.querySelectorAll(".header-search input").forEach(function (input) {
+    if (query) input.value = query;
+  });
+
+  const catalogInput = document.querySelector(".catalog-search");
+  const catalogEmpty = document.querySelector(".catalog-empty");
+  const filterButtons = document.querySelectorAll("[data-filter]");
+  if (!catalogInput && !filterButtons.length) return;
+  if (catalogInput && query) catalogInput.value = query;
+
+  function applyCourseFilter() {
+    const active = document.querySelector("[data-filter].is-active")?.dataset.filter || "all";
+    const typed = (catalogInput?.value || "").trim().toLowerCase();
+    const cards = document.querySelectorAll(".course-catalog .course-card[data-category]");
+    let visible = 0;
+    cards.forEach(function (card) {
+      const categoryMatch = active === "all" || card.dataset.category === active;
+      const textMatch = !typed || (card.dataset.search || "").includes(typed);
+      const show = categoryMatch && textMatch;
+      card.hidden = !show;
+      if (show) visible += 1;
+    });
+    if (catalogEmpty) catalogEmpty.hidden = visible !== 0;
+  }
+
+  filterButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      filterButtons.forEach(function (item) { item.classList.remove("is-active"); });
+      button.classList.add("is-active");
+      applyCourseFilter();
+    });
+  });
+
+  catalogInput?.addEventListener("input", applyCourseFilter);
+  applyCourseFilter();
+}
+
+// 10. Animations
+function initAnimations() {
+  const revealItems = document.querySelectorAll(".reveal");
+  if (revealItems.length && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+    revealItems.forEach(function (item) { observer.observe(item); });
+  } else {
+    revealItems.forEach(function (item) { item.classList.add("is-visible"); });
+  }
+
+  const counters = document.querySelectorAll("[data-count]");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function runCount(el) {
+    const target = Number(el.dataset.count);
+    const suffix = el.dataset.suffix || "";
+    if (reduceMotion) {
+      el.textContent = target.toLocaleString() + suffix;
+      return;
+    }
+    const start = performance.now();
+    const duration = 1200;
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const value = Math.round(target * (1 - Math.pow(1 - progress, 3)));
+      el.textContent = value.toLocaleString() + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  if (counters.length && "IntersectionObserver" in window) {
+    const counterObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        runCount(entry.target);
+        counterObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(function (counter) { counterObserver.observe(counter); });
+  } else {
+    counters.forEach(runCount);
+  }
+
+  const backToTop = document.querySelector(".back-to-top");
+  if (backToTop) {
+    window.addEventListener("scroll", function () {
+      backToTop.classList.toggle("is-visible", window.scrollY > 500);
+    }, { passive: true });
+    backToTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    });
+  }
+}
+
+function initCoursePage() {
+  document.querySelectorAll(".accordion-trigger").forEach(function (trigger) {
+    trigger.addEventListener("click", function () {
+      const item = trigger.closest(".accordion-item");
+      const open = item.classList.contains("is-open");
+      item.parentElement.querySelectorAll(".accordion-item").forEach(function (sibling) {
+        sibling.classList.remove("is-open");
+      });
+      if (!open) item.classList.add("is-open");
+    });
+  });
+
+  const detailRoot = document.querySelector("[data-course-detail]") || document.getElementById("courseDetail");
+  if (detailRoot) {
+    const bind = function (name) {
+      return document.querySelector('[data-bind="' + name + '"]');
+    };
+    const selected = new URLSearchParams(window.location.search).get("course") || "english-beginner";
+    const course = courses[selected] || courses["english-beginner"];
+    bind("title").textContent = course.title;
+    bind("crumb").textContent = course.title;
+    bind("summary").textContent = course.summary;
+    bind("overview").textContent = course.overview;
+    bind("price").textContent = course.price;
+    bind("level").textContent = course.level;
+    bind("duration").textContent = course.duration;
+    bind("lessons").textContent = course.lessons;
+    const image = bind("image");
+    image.src = course.image;
+    image.alt = course.title + " course";
+    document.title = course.title + " | NovaLingua";
+
+    const learn = bind("learn");
+    learn.innerHTML = "";
+    course.learn.forEach(function (item) {
+      const li = document.createElement("li");
+      li.innerHTML = '<i class="bi bi-check-circle-fill"></i><span></span>';
+      li.querySelector("span").textContent = item;
+      learn.appendChild(li);
+    });
+
+    const curriculum = bind("curriculum");
+    curriculum.innerHTML = "";
+    course.curriculum.forEach(function (block, index) {
+      const article = document.createElement("article");
+      article.className = "accordion-item" + (index === 0 ? " is-open" : "");
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "accordion-trigger";
+      button.innerHTML = "<span></span><i class='bi bi-plus-lg'></i>";
+      button.querySelector("span").textContent = block[0];
+      const panel = document.createElement("div");
+      panel.className = "accordion-panel";
+      const paragraph = document.createElement("p");
+      paragraph.textContent = block[1];
+      panel.appendChild(paragraph);
+      article.appendChild(button);
+      article.appendChild(panel);
+      button.addEventListener("click", function () {
+        const open = article.classList.contains("is-open");
+        curriculum.querySelectorAll(".accordion-item").forEach(function (item) {
+          item.classList.remove("is-open");
+        });
+        if (!open) article.classList.add("is-open");
+      });
+      curriculum.appendChild(article);
+    });
+  }
+
+}
+
+// 08. Modals
+function initModals() {
+  function openModal(modal) {
+    if (!modal) return;
+    modal.hidden = false;
+    modal.classList.add("is-open");
+    document.body.classList.add("nav-lock");
+    modal.querySelector(".modal-close")?.focus();
+  }
+
+  function closeModal(modal) {
+    modal.classList.remove("is-open");
+    modal.hidden = true;
+    document.body.classList.remove("nav-lock");
+  }
+
+  document.querySelectorAll("[data-open-modal]").forEach(function (button) {
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+      const name = button.dataset.openModal;
+      openModal(document.querySelector('[data-modal="' + name + '"]') || document.getElementById(name));
+    });
+  });
+
+  document.querySelectorAll(".modal").forEach(function (modal) {
+    modal.addEventListener("click", function (event) {
+      if (event.target === modal) closeModal(modal);
+    });
+    modal.querySelectorAll("[data-modal-close]").forEach(function (button) {
+      button.addEventListener("click", function () { closeModal(modal); });
+    });
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key !== "Escape") return;
+    document.querySelectorAll(".modal.is-open").forEach(closeModal);
+  });
+
+  const teacherModal = document.querySelector('[data-modal="teacher"]') || document.getElementById("teacherModal");
+  document.querySelectorAll("[data-teacher-open]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      if (!teacherModal) return;
+      teacherModal.querySelector("[data-teacher='photo']").src = button.dataset.photo;
+      teacherModal.querySelector("[data-teacher='photo']").alt = button.dataset.name;
+      teacherModal.querySelector("[data-teacher='name']").textContent = button.dataset.name;
+      teacherModal.querySelector("[data-teacher='role']").textContent = button.dataset.role;
+      teacherModal.querySelector("[data-teacher='bio']").textContent = button.dataset.bio;
+      openModal(teacherModal);
+    });
+  });
+
+}
+
+function initDashboard() {
+  const sidebar = document.querySelector(".dash-sidebar");
+  const sideToggle = document.querySelector(".side-toggle") || document.getElementById("sideToggle");
+  const sideOverlay = document.querySelector(".side-overlay");
+
+  function setSidebar(open) {
+    sidebar?.classList.toggle("is-open", open);
+    sideOverlay?.classList.toggle("is-open", open);
+  }
+
+  sideToggle?.addEventListener("click", function () {
+    setSidebar(!sidebar.classList.contains("is-open"));
+  });
+  sideOverlay?.addEventListener("click", function () { setSidebar(false); });
+
+  document.querySelectorAll("[data-view-target]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      const id = button.dataset.viewTarget;
+      document.querySelectorAll(".dash-view").forEach(function (view) {
+        view.classList.toggle("is-active", view.id === id);
+      });
+      document.querySelectorAll("[data-view-target]").forEach(function (item) {
+        item.classList.toggle("is-active", item === button);
+      });
+      const title = document.querySelector(".dash-title") || document.getElementById("dashTitle");
+      if (title) title.textContent = button.dataset.title || "Dashboard";
+      setSidebar(false);
+    });
+  });
+
+  const studentFilter = document.querySelector(".student-filter") || document.getElementById("studentFilter");
+  studentFilter?.addEventListener("input", function () {
+    const query = studentFilter.value.trim().toLowerCase();
+    document.querySelectorAll("[data-student-row]").forEach(function (row) {
+      row.hidden = query && !row.dataset.studentRow.includes(query);
+    });
+  });
+
+  document.querySelectorAll("[data-message]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      document.querySelectorAll("[data-message]").forEach(function (item) {
+        item.classList.remove("is-active");
+      });
+      button.classList.add("is-active");
+      const view = document.querySelector(".message-view") || document.getElementById("messageView");
+      if (!view) return;
+      view.querySelector("h3").textContent = button.dataset.from;
+      view.querySelector("p").textContent = button.dataset.body;
+    });
+  });
+
+  document.querySelectorAll("[data-switch]").forEach(function (toggle) {
+    const key = "novalingua-setting-" + toggle.dataset.switch;
+    const stored = localStorage.getItem(key);
+    if (stored === "on") toggle.classList.add("is-on");
+    if (stored === "off") toggle.classList.remove("is-on");
+    toggle.addEventListener("click", function () {
+      toggle.classList.toggle("is-on");
+      localStorage.setItem(key, toggle.classList.contains("is-on") ? "on" : "off");
+    });
+  });
+
+  const settingsSave = document.querySelector(".settings-save") || document.getElementById("settingsSave");
+  const toast = document.querySelector(".toast");
+  settingsSave?.addEventListener("click", function () {
+    if (!toast) return;
+    toast.hidden = false;
+    window.setTimeout(function () { toast.hidden = true; }, 2200);
+  });
+
+  document.querySelectorAll('a[href="#"]').forEach(function (link) {
+    link.addEventListener("click", function (event) { event.preventDefault(); });
+  });
+}
+
+// 11. Initialization
+document.addEventListener("DOMContentLoaded", function () {
+  initNavigation();
+  initMobileMenu();
+  initSearch();
+  initCourseSlider();
+  initTestimonials();
+  initForms();
+  initAnimations();
+  initCoursePage();
+  initModals();
+  initDashboard();
+});

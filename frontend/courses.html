@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses | NovaLingua</title>
+  <meta name="description" content="Browse NovaLingua courses in English, IELTS, Business English, German, Spanish, and French.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;0,6..12,800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#courses-hero">Skip to content</a>
+  <header class="site-header">
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-left">
+        <a href="tel:+15550142280"><i class="bi bi-telephone"></i> +1 (555) 014-2280</a>
+        <a href="mailto:hello@novalingua.school"><i class="bi bi-envelope"></i> hello@novalingua.school</a>
+      </div>
+      <div class="topbar-right">
+        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><span class="logo-mark">N</span><span class="logo-text"><strong>NovaLingua</strong><small>Language School</small></span></a>
+      <nav class="nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a class="active" href="courses.html" aria-current="page">Courses</a></li>
+          <li><a href="teachers.html">Teachers</a></li>
+          <li><a href="students.html">Students</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a class="btn btn-outline" href="login.html">Login</a>
+          <a class="btn btn-secondary" href="register.html">Register</a>
+        </div>
+      </nav>
+      <form class="header-search" action="courses.html" method="get" role="search">
+        <i class="bi bi-search" aria-hidden="true"></i>
+        <input type="search" name="q" placeholder="Search courses" aria-label="Search courses">
+      </form>
+      <div class="header-actions">
+        <a class="btn btn-outline" href="login.html">Login</a>
+        <a class="btn btn-secondary" href="register.html">Register</a>
+        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="nav-overlay"></div>
+  </header>
+  <main>
+    <section id="courses-hero" class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Courses</span></nav>
+        <span class="eyebrow">Catalog</span>
+        <h1>Find a course that matches your goal</h1>
+        <p>Filter by language or search by name. Prices and dates on this page are sample content for the frontend.</p>
+      </div>
+    </section>
+    <section id="courses-section" class="section">
+      <div class="container">
+        <div class="toolbar">
+          <div class="filters" role="tablist" aria-label="Course categories">
+            <button class="filter-btn is-active" type="button" data-filter="all">All</button>
+            <button class="filter-btn" type="button" data-filter="english">English</button>
+            <button class="filter-btn" type="button" data-filter="exam">Exam Prep</button>
+            <button class="filter-btn" type="button" data-filter="business">Business</button>
+            <button class="filter-btn" type="button" data-filter="german">German</button>
+            <button class="filter-btn" type="button" data-filter="spanish">Spanish</button>
+            <button class="filter-btn" type="button" data-filter="french">French</button>
+          </div>
+          <label class="search-field">
+            <i class="bi bi-search"></i>
+            <input class="catalog-search" id="courseSearch" type="search" placeholder="Search courses" aria-label="Search courses">
+          </label>
+        </div>
+        <div class="course-grid course-catalog">
+          <article class="course-card" data-category="english" data-search="english beginner everyday greetings travel conversations">
+            <div class="course-media"><img src="images/course-beginner.jpg" alt="Study desk" width="1000" height="700"><span class="badge">Beginner</span></div>
+            <div class="course-body">
+              <h3>English Beginner</h3>
+              <p>Everyday English for greetings, travel, and simple conversations.</p>
+              <ul class="course-meta"><li><i class="bi bi-bar-chart"></i> Beginner</li><li><i class="bi bi-clock"></i> 8 weeks</li></ul>
+              <div class="course-foot"><span class="price">$180<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=english-beginner">View Course</a></div>
+            </div>
+          </article>
+          <article class="course-card" data-category="english" data-search="english intermediate conversations writing listening">
+            <div class="course-media"><img src="images/course-intermediate.jpg" alt="Books for intermediate English" width="1000" height="700"><span class="badge">Intermediate</span></div>
+            <div class="course-body">
+              <h3>English Intermediate</h3>
+              <p>Longer conversations, clearer writing, and more natural listening.</p>
+              <ul class="course-meta"><li><i class="bi bi-bar-chart"></i> Intermediate</li><li><i class="bi bi-clock"></i> 10 weeks</li></ul>
+              <div class="course-foot"><span class="price">$210<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=english-intermediate">View Course</a></div>
+            </div>
+          </article>
+          <article class="course-card" data-category="exam" data-search="ielts preparation exam academic writing speaking">
+            <div class="course-media"><img src="images/course-ielts.jpg" alt="Exam planning notes" width="1000" height="700"><span class="badge">Exam</span></div>
+            <div class="course-body">
+              <h3>IELTS Preparation</h3>
+              <p>Timed practice and band-focused feedback for all four papers.</p>
+              <ul class="course-meta"><li><i class="bi bi-bar-chart"></i> Upper intermediate</li><li><i class="bi bi-clock"></i> 8 weeks</li></ul>
+              <div class="course-foot"><span class="price">$260<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=ielts">View Course</a></div>
+            </div>
+          </article>
+          <article class="course-card" data-category="business" data-search="business english meetings email presentations">
+            <div class="course-media"><img src="images/course-business.jpg" alt="Business workshop" width="1000" height="700"><span class="badge">Professional</span></div>
+            <div class="course-body">
+              <h3>Business English</h3>
+              <p>Meetings, email, and presentations for working professionals.</p>
+              <ul class="course-meta"><li><i class="bi bi-bar-chart"></i> Intermediate</li><li><i class="bi bi-clock"></i> 8 weeks</li></ul>
+              <div class="course-foot"><span class="price">$240<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=business-english">View Course</a></div>
+            </div>
+          </article>
+          <article class="course-card" data-category="german" data-search="german language beginner a1 pronunciation">
+            <div class="course-media"><img src="images/course-german.jpg" alt="European street for German course" width="1000" height="700"><span class="badge">Beginner</span></div>
+            <div class="course-body">
+              <h3>German Language</h3>
+              <p>A practical A1 start with pronunciation, grammar, and city dialogues.</p>
+              <ul class="course-meta"><li><i class="bi bi-bar-chart"></i> Beginner</li><li><i class="bi bi-clock"></i> 10 weeks</li></ul>
+              <div class="course-foot"><span class="price">$190<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=german">View Course</a></div>
+            </div>
+          </article>
+          <article class="course-card" data-category="spanish" data-search="spanish language beginner travel culture">
+            <div class="course-media"><img src="images/course-spanish.jpg" alt="City architecture for Spanish course" width="1000" height="700"><span class="badge">Beginner</span></div>
+            <div class="course-body">
+              <h3>Spanish Language</h3>
+              <p>Speak from the first class with travel, culture, and daily topics.</p>
+              <ul class="course-meta"><li><i class="bi bi-bar-chart"></i> Beginner</li><li><i class="bi bi-clock"></i> 10 weeks</li></ul>
+              <div class="course-foot"><span class="price">$190<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=spanish">View Course</a></div>
+            </div>
+          </article>
+          <article class="course-card" data-category="french" data-search="french beginner pronunciation travel study">
+            <div class="course-media"><img src="images/course-french.jpg" alt="Paris riverside for the French course" width="1000" height="700"><span class="badge">Beginner</span></div>
+            <div class="course-body">
+              <h3>French Beginner</h3>
+              <p>Pronunciation coaching plus conversations for travel and study.</p>
+              <ul class="course-meta"><li><i class="bi bi-bar-chart"></i> Beginner</li><li><i class="bi bi-clock"></i> 10 weeks</li></ul>
+              <div class="course-foot"><span class="price">$190<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=french">View Course</a></div>
+            </div>
+          </article>
+          <article class="course-card" data-category="english" data-search="conversation workshop speaking fluency all levels">
+            <div class="course-media"><img src="images/course-conversation.jpg" alt="Students talking together" width="1000" height="700"><span class="badge">All levels</span></div>
+            <div class="course-body">
+              <h3>Conversation Workshop</h3>
+              <p>A speaking-first studio for learners who understand more than they say.</p>
+              <ul class="course-meta"><li><i class="bi bi-bar-chart"></i> All levels</li><li><i class="bi bi-clock"></i> 6 weeks</li></ul>
+              <div class="course-foot"><span class="price">$150<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=conversation">View Course</a></div>
+            </div>
+          </article>
+        </div>
+        <p class="empty-state catalog-empty" id="courseEmpty" hidden>No courses match that filter. Try another language or clear the search.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="logo" href="index.html"><span class="logo-mark">N</span><span class="logo-text"><strong>NovaLingua</strong><small>Language School</small></span></a>
+        <p style="margin-top:14px;">A Boston language school for people who want to speak clearly at work, in exams, and abroad.</p>
+      </div>
+      <div>
+        <h3>Quick Links</h3>
+        <div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="courses.html">Courses</a><a href="teachers.html">Teachers</a><a href="contact.html">Contact</a></div>
+      </div>
+      <div>
+        <h3>Courses</h3>
+        <div class="footer-links">
+          <a href="course-details.html?course=english-beginner">English Beginner</a>
+          <a href="course-details.html?course=ielts">IELTS Preparation</a>
+          <a href="course-details.html?course=business-english">Business English</a>
+          <a href="course-details.html?course=german">German Language</a>
+          <a href="course-details.html?course=spanish">Spanish Language</a>
+        </div>
+      </div>
+      <div>
+        <h3>Contact Information</h3>
+        <div class="footer-links"><span>250 Language Plaza, Boston</span><a href="tel:+15550142280">+1 (555) 014-2280</a><a href="mailto:hello@novalingua.school">hello@novalingua.school</a><span>Mon–Fri 9:00–18:00</span></div>
+      </div>
+      <div>
+        <h3>Social Media</h3>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2026 NovaLingua Language School. All rights reserved.</p>
+      <p><a href="login.html">Login</a> · <a href="register.html">Register</a></p>
+    </div>
+  </footer>
+  <button class="back-to-top" type="button" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+  <script src="js/navbar.js" defer></script>
+  <script src="js/slider.js" defer></script>
+  <script src="js/validation.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

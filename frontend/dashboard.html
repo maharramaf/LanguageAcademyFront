@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | NovaLingua</title>
+  <meta name="description" content="NovaLingua learning portal dashboard preview.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;0,6..12,800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="side-overlay" id="sideOverlay"></div>
+  <div class="dash">
+    <aside class="dash-sidebar" id="sidebar">
+      <a class="logo" href="index.html"><span class="logo-mark">N</span><span class="logo-text"><strong>NovaLingua</strong><small>Learning portal</small></span></a>
+      <nav class="dash-nav" aria-label="Portal">
+        <button class="is-active" type="button" data-view-target="dashboard-section" data-title="Dashboard"><i class="bi bi-grid"></i> Dashboard</button>
+        <button type="button" data-view-target="my-courses-section" data-title="My Courses"><i class="bi bi-book"></i> My Courses</button>
+        <button type="button" data-view-target="course-catalog-section" data-title="Courses"><i class="bi bi-journal-bookmark"></i> Courses</button>
+        <button type="button" data-view-target="teachers-section" data-title="Teachers"><i class="bi bi-person-workspace"></i> Teachers</button>
+        <button type="button" data-view-target="students-section" data-title="Students"><i class="bi bi-people"></i> Students</button>
+        <button type="button" data-view-target="messages-section" data-title="Messages"><i class="bi bi-chat-dots"></i> Messages</button>
+        <button type="button" data-view-target="profile-section" data-title="Profile"><i class="bi bi-person-circle"></i> Profile</button>
+        <button type="button" data-view-target="settings-section" data-title="Settings"><i class="bi bi-gear"></i> Settings</button>
+        <a class="logout" href="login.html"><i class="bi bi-box-arrow-right"></i> Logout</a>
+      </nav>
+      <div class="side-user">
+        <img src="images/student-maya.jpg" alt="Maya Collins" width="84" height="84">
+        <div><strong>Maya Collins</strong><span>Academic coordinator</span></div>
+      </div>
+    </aside>
+    <div class="dash-main">
+      <header class="dash-top">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <button class="icon-btn side-toggle" id="sideToggle" type="button" aria-label="Open sidebar"><i class="bi bi-list"></i></button>
+          <h1 class="dash-title" id="dashTitle">Dashboard</h1>
+        </div>
+        <div class="dash-tools">
+          <a class="user-chip" href="index.html"><img src="images/student-maya.jpg" alt="" width="36" height="36"> Maya Collins</a>
+        </div>
+      </header>
+      <main>
+      <div class="dash-content">
+        <section id="dashboard-section" class="dash-view is-active">
+          <div class="welcome">
+            <div>
+              <span class="eyebrow" style="color:#fde68a;">Good to see you</span>
+              <h2>Welcome back, Maya</h2>
+              <p>Here is a snapshot of courses, students, and messages. All figures on this screen are sample data.</p>
+            </div>
+            <a class="btn btn-light" href="courses.html">Browse catalog</a>
+          </div>
+          <div class="dash-stats">
+            <article class="dash-stat"><span>Students</span><strong>1,000+</strong></article>
+            <article class="dash-stat"><span>Active courses</span><strong>20</strong></article>
+            <article class="dash-stat"><span>Teachers</span><strong>25</strong></article>
+            <article class="dash-stat"><span>Open messages</span><strong>8</strong></article>
+          </div>
+          <div class="dash-split">
+            <section class="panel">
+              <h3>Recent Courses</h3>
+              <div class="course-row">
+                <img src="images/course-ielts.jpg" alt="" width="64" height="48">
+                <div style="flex:1;">
+                  <h4>IELTS Preparation</h4>
+                  <p>18 students · Evening group</p>
+                  <div class="progress" aria-label="62 percent complete"><span style="width:62%"></span></div>
+                </div>
+              </div>
+              <div class="course-row">
+                <img src="images/course-beginner.jpg" alt="" width="64" height="48">
+                <div style="flex:1;">
+                  <h4>English Beginner</h4>
+                  <p>12 students · Morning group</p>
+                  <div class="progress" aria-label="40 percent complete"><span style="width:40%"></span></div>
+                </div>
+              </div>
+              <div class="course-row">
+                <img src="images/course-business.jpg" alt="" width="64" height="48">
+                <div style="flex:1;">
+                  <h4>Business English</h4>
+                  <p>9 students · Online</p>
+                  <div class="progress" aria-label="75 percent complete"><span style="width:75%"></span></div>
+                </div>
+              </div>
+            </section>
+            <section class="panel">
+              <h3>Recent Activity</h3>
+              <div class="activity-item"><i class="bi bi-person-plus"></i><div><h4>Amira Hassan enrolled</h4><p>IELTS Preparation · 2 hours ago</p></div></div>
+              <div class="activity-item"><i class="bi bi-chat"></i><div><h4>New message from Luca</h4><p>Asked about the Thursday club · 5 hours ago</p></div></div>
+              <div class="activity-item"><i class="bi bi-calendar-event"></i><div><h4>German schedule updated</h4><p>Room moved to Studio B · Yesterday</p></div></div>
+              <div class="activity-item"><i class="bi bi-award"></i><div><h4>Certificate issued</h4><p>Priya Shah · Spanish Language · Yesterday</p></div></div>
+            </section>
+          </div>
+          <section class="panel" style="margin-top:16px;">
+            <h3>Recent Students</h3>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Student</th><th>Course</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td data-label="Student"><span class="person"><img src="images/student-amira.jpg" alt=""> Amira Hassan</span></td><td data-label="Course">IELTS Preparation</td><td data-label="Status"><span class="pill pill-success">Active</span></td></tr>
+                  <tr><td data-label="Student"><span class="person"><img src="images/student-luca.jpg" alt=""> Luca Bianchi</span></td><td data-label="Course">Business English</td><td data-label="Status"><span class="pill pill-info">Online</span></td></tr>
+                  <tr><td data-label="Student"><span class="person"><img src="images/student-priya.jpg" alt=""> Priya Shah</span></td><td data-label="Course">Spanish Language</td><td data-label="Status"><span class="pill pill-warn">Certificate due</span></td></tr>
+                  <tr><td data-label="Student"><span class="person"><img src="images/student-noah.jpg" alt=""> Noah Keller</span></td><td data-label="Course">German Language</td><td data-label="Status"><span class="pill pill-success">Active</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section id="my-courses-section" class="dash-view">
+          <div class="mini-grid">
+            <article class="mini-course"><img src="images/course-ielts.jpg" alt="IELTS class materials"><div><h3>IELTS Preparation</h3><p>Evening · 62% through the plan</p><div class="progress"><span style="width:62%"></span></div></div></article>
+            <article class="mini-course"><img src="images/course-beginner.jpg" alt="Beginner English materials"><div><h3>English Beginner</h3><p>Morning · 40% through the plan</p><div class="progress"><span style="width:40%"></span></div></div></article>
+            <article class="mini-course"><img src="images/course-german.jpg" alt="German class materials"><div><h3>German Language</h3><p>Weekend · 28% through the plan</p><div class="progress"><span style="width:28%"></span></div></div></article>
+          </div>
+        </section>
+
+        <section id="course-catalog-section" class="dash-view">
+          <section class="panel">
+            <h3>Course catalog</h3>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Course</th><th>Level</th><th>Students</th><th>Price</th></tr></thead>
+                <tbody>
+                  <tr><td data-label="Course">English Beginner</td><td data-label="Level">Beginner</td><td data-label="Students">12</td><td data-label="Price">$180</td></tr>
+                  <tr><td data-label="Course">English Intermediate</td><td data-label="Level">Intermediate</td><td data-label="Students">10</td><td data-label="Price">$210</td></tr>
+                  <tr><td data-label="Course">IELTS Preparation</td><td data-label="Level">Upper intermediate</td><td data-label="Students">18</td><td data-label="Price">$260</td></tr>
+                  <tr><td data-label="Course">Business English</td><td data-label="Level">Intermediate</td><td data-label="Students">9</td><td data-label="Price">$240</td></tr>
+                  <tr><td data-label="Course">German Language</td><td data-label="Level">Beginner</td><td data-label="Students">11</td><td data-label="Price">$190</td></tr>
+                  <tr><td data-label="Course">Spanish Language</td><td data-label="Level">Beginner</td><td data-label="Students">14</td><td data-label="Price">$190</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section id="teachers-section" class="dash-view">
+          <div class="mini-grid">
+            <article class="panel"><div class="person"><img src="images/teacher-elena.jpg" alt=""> Elena Marquez</div><p class="role">English Program Lead</p></article>
+            <article class="panel"><div class="person"><img src="images/teacher-daniel.jpg" alt=""> Daniel Okonkwo</div><p class="role">IELTS Instructor</p></article>
+            <article class="panel"><div class="person"><img src="images/teacher-sophie.jpg" alt=""> Sophie Laurent</div><p class="role">Spanish Instructor</p></article>
+            <article class="panel"><div class="person"><img src="images/teacher-markus.jpg" alt=""> Markus Weber</div><p class="role">German Instructor</p></article>
+            <article class="panel"><div class="person"><img src="images/teacher-aiko.jpg" alt=""> Aiko Tanaka</div><p class="role">Conversation Coach</p></article>
+            <article class="panel"><div class="person"><img src="images/teacher-james.jpg" alt=""> James Whitfield</div><p class="role">Business English</p></article>
+          </div>
+        </section>
+
+        <section id="students-section" class="dash-view">
+          <section class="panel">
+            <div class="toolbar">
+              <h3 style="margin:0;">Students</h3>
+              <label class="search-field"><i class="bi bi-search"></i><input class="student-filter" id="studentFilter" type="search" placeholder="Search students" aria-label="Search students"></label>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Student</th><th>Course</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr data-student-row="amira hassan ielts"><td data-label="Student"><span class="person"><img src="images/student-amira.jpg" alt=""> Amira Hassan</span></td><td data-label="Course">IELTS Preparation</td><td data-label="Status"><span class="pill pill-success">Active</span></td></tr>
+                  <tr data-student-row="luca bianchi business"><td data-label="Student"><span class="person"><img src="images/student-luca.jpg" alt=""> Luca Bianchi</span></td><td data-label="Course">Business English</td><td data-label="Status"><span class="pill pill-info">Online</span></td></tr>
+                  <tr data-student-row="priya shah spanish"><td data-label="Student"><span class="person"><img src="images/student-priya.jpg" alt=""> Priya Shah</span></td><td data-label="Course">Spanish Language</td><td data-label="Status"><span class="pill pill-warn">Certificate due</span></td></tr>
+                  <tr data-student-row="noah keller german"><td data-label="Student"><span class="person"><img src="images/student-noah.jpg" alt=""> Noah Keller</span></td><td data-label="Course">German Language</td><td data-label="Status"><span class="pill pill-success">Active</span></td></tr>
+                  <tr data-student-row="leila rahman english"><td data-label="Student"><span class="person"><img src="images/student-leila.jpg" alt=""> Leila Rahman</span></td><td data-label="Course">English Intermediate</td><td data-label="Status"><span class="pill pill-success">Active</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section id="messages-section" class="dash-view">
+          <div class="message-layout">
+            <section class="panel">
+              <h3>Inbox</h3>
+              <button class="message-item is-active" type="button" data-message data-from="Luca Bianchi" data-body="Hi Maya, can I join the Thursday conversation club even though my course is Business English? I can stay after the online class.">
+                <strong>Luca Bianchi</strong><span>Thursday club</span>
+              </button>
+              <button class="message-item" type="button" data-message data-from="Amira Hassan" data-body="Thank you for the writing feedback. I rewrote task 2 and would like another look before Friday's mock.">
+                <strong>Amira Hassan</strong><span>Writing feedback</span>
+              </button>
+              <button class="message-item" type="button" data-message data-from="Markus Weber" data-body="Studio B is confirmed for the Saturday German group. I updated the room note on the board.">
+                <strong>Markus Weber</strong><span>Room change</span>
+              </button>
+              <button class="message-item" type="button" data-message data-from="Priya Shah" data-body="I finished the final speaking check. Could you confirm when the certificate will be ready to download?">
+                <strong>Priya Shah</strong><span>Certificate</span>
+              </button>
+            </section>
+            <section class="panel message-view" id="messageView">
+              <h3>Luca Bianchi</h3>
+              <p>Hi Maya, can I join the Thursday conversation club even though my course is Business English? I can stay after the online class.</p>
+            </section>
+          </div>
+        </section>
+
+        <section id="profile-section" class="dash-view">
+          <section class="panel" style="max-width:720px;">
+            <div class="profile-head">
+              <img src="images/student-maya.jpg" alt="Maya Collins" width="84" height="84">
+              <div><h2>Maya Collins</h2><p class="role">Academic coordinator</p></div>
+            </div>
+            <form data-form="profile" novalidate>
+              <div class="form-row">
+                <div class="field"><label for="profile-name">Name</label><input id="profile-name" name="name" type="text" value="Maya Collins"><p class="field-error" data-error-for="name"></p></div>
+                <div class="field"><label for="profile-email">Email</label><input id="profile-email" name="email" type="email" value="maya@novalingua.school"><p class="field-error" data-error-for="email"></p></div>
+              </div>
+              <div class="field"><label for="profile-phone">Phone</label><input id="profile-phone" name="phone" type="tel" value="+1 555 014 2280"><p class="field-error" data-error-for="phone"></p></div>
+              <div class="field"><label for="profile-bio">Bio</label><textarea id="profile-bio" name="bio">I place new students, keep the weekly schedule, and answer admissions questions.</textarea><p class="field-error" data-error-for="bio"></p></div>
+              <button class="btn btn-primary" type="submit">Save Profile</button>
+              <p class="form-note">Saving checks the form only. It does not update a database.</p>
+              <div class="form-success" hidden>
+                <i class="bi bi-check-circle-fill"></i>
+                <h3>Profile looks good</h3>
+                <p>Validation passed. Connect this form when your backend is ready.</p>
+              </div>
+            </form>
+          </section>
+        </section>
+
+        <section id="settings-section" class="dash-view">
+          <section class="panel" style="max-width:640px;">
+            <h3>Preferences</h3>
+            <div class="setting-row"><div><strong>Email notifications</strong><p>Course updates and new messages.</p></div><button class="switch is-on" type="button" data-switch="email" aria-label="Toggle email notifications"></button></div>
+            <div class="setting-row"><div><strong>Class reminders</strong><p>A reminder the day before each lesson.</p></div><button class="switch is-on" type="button" data-switch="reminders" aria-label="Toggle class reminders"></button></div>
+            <div class="setting-row"><div><strong>Public profile</strong><p>Show your name on the teachers page later.</p></div><button class="switch" type="button" data-switch="public" aria-label="Toggle public profile"></button></div>
+            <button class="btn btn-primary settings-save" id="settingsSave" type="button">Save Settings</button>
+          </section>
+        </section>
+      </div>
+      </main>
+    </div>
+  </div>
+  <div class="toast" id="toast" hidden role="status">Settings saved in this browser.</div>
+  <script src="js/navbar.js" defer></script>
+  <script src="js/slider.js" defer></script>
+  <script src="js/validation.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
