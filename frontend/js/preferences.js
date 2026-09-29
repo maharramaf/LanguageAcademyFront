@@ -489,6 +489,31 @@ const translations = {
     instructors_lead: "Əsas müəllim səhifəsi yerindədir. Bu siyahı reytinq və profil keçidləri əlavə edir.",
     notes_title: "Bildirişlər",
     notes_lead: "Oxunmamışlar vurğulanır. Oxunmuş etmək üçün birinə klikləyin.",
+    mark_all_read: "Hamısını oxunmuş et",
+    view_all_notifications: "Bütün bildirişlər",
+    no_notifications: "Yeni bildiriş yoxdur",
+    notifications_caught_up: "Hər şeyə baxmısınız.",
+    open_notifications: "Bildirişlər",
+    notify_filter_unread: "Oxunmamış",
+    notification_new_course: "Yeni kurs əlavə olundu",
+    notification_new_course_message: "Yeni kurs artıq açıqdır.",
+    notification_new_lesson: "Yeni dərs hazırdır",
+    notification_new_lesson_message: "Kursunuza yeni dərs əlavə olundu.",
+    notification_quiz_result: "Test nəticəsi hazırdır",
+    notification_quiz_result_message: "Test nəticənizə baxa bilərsiniz.",
+    notification_certificate: "Sertifikat hazırdır",
+    notification_certificate_message: "Təbriklər! Sertifikatınız hazırdır.",
+    notification_enrollment: "Qoşulma uğurlu oldu",
+    notification_enrollment_message: "Kursa uğurla qoşuldunuz.",
+    notification_new_student: "Yeni tələbə qoşuldu",
+    notification_new_student_message: "Kursunuza yeni tələbə yazıldı.",
+    notification_announcement: "Yeni elan",
+    notification_announcement_message: "MF Language Academy-dən yeni elan var.",
+    time_just_now: "İndicə",
+    time_5_minutes: "5 dəqiqə əvvəl",
+    time_20_minutes: "20 dəqiqə əvvəl",
+    time_1_hour: "1 saat əvvəl",
+    time_yesterday: "Dünən",
     note_lesson: "Yeni dərs yayımlandı",
     note_lesson_text: "İngilis A1 · Dərs 03 hazırdır.",
     note_quiz: "Test nəticəsi",
@@ -847,6 +872,31 @@ const translations = {
     instructors_lead: "Основная страница преподавателей остаётся. Этот список добавляет оценки и ссылки на профили.",
     notes_title: "Уведомления",
     notes_lead: "Непрочитанные выделены. Нажмите, чтобы отметить как прочитанное.",
+    mark_all_read: "Отметить все прочитанными",
+    view_all_notifications: "Все уведомления",
+    no_notifications: "Новых уведомлений нет",
+    notifications_caught_up: "Вы всё просмотрели.",
+    open_notifications: "Уведомления",
+    notify_filter_unread: "Непрочитанные",
+    notification_new_course: "Добавлен новый курс",
+    notification_new_course_message: "Новый курс уже доступен.",
+    notification_new_lesson: "Доступен новый урок",
+    notification_new_lesson_message: "В ваш курс добавлен новый урок.",
+    notification_quiz_result: "Результат теста готов",
+    notification_quiz_result_message: "Результат теста можно посмотреть.",
+    notification_certificate: "Сертификат готов",
+    notification_certificate_message: "Поздравляем! Сертификат готов.",
+    notification_enrollment: "Запись прошла успешно",
+    notification_enrollment_message: "Вы успешно записались на курс.",
+    notification_new_student: "Записался новый студент",
+    notification_new_student_message: "На ваш курс записался новый студент.",
+    notification_announcement: "Новое объявление",
+    notification_announcement_message: "Новое объявление от MF Language Academy.",
+    time_just_now: "Только что",
+    time_5_minutes: "5 минут назад",
+    time_20_minutes: "20 минут назад",
+    time_1_hour: "1 час назад",
+    time_yesterday: "Вчера",
     note_lesson: "Опубликован новый урок",
     note_lesson_text: "Английский A1 · Урок 03 готов.",
     note_quiz: "Результат теста",
@@ -1050,6 +1100,31 @@ translations.en.faq_browse = "Browse courses";
 translations.en.faq_learning = "Learning";
 translations.en.faq_quiz = "Quiz and grades";
 translations.en.faq_contact_support = "Contact support";
+translations.en.mark_all_read = "Mark all as read";
+translations.en.view_all_notifications = "View all notifications";
+translations.en.no_notifications = "No new notifications";
+translations.en.notifications_caught_up = "You're all caught up.";
+translations.en.open_notifications = "Notifications";
+translations.en.notify_filter_unread = "Unread";
+translations.en.notification_new_course = "New course added";
+translations.en.notification_new_course_message = "A new course is now available.";
+translations.en.notification_new_lesson = "New lesson available";
+translations.en.notification_new_lesson_message = "A new lesson has been added to your course.";
+translations.en.notification_quiz_result = "Quiz result available";
+translations.en.notification_quiz_result_message = "Your quiz result is ready.";
+translations.en.notification_certificate = "Certificate available";
+translations.en.notification_certificate_message = "Congratulations! Your certificate is ready.";
+translations.en.notification_enrollment = "Enrollment successful";
+translations.en.notification_enrollment_message = "You have successfully enrolled in a course.";
+translations.en.notification_new_student = "New student enrolled";
+translations.en.notification_new_student_message = "A new student enrolled in your course.";
+translations.en.notification_announcement = "New announcement";
+translations.en.notification_announcement_message = "There is a new announcement from MF Language Academy.";
+translations.en.time_just_now = "Just now";
+translations.en.time_5_minutes = "5 minutes ago";
+translations.en.time_20_minutes = "20 minutes ago";
+translations.en.time_1_hour = "1 hour ago";
+translations.en.time_yesterday = "Yesterday";
 translations.en.faq_cat_courses = "Courses";
 translations.en.faq_cat_lessons = "Lessons";
 translations.en.faq_cat_quizzes = "Quizzes";
@@ -1080,8 +1155,24 @@ translations.en.faq_q_password = "How do I change my password?";
 translations.en.faq_a_password = "Fill in the new password field on the profile page. This preview does not send the password to a server.";
 translations.en.faq_q_lesson_fail = "What should I do if a lesson does not open?";
 translations.en.faq_a_lesson_fail = "Refresh the page or try another browser. If it still fails, write through the contact form.";
+translations.en.slider_dot_course = "Show course group";
+translations.en.slider_dot_story = "Show testimonial group";
+translations.az.slider_dot_course = "Kurs qrupunu göstər";
+translations.az.slider_dot_story = "Rəy qrupunu göstər";
+translations.ru.slider_dot_course = "Показать группу курсов";
+translations.ru.slider_dot_story = "Показать группу отзывов";
 translations.en.faq_q_contact = "How can I contact support?";
 translations.en.faq_a_contact = "Use the form on the contact page, or email hello@mflanguage.academy.";
+
+if (window.MF_EXTRA) {
+  Object.keys(window.MF_EXTRA).forEach(function (key) {
+    const row = window.MF_EXTRA[key];
+    translations.en[key] = row.en;
+    translations.az[key] = row.az;
+    translations.ru[key] = row.ru;
+    if (row.en && !phraseKeys[row.en]) phraseKeys[row.en] = key;
+  });
+}
 
 let currentLanguage = "az";
 
@@ -1105,6 +1196,7 @@ function setElementText(el, text) {
     if (node.nodeType === 3 && node.textContent.trim()) nodes.push(node);
   });
   if (!nodes.length) {
+    if (el.children.length) return;
     el.textContent = text;
     return;
   }
@@ -1112,6 +1204,49 @@ function setElementText(el, text) {
   const lead = /^\s/.test(node.textContent) ? " " : "";
   const trail = /\s$/.test(node.textContent) ? " " : "";
   node.textContent = lead + text + trail;
+}
+
+function applyTranslations() {
+  document.querySelectorAll("[data-i18n]").forEach(function (el) {
+    const value = mfT(el.getAttribute("data-i18n"), null);
+    if (value == null) return;
+    setElementText(el, value);
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+    const value = mfT(el.getAttribute("data-i18n-placeholder"), null);
+    if (value != null) el.setAttribute("placeholder", value);
+  });
+  document.querySelectorAll("[data-i18n-aria-label]").forEach(function (el) {
+    const value = mfT(el.getAttribute("data-i18n-aria-label"), null);
+    if (value != null) el.setAttribute("aria-label", value);
+  });
+  document.querySelectorAll("[data-i18n-alt]").forEach(function (el) {
+    const value = mfT(el.getAttribute("data-i18n-alt"), null);
+    if (value != null) el.setAttribute("alt", value);
+  });
+  document.querySelectorAll("[data-i18n-title]").forEach(function (el) {
+    const value = mfT(el.getAttribute("data-i18n-title"), null);
+    if (value != null) {
+      el.dataset.title = value;
+      if (el.hasAttribute("title")) el.setAttribute("title", value);
+    }
+  });
+  document.querySelectorAll("[data-i18n-role]").forEach(function (el) {
+    const value = mfT(el.getAttribute("data-i18n-role"), null);
+    if (value != null) el.dataset.role = value;
+  });
+  document.querySelectorAll("[data-i18n-bio]").forEach(function (el) {
+    const value = mfT(el.getAttribute("data-i18n-bio"), null);
+    if (value != null) el.dataset.bio = value;
+  });
+  document.querySelectorAll("[data-i18n-body]").forEach(function (el) {
+    const value = mfT(el.getAttribute("data-i18n-body"), null);
+    if (value != null) el.dataset.body = value;
+  });
+  document.querySelectorAll("[data-i18n-label]").forEach(function (el) {
+    const value = mfT(el.getAttribute("data-i18n-label"), null);
+    if (value != null) el.setAttribute("data-label", value);
+  });
 }
 
 function applyTheme(theme) {
@@ -1134,31 +1269,7 @@ function setLanguage(language) {
   document.documentElement.lang = language;
   try { localStorage.setItem("mf-language", language); } catch (error) { /* storage may be blocked */ }
 
-  document.querySelectorAll("[data-i18n]").forEach(function (el) {
-    const value = mfT(el.getAttribute("data-i18n"), null);
-    if (value == null) return;
-    setElementText(el, value);
-  });
-  document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
-    const value = mfT(el.getAttribute("data-i18n-placeholder"), null);
-    if (value != null) el.setAttribute("placeholder", value);
-  });
-  document.querySelectorAll("[data-i18n-aria-label]").forEach(function (el) {
-    const value = mfT(el.getAttribute("data-i18n-aria-label"), null);
-    if (value != null) el.setAttribute("aria-label", value);
-  });
-  document.querySelectorAll("[data-i18n-title]").forEach(function (el) {
-    const value = mfT(el.getAttribute("data-i18n-title"), null);
-    if (value != null) el.dataset.title = value;
-  });
-  document.querySelectorAll("[data-i18n-role]").forEach(function (el) {
-    const value = mfT(el.getAttribute("data-i18n-role"), null);
-    if (value != null) el.dataset.role = value;
-  });
-  document.querySelectorAll("[data-i18n-bio]").forEach(function (el) {
-    const value = mfT(el.getAttribute("data-i18n-bio"), null);
-    if (value != null) el.dataset.bio = value;
-  });
+  applyTranslations();
 
   const code = language.toUpperCase();
   document.querySelectorAll(".lang-current").forEach(function (el) { el.textContent = code; });
@@ -1203,7 +1314,15 @@ function setLanguage(language) {
     if (!query) queryLabel.textContent = mfT("search_all");
   }
 
+  const activeMessage = document.querySelector("[data-message].is-active");
+  const messageView = document.querySelector(".message-view");
+  if (activeMessage && messageView) {
+    const body = messageView.querySelector("p");
+    if (body && activeMessage.dataset.body) body.textContent = activeMessage.dataset.body;
+  }
+
   if (typeof window.renderCourseDetail === "function") window.renderCourseDetail();
+  document.dispatchEvent(new CustomEvent("mf-language"));
   applyTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light");
 }
 
@@ -1312,7 +1431,13 @@ function loadSavedPreferences() {
   setLanguage(language);
 }
 
+function t(key) {
+  return mfT(key);
+}
+
 window.mfT = mfT;
+window.t = t;
+window.applyTranslations = applyTranslations;
 window.mfText = mfText;
 window.MF_PHRASE_KEYS = phraseKeys;
 window.setLanguage = setLanguage;

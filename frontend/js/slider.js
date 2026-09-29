@@ -50,7 +50,9 @@ function createSlider(root, options) {
       const dot = document.createElement("button");
       dot.type = "button";
       dot.className = "slider-dot" + (i === index ? " is-active" : "");
-      dot.setAttribute("aria-label", "Show " + label + " group " + (i + 1));
+      const dotKey = label === "testimonial" ? "slider_dot_story" : "slider_dot_course";
+      const dotBase = window.mfT ? window.mfT(dotKey, "Show " + label + " group") : "Show " + label + " group";
+      dot.setAttribute("aria-label", dotBase + " " + (i + 1));
       dot.addEventListener("click", function () {
         index = i;
         paint();
@@ -79,6 +81,7 @@ function createSlider(root, options) {
   next.addEventListener("click", function () { move(1); });
   root.addEventListener("mouseenter", function () { window.clearInterval(timer); });
   root.addEventListener("mouseleave", restart);
+  document.addEventListener("mf-language", function () { buildDots(); });
   if (window.ResizeObserver) new ResizeObserver(measure).observe(root);
   else window.addEventListener("resize", measure);
   measure();
