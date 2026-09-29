@@ -2,6 +2,13 @@ function initCourseCatalog() {
   const grid = document.querySelector("[data-lms-catalog]");
   if (!grid) return;
   const cards = Array.from(grid.querySelectorAll(".course-card"));
+  cards.forEach(function (card) {
+    const price = card.querySelector(".price");
+    if (!price || !card.dataset.cost || typeof formatPrice !== "function") return;
+    const small = price.querySelector("small");
+    const extra = small ? small.outerHTML : "";
+    price.innerHTML = formatPrice(card.dataset.cost) + extra;
+  });
   const empty = document.querySelector(".lms-empty");
   const pager = document.querySelector("[data-lms-pager]");
   const perPage = 4;
@@ -13,7 +20,8 @@ function initCourseCatalog() {
   }
 
   function apply() {
-    const query = (document.querySelector(".lms-search")?.value || "").trim().toLowerCase();
+    const rawQuery = (document.querySelector(".lms-search")?.value || "").trim();
+    const query = rawQuery.toLowerCase();
     const level = value("level");
     const language = value("language");
     const duration = value("duration");
@@ -23,7 +31,7 @@ function initCourseCatalog() {
       const weeks = Number(card.dataset.weeks || 0);
       const cost = Number(card.dataset.cost || 0);
       const stars = Number(card.dataset.stars || 0);
-      const text = (card.dataset.search || "").toLowerCase();
+      const text = typeof courseHaystack === "function" ? courseHaystack(card) : (card.dataset.search || "").toLowerCase();
       if (query && !text.includes(query)) return false;
       if (level !== "all" && card.dataset.level !== level) return false;
       if (language !== "all" && card.dataset.language !== language) return false;
@@ -51,7 +59,29 @@ function initCourseCatalog() {
     cards.forEach(function (card) {
       if (!list.includes(card)) card.hidden = true;
     });
-    if (empty) empty.hidden = list.length !== 0;
+    if (empty) {
+      empty.hidden = list.length !== 0;
+      const title = empty.querySelector("[data-search-title]");
+      const miss = empty.querySelector("[data-search-miss]");
+      const clear = empty.querySelector("[data-clear-search]");
+      const t = window.mfT || function (_key, fallback) { return fallback; };
+      if (title) title.textContent = query ? t("search_none_title", "No courses found") : t("search_none_filters", "No courses match those filters.");
+      if (miss) miss.textContent = query ? t("search_none_lead", "We couldn't find any courses matching") + ' "' + rawQuery + '". ' + t("search_none_try", "Try another search term.") : "";
+      if (clear) clear.hidden = !query;
+    }
+    const count = document.querySelector("[data-lms-catalog]")?.parentElement?.querySelector("[data-course-count]");
+    if (count && typeof courseResultLabel === "function") {
+      const start = list.length ? (page - 1) * perPage + 1 : 0;
+      const end = Math.min(page * perPage, list.length);
+      let label = courseResultLabel(list.length, Boolean(query));
+      if (list.length > perPage) {
+        const t = window.mfT || function (_key, fallback) { return fallback; };
+        label += " · " + t("search_showing", "Showing") + " " + start + "–" + end + " " + t("search_of", "of") + " " + list.length;
+      }
+      count.textContent = label;
+    }
+    if (typeof syncSearchUrl === "function") syncSearchUrl(rawQuery);
+    if (pager) pager.hidden = list.length === 0;
     if (!pager) return;
     pager.innerHTML = "";
     for (let i = 1; i <= pages; i += 1) {
@@ -67,6 +97,7 @@ function initCourseCatalog() {
     }
   }
 
+  const searchInput = document.querySelector(".lms-search");
   document.querySelectorAll("[data-lms-level], [data-lms-language], [data-lms-duration], [data-lms-price], [data-lms-rating], [data-lms-sort], .lms-search").forEach(function (field) {
     field.addEventListener("input", function () {
       page = 1;
@@ -77,6 +108,28 @@ function initCourseCatalog() {
       apply();
     });
   });
+  searchInput?.addEventListener("keydown", function (event) {
+    if (event.key !== "Enter") return;
+    event.preventDefault();
+    page = 1;
+    apply();
+  });
+  searchInput?.closest(".search-field")?.querySelector("i")?.addEventListener("click", function () {
+    page = 1;
+    apply();
+  });
+  document.querySelector("[data-lms-catalog]")?.parentElement?.querySelector("[data-clear-search]")?.addEventListener("click", function () {
+    if (searchInput) searchInput.value = "";
+    page = 1;
+    apply();
+    searchInput?.focus();
+  });
+  if (!initCourseCatalog.langBound) {
+    initCourseCatalog.langBound = true;
+    document.addEventListener("mf-language", function () {
+      document.querySelector(".lms-search")?.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+  }
   apply();
 }
 
@@ -153,7 +206,7 @@ function initInstructorCards() {
   });
 }
 
-function initNotifications() {
+function initNoticeClicks() {
   const list = document.querySelector("[data-notifications]");
   if (!list) return;
   list.querySelectorAll("[data-notice]").forEach(function (item) {
@@ -185,8 +238,7 @@ function initFAQ() {
 function initSearchResults() {
   const root = document.querySelector("[data-search-results]");
   if (!root) return;
-  const params = new URLSearchParams(window.location.search);
-  const query = (params.get("q") || "").trim().toLowerCase();
+  const query = (typeof searchQueryFromUrl === "function" ? searchQueryFromUrl() : (new URLSearchParams(window.location.search).get("q") || "")).trim().toLowerCase();
   const label = document.querySelector("[data-search-query]");
   if (label) label.textContent = query || (window.mfText ? window.mfText("all courses") : "all courses");
   const input = document.querySelector(".header-search input");
@@ -209,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initEvents();
   initBlog();
   initInstructorCards();
-  initNotifications();
+  initNoticeClicks();
   initFAQ();
   initSearchResults();
 });

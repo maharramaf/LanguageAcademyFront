@@ -1,9 +1,18 @@
+function formatPrice(amount) {
+  const azn = Number(amount);
+  if (!Number.isFinite(azn)) return "";
+  const usd = Math.round(azn / 1.7);
+  return "₼" + azn.toFixed(0) + " ($" + usd + ")";
+}
+
+window.formatPrice = formatPrice;
+
 const courses = {
     "english-beginner": {
       title: "English A1 — Complete Beginner Course",
       level: "Beginner",
       duration: "8 weeks",
-      price: "$49",
+      price: 49,
       lessons: "32 lessons",
       image: "images/course-beginner.jpg",
       summary: "Start English from zero with guided speaking, everyday vocabulary, and clear grammar you can use the same day.",
@@ -20,7 +29,7 @@ const courses = {
       title: "English Intermediate",
       level: "Intermediate",
       duration: "10 weeks",
-      price: "$210",
+      price: 210,
       lessons: "20 live lessons",
       image: "images/course-intermediate.jpg",
       summary: "Move from careful sentences to fluent discussion. You will practice opinion, story, and workplace English.",
@@ -37,7 +46,7 @@ const courses = {
       title: "IELTS Preparation",
       level: "Upper intermediate",
       duration: "8 weeks",
-      price: "$260",
+      price: 260,
       lessons: "16 live lessons",
       image: "images/course-ielts.jpg",
       summary: "Train for the Academic IELTS with timed tasks, score-focused feedback, and strategies for each paper.",
@@ -54,7 +63,7 @@ const courses = {
       title: "Business English",
       level: "Intermediate",
       duration: "8 weeks",
-      price: "$240",
+      price: 240,
       lessons: "16 live lessons",
       image: "images/course-business.jpg",
       summary: "Sound clear and credible in meetings, presentations, and professional email.",
@@ -71,7 +80,7 @@ const courses = {
       title: "German Language",
       level: "Beginner",
       duration: "10 weeks",
-      price: "$190",
+      price: 190,
       lessons: "20 live lessons",
       image: "images/course-german.jpg",
       summary: "Start German with practical dialogues, clear grammar, and pronunciation you can trust.",
@@ -88,7 +97,7 @@ const courses = {
       title: "Spanish Language",
       level: "Beginner",
       duration: "10 weeks",
-      price: "$190",
+      price: 190,
       lessons: "20 live lessons",
       image: "images/course-spanish.jpg",
       summary: "Learn Spanish you can speak from the first class, with culture notes woven into every topic.",
@@ -105,7 +114,7 @@ const courses = {
       title: "French Beginner",
       level: "Beginner",
       duration: "10 weeks",
-      price: "$190",
+      price: 190,
       lessons: "20 live lessons",
       image: "images/course-french.jpg",
       summary: "A friendly start in French, with pronunciation coaching and conversations for travel and study.",
@@ -122,7 +131,7 @@ const courses = {
       title: "Conversation Workshop",
       level: "All levels",
       duration: "6 weeks",
-      price: "$150",
+      price: 150,
       lessons: "12 live lessons",
       image: "images/course-conversation.jpg",
       summary: "A speaking-first workshop for learners who understand more than they say.",
@@ -138,16 +147,70 @@ const courses = {
 };
 
 // 05. Search and course filtering
+function searchQueryFromUrl() {
+  let search = window.location.search;
+  if (!search && window.location.hash.indexOf("?") !== -1) {
+    search = window.location.hash.slice(window.location.hash.indexOf("?"));
+  }
+  const params = new URLSearchParams(search);
+  return (params.get("search") || params.get("q") || "").trim();
+}
+
+function courseHaystack(card) {
+  return [
+    card.dataset.search,
+    card.dataset.category,
+    card.dataset.level,
+    card.dataset.language,
+    card.textContent
+  ].join(" ").toLowerCase();
+}
+
+function courseResultLabel(count, hasQuery) {
+  const lang = document.documentElement.lang || "az";
+  const t = window.mfT || function (_key, fallback) { return fallback; };
+  if (hasQuery) {
+    if (lang === "ru") {
+      const mod10 = count % 10;
+      const mod100 = count % 100;
+      const word = mod10 === 1 && mod100 !== 11 ? "курс найден" : (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14) ? "курса найдено" : "курсов найдено");
+      return count + " " + word;
+    }
+    if (lang === "az") return count + " kurs tapıldı";
+    return count + " " + (count === 1 ? "Course Found" : t("search_courses_found", "Courses Found"));
+  }
+  const all = t("search_showing_all", "Showing all courses");
+  if (lang === "ru") {
+    const mod10 = count % 10;
+    const mod100 = count % 100;
+    const word = mod10 === 1 && mod100 !== 11 ? "курс" : (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14) ? "курса" : "курсов");
+    return all + " · " + count + " " + word;
+  }
+  if (lang === "az") return all + " · " + count + " kurs";
+  return all + " · " + count + " " + (count === 1 ? t("search_course_one", "Course") : t("search_course_many", "Courses"));
+}
+
 function initSearch() {
-  const params = new URLSearchParams(window.location.search);
-  const query = (params.get("q") || "").trim();
+  const query = searchQueryFromUrl();
 
   document.querySelectorAll(".header-search input").forEach(function (input) {
     if (query) input.value = query;
   });
 
-  const catalogInput = document.querySelector(".catalog-search");
-  if (catalogInput && query) catalogInput.value = query;
+  document.querySelectorAll(".catalog-search, .lms-search").forEach(function (input) {
+    if (query) input.value = query;
+  });
+
+  document.querySelectorAll(".header-search").forEach(function (form) {
+    const icon = form.querySelector("i");
+    if (!icon || icon.dataset.searchBound === "1") return;
+    icon.dataset.searchBound = "1";
+    icon.addEventListener("click", function (event) {
+      event.preventDefault();
+      if (typeof form.requestSubmit === "function") form.requestSubmit();
+      else form.submit();
+    });
+  });
 }
 
 // 06. Course filtering
@@ -157,20 +220,65 @@ function initCourseFilter() {
   const filterButtons = document.querySelectorAll("[data-filter]");
   if (!catalogInput && !filterButtons.length) return;
 
+  function paintCourseEmpty(typed, raw) {
+    if (!catalogEmpty) return;
+    const title = catalogEmpty.querySelector("[data-search-title]");
+    const miss = catalogEmpty.querySelector("[data-search-miss]");
+    const clear = catalogEmpty.querySelector("[data-clear-search]");
+    const t = window.mfT || function (_key, fallback) { return fallback; };
+    if (title) title.textContent = typed ? t("search_none_title", "No courses found") : t("search_none_filters", "No courses match those filters.");
+    if (miss) miss.textContent = typed ? t("search_none_lead", "We couldn't find any courses matching") + ' "' + raw + '". ' + t("search_none_try", "Try another search term.") : "";
+    if (clear) clear.hidden = !typed;
+  }
+
   function applyCourseFilter() {
+    const inputNow = document.querySelector(".catalog-search");
+    const emptyNow = document.querySelector(".catalog-empty");
     const active = document.querySelector("[data-filter].is-active")?.dataset.filter || "all";
-    const typed = (catalogInput?.value || "").trim().toLowerCase();
+    const raw = (inputNow?.value || "").trim();
+    const typed = raw.toLowerCase();
     const cards = document.querySelectorAll(".course-catalog .course-card[data-category]");
     let visible = 0;
     cards.forEach(function (card) {
       const categoryMatch = active === "all" || card.dataset.category === active;
-      const textMatch = !typed || (card.dataset.search || "").includes(typed);
+      const textMatch = !typed || courseHaystack(card).includes(typed);
       const show = categoryMatch && textMatch;
       card.hidden = !show;
       if (show) visible += 1;
     });
-    if (catalogEmpty) catalogEmpty.hidden = visible !== 0;
+    if (emptyNow) emptyNow.hidden = visible !== 0;
+    if (emptyNow) {
+      const title = emptyNow.querySelector("[data-search-title]");
+      const miss = emptyNow.querySelector("[data-search-miss]");
+      const clear = emptyNow.querySelector("[data-clear-search]");
+      const t = window.mfT || function (_key, fallback) { return fallback; };
+      if (title) title.textContent = typed ? t("search_none_title", "No courses found") : t("search_none_filters", "No courses match those filters.");
+      if (miss) miss.textContent = typed ? t("search_none_lead", "We couldn't find any courses matching") + ' "' + raw + '". ' + t("search_none_try", "Try another search term.") : "";
+      if (clear) clear.hidden = !typed;
+    }
+    const count = document.querySelector("[data-course-count]");
+    if (count) count.textContent = courseResultLabel(visible, Boolean(typed));
+    if (typeof syncSearchUrl === "function") syncSearchUrl(raw);
   }
+
+function syncSearchUrl(value) {
+  if (window.location.hash.indexOf("#/") === 0) {
+    const file = window.location.hash.slice(2).split("?")[0].split("#")[0] || "index.html";
+    const route = "#/" + file + (value ? "?q=" + encodeURIComponent(value) : "");
+    if (window.location.hash === route) return;
+    try { history.replaceState({ mf: 1 }, "", window.location.pathname + window.location.search + route); } catch (error) { /* keep the current address */ }
+    return;
+  }
+  const url = new URL(window.location.href);
+  if (value) url.searchParams.set("q", value);
+  else url.searchParams.delete("q");
+  url.searchParams.delete("search");
+  const next = url.pathname + url.search;
+  if (next === window.location.pathname + window.location.search) return;
+  history.replaceState({ mf: 1 }, "", next);
+}
+
+window.syncSearchUrl = syncSearchUrl;
 
   filterButtons.forEach(function (button) {
     button.addEventListener("click", function () {
@@ -181,6 +289,28 @@ function initCourseFilter() {
   });
 
   catalogInput?.addEventListener("input", applyCourseFilter);
+  catalogInput?.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      applyCourseFilter();
+    }
+  });
+  catalogInput?.closest(".search-field")?.querySelector("i")?.addEventListener("click", applyCourseFilter);
+  document.querySelector("[data-clear-search]")?.addEventListener("click", function () {
+    if (catalogInput) catalogInput.value = "";
+    const url = new URL(window.location.href);
+    url.searchParams.delete("q");
+    url.searchParams.delete("search");
+    history.replaceState({}, "", url.pathname + url.search);
+    applyCourseFilter();
+    catalogInput?.focus();
+  });
+  if (!initCourseFilter.langBound) {
+    initCourseFilter.langBound = true;
+    document.addEventListener("mf-language", function () {
+      document.querySelector(".catalog-search")?.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+  }
   applyCourseFilter();
 }
 
@@ -235,11 +365,16 @@ function initAnimations() {
     counters.forEach(runCount);
   }
 
-  const backToTop = document.querySelector(".back-to-top");
-  if (backToTop) {
+  if (!initAnimations.scrollBound) {
+    initAnimations.scrollBound = true;
     window.addEventListener("scroll", function () {
-      backToTop.classList.toggle("is-visible", window.scrollY > 500);
+      const backToTop = document.querySelector(".back-to-top");
+      if (backToTop) backToTop.classList.toggle("is-visible", window.scrollY > 500);
     }, { passive: true });
+  }
+  const backToTop = document.querySelector(".back-to-top");
+  if (backToTop && backToTop.dataset.topBound !== "1") {
+    backToTop.dataset.topBound = "1";
     backToTop.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
     });
@@ -266,7 +401,7 @@ function renderCourseDetail() {
     setText("crumb", title);
     setText("summary", text(course.summary));
     setText("overview", text(course.overview));
-    setText("price", course.price);
+    setText("price", formatPrice(course.price));
     setText("level", text(course.level));
     setText("duration", text(course.duration));
     setText("lessons", text(course.lessons));
@@ -319,19 +454,18 @@ function renderCourseDetail() {
 }
 
 function initCoursePage() {
-  if (!initCoursePage.ready) {
-    initCoursePage.ready = true;
-    document.querySelectorAll(".accordion-trigger").forEach(function (trigger) {
-      trigger.addEventListener("click", function () {
+  document.querySelectorAll(".accordion-trigger").forEach(function (trigger) {
+    if (trigger.dataset.accBound === "1") return;
+    trigger.dataset.accBound = "1";
+    trigger.addEventListener("click", function () {
         const item = trigger.closest(".accordion-item");
         const open = item.classList.contains("is-open");
         item.parentElement.querySelectorAll(".accordion-item").forEach(function (sibling) {
           sibling.classList.remove("is-open");
         });
         if (!open) item.classList.add("is-open");
-      });
     });
-  }
+  });
   renderCourseDetail();
 }
 
@@ -354,6 +488,8 @@ function initModals() {
   }
 
   document.querySelectorAll("[data-open-modal]").forEach(function (button) {
+    if (button.dataset.modalBound === "1") return;
+    button.dataset.modalBound = "1";
     button.addEventListener("click", function (event) {
       event.preventDefault();
       const name = button.dataset.openModal;
@@ -362,6 +498,8 @@ function initModals() {
   });
 
   document.querySelectorAll(".modal").forEach(function (modal) {
+    if (modal.dataset.modalBound === "1") return;
+    modal.dataset.modalBound = "1";
     modal.addEventListener("click", function (event) {
       if (event.target === modal) closeModal(modal);
     });
@@ -370,10 +508,13 @@ function initModals() {
     });
   });
 
-  document.addEventListener("keydown", function (event) {
-    if (event.key !== "Escape") return;
-    document.querySelectorAll(".modal.is-open").forEach(closeModal);
-  });
+  if (!initModals.ready) {
+    initModals.ready = true;
+    document.addEventListener("keydown", function (event) {
+      if (event.key !== "Escape") return;
+      document.querySelectorAll(".modal.is-open").forEach(closeModal);
+    });
+  }
 }
 
 // 07. Teachers
@@ -467,6 +608,8 @@ function initDashboard() {
   });
 
   document.querySelectorAll('a[href="#"]').forEach(function (link) {
+    if (link.dataset.hashBound === "1") return;
+    link.dataset.hashBound = "1";
     link.addEventListener("click", function (event) { event.preventDefault(); });
   });
 }

@@ -162,7 +162,8 @@ function bindNotificationList(root) {
     if (!button || !root.contains(button)) return;
     const item = markNotificationAsRead(button.getAttribute("data-notify-id"));
     if (item && item.href && root.classList.contains("notify-list")) {
-      window.location.href = item.href;
+      if (typeof window.mfNavigate === "function") window.mfNavigate(item.href);
+      else window.location.href = item.href;
     }
   });
 }
@@ -238,7 +239,13 @@ function mountNotificationControls() {
 }
 
 function initNotifications() {
-  if (document.documentElement.dataset.notifyReady === "1") return;
+  if (document.documentElement.dataset.notifyReady === "1") {
+    mountNotificationControls();
+    ensureNotificationPage();
+    renderNotifications();
+    if (typeof window.applyTranslations === "function") window.applyTranslations();
+    return;
+  }
   document.documentElement.dataset.notifyReady = "1";
   loadNotificationState();
   mountNotificationControls();

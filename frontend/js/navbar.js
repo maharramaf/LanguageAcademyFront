@@ -1,14 +1,14 @@
 // 03. Header / Navigation
 function initNavigation() {
-  const header = document.querySelector(".site-header");
-  if (!header) return;
-
-  function onScroll() {
-    header.classList.toggle("is-stuck", window.scrollY > 8);
+  if (!initNavigation.ready) {
+    initNavigation.ready = true;
+    window.addEventListener("scroll", function () {
+      const header = document.querySelector(".site-header");
+      if (header) header.classList.toggle("is-stuck", window.scrollY > 8);
+    }, { passive: true });
   }
-
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  const header = document.querySelector(".site-header");
+  if (header) header.classList.toggle("is-stuck", window.scrollY > 8);
 }
 
 // 04. Mobile Menu
@@ -17,7 +17,8 @@ function initMobileMenu() {
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".site-header .nav");
   const overlay = document.querySelector(".nav-overlay");
-  if (!toggle || !nav) return;
+  if (!toggle || !nav || toggle.dataset.menuBound === "1") return;
+  toggle.dataset.menuBound = "1";
 
   function setMenu(open) {
     nav.classList.toggle("is-open", open);
@@ -45,7 +46,20 @@ function initMobileMenu() {
     });
   });
 
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") setMenu(false);
-  });
+  if (!initMobileMenu.ready) {
+    initMobileMenu.ready = true;
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        const current = document.querySelector(".nav-toggle");
+        const currentNav = document.querySelector(".site-header .nav");
+        if (!current || !currentNav || !currentNav.classList.contains("is-open")) return;
+        currentNav.classList.remove("is-open");
+        document.querySelector(".nav-overlay")?.classList.remove("is-open");
+        document.querySelector(".site-header")?.classList.remove("menu-open");
+        current.classList.remove("is-open");
+        current.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("nav-lock");
+      }
+    });
+  }
 }

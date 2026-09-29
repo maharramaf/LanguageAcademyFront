@@ -58,6 +58,8 @@ function initForms() {
   }
 
   document.querySelectorAll("[data-password-toggle]").forEach(function (button) {
+    if (button.dataset.pwBound === "1") return;
+    button.dataset.pwBound = "1";
     button.addEventListener("click", function () {
       const input = button.parentElement.querySelector("input");
       const icon = button.querySelector("i");
@@ -78,6 +80,8 @@ function initForms() {
       if (remember) remember.checked = true;
     }
 
+    if (loginForm.dataset.formBound !== "1") {
+    loginForm.dataset.formBound = "1";
     loginForm.addEventListener("submit", function (event) {
       event.preventDefault();
       const emailOk = validateEmail(loginForm, "email");
@@ -86,12 +90,16 @@ function initForms() {
       const remember = fieldOf(loginForm, "remember");
       if (remember?.checked) localStorage.setItem(rememberKey, fieldOf(loginForm, "email").value.trim());
       else localStorage.removeItem(rememberKey);
-      window.location.href = "dashboard.html";
+      if (typeof window.mfNavigate === "function") window.mfNavigate("dashboard.html");
+      else window.location.href = "dashboard.html";
     });
+    }
   }
 
   const registerForm = document.querySelector('[data-form="register"]');
-  registerForm?.addEventListener("submit", function (event) {
+  if (registerForm && registerForm.dataset.formBound !== "1") {
+  registerForm.dataset.formBound = "1";
+  registerForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const checks = [
       required(registerForm, "firstName", "err_first_required", "First name is required."),
@@ -107,8 +115,11 @@ function initForms() {
     else checks.push(setError(registerForm, "confirm", ""));
     if (checks.every(Boolean)) showSuccess(registerForm);
   });
+  }
 
   document.querySelectorAll('[data-form="newsletter"]').forEach(function (form) {
+    if (form.dataset.formBound === "1") return;
+    form.dataset.formBound = "1";
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       if (validateEmail(form, "email")) showSuccess(form);
@@ -116,6 +127,8 @@ function initForms() {
   });
 
   document.querySelectorAll('[data-form="contact"]').forEach(function (form) {
+    if (form.dataset.formBound === "1") return;
+    form.dataset.formBound = "1";
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       const checks = [
@@ -134,6 +147,8 @@ function initForms() {
   });
 
   document.querySelectorAll('[data-form="enroll"], [data-form="forgot"], [data-form="profile"]').forEach(function (form) {
+    if (form.dataset.formBound === "1") return;
+    form.dataset.formBound = "1";
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       const checks = [];

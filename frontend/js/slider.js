@@ -1,11 +1,13 @@
 // 06. Course Slider / 07. Testimonials
 function createSlider(root, options) {
+  if (root.dataset.sliderBound === "1") return;
   const track = root.querySelector(".slider-track");
   const slides = track ? Array.from(track.children) : [];
   const prev = root.querySelector("[data-prev]");
   const next = root.querySelector("[data-next]");
   const dotsWrap = root.querySelector(".slider-dots");
   if (!track || !slides.length || !prev || !next || !dotsWrap) return;
+  root.dataset.sliderBound = "1";
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const label = options.label || "slide";
@@ -72,6 +74,10 @@ function createSlider(root, options) {
     window.clearInterval(timer);
     if (reduceMotion || !options.autoplay) return;
     timer = window.setInterval(function () {
+      if (!root.isConnected) {
+        window.clearInterval(timer);
+        return;
+      }
       index = index >= pages() - 1 ? 0 : index + 1;
       paint();
     }, 5200);

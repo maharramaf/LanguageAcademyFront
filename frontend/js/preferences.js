@@ -327,6 +327,20 @@ const translations = {
     nav_login: "Giriş",
     nav_register: "Qeydiyyat",
     search_placeholder: "Kurs axtar",
+    search_clear: "Axtarışı təmizlə",
+    search_none_title: "Kurs tapılmadı",
+    search_none_lead: "Bu axtarışa uyğun kurs yoxdur",
+    search_none_try: "Başqa söz yoxlayın.",
+    search_none_filters: "Bu süzgəclərə uyğun kurs yoxdur.",
+    search_showing_all: "Bütün kurslar göstərilir",
+    search_course_one: "kurs",
+    search_course_many: "kurs",
+    search_courses_found: "kurs tapıldı",
+    search_showing: "Göstərilir",
+    search_of: "/",
+    search_go: "Axtar",
+    page_missing: "Səhifə tapılmadı",
+    page_missing_text: "Bu səhifə mövcud deyil.",
     open_menu: "Menyunu aç",
     close_menu: "Menyunu bağla",
     slider_prev_courses: "Əvvəlki kurslar",
@@ -710,6 +724,20 @@ const translations = {
     nav_login: "Войти",
     nav_register: "Регистрация",
     search_placeholder: "Поиск курсов",
+    search_clear: "Очистить поиск",
+    search_none_title: "Курсы не найдены",
+    search_none_lead: "Нет курсов по запросу",
+    search_none_try: "Попробуйте другой запрос.",
+    search_none_filters: "Нет курсов по этим фильтрам.",
+    search_showing_all: "Показаны все курсы",
+    search_course_one: "курс",
+    search_course_many: "курсов",
+    search_courses_found: "курсов найдено",
+    search_showing: "Показано",
+    search_of: "из",
+    search_go: "Поиск",
+    page_missing: "Страница не найдена",
+    page_missing_text: "Такой страницы нет.",
     open_menu: "Открыть меню",
     close_menu: "Закрыть меню",
     slider_prev_courses: "Предыдущие курсы",
@@ -1100,6 +1128,20 @@ translations.en.faq_browse = "Browse courses";
 translations.en.faq_learning = "Learning";
 translations.en.faq_quiz = "Quiz and grades";
 translations.en.faq_contact_support = "Contact support";
+translations.en.search_clear = "Clear Search";
+translations.en.search_none_title = "No courses found";
+translations.en.search_none_lead = "We couldn't find any courses matching";
+translations.en.search_none_try = "Try another search term.";
+translations.en.search_none_filters = "No courses match those filters.";
+translations.en.search_showing_all = "Showing all courses";
+translations.en.search_course_one = "Course";
+translations.en.search_course_many = "Courses";
+translations.en.search_courses_found = "Courses Found";
+translations.en.search_showing = "Showing";
+translations.en.search_of = "of";
+translations.en.search_go = "Search";
+translations.en.page_missing = "Page not found";
+translations.en.page_missing_text = "That page does not exist.";
 translations.en.mark_all_read = "Mark all as read";
 translations.en.view_all_notifications = "View all notifications";
 translations.en.no_notifications = "No new notifications";
@@ -1337,10 +1379,19 @@ function closeLangMenus(except) {
 }
 
 function initLanguageSwitcher() {
-  if (document.documentElement.dataset.langReady === "1") return;
-  document.documentElement.dataset.langReady = "1";
+  if (document.documentElement.dataset.langReady !== "1") {
+    document.documentElement.dataset.langReady = "1";
+    document.addEventListener("click", function (event) {
+      if (!event.target.closest(".lang-switch")) closeLangMenus(null);
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeLangMenus(null);
+    });
+  }
 
   document.querySelectorAll(".lang-switch").forEach(function (wrap) {
+    if (wrap.dataset.langBound === "1") return;
+    wrap.dataset.langBound = "1";
     const toggle = wrap.querySelector(".lang-toggle");
     const menu = wrap.querySelector(".lang-menu");
     if (!toggle || !menu) return;
@@ -1397,19 +1448,12 @@ function initLanguageSwitcher() {
       });
     });
   });
-
-  document.addEventListener("click", function (event) {
-    if (!event.target.closest(".lang-switch")) closeLangMenus(null);
-  });
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") closeLangMenus(null);
-  });
 }
 
 function initThemeSwitcher() {
-  if (document.documentElement.dataset.themeReady === "1") return;
-  document.documentElement.dataset.themeReady = "1";
   document.querySelectorAll(".theme-toggle").forEach(function (button) {
+    if (button.dataset.themeBound === "1") return;
+    button.dataset.themeBound = "1";
     button.addEventListener("click", function () {
       const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
       try { localStorage.setItem("mf-theme", next); } catch (error) { /* storage may be blocked */ }
