@@ -16,31 +16,35 @@ function initForms() {
     return !message;
   }
 
-  function required(form, name, label) {
+  function msg(key, fallback) {
+    return window.mfT ? window.mfT(key, fallback) : fallback;
+  }
+
+  function required(form, name, key, fallback) {
     const value = (fieldOf(form, name)?.value || "").trim();
-    if (!value) return setError(form, name, label + " is required.");
+    if (!value) return setError(form, name, msg(key, fallback));
     return setError(form, name, "");
   }
 
   function validateEmail(form, name) {
     const value = (fieldOf(form, name)?.value || "").trim();
-    if (!value) return setError(form, name, "Email is required.");
-    if (!emailPattern.test(value)) return setError(form, name, "Enter a valid email address.");
+    if (!value) return setError(form, name, msg("err_email_required", "Email is required."));
+    if (!emailPattern.test(value)) return setError(form, name, msg("err_email_invalid", "Enter a valid email address."));
     return setError(form, name, "");
   }
 
   function validatePhone(form, name) {
     const value = (fieldOf(form, name)?.value || "").trim();
     const digits = value.replace(/\D/g, "");
-    if (!value) return setError(form, name, "Phone is required.");
-    if (digits.length < 7) return setError(form, name, "Enter a valid phone number.");
+    if (!value) return setError(form, name, msg("err_phone_required", "Phone is required."));
+    if (digits.length < 7) return setError(form, name, msg("err_phone_invalid", "Enter a valid phone number."));
     return setError(form, name, "");
   }
 
   function validatePassword(form, name) {
     const value = fieldOf(form, name)?.value || "";
-    if (!value) return setError(form, name, "Password is required.");
-    if (value.length < 8) return setError(form, name, "Use at least 8 characters.");
+    if (!value) return setError(form, name, msg("err_password_required", "Password is required."));
+    if (value.length < 8) return setError(form, name, msg("err_password_short", "Use at least 8 characters."));
     return setError(form, name, "");
   }
 
@@ -60,7 +64,7 @@ function initForms() {
       const show = input.type === "password";
       input.type = show ? "text" : "password";
       icon.className = show ? "bi bi-eye-slash" : "bi bi-eye";
-      button.setAttribute("aria-label", show ? "Hide password" : "Show password");
+      button.setAttribute("aria-label", show ? msg("hide_password", "Hide password") : msg("show_password", "Show password"));
     });
   });
 
@@ -90,16 +94,16 @@ function initForms() {
   registerForm?.addEventListener("submit", function (event) {
     event.preventDefault();
     const checks = [
-      required(registerForm, "firstName", "First name"),
-      required(registerForm, "lastName", "Last name"),
+      required(registerForm, "firstName", "err_first_required", "First name is required."),
+      required(registerForm, "lastName", "err_last_required", "Last name is required."),
       validateEmail(registerForm, "email"),
       validatePhone(registerForm, "phone"),
       validatePassword(registerForm, "password")
     ];
     const password = fieldOf(registerForm, "password")?.value || "";
     const confirm = fieldOf(registerForm, "confirm")?.value || "";
-    if (!confirm) checks.push(setError(registerForm, "confirm", "Confirm your password."));
-    else if (confirm !== password) checks.push(setError(registerForm, "confirm", "Passwords do not match."));
+    if (!confirm) checks.push(setError(registerForm, "confirm", msg("err_confirm_required", "Confirm your password.")));
+    else if (confirm !== password) checks.push(setError(registerForm, "confirm", msg("err_confirm_mismatch", "Passwords do not match.")));
     else checks.push(setError(registerForm, "confirm", ""));
     if (checks.every(Boolean)) showSuccess(registerForm);
   });
@@ -115,15 +119,15 @@ function initForms() {
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       const checks = [
-        required(form, "name", "Name"),
+        required(form, "name", "err_name_required", "Name is required."),
         validateEmail(form, "email"),
         validatePhone(form, "phone"),
-        required(form, "subject", "Subject"),
-        required(form, "message", "Message")
+        required(form, "subject", "err_subject_required", "Subject is required."),
+        required(form, "message", "err_message_required", "Message is required.")
       ];
       const message = (fieldOf(form, "message")?.value || "").trim();
       if (message && message.length < 10) {
-        checks[4] = setError(form, "message", "Please write at least 10 characters.");
+        checks[4] = setError(form, "message", msg("err_message_short", "Please write at least 10 characters."));
       }
       if (checks.every(Boolean)) showSuccess(form);
     });
@@ -133,10 +137,10 @@ function initForms() {
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       const checks = [];
-      if (fieldOf(form, "name")) checks.push(required(form, "name", "Name"));
+      if (fieldOf(form, "name")) checks.push(required(form, "name", "err_name_required", "Name is required."));
       if (fieldOf(form, "email")) checks.push(validateEmail(form, "email"));
       if (fieldOf(form, "phone")) checks.push(validatePhone(form, "phone"));
-      if (fieldOf(form, "bio")) checks.push(required(form, "bio", "Bio"));
+      if (fieldOf(form, "bio")) checks.push(required(form, "bio", "err_bio_required", "Bio is required."));
       if (checks.every(Boolean)) showSuccess(form);
     });
   });

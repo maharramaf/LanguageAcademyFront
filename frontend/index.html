@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+(function () {
+  try {
+    var theme = localStorage.getItem("mf-theme");
+    if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
+    var language = localStorage.getItem("mf-language") || "az";
+    if (language === "az" || language === "ru" || language === "en") document.documentElement.lang = language;
+  } catch (e) {}
+})();
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MF Language Academy</title>
@@ -14,7 +24,7 @@
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-  <a class="skip-link" href="#hero-section">Skip to content</a>
+  <a class="skip-link" href="#hero-section" data-i18n="skip_content">Skip to content</a>
   <header class="site-header">
     <div class="topbar">
       <div class="container topbar-inner">
@@ -23,10 +33,10 @@
           <a href="mailto:hello@mflanguage.academy"><i class="bi bi-envelope"></i> hello@mflanguage.academy</a>
         </div>
         <div class="topbar-right">
-          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-          <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="#" aria-label="Facebook" data-i18n-aria-label="social_facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram" data-i18n-aria-label="social_instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn" data-i18n-aria-label="social_linkedin"><i class="bi bi-linkedin"></i></a>
+          <a href="#" aria-label="YouTube" data-i18n-aria-label="social_youtube"><i class="bi bi-youtube"></i></a>
         </div>
       </div>
     </div>
@@ -35,28 +45,45 @@
         <span class="logo-mark">MF</span>
         <span class="logo-text"><strong>MF Language</strong><small>Academy</small></span>
       </a>
-      <nav class="nav" aria-label="Primary">
+      <nav class="nav" aria-label="Primary" data-i18n-aria-label="aria_primary">
         <ul class="nav-list">
-          <li><a class="active" href="index.html" aria-current="page">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="courses.html">Courses</a></li>
-          <li><a href="teachers.html">Teachers</a></li>
-          <li><a href="students.html">Students</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a class="active" href="index.html" aria-current="page" data-i18n="nav_home">Home</a></li>
+          <li><a href="about.html" data-i18n="nav_about">About</a></li>
+          <li><a href="courses.html" data-i18n="nav_courses">Courses</a></li>
+          <li><a href="teachers.html" data-i18n="nav_teachers">Teachers</a></li>
+          <li><a href="students.html" data-i18n="nav_students">Students</a></li>
+          <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
         </ul>
         <div class="nav-actions">
-          <a class="btn btn-outline" href="login.html">Login</a>
-          <a class="btn btn-secondary" href="register.html">Register</a>
+          <a class="btn btn-outline" href="login.html" data-i18n="nav_login">Login</a>
+          <a class="btn btn-secondary" href="register.html" data-i18n="nav_register">Register</a>
         </div>
       </nav>
       <form class="header-search" action="courses.html" method="get" role="search">
         <i class="bi bi-search" aria-hidden="true"></i>
-        <input type="search" name="q" placeholder="Search courses" aria-label="Search courses">
+        <input type="search" name="q" placeholder="Search courses" data-i18n-placeholder="search_placeholder" aria-label="Search courses" data-i18n-aria-label="search_placeholder">
       </form>
+      <div class="header-tools">
+        <div class="lang-switch">
+          <button class="lang-toggle" type="button" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria-label="language_menu">
+            <span class="lang-current">AZ</span>
+            <i class="bi bi-chevron-down" aria-hidden="true"></i>
+          </button>
+          <ul class="lang-menu" role="listbox" hidden>
+            <li role="none"><button type="button" role="option" data-set-lang="az">🇦🇿 Azərbaycan</button></li>
+            <li role="none"><button type="button" role="option" data-set-lang="ru">🇷🇺 Русский</button></li>
+            <li role="none"><button type="button" role="option" data-set-lang="en">🇬🇧 English</button></li>
+          </ul>
+        </div>
+        <button class="theme-toggle" type="button" aria-pressed="false" data-i18n-aria-label="toggle_theme">
+          <i class="bi bi-moon-stars" aria-hidden="true"></i>
+        </button>
+      </div>
+
       <div class="header-actions">
-        <a class="btn btn-outline" href="login.html">Login</a>
-        <a class="btn btn-secondary" href="register.html">Register</a>
-        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <a class="btn btn-outline" href="login.html" data-i18n="nav_login">Login</a>
+        <a class="btn btn-secondary" href="register.html" data-i18n="nav_register">Register</a>
+        <button class="nav-toggle" type="button" aria-label="Open menu" data-i18n-aria-label="open_menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -68,28 +95,28 @@
     <section id="hero-section" class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow"><i class="bi bi-stars"></i> Modern language school</span>
-          <h1>Learn Languages. Open New Doors.</h1>
-          <p class="lead">Improve your language skills with professional teachers and modern learning methods.</p>
+          <span class="eyebrow" data-i18n="hero_eyebrow"><i class="bi bi-stars"></i> Modern language school</span>
+          <h1 data-i18n="hero_title">Learn Languages. Open New Doors.</h1>
+          <p class="lead" data-i18n="hero_lead">Improve your language skills with professional teachers and modern learning methods.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="courses.html">Explore Courses</a>
-            <a class="btn btn-secondary" href="register.html">Get Started</a>
+            <a class="btn btn-primary" href="courses.html" data-i18n="btn_explore">Explore Courses</a>
+            <a class="btn btn-secondary" href="register.html" data-i18n="btn_start">Get Started</a>
           </div>
           <ul class="hero-points">
-            <li><i class="bi bi-check-circle-fill"></i> Small classes</li>
-            <li><i class="bi bi-check-circle-fill"></i> Certified teachers</li>
-            <li><i class="bi bi-check-circle-fill"></i> Online and on campus</li>
+            <li data-i18n="hero_small"><i class="bi bi-check-circle-fill"></i> Small classes</li>
+            <li data-i18n="hero_certified"><i class="bi bi-check-circle-fill"></i> Certified teachers</li>
+            <li data-i18n="hero_online"><i class="bi bi-check-circle-fill"></i> Online and on campus</li>
           </ul>
         </div>
         <div class="hero-visual">
           <img src="images/hero.jpg" alt="Students collaborating during a language lesson" width="1400" height="1100">
           <div class="float-card float-card-a">
             <i class="bi bi-people-fill"></i>
-            <div><strong>1,000+</strong><span>Active students</span></div>
+            <div><strong>1,000+</strong><span data-i18n="hero_active">Active students</span></div>
           </div>
           <div class="float-card float-card-b">
             <i class="bi bi-star-fill"></i>
-            <div><strong>4.9/5</strong><span>Average rating</span></div>
+            <div><strong>4.9/5</strong><span data-i18n="hero_rating">Average rating</span></div>
           </div>
         </div>
       </div>
@@ -99,8 +126,8 @@
     <section id="courses-section" class="section section-alt">
       <div class="container">
         <div class="section-header center reveal">
-          <span class="eyebrow">Popular courses</span>
-          <h2>Popular Courses</h2>
+          <span class="eyebrow" data-i18n="courses_eyebrow">Popular courses</span>
+          <h2 data-i18n="courses_title">Popular Courses</h2>
           <p>Choose a level, a schedule, and a goal. Every course includes live classes, practice tasks, and teacher feedback.</p>
         </div>
         <div class="slider" data-slider="courses">
@@ -109,54 +136,54 @@
           <div class="course-card reveal">
             <div class="course-media">
               <img src="images/course-beginner.jpg" alt="Notebook and study desk for beginner English" width="1000" height="700">
-              <span class="badge">Beginner</span>
+              <span class="badge" data-i18n="level_beginner">Beginner</span>
             </div>
             <div class="course-body">
-              <h3>English Beginner</h3>
+              <h3 data-i18n="course_en_beginner">English Beginner</h3>
               <p>Everyday English for greetings, travel, and simple conversations.</p>
               <ul class="course-meta">
-                <li><i class="bi bi-bar-chart"></i> Beginner</li>
-                <li><i class="bi bi-clock"></i> 8 weeks</li>
+                <li data-i18n="level_beginner"><i class="bi bi-bar-chart"></i> Beginner</li>
+                <li data-i18n="duration_8"><i class="bi bi-clock"></i> 8 weeks</li>
               </ul>
               <div class="course-foot">
-                <span class="price">$180<small>per course</small></span>
-                <a class="btn btn-sm btn-primary" href="course-details.html?course=english-beginner">View Course</a>
+                <span class="price">$180<small data-i18n="price_per_course">per course</small></span>
+                <a class="btn btn-sm btn-primary" href="course-details.html?course=english-beginner" data-i18n="btn_view_course">View Course</a>
               </div>
             </div>
           </div>
           <div class="course-card reveal">
             <div class="course-media">
               <img src="images/course-intermediate.jpg" alt="Stack of books for intermediate study" width="1000" height="700">
-              <span class="badge">Intermediate</span>
+              <span class="badge" data-i18n="level_intermediate">Intermediate</span>
             </div>
             <div class="course-body">
-              <h3>English Intermediate</h3>
+              <h3 data-i18n="course_en_intermediate">English Intermediate</h3>
               <p>Longer conversations, clearer writing, and more natural listening.</p>
               <ul class="course-meta">
-                <li><i class="bi bi-bar-chart"></i> Intermediate</li>
-                <li><i class="bi bi-clock"></i> 10 weeks</li>
+                <li data-i18n="level_intermediate"><i class="bi bi-bar-chart"></i> Intermediate</li>
+                <li data-i18n="duration_10"><i class="bi bi-clock"></i> 10 weeks</li>
               </ul>
               <div class="course-foot">
-                <span class="price">$210<small>per course</small></span>
-                <a class="btn btn-sm btn-primary" href="course-details.html?course=english-intermediate">View Course</a>
+                <span class="price">$210<small data-i18n="price_per_course">per course</small></span>
+                <a class="btn btn-sm btn-primary" href="course-details.html?course=english-intermediate" data-i18n="btn_view_course">View Course</a>
               </div>
             </div>
           </div>
           <div class="course-card reveal">
             <div class="course-media">
               <img src="images/course-ielts.jpg" alt="Planning notes for exam preparation" width="1000" height="700">
-              <span class="badge">Exam</span>
+              <span class="badge" data-i18n="badge_exam">Exam</span>
             </div>
             <div class="course-body">
-              <h3>IELTS Preparation</h3>
+              <h3 data-i18n="course_ielts">IELTS Preparation</h3>
               <p>Timed practice and band-focused feedback for all four papers.</p>
               <ul class="course-meta">
-                <li><i class="bi bi-bar-chart"></i> Upper intermediate</li>
-                <li><i class="bi bi-clock"></i> 8 weeks</li>
+                <li data-i18n="level_upper"><i class="bi bi-bar-chart"></i> Upper intermediate</li>
+                <li data-i18n="duration_8"><i class="bi bi-clock"></i> 8 weeks</li>
               </ul>
               <div class="course-foot">
-                <span class="price">$260<small>per course</small></span>
-                <a class="btn btn-sm btn-primary" href="course-details.html?course=ielts">View Course</a>
+                <span class="price">$260<small data-i18n="price_per_course">per course</small></span>
+                <a class="btn btn-sm btn-primary" href="course-details.html?course=ielts" data-i18n="btn_view_course">View Course</a>
               </div>
             </div>
           </div>
@@ -166,64 +193,64 @@
               <span class="badge">Professional</span>
             </div>
             <div class="course-body">
-              <h3>Business English</h3>
+              <h3 data-i18n="course_business">Business English</h3>
               <p>Meetings, email, and presentations for working professionals.</p>
               <ul class="course-meta">
-                <li><i class="bi bi-bar-chart"></i> Intermediate</li>
-                <li><i class="bi bi-clock"></i> 8 weeks</li>
+                <li data-i18n="level_intermediate"><i class="bi bi-bar-chart"></i> Intermediate</li>
+                <li data-i18n="duration_8"><i class="bi bi-clock"></i> 8 weeks</li>
               </ul>
               <div class="course-foot">
-                <span class="price">$240<small>per course</small></span>
-                <a class="btn btn-sm btn-primary" href="course-details.html?course=business-english">View Course</a>
+                <span class="price">$240<small data-i18n="price_per_course">per course</small></span>
+                <a class="btn btn-sm btn-primary" href="course-details.html?course=business-english" data-i18n="btn_view_course">View Course</a>
               </div>
             </div>
           </div>
           <div class="course-card reveal">
             <div class="course-media">
               <img src="images/course-german.jpg" alt="European street scene used for the German course" width="1000" height="700">
-              <span class="badge">Beginner</span>
+              <span class="badge" data-i18n="level_beginner">Beginner</span>
             </div>
             <div class="course-body">
-              <h3>German Language</h3>
+              <h3 data-i18n="course_german">German Language</h3>
               <p>A practical A1 start with pronunciation, grammar, and city dialogues.</p>
               <ul class="course-meta">
-                <li><i class="bi bi-bar-chart"></i> Beginner</li>
-                <li><i class="bi bi-clock"></i> 10 weeks</li>
+                <li data-i18n="level_beginner"><i class="bi bi-bar-chart"></i> Beginner</li>
+                <li data-i18n="duration_10"><i class="bi bi-clock"></i> 10 weeks</li>
               </ul>
               <div class="course-foot">
-                <span class="price">$190<small>per course</small></span>
-                <a class="btn btn-sm btn-primary" href="course-details.html?course=german">View Course</a>
+                <span class="price">$190<small data-i18n="price_per_course">per course</small></span>
+                <a class="btn btn-sm btn-primary" href="course-details.html?course=german" data-i18n="btn_view_course">View Course</a>
               </div>
             </div>
           </div>
           <div class="course-card reveal">
             <div class="course-media">
               <img src="images/course-spanish.jpg" alt="Sunny city architecture for the Spanish course" width="1000" height="700">
-              <span class="badge">Beginner</span>
+              <span class="badge" data-i18n="level_beginner">Beginner</span>
             </div>
             <div class="course-body">
-              <h3>Spanish Language</h3>
+              <h3 data-i18n="course_spanish">Spanish Language</h3>
               <p>Speak from the first class with travel, culture, and daily topics.</p>
               <ul class="course-meta">
-                <li><i class="bi bi-bar-chart"></i> Beginner</li>
-                <li><i class="bi bi-clock"></i> 10 weeks</li>
+                <li data-i18n="level_beginner"><i class="bi bi-bar-chart"></i> Beginner</li>
+                <li data-i18n="duration_10"><i class="bi bi-clock"></i> 10 weeks</li>
               </ul>
               <div class="course-foot">
-                <span class="price">$190<small>per course</small></span>
-                <a class="btn btn-sm btn-primary" href="course-details.html?course=spanish">View Course</a>
+                <span class="price">$190<small data-i18n="price_per_course">per course</small></span>
+                <a class="btn btn-sm btn-primary" href="course-details.html?course=spanish" data-i18n="btn_view_course">View Course</a>
               </div>
             </div>
           </div>
         </div>
           </div>
           <div class="slider-controls">
-            <button class="slider-btn" type="button" data-prev aria-label="Previous courses"><i class="bi bi-arrow-left"></i></button>
+            <button class="slider-btn" type="button" data-prev aria-label="Previous courses" data-i18n-aria-label="slider_prev_courses"><i class="bi bi-arrow-left"></i></button>
             <div class="slider-dots"></div>
-            <button class="slider-btn" type="button" data-next aria-label="Next courses"><i class="bi bi-arrow-right"></i></button>
+            <button class="slider-btn" type="button" data-next aria-label="Next courses" data-i18n-aria-label="slider_next_courses"><i class="bi bi-arrow-right"></i></button>
           </div>
         </div>
         <div style="text-align:center; margin-top: 28px;">
-          <a class="btn btn-outline" href="courses.html">Browse All Courses</a>
+          <a class="btn btn-outline" href="courses.html" data-i18n="btn_browse">Browse All Courses</a>
         </div>
       </div>
     </section>
@@ -239,8 +266,8 @@
           </div>
         </div>
         <div class="reveal">
-          <span class="eyebrow">About us</span>
-          <h2>About MF Language Academy</h2>
+          <span class="eyebrow" data-i18n="about_eyebrow">About us</span>
+          <h2 data-i18n="about_title">About MF Language Academy</h2>
           <p>MF Language Academy helps adults and young professionals speak with confidence. Lessons are practical, classes stay small, and every course has a clear path from the first class to a certificate.</p>
           <p>Study on campus in Boston or join live online groups with the same teachers, materials, and progress checks.</p>
           <div class="feature-list">
@@ -249,7 +276,7 @@
             <div class="feature-item"><i class="bi bi-check-circle-fill"></i> Flexible Courses</div>
             <div class="feature-item"><i class="bi bi-check-circle-fill"></i> International Environment</div>
           </div>
-          <a class="btn btn-primary" href="about.html" style="margin-top: 22px;">More About Us</a>
+          <a class="btn btn-primary" href="about.html" style="margin-top: 22px;" data-i18n="btn_more_about">More About Us</a>
         </div>
       </div>
     </section>
@@ -258,39 +285,39 @@
     <section id="features-section" class="section">
       <div class="container">
         <div class="section-header center reveal">
-          <span class="eyebrow">Why choose us</span>
-          <h2>A school built around speaking</h2>
+          <span class="eyebrow" data-i18n="why_eyebrow">Why choose us</span>
+          <h2 data-i18n="why_title">A school built around speaking</h2>
           <p>The method is simple: small groups, useful materials, and teachers who know how adults actually learn.</p>
         </div>
         <div class="feature-grid">
           <div class="why-card reveal">
             <div class="icon-bubble"><i class="bi bi-person-workspace"></i></div>
-            <h3>Expert Teachers</h3>
+            <h3 data-i18n="feat_teachers">Expert Teachers</h3>
             <p>Certified instructors with classroom experience and clear, kind feedback.</p>
           </div>
           <div class="why-card reveal">
             <div class="icon-bubble"><i class="bi bi-calendar2-week"></i></div>
-            <h3>Flexible Schedule</h3>
+            <h3 data-i18n="feat_schedule">Flexible Schedule</h3>
             <p>Morning, evening, and weekend groups so study fits around work.</p>
           </div>
           <div class="why-card reveal">
             <div class="icon-bubble"><i class="bi bi-laptop"></i></div>
-            <h3>Online Learning</h3>
+            <h3 data-i18n="feat_online">Online Learning</h3>
             <p>Live online classes use the same plan as the Boston campus.</p>
           </div>
           <div class="why-card reveal">
             <div class="icon-bubble"><i class="bi bi-award"></i></div>
-            <h3>Certificate</h3>
+            <h3 data-i18n="feat_certificate">Certificate</h3>
             <p>Finish the course and receive a MF Language Academy certificate of completion.</p>
           </div>
           <div class="why-card reveal">
             <div class="icon-bubble"><i class="bi bi-people"></i></div>
-            <h3>Small Classes</h3>
+            <h3 data-i18n="feat_small">Small Classes</h3>
             <p>Groups of 8 to 12 students so there is time to speak every lesson.</p>
           </div>
           <div class="why-card reveal">
             <div class="icon-bubble"><i class="bi bi-journal-richtext"></i></div>
-            <h3>Modern Materials</h3>
+            <h3 data-i18n="feat_materials">Modern Materials</h3>
             <p>Current topics, audio, and tasks designed for adult learners.</p>
           </div>
         </div>
@@ -301,8 +328,8 @@
     <section id="teachers-section" class="section section-alt">
       <div class="container">
         <div class="section-header center reveal">
-          <span class="eyebrow">Teachers</span>
-          <h2>Learn with people who teach for a living</h2>
+          <span class="eyebrow" data-i18n="nav_teachers">Teachers</span>
+          <h2 data-i18n="teachers_title">Learn with people who teach for a living</h2>
           <p>Our faculty lead courses, write materials, and stay in the classroom.</p>
         </div>
         <div class="teacher-grid">
@@ -310,52 +337,52 @@
             <div class="teacher-photo"><img src="images/teacher-elena.jpg" alt="Portrait of Elena Marquez" width="700" height="800"></div>
             <div class="teacher-body">
               <h3>Elena Marquez</h3>
-              <p class="role">English Program Lead</p>
+              <p class="role" data-i18n="role_elena">English Program Lead</p>
               <p>Designs the beginner pathway and teaches the Monday speaking lab.</p>
               <div class="teacher-social">
                 <a href="#" aria-label="Elena on LinkedIn"><i class="bi bi-linkedin"></i></a>
                 <a href="#" aria-label="Elena on Instagram"><i class="bi bi-instagram"></i></a>
               </div>
-              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Elena Marquez" data-role="English Program Lead" data-photo="images/teacher-elena.jpg" data-bio="Elena has taught English for twelve years in Boston and Madrid. She keeps classes practical, with speaking time in every lesson and feedback students can use the same week.">View Profile</button>
+              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Elena Marquez" data-role="English Program Lead" data-i18n-role="role_elena" data-photo="images/teacher-elena.jpg" data-bio="Elena has taught English for twelve years in Boston and Madrid. She keeps classes practical, with speaking time in every lesson and feedback students can use the same week." data-i18n="btn_view_profile">View Profile</button>
             </div>
           </div>
           <div class="teacher-card reveal">
             <div class="teacher-photo"><img src="images/teacher-daniel.jpg" alt="Portrait of Daniel Okonkwo" width="700" height="800"></div>
             <div class="teacher-body">
               <h3>Daniel Okonkwo</h3>
-              <p class="role">IELTS Instructor</p>
+              <p class="role" data-i18n="role_daniel">IELTS Instructor</p>
               <p>Coaches writing and speaking with calm, timed exam practice.</p>
               <div class="teacher-social">
                 <a href="#" aria-label="Daniel on LinkedIn"><i class="bi bi-linkedin"></i></a>
                 <a href="#" aria-label="Daniel on X"><i class="bi bi-twitter-x"></i></a>
               </div>
-              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Daniel Okonkwo" data-role="IELTS Instructor" data-photo="images/teacher-daniel.jpg" data-bio="Daniel prepares candidates for Academic IELTS. His feedback follows the public band descriptors, so students always know why a score moved.">View Profile</button>
+              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Daniel Okonkwo" data-role="IELTS Instructor" data-i18n-role="role_daniel" data-photo="images/teacher-daniel.jpg" data-bio="Daniel prepares candidates for Academic IELTS. His feedback follows the public band descriptors, so students always know why a score moved." data-i18n="btn_view_profile">View Profile</button>
             </div>
           </div>
           <div class="teacher-card reveal">
             <div class="teacher-photo"><img src="images/teacher-sophie.jpg" alt="Portrait of Sophie Laurent" width="700" height="800"></div>
             <div class="teacher-body">
               <h3>Sophie Laurent</h3>
-              <p class="role">Spanish Instructor</p>
+              <p class="role" data-i18n="role_sophie">Spanish Instructor</p>
               <p>Brings culture, travel dialogues, and clear grammar into class.</p>
               <div class="teacher-social">
                 <a href="#" aria-label="Sophie on LinkedIn"><i class="bi bi-linkedin"></i></a>
                 <a href="#" aria-label="Sophie on Instagram"><i class="bi bi-instagram"></i></a>
               </div>
-              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Sophie Laurent" data-role="Spanish Instructor" data-photo="images/teacher-sophie.jpg" data-bio="Sophie teaches beginner Spanish with a balance of conversation and structure. Students practice both Latin American and Peninsular varieties.">View Profile</button>
+              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Sophie Laurent" data-role="Spanish Instructor" data-i18n-role="role_sophie" data-photo="images/teacher-sophie.jpg" data-bio="Sophie teaches beginner Spanish with a balance of conversation and structure. Students practice both Latin American and Peninsular varieties." data-i18n="btn_view_profile">View Profile</button>
             </div>
           </div>
           <div class="teacher-card reveal">
             <div class="teacher-photo"><img src="images/teacher-markus.jpg" alt="Portrait of Markus Weber" width="700" height="800"></div>
             <div class="teacher-body">
               <h3>Markus Weber</h3>
-              <p class="role">German Instructor</p>
+              <p class="role" data-i18n="role_markus">German Instructor</p>
               <p>Makes cases and pronunciation feel manageable from week one.</p>
               <div class="teacher-social">
                 <a href="#" aria-label="Markus on LinkedIn"><i class="bi bi-linkedin"></i></a>
                 <a href="#" aria-label="Markus on Facebook"><i class="bi bi-facebook"></i></a>
               </div>
-              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Markus Weber" data-role="German Instructor" data-photo="images/teacher-markus.jpg" data-bio="Markus focuses on the German beginners need for transport, housing, and introductions. Grammar is taught inside short dialogues, not long lectures.">View Profile</button>
+              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Markus Weber" data-role="German Instructor" data-i18n-role="role_markus" data-photo="images/teacher-markus.jpg" data-bio="Markus focuses on the German beginners need for transport, housing, and introductions. Grammar is taught inside short dialogues, not long lectures." data-i18n="btn_view_profile">View Profile</button>
             </div>
           </div>
         </div>
@@ -368,22 +395,22 @@
         <div class="stat">
           <i class="bi bi-people"></i>
           <span class="stat-number" data-count="1000" data-suffix="+">1000+</span>
-          <span class="stat-label">Students</span>
+          <span class="stat-label" data-i18n="nav_students">Students</span>
         </div>
         <div class="stat">
           <i class="bi bi-journal-bookmark"></i>
           <span class="stat-number" data-count="20" data-suffix="+">20+</span>
-          <span class="stat-label">Courses</span>
+          <span class="stat-label" data-i18n="nav_courses">Courses</span>
         </div>
         <div class="stat">
           <i class="bi bi-person-badge"></i>
           <span class="stat-number" data-count="25" data-suffix="+">25+</span>
-          <span class="stat-label">Teachers</span>
+          <span class="stat-label" data-i18n="nav_teachers">Teachers</span>
         </div>
         <div class="stat">
           <i class="bi bi-mortarboard"></i>
           <span class="stat-number" data-count="10" data-suffix="+">10+</span>
-          <span class="stat-label">Years Experience</span>
+          <span class="stat-label" data-i18n="stat_years">Years Experience</span>
         </div>
       </div>
     </section>
@@ -392,8 +419,8 @@
     <section id="testimonials-section" class="section">
       <div class="container">
         <div class="section-header center reveal">
-          <span class="eyebrow">Testimonials</span>
-          <h2>What students say after class</h2>
+          <span class="eyebrow" data-i18n="testimonials_eyebrow">Testimonials</span>
+          <h2 data-i18n="testimonials_title">What students say after class</h2>
           <p>Real goals: a visa interview, a new team, a first conversation abroad.</p>
         </div>
         <div class="slider" data-slider="testimonials">
@@ -406,7 +433,7 @@
                 <p class="quote">“The IELTS speaking labs were the first place I stopped memorizing answers. I left with a 7.5 and a calmer exam day.”</p>
                 <div class="t-top">
                   <img src="images/student-amira.jpg" alt="Amira Hassan" width="400" height="400">
-                  <div><h3>Amira Hassan</h3><p>IELTS Preparation</p></div>
+                  <div><h3>Amira Hassan</h3><p data-i18n="course_ielts">IELTS Preparation</p></div>
                 </div>
               </div>
               <div class="testimonial-card">
@@ -416,7 +443,7 @@
                 <p class="quote">“Business English gave me phrases I use in stand-ups every morning. The group was small enough to actually practice.”</p>
                 <div class="t-top">
                   <img src="images/student-luca.jpg" alt="Luca Bianchi" width="400" height="400">
-                  <div><h3>Luca Bianchi</h3><p>Business English</p></div>
+                  <div><h3>Luca Bianchi</h3><p data-i18n="course_business">Business English</p></div>
                 </div>
               </div>
               <div class="testimonial-card">
@@ -426,7 +453,7 @@
                 <p class="quote">“I wanted Spanish for a family trip. By week six I could order, ask for directions, and understand the replies.”</p>
                 <div class="t-top">
                   <img src="images/student-priya.jpg" alt="Priya Shah" width="400" height="400">
-                  <div><h3>Priya Shah</h3><p>Spanish Language</p></div>
+                  <div><h3>Priya Shah</h3><p data-i18n="course_spanish">Spanish Language</p></div>
                 </div>
               </div>
               <div class="testimonial-card">
@@ -436,15 +463,15 @@
                 <p class="quote">“German finally clicked because Markus taught grammar inside real dialogues. I use it at the bakery near my office.”</p>
                 <div class="t-top">
                   <img src="images/student-noah.jpg" alt="Noah Keller" width="400" height="400">
-                  <div><h3>Noah Keller</h3><p>German Language</p></div>
+                  <div><h3>Noah Keller</h3><p data-i18n="course_german">German Language</p></div>
                 </div>
               </div>
             </div>
           </div>
           <div class="slider-controls">
-            <button class="slider-btn" type="button" data-prev aria-label="Previous testimonials"><i class="bi bi-arrow-left"></i></button>
+            <button class="slider-btn" type="button" data-prev aria-label="Previous testimonials" data-i18n-aria-label="slider_prev_stories"><i class="bi bi-arrow-left"></i></button>
             <div class="slider-dots"></div>
-            <button class="slider-btn" type="button" data-next aria-label="Next testimonials"><i class="bi bi-arrow-right"></i></button>
+            <button class="slider-btn" type="button" data-next aria-label="Next testimonials" data-i18n-aria-label="slider_next_stories"><i class="bi bi-arrow-right"></i></button>
           </div>
         </div>
       </div>
@@ -455,9 +482,9 @@
       <div class="container">
         <div class="cta-band reveal">
           <span class="eyebrow" style="color:#fde68a;">Start this month</span>
-          <h2>Ready to Start Learning?</h2>
+          <h2 data-i18n="cta_title">Ready to Start Learning?</h2>
           <p>Join MF Language Academy and start improving your language skills today.</p>
-          <a class="btn btn-secondary" href="register.html">Start Learning</a>
+          <a class="btn btn-secondary" href="register.html" data-i18n="btn_start_learning">Start Learning</a>
         </div>
       </div>
     </section>
@@ -466,21 +493,21 @@
     <section id="newsletter-section" class="section section-alt">
       <div class="container newsletter">
         <div class="section-header">
-          <span class="eyebrow">Newsletter</span>
-          <h2>Course news, in your inbox</h2>
+          <span class="eyebrow" data-i18n="newsletter_eyebrow">Newsletter</span>
+          <h2 data-i18n="newsletter_title">Course news, in your inbox</h2>
           <p>New groups, exam dates, and study tips from MF Language Academy.</p>
         </div>
         <form class="newsletter-form" data-form="newsletter" novalidate>
           <div class="field">
-            <label for="newsletter-email">Email</label>
+            <label for="newsletter-email" data-i18n="label_email">Email</label>
             <input id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="you@email.com">
             <p class="field-error" data-error-for="email"></p>
           </div>
-          <button class="btn btn-primary" type="submit">Subscribe</button>
+          <button class="btn btn-primary" type="submit" data-i18n="btn_subscribe">Subscribe</button>
           <p class="form-note">Preview only. Nothing is sent.</p>
           <div class="form-success" hidden>
             <i class="bi bi-check-circle-fill"></i>
-            <h3>You are on the list</h3>
+            <h3 data-i18n="newsletter_success">You are on the list</h3>
             <p>This preview validated your email and did not send it anywhere.</p>
           </div>
         </form>
@@ -499,27 +526,27 @@
         <p style="margin-top:14px;">MF Language Academy helps adults speak clearly at work, in exams, and abroad.</p>
       </div>
       <div>
-        <h3>Quick Links</h3>
+        <h3 data-i18n="footer_quick">Quick Links</h3>
         <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="courses.html">Courses</a>
-          <a href="teachers.html">Teachers</a>
-          <a href="contact.html">Contact</a>
+          <a href="index.html" data-i18n="nav_home">Home</a>
+          <a href="about.html" data-i18n="nav_about">About</a>
+          <a href="courses.html" data-i18n="nav_courses">Courses</a>
+          <a href="teachers.html" data-i18n="nav_teachers">Teachers</a>
+          <a href="contact.html" data-i18n="nav_contact">Contact</a>
         </div>
       </div>
       <div>
-        <h3>Courses</h3>
+        <h3 data-i18n="nav_courses">Courses</h3>
         <div class="footer-links">
-          <a href="course-details.html?course=english-beginner">English Beginner</a>
-          <a href="course-details.html?course=ielts">IELTS Preparation</a>
-          <a href="course-details.html?course=business-english">Business English</a>
-          <a href="course-details.html?course=german">German Language</a>
-          <a href="course-details.html?course=spanish">Spanish Language</a>
+          <a href="course-details.html?course=english-beginner" data-i18n="course_en_beginner">English Beginner</a>
+          <a href="course-details.html?course=ielts" data-i18n="course_ielts">IELTS Preparation</a>
+          <a href="course-details.html?course=business-english" data-i18n="course_business">Business English</a>
+          <a href="course-details.html?course=german" data-i18n="course_german">German Language</a>
+          <a href="course-details.html?course=spanish" data-i18n="course_spanish">Spanish Language</a>
         </div>
       </div>
       <div>
-        <h3>Contact Information</h3>
+        <h3 data-i18n="footer_contact">Contact Information</h3>
         <div class="footer-links">
           <span>250 Language Plaza, Boston</span>
           <a href="tel:+15550142280">+1 (555) 014-2280</a>
@@ -528,24 +555,24 @@
         </div>
       </div>
       <div>
-        <h3>Social Media</h3>
+        <h3 data-i18n="footer_social">Social Media</h3>
         <div class="footer-social">
-          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-          <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="#" aria-label="Facebook" data-i18n-aria-label="social_facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram" data-i18n-aria-label="social_instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn" data-i18n-aria-label="social_linkedin"><i class="bi bi-linkedin"></i></a>
+          <a href="#" aria-label="YouTube" data-i18n-aria-label="social_youtube"><i class="bi bi-youtube"></i></a>
         </div>
       </div>
     </div>
     <div class="container footer-bottom">
       <p>© 2026 MF Language Academy. All rights reserved.</p>
-      <p><a href="login.html">Login</a> · <a href="register.html">Register</a></p>
+      <p><a href="login.html" data-i18n="nav_login">Login</a> · <a href="register.html" data-i18n="nav_register">Register</a></p>
     </div>
   </footer>
 
   <div class="modal" data-modal="teacher" hidden>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="teacherModalName">
-      <button class="modal-close" type="button" data-modal-close aria-label="Close">&times;</button>
+      <button class="modal-close" type="button" data-modal-close aria-label="Close" data-i18n-aria-label="btn_close">&times;</button>
       <div class="teacher-modal">
         <img data-teacher="photo" alt="" width="150" height="180">
         <div>
@@ -556,10 +583,12 @@
       </div>
     </div>
   </div>
-  <button class="back-to-top" type="button" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+  <button class="back-to-top" type="button" aria-label="Back to top" data-i18n-aria-label="back_to_top"><i class="bi bi-arrow-up"></i></button>
   <script src="js/navbar.js" defer></script>
   <script src="js/slider.js" defer></script>
   <script src="js/validation.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/faq-widget.js" defer></script>
+  <script src="js/preferences.js" defer></script>
 </body>
 </html>

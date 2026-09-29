@@ -25,7 +25,9 @@ function initMobileMenu() {
     header?.classList.toggle("menu-open", open);
     toggle.classList.toggle("is-open", open);
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
-    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    toggle.setAttribute("aria-label", open
+      ? (window.mfT ? window.mfT("close_menu", "Close menu") : "Close menu")
+      : (window.mfT ? window.mfT("open_menu", "Open menu") : "Open menu"));
     document.body.classList.toggle("nav-lock", open);
   }
 

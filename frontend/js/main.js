@@ -1,14 +1,14 @@
 const courses = {
     "english-beginner": {
-      title: "English Beginner",
+      title: "English A1 — Complete Beginner Course",
       level: "Beginner",
       duration: "8 weeks",
-      price: "$180",
-      lessons: "16 live lessons",
+      price: "$49",
+      lessons: "32 lessons",
       image: "images/course-beginner.jpg",
-      summary: "Build a confident foundation in everyday English, from greetings and travel to simple conversations at work and in the city.",
-      overview: "This course is for new learners who want clear structure, plenty of speaking time, and feedback they can use the same day. Classes stay small so every student is heard.",
-      learn: ["Introduce yourself and talk about daily routines", "Use present and past forms in simple stories", "Handle cafés, directions, and travel situations", "Build a personal vocabulary notebook"],
+      summary: "Start English from zero with guided speaking, everyday vocabulary, and clear grammar you can use the same day.",
+      overview: "This beginner pathway takes you from first greetings to short everyday conversations. Each module mixes video, reading, and a short quiz. Classes stay practical, with pronunciation and daily situations at the center.",
+      learn: ["Introduce yourself in English", "Understand basic conversations", "Build everyday vocabulary", "Use basic grammar", "Improve pronunciation", "Speak in common daily situations"],
       curriculum: [
         ["Week 1–2 · Sounds and first conversations", "Pronunciation basics, greetings, and questions you will actually use."],
         ["Week 3–4 · Daily life", "Home, work, food, and telling the time with natural phrases."],
@@ -246,18 +246,7 @@ function initAnimations() {
   }
 }
 
-function initCoursePage() {
-  document.querySelectorAll(".accordion-trigger").forEach(function (trigger) {
-    trigger.addEventListener("click", function () {
-      const item = trigger.closest(".accordion-item");
-      const open = item.classList.contains("is-open");
-      item.parentElement.querySelectorAll(".accordion-item").forEach(function (sibling) {
-        sibling.classList.remove("is-open");
-      });
-      if (!open) item.classList.add("is-open");
-    });
-  });
-
+function renderCourseDetail() {
   const detailRoot = document.querySelector("[data-course-detail]") || document.getElementById("courseDetail");
   if (detailRoot) {
     const bind = function (name) {
@@ -265,29 +254,42 @@ function initCoursePage() {
     };
     const selected = new URLSearchParams(window.location.search).get("course") || "english-beginner";
     const course = courses[selected] || courses["english-beginner"];
-    bind("title").textContent = course.title;
-    bind("crumb").textContent = course.title;
-    bind("summary").textContent = course.summary;
-    bind("overview").textContent = course.overview;
-    bind("price").textContent = course.price;
-    bind("level").textContent = course.level;
-    bind("duration").textContent = course.duration;
-    bind("lessons").textContent = course.lessons;
+    const text = function (value) {
+      return window.mfText ? window.mfText(value) : value;
+    };
+    const setText = function (name, value) {
+      const el = bind(name);
+      if (el) el.textContent = value;
+    };
+    const title = text(course.title);
+    setText("title", title);
+    setText("crumb", title);
+    setText("summary", text(course.summary));
+    setText("overview", text(course.overview));
+    setText("price", course.price);
+    setText("level", text(course.level));
+    setText("duration", text(course.duration));
+    setText("lessons", text(course.lessons));
     const image = bind("image");
-    image.src = course.image;
-    image.alt = course.title + " course";
-    document.title = course.title + " | MF Language Academy";
+    if (image) {
+      image.src = course.image;
+      image.alt = title + " course";
+    }
+    document.title = title + " | MF Language Academy";
 
     const learn = bind("learn");
-    learn.innerHTML = "";
-    course.learn.forEach(function (item) {
-      const li = document.createElement("li");
-      li.innerHTML = '<i class="bi bi-check-circle-fill"></i><span></span>';
-      li.querySelector("span").textContent = item;
-      learn.appendChild(li);
-    });
+    if (learn) {
+      learn.innerHTML = "";
+      course.learn.forEach(function (item) {
+        const li = document.createElement("li");
+        li.innerHTML = '<i class="bi bi-check-circle-fill"></i><span></span>';
+        li.querySelector("span").textContent = text(item);
+        learn.appendChild(li);
+      });
+    }
 
     const curriculum = bind("curriculum");
+    if (!curriculum) return;
     curriculum.innerHTML = "";
     course.curriculum.forEach(function (block, index) {
       const blockEl = document.createElement("div");
@@ -296,11 +298,11 @@ function initCoursePage() {
       button.type = "button";
       button.className = "accordion-trigger";
       button.innerHTML = "<span></span><i class='bi bi-plus-lg'></i>";
-      button.querySelector("span").textContent = block[0];
+      button.querySelector("span").textContent = text(block[0]);
       const panel = document.createElement("div");
       panel.className = "accordion-panel";
       const paragraph = document.createElement("p");
-      paragraph.textContent = block[1];
+      paragraph.textContent = text(block[1]);
       panel.appendChild(paragraph);
       blockEl.appendChild(button);
       blockEl.appendChild(panel);
@@ -314,8 +316,26 @@ function initCoursePage() {
       curriculum.appendChild(blockEl);
     });
   }
-
 }
+
+function initCoursePage() {
+  if (!initCoursePage.ready) {
+    initCoursePage.ready = true;
+    document.querySelectorAll(".accordion-trigger").forEach(function (trigger) {
+      trigger.addEventListener("click", function () {
+        const item = trigger.closest(".accordion-item");
+        const open = item.classList.contains("is-open");
+        item.parentElement.querySelectorAll(".accordion-item").forEach(function (sibling) {
+          sibling.classList.remove("is-open");
+        });
+        if (!open) item.classList.add("is-open");
+      });
+    });
+  }
+  renderCourseDetail();
+}
+
+window.renderCourseDetail = renderCourseDetail;
 
 // 08. Modals
 function initModals() {

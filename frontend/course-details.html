@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+(function () {
+  try {
+    var theme = localStorage.getItem("mf-theme");
+    if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
+    var language = localStorage.getItem("mf-language") || "az";
+    if (language === "az" || language === "ru" || language === "en") document.documentElement.lang = language;
+  } catch (e) {}
+})();
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>English Beginner | MF Language Academy</title>
@@ -14,7 +24,7 @@
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-  <a class="skip-link" href="#course-hero">Skip to content</a>
+  <a class="skip-link" href="#course-hero-section" data-i18n="skip_content">Skip to content</a>
   <header class="site-header">
   <div class="topbar">
     <div class="container topbar-inner">
@@ -23,128 +33,439 @@
         <a href="mailto:hello@mflanguage.academy"><i class="bi bi-envelope"></i> hello@mflanguage.academy</a>
       </div>
       <div class="topbar-right">
-        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-        <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+        <a href="#" aria-label="Facebook" data-i18n-aria-label="social_facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" aria-label="Instagram" data-i18n-aria-label="social_instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn" data-i18n-aria-label="social_linkedin"><i class="bi bi-linkedin"></i></a>
+        <a href="#" aria-label="YouTube" data-i18n-aria-label="social_youtube"><i class="bi bi-youtube"></i></a>
       </div>
     </div>
   </div>
     <div class="container header-inner">
       <a class="logo" href="index.html"><span class="logo-mark">MF</span><span class="logo-text"><strong>MF Language</strong><small>Academy</small></span></a>
-      <nav class="nav" aria-label="Primary">
+      <nav class="nav" aria-label="Primary" data-i18n-aria-label="aria_primary">
         <ul class="nav-list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a class="active" href="courses.html" aria-current="page">Courses</a></li>
-          <li><a href="teachers.html">Teachers</a></li>
-          <li><a href="students.html">Students</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+          <li><a href="about.html" data-i18n="nav_about">About</a></li>
+          <li><a class="active" href="courses.html" aria-current="page" data-i18n="nav_courses">Courses</a></li>
+          <li><a href="teachers.html" data-i18n="nav_teachers">Teachers</a></li>
+          <li><a href="students.html" data-i18n="nav_students">Students</a></li>
+          <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
         </ul>
         <div class="nav-actions">
-          <a class="btn btn-outline" href="login.html">Login</a>
-          <a class="btn btn-secondary" href="register.html">Register</a>
+          <a class="btn btn-outline" href="login.html" data-i18n="nav_login">Login</a>
+          <a class="btn btn-secondary" href="register.html" data-i18n="nav_register">Register</a>
         </div>
       </nav>
       <form class="header-search" action="courses.html" method="get" role="search">
         <i class="bi bi-search" aria-hidden="true"></i>
-        <input type="search" name="q" placeholder="Search courses" aria-label="Search courses">
+        <input type="search" name="q" placeholder="Search courses" data-i18n-placeholder="search_placeholder" aria-label="Search courses" data-i18n-aria-label="search_placeholder">
       </form>
+      <div class="header-tools">
+        <div class="lang-switch">
+          <button class="lang-toggle" type="button" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria-label="language_menu">
+            <span class="lang-current">AZ</span>
+            <i class="bi bi-chevron-down" aria-hidden="true"></i>
+          </button>
+          <ul class="lang-menu" role="listbox" hidden>
+            <li role="none"><button type="button" role="option" data-set-lang="az">🇦🇿 Azərbaycan</button></li>
+            <li role="none"><button type="button" role="option" data-set-lang="ru">🇷🇺 Русский</button></li>
+            <li role="none"><button type="button" role="option" data-set-lang="en">🇬🇧 English</button></li>
+          </ul>
+        </div>
+        <button class="theme-toggle" type="button" aria-pressed="false" data-i18n-aria-label="toggle_theme">
+          <i class="bi bi-moon-stars" aria-hidden="true"></i>
+        </button>
+      </div>
+
       <div class="header-actions">
-        <a class="btn btn-outline" href="login.html">Login</a>
-        <a class="btn btn-secondary" href="register.html">Register</a>
-        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <a class="btn btn-outline" href="login.html" data-i18n="nav_login">Login</a>
+        <a class="btn btn-secondary" href="register.html" data-i18n="nav_register">Register</a>
+        <button class="nav-toggle" type="button" aria-label="Open menu" data-i18n-aria-label="open_menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
     <div class="nav-overlay"></div>
   </header>
   <main>
-    <section id="course-hero" class="page-hero">
+    <section id="course-breadcrumb-section" class="course-breadcrumb">
       <div class="container">
-        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="courses.html">Courses</a><span>/</span><span data-bind="crumb">English Beginner</span></nav>
-        <span class="eyebrow">Course details</span>
-        <h1 data-bind="title">English Beginner</h1>
-        <p data-bind="summary">Build a confident foundation in everyday English, from greetings and travel to simple conversations at work and in the city.</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb" data-i18n-aria-label="aria_breadcrumb">
+          <a href="index.html" data-i18n="nav_home">Home</a>
+          <span>/</span>
+          <a href="courses.html" data-i18n="nav_courses">Courses</a>
+          <span>/</span>
+          <span data-i18n="lang_english">English</span>
+          <span>/</span>
+          <span data-bind="crumb">English A1</span>
+        </nav>
       </div>
     </section>
-    <section id="course-section" class="section" data-course-detail>
-      <div class="container details-grid">
-        <div>
-          <img class="details-cover" data-bind="image" src="images/course-beginner.jpg" alt="English Beginner course" width="1000" height="700">
-          <h2>Overview</h2>
-          <p data-bind="overview">This course is for new learners who want clear structure, plenty of speaking time, and feedback they can use the same day. Classes stay small so every student is heard.</p>
-          <h2>What you will practice</h2>
-          <ul class="learn-list" data-bind="learn">
-            <li><i class="bi bi-check-circle-fill"></i><span>Introduce yourself and talk about daily routines</span></li>
-            <li><i class="bi bi-check-circle-fill"></i><span>Use present and past forms in simple stories</span></li>
-            <li><i class="bi bi-check-circle-fill"></i><span>Handle cafés, directions, and travel situations</span></li>
-            <li><i class="bi bi-check-circle-fill"></i><span>Build a personal vocabulary notebook</span></li>
+    <section id="course-hero-section" class="section course-detail-hero" data-course-detail>
+      <div class="container">
+        <div class="course-detail-layout">
+          <div class="course-detail-intro">
+            <div class="course-thumb">
+              <img class="details-cover" data-bind="image" src="images/course-beginner.jpg" alt="English A1 beginner course" width="1000" height="700">
+              <button class="preview-btn" type="button" data-preview>
+                <i class="bi bi-play-circle-fill"></i>
+                Preview this course
+              </button>
+            </div>
+            <span class="eyebrow">MF Language Academy</span>
+            <h1 data-bind="title" data-i18n="course_a1_title">English A1 — Complete Beginner Course</h1>
+            <p data-bind="summary" data-i18n="course_a1_summary">Start English from zero with guided speaking, everyday vocabulary, and clear grammar you can use the same day.</p>
+            <div class="course-rating" aria-label="Rated 4.9 out of 5">
+              <span class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span>
+              <strong>4.9</strong>
+              <span>1,250 students · 186 reviews</span>
+            </div>
+            <ul class="course-facts">
+              <li data-i18n="course_instructor"><i class="bi bi-person"></i> Instructor <span>Sarah Johnson</span></li>
+              <li data-i18n="label_level"><i class="bi bi-bar-chart"></i> Level <span data-bind="level" data-i18n="level_beginner">Beginner</span></li>
+              <li><i class="bi bi-clock"></i> Duration <span data-bind="duration" data-i18n="duration_8">8 weeks</span></li>
+              <li><i class="bi bi-collection-play"></i> Lessons <span data-bind="lessons" data-i18n="lessons_32">32 lessons</span></li>
+              <li data-i18n="label_language"><i class="bi bi-translate"></i> Language <span data-i18n="lang_english">English</span></li>
+            </ul>
+          </div>
+          <aside class="side-card course-purchase">
+            <p class="price-lg" data-bind="price">$49</p>
+            <ul class="purchase-list">
+              <li><i class="bi bi-check2"></i> 32 Lessons</li>
+              <li><i class="bi bi-check2"></i> 8 Weeks</li>
+              <li data-i18n="include_certificate"><i class="bi bi-check2"></i> Certificate of Completion</li>
+              <li><i class="bi bi-check2"></i> Downloadable Resources</li>
+              <li data-i18n="include_lifetime"><i class="bi bi-check2"></i> Lifetime Access</li>
+            </ul>
+            <button class="btn btn-secondary btn-block" type="button" data-enroll data-open-modal="enroll" data-i18n="btn_enroll">Enroll Now</button>
+          </aside>
+        </div>
+      </div>
+    </section>
+    <section id="course-overview-section" class="section">
+      <div class="container">
+        <div class="course-tabs" data-course-tabs>
+          <button class="is-active" type="button" data-tab="description" data-i18n="tab_description">Description</button>
+          <button type="button" data-tab="outcomes" data-i18n="tab_outcomes">What you will learn</button>
+        </div>
+        <div class="course-tab-panel is-active" data-tab-panel="description">
+          <h2 data-i18n="course_description">Course description</h2>
+          <p data-bind="overview" data-i18n="course_a1_overview">This beginner pathway takes you from first greetings to short everyday conversations. Each module mixes video, reading, and a short quiz. Classes stay practical, with pronunciation and daily situations at the center.</p>
+        </div>
+        <div class="course-tab-panel" data-tab-panel="outcomes">
+          <h2 data-i18n="tab_outcomes">What you will learn</h2>
+          <ul class="learn-list outcome-grid" data-bind="learn">
+            <li><i class="bi bi-check-circle-fill"></i><span data-i18n="learn_intro_en">Introduce yourself in English</span></li>
+            <li><i class="bi bi-check-circle-fill"></i><span data-i18n="learn_listen">Understand basic conversations</span></li>
+            <li><i class="bi bi-check-circle-fill"></i><span data-i18n="learn_vocab">Build everyday vocabulary</span></li>
+            <li><i class="bi bi-check-circle-fill"></i><span data-i18n="learn_grammar">Use basic grammar</span></li>
+            <li><i class="bi bi-check-circle-fill"></i><span data-i18n="learn_pronounce">Improve pronunciation</span></li>
+            <li><i class="bi bi-check-circle-fill"></i><span data-i18n="learn_daily">Speak in common daily situations</span></li>
           </ul>
-          <h2>Curriculum</h2>
-          <div class="accordion" data-bind="curriculum">
-            <div class="accordion-item is-open">
-              <button class="accordion-trigger" type="button">Week 1–2 · Sounds and first conversations <i class="bi bi-plus-lg"></i></button>
-              <div class="accordion-panel"><p>Pronunciation basics, greetings, and questions you will actually use.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="course-includes-section" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow" data-i18n="course_included">Included</span>
+          <h2 data-i18n="course_includes">This course includes</h2>
+        </div>
+        <ul class="includes-grid">
+          <li><i class="bi bi-play-btn"></i><span>32 Video Lessons</span></li>
+          <li><i class="bi bi-download"></i><span>12 Downloadable Resources</span></li>
+          <li><i class="bi bi-patch-question"></i><span>5 Quizzes</span></li>
+          <li><i class="bi bi-infinity"></i><span data-i18n="include_lifetime">Lifetime Access</span></li>
+          <li><i class="bi bi-award"></i><span data-i18n="include_certificate">Certificate of Completion</span></li>
+          <li><i class="bi bi-phone"></i><span data-i18n="include_devices">Mobile and Desktop Access</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="course-curriculum-section" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow" data-i18n="course_curriculum">Curriculum</span>
+          <h2 data-i18n="course_modules">Modules, lessons, and quizzes</h2>
+          <p>Open a module to see its lessons. Locked items stay visible so you can preview the path.</p>
+        </div>
+        <div class="course-modules" data-course-curriculum>
+          <div class="course-module is-open">
+            <button class="course-module-toggle" type="button" aria-expanded="true">
+              <span><strong>Module 01 — Introduction to English</strong><small>4 lessons · 45 min</small></span>
+              <i class="bi bi-chevron-down"></i>
+            </button>
+            <div class="course-module-panel">
+              <div class="lesson-row">
+                <i class="bi bi-play-circle"></i>
+                <div><strong>Lesson 01 — Greetings</strong><span>Video · 12 min</span></div>
+                <i class="bi bi-unlock" aria-label="Unlocked"></i>
+              </div>
+              <div class="lesson-row">
+                <i class="bi bi-file-text"></i>
+                <div><strong>Lesson 02 — Introducing Yourself</strong><span>Reading · 8 min</span></div>
+                <i class="bi bi-unlock" aria-label="Unlocked"></i>
+              </div>
+              <div class="lesson-row">
+                <i class="bi bi-play-circle"></i>
+                <div><strong>Lesson 03 — Basic Vocabulary</strong><span>Video · 15 min</span></div>
+                <i class="bi bi-unlock" aria-label="Unlocked"></i>
+              </div>
+              <div class="lesson-row">
+                <i class="bi bi-patch-question"></i>
+                <div><strong>Quiz — Introduction check</strong><span>Quiz · 10 min</span></div>
+                <i class="bi bi-unlock" aria-label="Unlocked"></i>
+              </div>
             </div>
-            <div class="accordion-item">
-              <button class="accordion-trigger" type="button">Week 3–4 · Daily life <i class="bi bi-plus-lg"></i></button>
-              <div class="accordion-panel"><p>Home, work, food, and telling the time with natural phrases.</p></div>
+          </div>
+          <div class="course-module">
+            <button class="course-module-toggle" type="button" aria-expanded="false">
+              <span><strong>Module 02 — Everyday English</strong><small>5 lessons · 58 min</small></span>
+              <i class="bi bi-chevron-down"></i>
+            </button>
+            <div class="course-module-panel">
+              <div class="lesson-row">
+                <i class="bi bi-play-circle"></i>
+                <div><strong>Lesson 01 — Daily Routines</strong><span>Video · 14 min</span></div>
+                <i class="bi bi-lock" aria-label="Locked"></i>
+              </div>
+              <div class="lesson-row">
+                <i class="bi bi-file-text"></i>
+                <div><strong>Lesson 02 — Present Simple</strong><span>Reading · 11 min</span></div>
+                <i class="bi bi-lock" aria-label="Locked"></i>
+              </div>
+              <div class="lesson-row">
+                <i class="bi bi-play-circle"></i>
+                <div><strong>Lesson 03 — Asking Questions</strong><span>Video · 13 min</span></div>
+                <i class="bi bi-lock" aria-label="Locked"></i>
+              </div>
+              <div class="lesson-row">
+                <i class="bi bi-download"></i>
+                <div><strong>Practice sheet</strong><span>Download · PDF</span></div>
+                <i class="bi bi-lock" aria-label="Locked"></i>
+              </div>
+              <div class="lesson-row">
+                <i class="bi bi-patch-question"></i>
+                <div><strong>Quiz — Everyday English</strong><span>Quiz · 10 min</span></div>
+                <i class="bi bi-lock" aria-label="Locked"></i>
+              </div>
             </div>
-            <div class="accordion-item">
-              <button class="accordion-trigger" type="button">Week 5–6 · Out in the city <i class="bi bi-plus-lg"></i></button>
-              <div class="accordion-panel"><p>Directions, shopping, and polite requests.</p></div>
-            </div>
-            <div class="accordion-item">
-              <button class="accordion-trigger" type="button">Week 7–8 · Your story <i class="bi bi-plus-lg"></i></button>
-              <div class="accordion-panel"><p>Past events, short presentations, and a final speaking check.</p></div>
+          </div>
+          <div class="course-module">
+            <button class="course-module-toggle" type="button" aria-expanded="false">
+              <span><strong>Module 03 — Communication</strong><small>3 lessons · 46 min</small></span>
+              <i class="bi bi-chevron-down"></i>
+            </button>
+            <div class="course-module-panel">
+              <div class="lesson-row">
+                <i class="bi bi-play-circle"></i>
+                <div><strong>Lesson 01 — Speaking Practice</strong><span>Video · 16 min</span></div>
+                <i class="bi bi-lock" aria-label="Locked"></i>
+              </div>
+              <div class="lesson-row">
+                <i class="bi bi-play-circle"></i>
+                <div><strong>Lesson 02 — Conversations</strong><span>Video · 18 min</span></div>
+                <i class="bi bi-lock" aria-label="Locked"></i>
+              </div>
+              <div class="lesson-row">
+                <i class="bi bi-patch-question"></i>
+                <div><strong>Quiz — Communication</strong><span>Quiz · 12 min</span></div>
+                <i class="bi bi-lock" aria-label="Locked"></i>
+              </div>
             </div>
           </div>
         </div>
-        <aside class="side-card">
-          <p class="price-lg" data-bind="price">$180</p>
-          <p class="form-note">Sample tuition for this preview.</p>
-          <ul class="meta-list">
-            <li>Level <span data-bind="level">Beginner</span></li>
-            <li>Duration <span data-bind="duration">8 weeks</span></li>
-            <li>Format <span data-bind="lessons">16 live lessons</span></li>
-            <li>Group size <span>8–12 students</span></li>
-          </ul>
-          <button class="btn btn-secondary btn-block" type="button" data-open-modal="enroll">Enroll Now</button>
-          <a class="btn btn-outline btn-block" href="contact.html" style="margin-top:10px;">Ask a Question</a>
-        </aside>
       </div>
     </section>
-    <section id="related-section" class="section section-alt">
+
+    <section id="course-requirements-section" class="section section-alt">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow">More programs</span>
-          <h2>Other courses to consider</h2>
+          <span class="eyebrow" data-i18n="course_before">Before you start</span>
+          <h2 data-i18n="course_requirements">Requirements</h2>
+        </div>
+        <ul class="learn-list">
+          <li><i class="bi bi-check-circle-fill"></i><span data-i18n="req_none">No previous English knowledge is required.</span></li>
+          <li><i class="bi bi-check-circle-fill"></i><span data-i18n="req_computer">Basic computer skills are recommended.</span></li>
+          <li><i class="bi bi-check-circle-fill"></i><span data-i18n="req_internet">An internet connection is required.</span></li>
+          <li><i class="bi bi-check-circle-fill"></i><span data-i18n="req_watch">Students should be able to watch video lessons and complete quizzes.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="course-progress-section" class="section">
+      <div class="container">
+        <div class="progress-card">
+          <div>
+            <span class="eyebrow" data-i18n="course_demo">Demo data</span>
+            <h2 data-i18n="course_progress">Course progress</h2>
+            <p data-i18n="course_progress_note">This bar is static preview data until a student account is connected.</p>
+          </div>
+          <div>
+            <strong class="progress-value">65%</strong>
+            <div class="progress" aria-label="65 percent complete"><span class="demo-progress"></span></div>
+            <p>20 / 32 lessons completed</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="course-instructor-section" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow" data-i18n="course_instructor">Instructor</span>
+          <h2 data-i18n="course_sarah">Learn with Sarah Johnson</h2>
+        </div>
+        <div class="instructor-card">
+          <img src="images/teacher-elena.jpg" alt="Sarah Johnson" width="700" height="800">
+          <div>
+            <h3>Sarah Johnson</h3>
+            <p class="role" data-i18n="role_sarah">English Language Instructor</p>
+            <p>Sarah teaches beginner English with short, practical lessons. She focuses on pronunciation, everyday phrases, and the confidence to speak from the first week.</p>
+            <ul class="course-facts">
+              <li data-i18n="label_languages"><i class="bi bi-translate"></i> Languages <span>English, Spanish</span></li>
+              <li data-i18n="nav_courses"><i class="bi bi-journal-bookmark"></i> Courses <span>6</span></li>
+              <li data-i18n="nav_students"><i class="bi bi-people"></i> Students <span>3,400</span></li>
+              <li data-i18n="label_rating"><i class="bi bi-star-fill"></i> Rating <span>4.9</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="course-reviews-section" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow" data-i18n="course_reviews">Reviews</span>
+          <h2 data-i18n="course_reviews_title">What learners say</h2>
+          <button class="btn btn-outline" type="button" data-review data-i18n="btn_write_review">Write a Review</button>
+        </div>
+        <div class="review-layout">
+          <div class="review-summary">
+            <strong>4.9</strong>
+            <div class="stars" aria-label="Rated 4.9 out of 5"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+            <p>186 reviews</p>
+            <ul class="rating-bars">
+              <li><span>5</span><span class="bar"><span style="width:86%"></span></span></li>
+              <li><span>4</span><span class="bar"><span style="width:10%"></span></span></li>
+              <li><span>3</span><span class="bar"><span style="width:3%"></span></span></li>
+              <li><span>2</span><span class="bar"><span style="width:1%"></span></span></li>
+              <li><span>1</span><span class="bar"><span style="width:0%"></span></span></li>
+            </ul>
+          </div>
+          <div class="review-list">
+            <div class="testimonial-card">
+              <div class="stars" aria-label="Rated 5 out of 5"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+              <p>The greeting lessons were short enough to finish after work, and I could introduce myself by week two.</p>
+              <div class="t-top">
+                <img src="images/student-amira.jpg" alt="Amira Hassan" width="80" height="80">
+                <div><h3>Amira Hassan</h3><p>March 12, 2026</p></div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="stars" aria-label="Rated 5 out of 5"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+              <p>Quizzes after each module showed me exactly which phrases to repeat. The locked lessons made the path clear.</p>
+              <div class="t-top">
+                <img src="images/student-luca.jpg" alt="Luca Bianchi" width="80" height="80">
+                <div><h3>Luca Bianchi</h3><p>February 2, 2026</p></div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="stars" aria-label="Rated 4 out of 5"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
+              <p>Present simple finally made sense because it was tied to daily routines, not a long grammar sheet.</p>
+              <div class="t-top">
+                <img src="images/student-priya.jpg" alt="Priya Shah" width="80" height="80">
+                <div><h3>Priya Shah</h3><p>January 18, 2026</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="course-faq-section" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow" data-i18n="faq_crumb">FAQ</span>
+          <h2 data-i18n="course_faq_title">Questions before you enroll</h2>
+        </div>
+        <div class="course-faq" data-course-faq>
+          <div class="course-faq-item is-open">
+            <button class="course-faq-toggle" type="button" aria-expanded="true" data-i18n="faq_beginners">Is this course suitable for beginners? <i class="bi bi-plus-lg"></i></button>
+            <div class="course-faq-panel"><p>Yes. English A1 starts from greetings and does not assume earlier study.</p></div>
+          </div>
+          <div class="course-faq-item">
+            <button class="course-faq-toggle" type="button" aria-expanded="false" data-i18n="faq_access">How long do I have access to the course? <i class="bi bi-plus-lg"></i></button>
+            <div class="course-faq-panel"><p>This preview lists lifetime access. A future account will store the real access period.</p></div>
+          </div>
+          <div class="course-faq-item">
+            <button class="course-faq-toggle" type="button" aria-expanded="false" data-i18n="faq_certificate">Will I receive a certificate? <i class="bi bi-plus-lg"></i></button>
+            <div class="course-faq-panel"><p>A certificate of completion is included when the lessons and quizzes are finished.</p></div>
+          </div>
+          <div class="course-faq-item">
+            <button class="course-faq-toggle" type="button" aria-expanded="false" data-i18n="faq_mobile">Can I learn from a mobile device? <i class="bi bi-plus-lg"></i></button>
+            <div class="course-faq-panel"><p data-i18n="faq_mobile_answer">Yes. Lessons are laid out for both phone and desktop screens.</p></div>
+          </div>
+          <div class="course-faq-item">
+            <button class="course-faq-toggle" type="button" aria-expanded="false" data-i18n="faq_quizzes">Are quizzes included? <i class="bi bi-plus-lg"></i></button>
+            <div class="course-faq-panel"><p data-i18n="faq_quizzes_answer">Each module ends with a short quiz so you can check the new phrases.</p></div>
+          </div>
+          <div class="course-faq-item">
+            <button class="course-faq-toggle" type="button" aria-expanded="false" data-i18n="faq_previous">Do I need previous English knowledge? <i class="bi bi-plus-lg"></i></button>
+            <div class="course-faq-panel"><p data-i18n="faq_previous_answer">No previous English knowledge is required for this beginner course.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="related-courses-section" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow" data-i18n="related_eyebrow">Related courses</span>
+          <h2 data-i18n="related_title">Continue after A1</h2>
         </div>
         <div class="course-grid">
           <div class="course-card">
-            <div class="course-media"><img src="images/course-ielts.jpg" alt="IELTS notes" width="1000" height="700"><span class="badge">Exam</span></div>
+            <div class="course-media"><img src="images/course-intermediate.jpg" alt="English A2 study materials" width="1000" height="700"><span class="badge" data-i18n="level_intermediate">Intermediate</span></div>
             <div class="course-body">
-              <h3>IELTS Preparation</h3>
-              <p>Band-focused practice for all four papers.</p>
-              <div class="course-foot"><span class="price">$260<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=ielts">View Course</a></div>
+              <h3 data-i18n="course_a2">English A2</h3>
+              <p data-i18n="course_a2_text">Longer conversations and clearer everyday writing.</p>
+              <div class="course-foot"><span class="price">$210<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=english-intermediate" data-i18n="btn_view_course">View Course</a></div>
             </div>
           </div>
           <div class="course-card">
-            <div class="course-media"><img src="images/course-business.jpg" alt="Business workshop" width="1000" height="700"><span class="badge">Professional</span></div>
+            <div class="course-media"><img src="images/course-ielts.jpg" alt="IELTS preparation notes" width="1000" height="700"><span class="badge" data-i18n="badge_exam">Exam</span></div>
             <div class="course-body">
-              <h3>Business English</h3>
+              <h3 data-i18n="course_ielts">IELTS Preparation</h3>
+              <p data-i18n="course_ielts_card">Timed practice for listening, reading, writing, and speaking.</p>
+              <div class="course-foot"><span class="price">$260<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=ielts" data-i18n="btn_view_course">View Course</a></div>
+            </div>
+          </div>
+          <div class="course-card">
+            <div class="course-media"><img src="images/course-conversation.jpg" alt="Students speaking together" width="1000" height="700"><span class="badge" data-i18n="filter_speaking">Speaking</span></div>
+            <div class="course-body">
+              <h3 data-i18n="course_speaking">English Speaking</h3>
+              <p data-i18n="course_speaking_text">A speaking-first workshop for longer turns.</p>
+              <div class="course-foot"><span class="price">$150<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=conversation" data-i18n="btn_view_course">View Course</a></div>
+            </div>
+          </div>
+          <div class="course-card">
+            <div class="course-media"><img src="images/course-business.jpg" alt="Business English workshop" width="1000" height="700"><span class="badge">Professional</span></div>
+            <div class="course-body">
+              <h3 data-i18n="course_business">Business English</h3>
               <p>Meetings, email, and short presentations.</p>
-              <div class="course-foot"><span class="price">$240<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=business-english">View Course</a></div>
+              <div class="course-foot"><span class="price">$240<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=business-english" data-i18n="btn_view_course">View Course</a></div>
             </div>
           </div>
-          <div class="course-card">
-            <div class="course-media"><img src="images/course-spanish.jpg" alt="Spanish course city" width="1000" height="700"><span class="badge">Beginner</span></div>
-            <div class="course-body">
-              <h3>Spanish Language</h3>
-              <p>Travel dialogues and everyday grammar.</p>
-              <div class="course-foot"><span class="price">$190<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=spanish">View Course</a></div>
-            </div>
-          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="course-cta-section" class="cta">
+      <div class="container">
+        <div class="cta-band">
+          <h2>Ready to improve your English?</h2>
+          <p>Start the English A1 path at MF Language Academy and practice a little every week.</p>
+          <a class="btn btn-secondary" href="register.html">Start Learning Today</a>
         </div>
       </div>
     </section>
@@ -152,21 +473,21 @@
     <section id="newsletter-section" class="section section-alt">
       <div class="container newsletter">
         <div class="section-header">
-          <span class="eyebrow">Newsletter</span>
-          <h2>Course news, in your inbox</h2>
+          <span class="eyebrow" data-i18n="newsletter_eyebrow">Newsletter</span>
+          <h2 data-i18n="newsletter_title">Course news, in your inbox</h2>
           <p>New groups, exam dates, and study tips from MF Language Academy.</p>
         </div>
         <form class="newsletter-form" data-form="newsletter" novalidate>
           <div class="field">
-            <label for="newsletter-email">Email</label>
+            <label for="newsletter-email" data-i18n="label_email">Email</label>
             <input id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="you@email.com">
             <p class="field-error" data-error-for="email"></p>
           </div>
-          <button class="btn btn-primary" type="submit">Subscribe</button>
+          <button class="btn btn-primary" type="submit" data-i18n="btn_subscribe">Subscribe</button>
           <p class="form-note">Preview only. Nothing is sent.</p>
           <div class="form-success" hidden>
             <i class="bi bi-check-circle-fill"></i>
-            <h3>You are on the list</h3>
+            <h3 data-i18n="newsletter_success">You are on the list</h3>
             <p>This preview validated your email and did not send it anywhere.</p>
           </div>
         </form>
@@ -181,56 +502,100 @@
         <p style="margin-top:14px;">MF Language Academy helps adults speak clearly at work, in exams, and abroad.</p>
       </div>
       <div>
-        <h3>Quick Links</h3>
-        <div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="courses.html">Courses</a><a href="teachers.html">Teachers</a><a href="contact.html">Contact</a></div>
+        <h3 data-i18n="footer_quick">Quick Links</h3>
+        <div class="footer-links"><a href="index.html" data-i18n="nav_home">Home</a><a href="about.html" data-i18n="nav_about">About</a><a href="courses.html" data-i18n="nav_courses">Courses</a><a href="teachers.html" data-i18n="nav_teachers">Teachers</a><a href="contact.html" data-i18n="nav_contact">Contact</a></div>
       </div>
       <div>
-        <h3>Courses</h3>
+        <h3 data-i18n="nav_courses">Courses</h3>
         <div class="footer-links">
-          <a href="course-details.html?course=english-beginner">English Beginner</a>
-          <a href="course-details.html?course=ielts">IELTS Preparation</a>
-          <a href="course-details.html?course=business-english">Business English</a>
-          <a href="course-details.html?course=german">German Language</a>
-          <a href="course-details.html?course=spanish">Spanish Language</a>
+          <a href="course-details.html?course=english-beginner" data-i18n="course_en_beginner">English Beginner</a>
+          <a href="course-details.html?course=ielts" data-i18n="course_ielts">IELTS Preparation</a>
+          <a href="course-details.html?course=business-english" data-i18n="course_business">Business English</a>
+          <a href="course-details.html?course=german" data-i18n="course_german">German Language</a>
+          <a href="course-details.html?course=spanish" data-i18n="course_spanish">Spanish Language</a>
         </div>
       </div>
       <div>
-        <h3>Contact Information</h3>
+        <h3 data-i18n="footer_contact">Contact Information</h3>
         <div class="footer-links"><span>250 Language Plaza, Boston</span><a href="tel:+15550142280">+1 (555) 014-2280</a><a href="mailto:hello@mflanguage.academy">hello@mflanguage.academy</a><span>Mon–Fri 9:00–18:00</span></div>
       </div>
       <div>
-        <h3>Social Media</h3>
+        <h3 data-i18n="footer_social">Social Media</h3>
         <div class="footer-social">
-          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-          <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="#" aria-label="Facebook" data-i18n-aria-label="social_facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram" data-i18n-aria-label="social_instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn" data-i18n-aria-label="social_linkedin"><i class="bi bi-linkedin"></i></a>
+          <a href="#" aria-label="YouTube" data-i18n-aria-label="social_youtube"><i class="bi bi-youtube"></i></a>
         </div>
       </div>
     </div>
     <div class="container footer-bottom">
       <p>© 2026 MF Language Academy. All rights reserved.</p>
-      <p><a href="login.html">Login</a> · <a href="register.html">Register</a></p>
+      <p><a href="login.html" data-i18n="nav_login">Login</a> · <a href="register.html" data-i18n="nav_register">Register</a></p>
     </div>
   </footer>
+  <div class="modal" data-modal="preview" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+      <button class="modal-close" type="button" data-modal-close aria-label="Close" data-i18n-aria-label="btn_close">&times;</button>
+      <h2 id="previewTitle">Preview this course</h2>
+      <div class="preview-stage">
+        <img src="images/course-beginner.jpg" alt="English A1 lesson preview">
+        <i class="bi bi-play-circle-fill"></i>
+      </div>
+      <p>This is a frontend preview. The full video will play here after the lesson player is connected.</p>
+    </div>
+  </div>
+  <div class="modal" data-modal="review" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="reviewTitle">
+      <button class="modal-close" type="button" data-modal-close aria-label="Close" data-i18n-aria-label="btn_close">&times;</button>
+      <h2 id="reviewTitle">Write a review</h2>
+      <p>Your review stays on this page. Nothing is sent.</p>
+      <form data-review-form novalidate>
+        <div class="field">
+          <label for="review-name" data-i18n="label_name">Name</label>
+          <input id="review-name" name="name" type="text" autocomplete="name">
+          <p class="field-error" data-error-for="review-name"></p>
+        </div>
+        <div class="field">
+          <label for="review-rating" data-i18n="label_rating">Rating</label>
+          <select id="review-rating" name="rating">
+            <option value="5">5 stars</option>
+            <option value="4">4 stars</option>
+            <option value="3">3 stars</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="review-text">Review</label>
+          <textarea id="review-text" name="message" placeholder="What did you learn?" data-i18n-placeholder="review_hint"></textarea>
+          <p class="field-error" data-error-for="review-text"></p>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">Submit Review</button>
+        <div class="form-success" hidden>
+          <i class="bi bi-check-circle-fill"></i>
+          <h3>Review noted</h3>
+          <p>This preview kept your review in the browser only.</p>
+        </div>
+      </form>
+    </div>
+  </div>
   <div class="modal" id="enrollModal" data-modal="enroll" hidden>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="enrollTitle">
-      <button class="modal-close" type="button" data-modal-close aria-label="Close">&times;</button>
+      <button class="modal-close" type="button" data-modal-close aria-label="Close" data-i18n-aria-label="btn_close">&times;</button>
       <h2 id="enrollTitle">Enrollment request</h2>
       <p>Tell us how to reach you. This preview does not create an enrollment.</p>
       <form data-form="enroll" novalidate>
         <div class="field">
-          <label for="enroll-name">Name</label>
+          <label for="enroll-name" data-i18n="label_name">Name</label>
           <input id="enroll-name" name="name" type="text" autocomplete="name">
           <p class="field-error" data-error-for="name"></p>
         </div>
         <div class="field">
-          <label for="enroll-email">Email</label>
+          <label for="enroll-email" data-i18n="label_email">Email</label>
           <input id="enroll-email" name="email" type="email" autocomplete="email">
           <p class="field-error" data-error-for="email"></p>
         </div>
         <div class="field">
-          <label for="enroll-phone">Phone</label>
+          <label for="enroll-phone" data-i18n="label_phone">Phone</label>
           <input id="enroll-phone" name="phone" type="tel" autocomplete="tel">
           <p class="field-error" data-error-for="phone"></p>
         </div>
@@ -244,10 +609,13 @@
       </form>
     </div>
   </div>
-  <button class="back-to-top" type="button" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+  <button class="back-to-top" type="button" aria-label="Back to top" data-i18n-aria-label="back_to_top"><i class="bi bi-arrow-up"></i></button>
   <script src="js/navbar.js" defer></script>
   <script src="js/slider.js" defer></script>
   <script src="js/validation.js" defer></script>
+  <script src="js/course-details.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/faq-widget.js" defer></script>
+  <script src="js/preferences.js" defer></script>
 </body>
 </html>

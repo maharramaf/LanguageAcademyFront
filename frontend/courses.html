@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+(function () {
+  try {
+    var theme = localStorage.getItem("mf-theme");
+    if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
+    var language = localStorage.getItem("mf-language") || "az";
+    if (language === "az" || language === "ru" || language === "en") document.documentElement.lang = language;
+  } catch (e) {}
+})();
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Courses | MF Language Academy</title>
@@ -14,7 +24,7 @@
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-  <a class="skip-link" href="#courses-hero">Skip to content</a>
+  <a class="skip-link" href="#courses-hero" data-i18n="skip_content">Skip to content</a>
   <header class="site-header">
   <div class="topbar">
     <div class="container topbar-inner">
@@ -23,37 +33,54 @@
         <a href="mailto:hello@mflanguage.academy"><i class="bi bi-envelope"></i> hello@mflanguage.academy</a>
       </div>
       <div class="topbar-right">
-        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-        <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+        <a href="#" aria-label="Facebook" data-i18n-aria-label="social_facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" aria-label="Instagram" data-i18n-aria-label="social_instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn" data-i18n-aria-label="social_linkedin"><i class="bi bi-linkedin"></i></a>
+        <a href="#" aria-label="YouTube" data-i18n-aria-label="social_youtube"><i class="bi bi-youtube"></i></a>
       </div>
     </div>
   </div>
     <div class="container header-inner">
       <a class="logo" href="index.html"><span class="logo-mark">MF</span><span class="logo-text"><strong>MF Language</strong><small>Academy</small></span></a>
-      <nav class="nav" aria-label="Primary">
+      <nav class="nav" aria-label="Primary" data-i18n-aria-label="aria_primary">
         <ul class="nav-list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a class="active" href="courses.html" aria-current="page">Courses</a></li>
-          <li><a href="teachers.html">Teachers</a></li>
-          <li><a href="students.html">Students</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+          <li><a href="about.html" data-i18n="nav_about">About</a></li>
+          <li><a class="active" href="courses.html" aria-current="page" data-i18n="nav_courses">Courses</a></li>
+          <li><a href="teachers.html" data-i18n="nav_teachers">Teachers</a></li>
+          <li><a href="students.html" data-i18n="nav_students">Students</a></li>
+          <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
         </ul>
         <div class="nav-actions">
-          <a class="btn btn-outline" href="login.html">Login</a>
-          <a class="btn btn-secondary" href="register.html">Register</a>
+          <a class="btn btn-outline" href="login.html" data-i18n="nav_login">Login</a>
+          <a class="btn btn-secondary" href="register.html" data-i18n="nav_register">Register</a>
         </div>
       </nav>
       <form class="header-search" action="courses.html" method="get" role="search">
         <i class="bi bi-search" aria-hidden="true"></i>
-        <input type="search" name="q" placeholder="Search courses" aria-label="Search courses">
+        <input type="search" name="q" placeholder="Search courses" data-i18n-placeholder="search_placeholder" aria-label="Search courses" data-i18n-aria-label="search_placeholder">
       </form>
+      <div class="header-tools">
+        <div class="lang-switch">
+          <button class="lang-toggle" type="button" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria-label="language_menu">
+            <span class="lang-current">AZ</span>
+            <i class="bi bi-chevron-down" aria-hidden="true"></i>
+          </button>
+          <ul class="lang-menu" role="listbox" hidden>
+            <li role="none"><button type="button" role="option" data-set-lang="az">🇦🇿 Azərbaycan</button></li>
+            <li role="none"><button type="button" role="option" data-set-lang="ru">🇷🇺 Русский</button></li>
+            <li role="none"><button type="button" role="option" data-set-lang="en">🇬🇧 English</button></li>
+          </ul>
+        </div>
+        <button class="theme-toggle" type="button" aria-pressed="false" data-i18n-aria-label="toggle_theme">
+          <i class="bi bi-moon-stars" aria-hidden="true"></i>
+        </button>
+      </div>
+
       <div class="header-actions">
-        <a class="btn btn-outline" href="login.html">Login</a>
-        <a class="btn btn-secondary" href="register.html">Register</a>
-        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <a class="btn btn-outline" href="login.html" data-i18n="nav_login">Login</a>
+        <a class="btn btn-secondary" href="register.html" data-i18n="nav_register">Register</a>
+        <button class="nav-toggle" type="button" aria-label="Open menu" data-i18n-aria-label="open_menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
     <div class="nav-overlay"></div>
@@ -61,91 +88,91 @@
   <main>
     <section id="courses-hero" class="page-hero">
       <div class="container">
-        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Courses</span></nav>
+        <nav class="breadcrumb" aria-label="Breadcrumb" data-i18n-aria-label="aria_breadcrumb"><a href="index.html" data-i18n="nav_home">Home</a><span>/</span><span data-i18n="nav_courses">Courses</span></nav>
         <span class="eyebrow">Catalog</span>
-        <h1>Find a course that matches your goal</h1>
-        <p>Filter by language or search by name. Prices and dates on this page are sample content for the frontend.</p>
+        <h1 data-i18n="courses_page_title">Find a course that matches your goal</h1>
+        <p>Filter by language or search by name. Prices and dates on this page are sample content for the frontend. <a href="catalog.html">Open the full catalog</a>.</p>
       </div>
     </section>
     <section id="courses-section" class="section">
       <div class="container">
         <div class="toolbar">
           <div class="filters" role="tablist" aria-label="Course categories">
-            <button class="filter-btn is-active" type="button" data-filter="all">All</button>
-            <button class="filter-btn" type="button" data-filter="english">English</button>
-            <button class="filter-btn" type="button" data-filter="exam">Exam Prep</button>
-            <button class="filter-btn" type="button" data-filter="business">Business</button>
-            <button class="filter-btn" type="button" data-filter="german">German</button>
-            <button class="filter-btn" type="button" data-filter="spanish">Spanish</button>
-            <button class="filter-btn" type="button" data-filter="french">French</button>
+            <button class="filter-btn is-active" type="button" data-filter="all" data-i18n="filter_all">All</button>
+            <button class="filter-btn" type="button" data-filter="english" data-i18n="lang_english">English</button>
+            <button class="filter-btn" type="button" data-filter="exam" data-i18n="filter_exam">Exam Prep</button>
+            <button class="filter-btn" type="button" data-filter="business" data-i18n="filter_business">Business</button>
+            <button class="filter-btn" type="button" data-filter="german" data-i18n="filter_german">German</button>
+            <button class="filter-btn" type="button" data-filter="spanish" data-i18n="filter_spanish">Spanish</button>
+            <button class="filter-btn" type="button" data-filter="french" data-i18n="filter_french">French</button>
           </div>
           <label class="search-field">
             <i class="bi bi-search"></i>
-            <input class="catalog-search" id="courseSearch" type="search" placeholder="Search courses" aria-label="Search courses">
+            <input class="catalog-search" id="courseSearch" type="search" placeholder="Search courses" data-i18n-placeholder="search_placeholder" aria-label="Search courses" data-i18n-aria-label="search_placeholder">
           </label>
         </div>
         <div class="course-grid course-catalog">
           <div class="course-card" data-category="english" data-search="english beginner everyday greetings travel conversations">
-            <div class="course-media"><img src="images/course-beginner.jpg" alt="Study desk" width="1000" height="700"><span class="badge">Beginner</span></div>
+            <div class="course-media"><img src="images/course-beginner.jpg" alt="Study desk" width="1000" height="700"><span class="badge" data-i18n="level_beginner">Beginner</span></div>
             <div class="course-body">
-              <h3>English Beginner</h3>
+              <h3 data-i18n="course_en_beginner">English Beginner</h3>
               <p>Everyday English for greetings, travel, and simple conversations.</p>
-              <ul class="course-meta"><li><i class="bi bi-bar-chart"></i> Beginner</li><li><i class="bi bi-clock"></i> 8 weeks</li></ul>
-              <div class="course-foot"><span class="price">$180<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=english-beginner">View Course</a></div>
+              <ul class="course-meta"><li data-i18n="level_beginner"><i class="bi bi-bar-chart"></i> Beginner</li><li data-i18n="duration_8"><i class="bi bi-clock"></i> 8 weeks</li></ul>
+              <div class="course-foot"><span class="price">$180<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=english-beginner" data-i18n="btn_view_course">View Course</a></div>
             </div>
           </div>
           <div class="course-card" data-category="english" data-search="english intermediate conversations writing listening">
-            <div class="course-media"><img src="images/course-intermediate.jpg" alt="Books for intermediate English" width="1000" height="700"><span class="badge">Intermediate</span></div>
+            <div class="course-media"><img src="images/course-intermediate.jpg" alt="Books for intermediate English" width="1000" height="700"><span class="badge" data-i18n="level_intermediate">Intermediate</span></div>
             <div class="course-body">
-              <h3>English Intermediate</h3>
+              <h3 data-i18n="course_en_intermediate">English Intermediate</h3>
               <p>Longer conversations, clearer writing, and more natural listening.</p>
-              <ul class="course-meta"><li><i class="bi bi-bar-chart"></i> Intermediate</li><li><i class="bi bi-clock"></i> 10 weeks</li></ul>
-              <div class="course-foot"><span class="price">$210<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=english-intermediate">View Course</a></div>
+              <ul class="course-meta"><li data-i18n="level_intermediate"><i class="bi bi-bar-chart"></i> Intermediate</li><li data-i18n="duration_10"><i class="bi bi-clock"></i> 10 weeks</li></ul>
+              <div class="course-foot"><span class="price">$210<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=english-intermediate" data-i18n="btn_view_course">View Course</a></div>
             </div>
           </div>
           <div class="course-card" data-category="exam" data-search="ielts preparation exam academic writing speaking">
-            <div class="course-media"><img src="images/course-ielts.jpg" alt="Exam planning notes" width="1000" height="700"><span class="badge">Exam</span></div>
+            <div class="course-media"><img src="images/course-ielts.jpg" alt="Exam planning notes" width="1000" height="700"><span class="badge" data-i18n="badge_exam">Exam</span></div>
             <div class="course-body">
-              <h3>IELTS Preparation</h3>
+              <h3 data-i18n="course_ielts">IELTS Preparation</h3>
               <p>Timed practice and band-focused feedback for all four papers.</p>
-              <ul class="course-meta"><li><i class="bi bi-bar-chart"></i> Upper intermediate</li><li><i class="bi bi-clock"></i> 8 weeks</li></ul>
-              <div class="course-foot"><span class="price">$260<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=ielts">View Course</a></div>
+              <ul class="course-meta"><li data-i18n="level_upper"><i class="bi bi-bar-chart"></i> Upper intermediate</li><li data-i18n="duration_8"><i class="bi bi-clock"></i> 8 weeks</li></ul>
+              <div class="course-foot"><span class="price">$260<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=ielts" data-i18n="btn_view_course">View Course</a></div>
             </div>
           </div>
           <div class="course-card" data-category="business" data-search="business english meetings email presentations">
             <div class="course-media"><img src="images/course-business.jpg" alt="Business workshop" width="1000" height="700"><span class="badge">Professional</span></div>
             <div class="course-body">
-              <h3>Business English</h3>
+              <h3 data-i18n="course_business">Business English</h3>
               <p>Meetings, email, and presentations for working professionals.</p>
-              <ul class="course-meta"><li><i class="bi bi-bar-chart"></i> Intermediate</li><li><i class="bi bi-clock"></i> 8 weeks</li></ul>
-              <div class="course-foot"><span class="price">$240<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=business-english">View Course</a></div>
+              <ul class="course-meta"><li data-i18n="level_intermediate"><i class="bi bi-bar-chart"></i> Intermediate</li><li data-i18n="duration_8"><i class="bi bi-clock"></i> 8 weeks</li></ul>
+              <div class="course-foot"><span class="price">$240<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=business-english" data-i18n="btn_view_course">View Course</a></div>
             </div>
           </div>
           <div class="course-card" data-category="german" data-search="german language beginner a1 pronunciation">
-            <div class="course-media"><img src="images/course-german.jpg" alt="European street for German course" width="1000" height="700"><span class="badge">Beginner</span></div>
+            <div class="course-media"><img src="images/course-german.jpg" alt="European street for German course" width="1000" height="700"><span class="badge" data-i18n="level_beginner">Beginner</span></div>
             <div class="course-body">
-              <h3>German Language</h3>
+              <h3 data-i18n="course_german">German Language</h3>
               <p>A practical A1 start with pronunciation, grammar, and city dialogues.</p>
-              <ul class="course-meta"><li><i class="bi bi-bar-chart"></i> Beginner</li><li><i class="bi bi-clock"></i> 10 weeks</li></ul>
-              <div class="course-foot"><span class="price">$190<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=german">View Course</a></div>
+              <ul class="course-meta"><li data-i18n="level_beginner"><i class="bi bi-bar-chart"></i> Beginner</li><li data-i18n="duration_10"><i class="bi bi-clock"></i> 10 weeks</li></ul>
+              <div class="course-foot"><span class="price">$190<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=german" data-i18n="btn_view_course">View Course</a></div>
             </div>
           </div>
           <div class="course-card" data-category="spanish" data-search="spanish language beginner travel culture">
-            <div class="course-media"><img src="images/course-spanish.jpg" alt="City architecture for Spanish course" width="1000" height="700"><span class="badge">Beginner</span></div>
+            <div class="course-media"><img src="images/course-spanish.jpg" alt="City architecture for Spanish course" width="1000" height="700"><span class="badge" data-i18n="level_beginner">Beginner</span></div>
             <div class="course-body">
-              <h3>Spanish Language</h3>
+              <h3 data-i18n="course_spanish">Spanish Language</h3>
               <p>Speak from the first class with travel, culture, and daily topics.</p>
-              <ul class="course-meta"><li><i class="bi bi-bar-chart"></i> Beginner</li><li><i class="bi bi-clock"></i> 10 weeks</li></ul>
-              <div class="course-foot"><span class="price">$190<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=spanish">View Course</a></div>
+              <ul class="course-meta"><li data-i18n="level_beginner"><i class="bi bi-bar-chart"></i> Beginner</li><li data-i18n="duration_10"><i class="bi bi-clock"></i> 10 weeks</li></ul>
+              <div class="course-foot"><span class="price">$190<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=spanish" data-i18n="btn_view_course">View Course</a></div>
             </div>
           </div>
           <div class="course-card" data-category="french" data-search="french beginner pronunciation travel study">
-            <div class="course-media"><img src="images/course-french.jpg" alt="Paris riverside for the French course" width="1000" height="700"><span class="badge">Beginner</span></div>
+            <div class="course-media"><img src="images/course-french.jpg" alt="Paris riverside for the French course" width="1000" height="700"><span class="badge" data-i18n="level_beginner">Beginner</span></div>
             <div class="course-body">
-              <h3>French Beginner</h3>
+              <h3 data-i18n="course_french">French Beginner</h3>
               <p>Pronunciation coaching plus conversations for travel and study.</p>
-              <ul class="course-meta"><li><i class="bi bi-bar-chart"></i> Beginner</li><li><i class="bi bi-clock"></i> 10 weeks</li></ul>
-              <div class="course-foot"><span class="price">$190<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=french">View Course</a></div>
+              <ul class="course-meta"><li data-i18n="level_beginner"><i class="bi bi-bar-chart"></i> Beginner</li><li data-i18n="duration_10"><i class="bi bi-clock"></i> 10 weeks</li></ul>
+              <div class="course-foot"><span class="price">$190<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=french" data-i18n="btn_view_course">View Course</a></div>
             </div>
           </div>
           <div class="course-card" data-category="english" data-search="conversation workshop speaking fluency all levels">
@@ -154,7 +181,7 @@
               <h3>Conversation Workshop</h3>
               <p>A speaking-first studio for learners who understand more than they say.</p>
               <ul class="course-meta"><li><i class="bi bi-bar-chart"></i> All levels</li><li><i class="bi bi-clock"></i> 6 weeks</li></ul>
-              <div class="course-foot"><span class="price">$150<small>per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=conversation">View Course</a></div>
+              <div class="course-foot"><span class="price">$150<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=conversation" data-i18n="btn_view_course">View Course</a></div>
             </div>
           </div>
         </div>
@@ -165,21 +192,21 @@
     <section id="newsletter-section" class="section section-alt">
       <div class="container newsletter">
         <div class="section-header">
-          <span class="eyebrow">Newsletter</span>
-          <h2>Course news, in your inbox</h2>
+          <span class="eyebrow" data-i18n="newsletter_eyebrow">Newsletter</span>
+          <h2 data-i18n="newsletter_title">Course news, in your inbox</h2>
           <p>New groups, exam dates, and study tips from MF Language Academy.</p>
         </div>
         <form class="newsletter-form" data-form="newsletter" novalidate>
           <div class="field">
-            <label for="newsletter-email">Email</label>
+            <label for="newsletter-email" data-i18n="label_email">Email</label>
             <input id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="you@email.com">
             <p class="field-error" data-error-for="email"></p>
           </div>
-          <button class="btn btn-primary" type="submit">Subscribe</button>
+          <button class="btn btn-primary" type="submit" data-i18n="btn_subscribe">Subscribe</button>
           <p class="form-note">Preview only. Nothing is sent.</p>
           <div class="form-success" hidden>
             <i class="bi bi-check-circle-fill"></i>
-            <h3>You are on the list</h3>
+            <h3 data-i18n="newsletter_success">You are on the list</h3>
             <p>This preview validated your email and did not send it anywhere.</p>
           </div>
         </form>
@@ -194,42 +221,44 @@
         <p style="margin-top:14px;">MF Language Academy helps adults speak clearly at work, in exams, and abroad.</p>
       </div>
       <div>
-        <h3>Quick Links</h3>
-        <div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="courses.html">Courses</a><a href="teachers.html">Teachers</a><a href="contact.html">Contact</a></div>
+        <h3 data-i18n="footer_quick">Quick Links</h3>
+        <div class="footer-links"><a href="index.html" data-i18n="nav_home">Home</a><a href="about.html" data-i18n="nav_about">About</a><a href="courses.html" data-i18n="nav_courses">Courses</a><a href="teachers.html" data-i18n="nav_teachers">Teachers</a><a href="contact.html" data-i18n="nav_contact">Contact</a></div>
       </div>
       <div>
-        <h3>Courses</h3>
+        <h3 data-i18n="nav_courses">Courses</h3>
         <div class="footer-links">
-          <a href="course-details.html?course=english-beginner">English Beginner</a>
-          <a href="course-details.html?course=ielts">IELTS Preparation</a>
-          <a href="course-details.html?course=business-english">Business English</a>
-          <a href="course-details.html?course=german">German Language</a>
-          <a href="course-details.html?course=spanish">Spanish Language</a>
+          <a href="course-details.html?course=english-beginner" data-i18n="course_en_beginner">English Beginner</a>
+          <a href="course-details.html?course=ielts" data-i18n="course_ielts">IELTS Preparation</a>
+          <a href="course-details.html?course=business-english" data-i18n="course_business">Business English</a>
+          <a href="course-details.html?course=german" data-i18n="course_german">German Language</a>
+          <a href="course-details.html?course=spanish" data-i18n="course_spanish">Spanish Language</a>
         </div>
       </div>
       <div>
-        <h3>Contact Information</h3>
+        <h3 data-i18n="footer_contact">Contact Information</h3>
         <div class="footer-links"><span>250 Language Plaza, Boston</span><a href="tel:+15550142280">+1 (555) 014-2280</a><a href="mailto:hello@mflanguage.academy">hello@mflanguage.academy</a><span>Mon–Fri 9:00–18:00</span></div>
       </div>
       <div>
-        <h3>Social Media</h3>
+        <h3 data-i18n="footer_social">Social Media</h3>
         <div class="footer-social">
-          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-          <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="#" aria-label="Facebook" data-i18n-aria-label="social_facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram" data-i18n-aria-label="social_instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn" data-i18n-aria-label="social_linkedin"><i class="bi bi-linkedin"></i></a>
+          <a href="#" aria-label="YouTube" data-i18n-aria-label="social_youtube"><i class="bi bi-youtube"></i></a>
         </div>
       </div>
     </div>
     <div class="container footer-bottom">
       <p>© 2026 MF Language Academy. All rights reserved.</p>
-      <p><a href="login.html">Login</a> · <a href="register.html">Register</a></p>
+      <p><a href="login.html" data-i18n="nav_login">Login</a> · <a href="register.html" data-i18n="nav_register">Register</a></p>
     </div>
   </footer>
-  <button class="back-to-top" type="button" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+  <button class="back-to-top" type="button" aria-label="Back to top" data-i18n-aria-label="back_to_top"><i class="bi bi-arrow-up"></i></button>
   <script src="js/navbar.js" defer></script>
   <script src="js/slider.js" defer></script>
   <script src="js/validation.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/faq-widget.js" defer></script>
+  <script src="js/preferences.js" defer></script>
 </body>
 </html>

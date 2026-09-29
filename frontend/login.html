@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+(function () {
+  try {
+    var theme = localStorage.getItem("mf-theme");
+    if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
+    var language = localStorage.getItem("mf-language") || "az";
+    if (language === "az" || language === "ru" || language === "en") document.documentElement.lang = language;
+  } catch (e) {}
+})();
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login | MF Language Academy</title>
@@ -18,57 +28,73 @@
     <aside class="auth-aside">
       <a class="logo" href="index.html"><span class="logo-mark">MF</span><span class="logo-text"><strong>MF Language</strong><small>Academy</small></span></a>
       <div class="auth-quote">
-        <h2>Welcome back to class.</h2>
-        <p>Pick up your courses, messages, and progress from the learning portal.</p>
+        <h2 data-i18n="auth_welcome">Welcome back to class.</h2>
+        <p data-i18n="auth_welcome_text">Pick up your courses, messages, and progress from the learning portal.</p>
       </div>
-      <p>Small classes. Real conversations. Boston and online.</p>
+      <p data-i18n="auth_aside">Small classes. Real conversations. Boston and online.</p>
     </aside>
     <section id="login-section" class="auth-panel">
       <div class="auth-card">
-        <span class="eyebrow">Portal</span>
-        <h1>Login</h1>
-        <p>Use any valid email and a password of at least 8 characters. This preview does not check an account.</p>
+      <div class="header-tools">
+        <div class="lang-switch">
+          <button class="lang-toggle" type="button" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria-label="language_menu">
+            <span class="lang-current">AZ</span>
+            <i class="bi bi-chevron-down" aria-hidden="true"></i>
+          </button>
+          <ul class="lang-menu" role="listbox" hidden>
+            <li role="none"><button type="button" role="option" data-set-lang="az">🇦🇿 Azərbaycan</button></li>
+            <li role="none"><button type="button" role="option" data-set-lang="ru">🇷🇺 Русский</button></li>
+            <li role="none"><button type="button" role="option" data-set-lang="en">🇬🇧 English</button></li>
+          </ul>
+        </div>
+        <button class="theme-toggle" type="button" aria-pressed="false" data-i18n-aria-label="toggle_theme">
+          <i class="bi bi-moon-stars" aria-hidden="true"></i>
+        </button>
+      </div>
+        <span class="eyebrow" data-i18n="auth_portal">Portal</span>
+        <h1 data-i18n="nav_login">Login</h1>
+        <p data-i18n="auth_login_note">Use any valid email and a password of at least 8 characters. This preview does not check an account.</p>
         <form data-form="login" novalidate>
           <div class="field">
-            <label for="email">Email</label>
+            <label for="email" data-i18n="label_email">Email</label>
             <input id="email" name="email" type="email" autocomplete="email" placeholder="you@email.com">
             <p class="field-error" data-error-for="email"></p>
           </div>
           <div class="field">
-            <label for="password">Password</label>
+            <label for="password" data-i18n="label_password">Password</label>
             <div class="password-field">
-              <input id="password" name="password" type="password" autocomplete="current-password" placeholder="At least 8 characters">
-              <button class="password-toggle" type="button" data-password-toggle aria-label="Show password"><i class="bi bi-eye"></i></button>
+              <input id="password" name="password" type="password" autocomplete="current-password" placeholder="At least 8 characters" data-i18n-placeholder="password_hint">
+              <button class="password-toggle" type="button" data-password-toggle aria-label="Show password" data-i18n-aria-label="show_password"><i class="bi bi-eye"></i></button>
             </div>
             <p class="field-error" data-error-for="password"></p>
           </div>
           <div class="form-row-between">
-            <label class="check"><input type="checkbox" name="remember"> Remember Me</label>
-            <button class="link-btn" type="button" data-open-modal="forgot">Forgot Password?</button>
+            <label class="check" data-i18n="label_remember"><input type="checkbox" name="remember"> Remember Me</label>
+            <button class="link-btn" type="button" data-open-modal="forgot" data-i18n="btn_forgot">Forgot Password?</button>
           </div>
-          <button class="btn btn-primary btn-block" type="submit">Login</button>
-          <p class="form-note">A valid form opens the dashboard preview.</p>
+          <button class="btn btn-primary btn-block" type="submit" data-i18n="nav_login">Login</button>
+          <p class="form-note" data-i18n="auth_login_hint">A valid form opens the dashboard preview.</p>
         </form>
-        <p class="auth-switch">Don't have an account? <a href="register.html">Register</a></p>
-        <p><a href="index.html">Back to website</a></p>
+        <p class="auth-switch">Don't have an account? <a href="register.html" data-i18n="nav_register">Register</a></p>
+        <p><a href="index.html" data-i18n="auth_back">Back to website</a></p>
       </div>
     </section>
   </main>
   <div class="modal" id="forgotModal" data-modal="forgot" hidden>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="forgotTitle">
-      <button class="modal-close" type="button" data-modal-close aria-label="Close">&times;</button>
-      <h2 id="forgotTitle">Reset password</h2>
-      <p>Enter your email. This preview only checks the format.</p>
+      <button class="modal-close" type="button" data-modal-close aria-label="Close" data-i18n-aria-label="btn_close">&times;</button>
+      <h2 id="forgotTitle" data-i18n="auth_reset">Reset password</h2>
+      <p data-i18n="auth_reset_note">Enter your email. This preview only checks the format.</p>
       <form data-form="forgot" novalidate>
         <div class="field">
-          <label for="forgot-email">Email</label>
+          <label for="forgot-email" data-i18n="label_email">Email</label>
           <input id="forgot-email" name="email" type="email" autocomplete="email">
           <p class="field-error" data-error-for="email"></p>
         </div>
-        <button class="btn btn-primary btn-block" type="submit">Send Reset Link</button>
+        <button class="btn btn-primary btn-block" type="submit" data-i18n="btn_reset">Send Reset Link</button>
         <div class="form-success" hidden>
           <i class="bi bi-check-circle-fill"></i>
-          <h3>Email checked</h3>
+          <h3 data-i18n="auth_email_checked">Email checked</h3>
           <p>No reset message was sent. Connect this step to your backend later.</p>
         </div>
       </form>
@@ -78,5 +104,7 @@
   <script src="js/slider.js" defer></script>
   <script src="js/validation.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/faq-widget.js" defer></script>
+  <script src="js/preferences.js" defer></script>
 </body>
 </html>

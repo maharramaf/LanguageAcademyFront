@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+(function () {
+  try {
+    var theme = localStorage.getItem("mf-theme");
+    if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
+    var language = localStorage.getItem("mf-language") || "az";
+    if (language === "az" || language === "ru" || language === "en") document.documentElement.lang = language;
+  } catch (e) {}
+})();
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register | MF Language Academy</title>
@@ -18,66 +28,82 @@
     <aside class="auth-aside">
       <a class="logo" href="index.html"><span class="logo-mark">MF</span><span class="logo-text"><strong>MF Language</strong><small>Academy</small></span></a>
       <div class="auth-quote">
-        <h2>Start with a clear plan.</h2>
-        <p>Create a student profile, then choose a course that matches your level and schedule.</p>
+        <h2 data-i18n="auth_register_title">Start with a clear plan.</h2>
+        <p data-i18n="auth_register_aside">Create a student profile, then choose a course that matches your level and schedule.</p>
       </div>
       <p>English, IELTS, German, Spanish, and more.</p>
     </aside>
     <section id="register-section" class="auth-panel">
       <div class="auth-card">
-        <span class="eyebrow">New student</span>
-        <h1>Register</h1>
-        <p>Fill in your details. This form checks them locally and does not create an account.</p>
+      <div class="header-tools">
+        <div class="lang-switch">
+          <button class="lang-toggle" type="button" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria-label="language_menu">
+            <span class="lang-current">AZ</span>
+            <i class="bi bi-chevron-down" aria-hidden="true"></i>
+          </button>
+          <ul class="lang-menu" role="listbox" hidden>
+            <li role="none"><button type="button" role="option" data-set-lang="az">🇦🇿 Azərbaycan</button></li>
+            <li role="none"><button type="button" role="option" data-set-lang="ru">🇷🇺 Русский</button></li>
+            <li role="none"><button type="button" role="option" data-set-lang="en">🇬🇧 English</button></li>
+          </ul>
+        </div>
+        <button class="theme-toggle" type="button" aria-pressed="false" data-i18n-aria-label="toggle_theme">
+          <i class="bi bi-moon-stars" aria-hidden="true"></i>
+        </button>
+      </div>
+        <span class="eyebrow" data-i18n="auth_new">New student</span>
+        <h1 data-i18n="nav_register">Register</h1>
+        <p data-i18n="auth_register_note">Fill in your details. This form checks them locally and does not create an account.</p>
         <form data-form="register" novalidate>
           <div class="form-row">
             <div class="field">
-              <label for="firstName">First Name</label>
+              <label for="firstName" data-i18n="label_first">First Name</label>
               <input id="firstName" name="firstName" type="text" autocomplete="given-name">
               <p class="field-error" data-error-for="firstName"></p>
             </div>
             <div class="field">
-              <label for="lastName">Last Name</label>
+              <label for="lastName" data-i18n="label_last">Last Name</label>
               <input id="lastName" name="lastName" type="text" autocomplete="family-name">
               <p class="field-error" data-error-for="lastName"></p>
             </div>
           </div>
           <div class="field">
-            <label for="email">Email</label>
+            <label for="email" data-i18n="label_email">Email</label>
             <input id="email" name="email" type="email" autocomplete="email">
             <p class="field-error" data-error-for="email"></p>
           </div>
           <div class="field">
-            <label for="phone">Phone</label>
+            <label for="phone" data-i18n="label_phone">Phone</label>
             <input id="phone" name="phone" type="tel" autocomplete="tel">
             <p class="field-error" data-error-for="phone"></p>
           </div>
           <div class="field">
-            <label for="password">Password</label>
+            <label for="password" data-i18n="label_password">Password</label>
             <div class="password-field">
               <input id="password" name="password" type="password" autocomplete="new-password">
-              <button class="password-toggle" type="button" data-password-toggle aria-label="Show password"><i class="bi bi-eye"></i></button>
+              <button class="password-toggle" type="button" data-password-toggle aria-label="Show password" data-i18n-aria-label="show_password"><i class="bi bi-eye"></i></button>
             </div>
             <p class="field-error" data-error-for="password"></p>
           </div>
           <div class="field">
-            <label for="confirm">Confirm Password</label>
+            <label for="confirm" data-i18n="label_confirm">Confirm Password</label>
             <div class="password-field">
               <input id="confirm" name="confirm" type="password" autocomplete="new-password">
-              <button class="password-toggle" type="button" data-password-toggle aria-label="Show password"><i class="bi bi-eye"></i></button>
+              <button class="password-toggle" type="button" data-password-toggle aria-label="Show password" data-i18n-aria-label="show_password"><i class="bi bi-eye"></i></button>
             </div>
             <p class="field-error" data-error-for="confirm"></p>
           </div>
-          <button class="btn btn-secondary btn-block" type="submit">Register</button>
+          <button class="btn btn-secondary btn-block" type="submit" data-i18n="nav_register">Register</button>
           <p class="form-note">Preview only. Nothing is saved on a server.</p>
           <div class="form-success" hidden>
             <i class="bi bi-check-circle-fill"></i>
             <h3>You are ready to join</h3>
             <p>The form is valid. When your backend is connected, this is where a new student account would be created.</p>
-            <p><a class="btn btn-primary" href="login.html">Go to Login</a></p>
+            <p><a class="btn btn-primary" href="login.html" data-i18n="btn_go_login">Go to Login</a></p>
           </div>
         </form>
-        <p class="auth-switch">Already have an account? <a href="login.html">Login</a></p>
-        <p><a href="index.html">Back to website</a></p>
+        <p class="auth-switch">Already have an account? <a href="login.html" data-i18n="nav_login">Login</a></p>
+        <p><a href="index.html" data-i18n="auth_back">Back to website</a></p>
       </div>
     </section>
   </main>
@@ -85,5 +111,7 @@
   <script src="js/slider.js" defer></script>
   <script src="js/validation.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/faq-widget.js" defer></script>
+  <script src="js/preferences.js" defer></script>
 </body>
 </html>

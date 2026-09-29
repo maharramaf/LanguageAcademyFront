@@ -3,6 +3,8 @@
   .teacher-grid { grid-template-columns: repeat(3, 1fr); }
   .footer-grid { grid-template-columns: 1.2fr 1fr 1fr; }
   .hero-visual img { height: 460px; }
+  .nav-list { gap: 14px; }
+  .header-search { flex-basis: 168px; }
 }
 
 @media (max-width: 992px) {
@@ -30,6 +32,7 @@
   .float-card-b { right: 12px; }
   .nav-toggle,
   .icon-btn { display: inline-flex; }
+  .map-frame { height: 280px; }
   .header-actions .btn { display: none; }
   .header-search { display: none; }
   .site-header.menu-open .header-search {
@@ -134,13 +137,32 @@
   .footer-grid { grid-template-columns: 1fr; }
   .hero-actions .btn,
   .cta-band .btn { width: 100%; }
-  .header-inner { min-height: 68px; }
+  .header-inner { min-height: 68px; gap: 8px; }
+  .lang-toggle { min-width: 64px; padding: 0 8px; }
+  .global-faq-button span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .global-faq-button { width: 46px; padding: 0; justify-content: center; }
+  .faq-panel { place-items: end; padding: 10px; }
+  .faq-panel-card { width: 100%; max-height: calc(100vh - 20px); }
   .about-float { left: 10px; right: 10px; }
   .form-row-between { flex-direction: column; align-items: flex-start; }
   .footer-bottom { flex-direction: column; }
   .auth-panel { padding: 28px 16px 40px; }
   .message-layout { grid-template-columns: 1fr; }
   .newsletter { grid-template-columns: 1fr; padding: 24px; }
+  .course-detail-layout,
+  .instructor-card,
+  .review-layout,
+  .outcome-grid,
+  .includes-grid,
+  .progress-card,
+  .lms-layout,
+  .path-grid,
+  .event-grid,
+  .blog-layout,
+  .featured-article,
+  .step-grid { grid-template-columns: 1fr; }
+  .filter-panel { position: static; }
+  .course-purchase { position: static; }
 }
 
 @media (max-width: 375px) {

@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+(function () {
+  try {
+    var theme = localStorage.getItem("mf-theme");
+    if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
+    var language = localStorage.getItem("mf-language") || "az";
+    if (language === "az" || language === "ru" || language === "en") document.documentElement.lang = language;
+  } catch (e) {}
+})();
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Teachers | MF Language Academy</title>
@@ -14,7 +24,7 @@
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-  <a class="skip-link" href="#teachers-hero">Skip to content</a>
+  <a class="skip-link" href="#teachers-hero" data-i18n="skip_content">Skip to content</a>
   <header class="site-header">
   <div class="topbar">
     <div class="container topbar-inner">
@@ -23,34 +33,51 @@
         <a href="mailto:hello@mflanguage.academy"><i class="bi bi-envelope"></i> hello@mflanguage.academy</a>
       </div>
       <div class="topbar-right">
-        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-        <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+        <a href="#" aria-label="Facebook" data-i18n-aria-label="social_facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" aria-label="Instagram" data-i18n-aria-label="social_instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn" data-i18n-aria-label="social_linkedin"><i class="bi bi-linkedin"></i></a>
+        <a href="#" aria-label="YouTube" data-i18n-aria-label="social_youtube"><i class="bi bi-youtube"></i></a>
       </div>
     </div>
   </div>
     <div class="container header-inner">
       <a class="logo" href="index.html"><span class="logo-mark">MF</span><span class="logo-text"><strong>MF Language</strong><small>Academy</small></span></a>
-      <nav class="nav" aria-label="Primary">
+      <nav class="nav" aria-label="Primary" data-i18n-aria-label="aria_primary">
         <ul class="nav-list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="courses.html">Courses</a></li>
-          <li><a class="active" href="teachers.html" aria-current="page">Teachers</a></li>
-          <li><a href="students.html">Students</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+          <li><a href="about.html" data-i18n="nav_about">About</a></li>
+          <li><a href="courses.html" data-i18n="nav_courses">Courses</a></li>
+          <li><a class="active" href="teachers.html" aria-current="page" data-i18n="nav_teachers">Teachers</a></li>
+          <li><a href="students.html" data-i18n="nav_students">Students</a></li>
+          <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
         </ul>
-        <div class="nav-actions"><a class="btn btn-outline" href="login.html">Login</a><a class="btn btn-secondary" href="register.html">Register</a></div>
+        <div class="nav-actions"><a class="btn btn-outline" href="login.html" data-i18n="nav_login">Login</a><a class="btn btn-secondary" href="register.html" data-i18n="nav_register">Register</a></div>
       </nav>
       <form class="header-search" action="courses.html" method="get" role="search">
         <i class="bi bi-search" aria-hidden="true"></i>
-        <input type="search" name="q" placeholder="Search courses" aria-label="Search courses">
+        <input type="search" name="q" placeholder="Search courses" data-i18n-placeholder="search_placeholder" aria-label="Search courses" data-i18n-aria-label="search_placeholder">
       </form>
+      <div class="header-tools">
+        <div class="lang-switch">
+          <button class="lang-toggle" type="button" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria-label="language_menu">
+            <span class="lang-current">AZ</span>
+            <i class="bi bi-chevron-down" aria-hidden="true"></i>
+          </button>
+          <ul class="lang-menu" role="listbox" hidden>
+            <li role="none"><button type="button" role="option" data-set-lang="az">🇦🇿 Azərbaycan</button></li>
+            <li role="none"><button type="button" role="option" data-set-lang="ru">🇷🇺 Русский</button></li>
+            <li role="none"><button type="button" role="option" data-set-lang="en">🇬🇧 English</button></li>
+          </ul>
+        </div>
+        <button class="theme-toggle" type="button" aria-pressed="false" data-i18n-aria-label="toggle_theme">
+          <i class="bi bi-moon-stars" aria-hidden="true"></i>
+        </button>
+      </div>
+
       <div class="header-actions">
-        <a class="btn btn-outline" href="login.html">Login</a>
-        <a class="btn btn-secondary" href="register.html">Register</a>
-        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <a class="btn btn-outline" href="login.html" data-i18n="nav_login">Login</a>
+        <a class="btn btn-secondary" href="register.html" data-i18n="nav_register">Register</a>
+        <button class="nav-toggle" type="button" aria-label="Open menu" data-i18n-aria-label="open_menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
     <div class="nav-overlay"></div>
@@ -58,9 +85,9 @@
   <main>
     <section id="teachers-hero" class="page-hero">
       <div class="container">
-        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Teachers</span></nav>
-        <span class="eyebrow">Faculty</span>
-        <h1>Teachers who still love the classroom</h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb" data-i18n-aria-label="aria_breadcrumb"><a href="index.html" data-i18n="nav_home">Home</a><span>/</span><span data-i18n="nav_teachers">Teachers</span></nav>
+        <span class="eyebrow" data-i18n="teachers_eyebrow">Faculty</span>
+        <h1 data-i18n="teachers_page_title">Teachers who still love the classroom</h1>
         <p>Every instructor at MF Language Academy teaches weekly. Profiles below are sample faculty for this frontend.</p>
       </div>
     </section>
@@ -70,55 +97,55 @@
           <div class="teacher-card reveal">
             <div class="teacher-photo"><img src="images/teacher-elena.jpg" alt="Elena Marquez" width="700" height="800"></div>
             <div class="teacher-body">
-              <h3>Elena Marquez</h3><p class="role">English Program Lead</p>
+              <h3>Elena Marquez</h3><p class="role" data-i18n="role_elena">English Program Lead</p>
               <p>Designs the beginner pathway and teaches the Monday speaking lab.</p>
               <div class="teacher-social"><a href="#" aria-label="Elena on LinkedIn"><i class="bi bi-linkedin"></i></a><a href="#" aria-label="Elena on Instagram"><i class="bi bi-instagram"></i></a></div>
-              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Elena Marquez" data-role="English Program Lead" data-photo="images/teacher-elena.jpg" data-bio="Elena has taught English for twelve years in Boston and Madrid. She keeps classes practical, with speaking time in every lesson and feedback students can use the same week.">View Profile</button>
+              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Elena Marquez" data-role="English Program Lead" data-i18n-role="role_elena" data-photo="images/teacher-elena.jpg" data-bio="Elena has taught English for twelve years in Boston and Madrid. She keeps classes practical, with speaking time in every lesson and feedback students can use the same week." data-i18n="btn_view_profile">View Profile</button>
             </div>
           </div>
           <div class="teacher-card reveal">
             <div class="teacher-photo"><img src="images/teacher-daniel.jpg" alt="Daniel Okonkwo" width="700" height="800"></div>
             <div class="teacher-body">
-              <h3>Daniel Okonkwo</h3><p class="role">IELTS Instructor</p>
+              <h3>Daniel Okonkwo</h3><p class="role" data-i18n="role_daniel">IELTS Instructor</p>
               <p>Coaches writing and speaking with calm, timed exam practice.</p>
               <div class="teacher-social"><a href="#" aria-label="Daniel on LinkedIn"><i class="bi bi-linkedin"></i></a><a href="#" aria-label="Daniel on X"><i class="bi bi-twitter-x"></i></a></div>
-              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Daniel Okonkwo" data-role="IELTS Instructor" data-photo="images/teacher-daniel.jpg" data-bio="Daniel prepares candidates for Academic IELTS. His feedback follows the public band descriptors, so students always know why a score moved.">View Profile</button>
+              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Daniel Okonkwo" data-role="IELTS Instructor" data-i18n-role="role_daniel" data-photo="images/teacher-daniel.jpg" data-bio="Daniel prepares candidates for Academic IELTS. His feedback follows the public band descriptors, so students always know why a score moved." data-i18n="btn_view_profile">View Profile</button>
             </div>
           </div>
           <div class="teacher-card reveal">
             <div class="teacher-photo"><img src="images/teacher-sophie.jpg" alt="Sophie Laurent" width="700" height="800"></div>
             <div class="teacher-body">
-              <h3>Sophie Laurent</h3><p class="role">Spanish Instructor</p>
+              <h3>Sophie Laurent</h3><p class="role" data-i18n="role_sophie">Spanish Instructor</p>
               <p>Brings culture, travel dialogues, and clear grammar into class.</p>
               <div class="teacher-social"><a href="#" aria-label="Sophie on LinkedIn"><i class="bi bi-linkedin"></i></a><a href="#" aria-label="Sophie on Instagram"><i class="bi bi-instagram"></i></a></div>
-              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Sophie Laurent" data-role="Spanish Instructor" data-photo="images/teacher-sophie.jpg" data-bio="Sophie teaches beginner Spanish with a balance of conversation and structure. Students practice both Latin American and Peninsular varieties.">View Profile</button>
+              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Sophie Laurent" data-role="Spanish Instructor" data-i18n-role="role_sophie" data-photo="images/teacher-sophie.jpg" data-bio="Sophie teaches beginner Spanish with a balance of conversation and structure. Students practice both Latin American and Peninsular varieties." data-i18n="btn_view_profile">View Profile</button>
             </div>
           </div>
           <div class="teacher-card reveal">
             <div class="teacher-photo"><img src="images/teacher-markus.jpg" alt="Markus Weber" width="700" height="800"></div>
             <div class="teacher-body">
-              <h3>Markus Weber</h3><p class="role">German Instructor</p>
+              <h3>Markus Weber</h3><p class="role" data-i18n="role_markus">German Instructor</p>
               <p>Makes cases and pronunciation feel manageable from week one.</p>
               <div class="teacher-social"><a href="#" aria-label="Markus on LinkedIn"><i class="bi bi-linkedin"></i></a><a href="#" aria-label="Markus on Facebook"><i class="bi bi-facebook"></i></a></div>
-              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Markus Weber" data-role="German Instructor" data-photo="images/teacher-markus.jpg" data-bio="Markus focuses on the German beginners need for transport, housing, and introductions. Grammar is taught inside short dialogues, not long lectures.">View Profile</button>
+              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Markus Weber" data-role="German Instructor" data-i18n-role="role_markus" data-photo="images/teacher-markus.jpg" data-bio="Markus focuses on the German beginners need for transport, housing, and introductions. Grammar is taught inside short dialogues, not long lectures." data-i18n="btn_view_profile">View Profile</button>
             </div>
           </div>
           <div class="teacher-card reveal">
             <div class="teacher-photo"><img src="images/teacher-aiko.jpg" alt="Aiko Tanaka" width="700" height="800"></div>
             <div class="teacher-body">
-              <h3>Aiko Tanaka</h3><p class="role">Conversation Coach</p>
+              <h3>Aiko Tanaka</h3><p class="role" data-i18n="role_aiko">Conversation Coach</p>
               <p>Helps quiet learners take longer turns without losing the thread.</p>
               <div class="teacher-social"><a href="#" aria-label="Aiko on LinkedIn"><i class="bi bi-linkedin"></i></a><a href="#" aria-label="Aiko on Instagram"><i class="bi bi-instagram"></i></a></div>
-              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Aiko Tanaka" data-role="Conversation Coach" data-photo="images/teacher-aiko.jpg" data-bio="Aiko runs the conversation workshop. Sessions are topic-led, with short audio homework and feedback on clarity rather than perfect grammar.">View Profile</button>
+              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="Aiko Tanaka" data-role="Conversation Coach" data-i18n-role="role_aiko" data-photo="images/teacher-aiko.jpg" data-bio="Aiko runs the conversation workshop. Sessions are topic-led, with short audio homework and feedback on clarity rather than perfect grammar." data-i18n="btn_view_profile">View Profile</button>
             </div>
           </div>
           <div class="teacher-card reveal">
             <div class="teacher-photo"><img src="images/teacher-james.jpg" alt="James Whitfield" width="700" height="800"></div>
             <div class="teacher-body">
-              <h3>James Whitfield</h3><p class="role">Business English</p>
+              <h3>James Whitfield</h3><p class="role" data-i18n="course_business">Business English</p>
               <p>Trains professionals for meetings, email, and client calls.</p>
               <div class="teacher-social"><a href="#" aria-label="James on LinkedIn"><i class="bi bi-linkedin"></i></a><a href="#" aria-label="James on X"><i class="bi bi-twitter-x"></i></a></div>
-              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="James Whitfield" data-role="Business English" data-photo="images/teacher-james.jpg" data-bio="James spent a decade in project teams before teaching. His classes rehearse the exact conversations students have at work the next day.">View Profile</button>
+              <button class="btn btn-sm btn-outline" type="button" style="margin-top:12px;" data-teacher-open data-name="James Whitfield" data-role="Business English" data-i18n-role="course_business" data-photo="images/teacher-james.jpg" data-bio="James spent a decade in project teams before teaching. His classes rehearse the exact conversations students have at work the next day." data-i18n="btn_view_profile">View Profile</button>
             </div>
           </div>
         </div>
@@ -127,9 +154,9 @@
     <section id="cta-section" class="cta">
       <div class="container">
         <div class="cta-band">
-          <h2>Want to teach with us?</h2>
+          <h2 data-i18n="teachers_cta">Want to teach with us?</h2>
           <p>We hire patient instructors who enjoy adult learners. Send a short note and we will reply from the frontend contact page.</p>
-          <a class="btn btn-secondary" href="contact.html">Contact the School</a>
+          <a class="btn btn-secondary" href="contact.html" data-i18n="btn_contact_school">Contact the School</a>
         </div>
       </div>
     </section>
@@ -137,21 +164,21 @@
     <section id="newsletter-section" class="section section-alt">
       <div class="container newsletter">
         <div class="section-header">
-          <span class="eyebrow">Newsletter</span>
-          <h2>Course news, in your inbox</h2>
+          <span class="eyebrow" data-i18n="newsletter_eyebrow">Newsletter</span>
+          <h2 data-i18n="newsletter_title">Course news, in your inbox</h2>
           <p>New groups, exam dates, and study tips from MF Language Academy.</p>
         </div>
         <form class="newsletter-form" data-form="newsletter" novalidate>
           <div class="field">
-            <label for="newsletter-email">Email</label>
+            <label for="newsletter-email" data-i18n="label_email">Email</label>
             <input id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="you@email.com">
             <p class="field-error" data-error-for="email"></p>
           </div>
-          <button class="btn btn-primary" type="submit">Subscribe</button>
+          <button class="btn btn-primary" type="submit" data-i18n="btn_subscribe">Subscribe</button>
           <p class="form-note">Preview only. Nothing is sent.</p>
           <div class="form-success" hidden>
             <i class="bi bi-check-circle-fill"></i>
-            <h3>You are on the list</h3>
+            <h3 data-i18n="newsletter_success">You are on the list</h3>
             <p>This preview validated your email and did not send it anywhere.</p>
           </div>
         </form>
@@ -165,16 +192,16 @@
         <a class="logo" href="index.html"><span class="logo-mark">MF</span><span class="logo-text"><strong>MF Language</strong><small>Academy</small></span></a>
         <p style="margin-top:14px;">MF Language Academy helps adults speak clearly at work, in exams, and abroad.</p>
       </div>
-      <div><h3>Quick Links</h3><div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="courses.html">Courses</a><a href="teachers.html">Teachers</a><a href="contact.html">Contact</a></div></div>
-      <div><h3>Courses</h3><div class="footer-links"><a href="course-details.html?course=english-beginner">English Beginner</a><a href="course-details.html?course=ielts">IELTS Preparation</a><a href="course-details.html?course=business-english">Business English</a><a href="course-details.html?course=german">German Language</a><a href="course-details.html?course=spanish">Spanish Language</a></div></div>
-      <div><h3>Contact Information</h3><div class="footer-links"><span>250 Language Plaza, Boston</span><a href="tel:+15550142280">+1 (555) 014-2280</a><a href="mailto:hello@mflanguage.academy">hello@mflanguage.academy</a><span>Mon–Fri 9:00–18:00</span></div></div>
-      <div><h3>Social Media</h3><div class="footer-social"><a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a><a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a><a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a><a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a></div></div>
+      <div><h3 data-i18n="footer_quick">Quick Links</h3><div class="footer-links"><a href="index.html" data-i18n="nav_home">Home</a><a href="about.html" data-i18n="nav_about">About</a><a href="courses.html" data-i18n="nav_courses">Courses</a><a href="teachers.html" data-i18n="nav_teachers">Teachers</a><a href="contact.html" data-i18n="nav_contact">Contact</a></div></div>
+      <div><h3 data-i18n="nav_courses">Courses</h3><div class="footer-links"><a href="course-details.html?course=english-beginner" data-i18n="course_en_beginner">English Beginner</a><a href="course-details.html?course=ielts" data-i18n="course_ielts">IELTS Preparation</a><a href="course-details.html?course=business-english" data-i18n="course_business">Business English</a><a href="course-details.html?course=german" data-i18n="course_german">German Language</a><a href="course-details.html?course=spanish" data-i18n="course_spanish">Spanish Language</a></div></div>
+      <div><h3 data-i18n="footer_contact">Contact Information</h3><div class="footer-links"><span>250 Language Plaza, Boston</span><a href="tel:+15550142280">+1 (555) 014-2280</a><a href="mailto:hello@mflanguage.academy">hello@mflanguage.academy</a><span>Mon–Fri 9:00–18:00</span></div></div>
+      <div><h3 data-i18n="footer_social">Social Media</h3><div class="footer-social"><a href="#" aria-label="Facebook" data-i18n-aria-label="social_facebook"><i class="bi bi-facebook"></i></a><a href="#" aria-label="Instagram" data-i18n-aria-label="social_instagram"><i class="bi bi-instagram"></i></a><a href="#" aria-label="LinkedIn" data-i18n-aria-label="social_linkedin"><i class="bi bi-linkedin"></i></a><a href="#" aria-label="YouTube" data-i18n-aria-label="social_youtube"><i class="bi bi-youtube"></i></a></div></div>
     </div>
-    <div class="container footer-bottom"><p>© 2026 MF Language Academy. All rights reserved.</p><p><a href="login.html">Login</a> · <a href="register.html">Register</a></p></div>
+    <div class="container footer-bottom"><p>© 2026 MF Language Academy. All rights reserved.</p><p><a href="login.html" data-i18n="nav_login">Login</a> · <a href="register.html" data-i18n="nav_register">Register</a></p></div>
   </footer>
   <div class="modal" id="teacherModal" data-modal="teacher" hidden>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="teacherModalName">
-      <button class="modal-close" type="button" data-modal-close aria-label="Close">&times;</button>
+      <button class="modal-close" type="button" data-modal-close aria-label="Close" data-i18n-aria-label="btn_close">&times;</button>
       <div class="teacher-modal">
         <img data-teacher="photo" alt="" width="150" height="180">
         <div>
@@ -185,10 +212,12 @@
       </div>
     </div>
   </div>
-  <button class="back-to-top" type="button" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+  <button class="back-to-top" type="button" aria-label="Back to top" data-i18n-aria-label="back_to_top"><i class="bi bi-arrow-up"></i></button>
   <script src="js/navbar.js" defer></script>
   <script src="js/slider.js" defer></script>
   <script src="js/validation.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/faq-widget.js" defer></script>
+  <script src="js/preferences.js" defer></script>
 </body>
 </html>
