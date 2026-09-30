@@ -33,6 +33,23 @@ function checkoutCourse() {
   return { key: key, course: catalog[key] };
 }
 
+function courseIsPaid(course) {
+  return course && course.type !== "demo" && Number(course.price) > 0;
+}
+
+function checkoutCoupon(course) {
+  if (!courseIsPaid(course) || typeof window.mfResolveCoupon !== "function") return null;
+  const params = new URLSearchParams(window.location.search);
+  let code = params.get("coupon") || "";
+  if (!code && window.location.hash.indexOf("coupon=") !== -1) {
+    code = new URLSearchParams(window.location.hash.slice(window.location.hash.indexOf("?") + 1)).get("coupon") || "";
+  }
+  const found = window.mfResolveCoupon(code);
+  if (!found) return null;
+  const quote = window.mfCouponMath(course.price, found.percent);
+  return { code: found.code, percent: found.percent, original: quote.original, discount: quote.discount, final: quote.final };
+}
+
 function payMoney(amount) {
   if (typeof window.formatPrice === "function") return window.formatPrice(amount);
   return "₼" + Number(amount || 0);
@@ -81,6 +98,7 @@ function renderCheckout() {
   if (!selected.course) return;
   root.dataset.payReady = "1";
   const course = selected.course;
+  const coupon = selected.plan ? null : checkoutCoupon(course);
   const teacher = MF_CHECKOUT_TEACHERS[selected.key] || "MF Language Academy";
   root.innerHTML =
     '<header class="checkout-head"><h1>' + payText("pay_title", "Checkout") + '</h1><p>' + payText("pay_secure", "This is a demo payment.") + '</p></header>' +
@@ -116,8 +134,13 @@ function renderCheckout() {
           '<ul class="pay-lines">' +
             '<li><span>' + payText("pay_instructor", "Instructor") + '</span><strong>' + teacher + '</strong></li>' +
             '<li><span>' + payLabel(course.level) + '</span><strong>' + payLabel(course.duration) + '</strong></li>' +
+            (coupon
+              ? '<li><span>' + payText("coupon_original", "Original Price") + '</span><strong>' + payMoney(coupon.original) + '</strong></li>' +
+                '<li><span>' + payText("coupon_code", "Coupon") + '</span><strong>' + coupon.code + '</strong></li>' +
+                '<li><span>' + payText("coupon_discount", "Discount") + ' (' + coupon.percent + '%)</span><strong>-' + payMoney(coupon.discount) + '</strong></li>'
+              : "") +
           '</ul>' +
-          '<div class="pay-total"><span>' + payText("pay_amount", "Amount") + '</span><strong>' + (selected.plan || course.access === "premium" ? payMoney(course.price) : payText("plan_free_price", "Free")) + '</strong></div>' +
+          '<div class="pay-total"><span>' + payText(coupon ? "coupon_total" : "pay_amount", coupon ? "Total" : "Amount") + '</span><strong>' + (coupon ? payMoney(coupon.final) : (selected.plan || courseIsPaid(course) ? payMoney(course.price) : payText("plan_free_price", "Free"))) + '</strong></div>' +
         '</div>' +
       '</aside>' +
     '</div>';
@@ -163,6 +186,7 @@ function submitCheckout(form, selected) {
     cvv.value = "";
     button.disabled = false;
     button.textContent = payText("pay_submit", "Complete payment");
+    selected.coupon = checkoutCoupon(selected.course);
     showPayResult(form, selected, declined);
   }, 700);
 }
@@ -173,6 +197,7 @@ function showPayResult(form, selected, declined) {
   const when = new Date().toLocaleDateString(document.documentElement.lang || "az");
   const order = "MF-" + Date.now().toString(36).toUpperCase();
   if (!declined && selected.plan && typeof window.mfActivatePremium === "function") window.mfActivatePremium();
+  if (!declined && !selected.plan && typeof window.mfEnrollCourse === "function") window.mfEnrollCourse(selected.key);
   if (declined) {
     box.innerHTML =
       '<h2>' + payText("pay_fail_title", "Payment failed") + '</h2>' +
@@ -186,7 +211,7 @@ function showPayResult(form, selected, declined) {
     '<h2>' + payText(selected.plan ? "plan_success" : "pay_success_title", "Payment completed successfully!") + '</h2>' +
     '<p>' + payText(selected.plan ? "plan_success_lead" : "pay_success_lead", selected.plan ? "Your Premium membership is now active." : "Course enrollment completed successfully.") + '</p>' +
     '<p><strong>' + (selected.plan ? payText("plan_premium", "Premium") : payLabel(course.title)) + '</strong></p>' +
-    '<p>' + payText("pay_amount", "Amount") + ': ' + (selected.plan || course.access === "premium" ? payMoney(course.price) : payText("plan_free_price", "Free")) + '</p>' +
+    '<p>' + payText("pay_amount", "Amount") + ': ' + (selected.coupon ? payMoney(selected.coupon.final) : (selected.plan || courseIsPaid(course) ? payMoney(course.price) : payText("plan_free_price", "Free"))) + '</p>' +
     '<p>' + payText("pay_order", "Order number") + ': ' + order + '</p>' +
     '<p>' + payText("pay_date", "Date") + ': ' + when + '</p>' +
     '<div class="cert-card-actions">' +

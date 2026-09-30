@@ -10,7 +10,10 @@ function blankStudio() {
     description: "",
     level: "A1",
     language: "English",
-    price: "49",
+    type: "standard",
+    price: "59",
+    status: "draft",
+    preview: true,
     modules: [
       { id: "m1", title: "Module 1", lessons: [
         { id: "s1", title: "Welcome", kind: "text", body: "", video: "", file: "", quiz: [] }
@@ -56,14 +59,23 @@ function renderStudio() {
         '<div class="form-row">' +
           '<div class="field"><label>' + studioText("label_level", "Level") + '</label><input name="level" value="' + studioCourse.level + '"></div>' +
           '<div class="field"><label>' + studioText("label_language", "Language") + '</label><input name="language" value="' + studioCourse.language + '"></div>' +
-          '<div class="field"><label>' + studioText("label_price", "Price") + '</label><input name="price" value="' + studioCourse.price + '"></div>' +
+          '<div class="field"><label>' + studioText("course_type", "Course type") + '</label><select name="type"><option value="demo">' + studioText("course_type_demo", "Demo") + '</option><option value="standard">' + studioText("course_type_standard", "Standard") + '</option><option value="premium">' + studioText("course_type_premium", "Premium") + '</option></select></div>' +
+          '<div class="field"><label>' + studioText("label_price", "Price") + ' (₼)</label><input name="price" inputmode="decimal" value="' + studioCourse.price + '"><p class="field-error" data-studio-price-note hidden></p></div>' +
         '</div>' +
+        '<div class="form-row"><div class="field"><label>' + studioText("course_status", "Status") + '</label><select name="status"><option value="draft">' + studioText("course_draft", "Draft") + '</option><option value="published">' + studioText("course_published", "Published") + '</option></select></div>' +
+        '<div class="field"><label>' + studioText("course_preview", "Preview") + '</label><select name="preview"><option value="on">' + studioText("course_preview_on", "Enabled") + '</option><option value="off">' + studioText("course_preview_off", "Disabled") + '</option></select></div></div>' +
         '<div class="field"><label>' + studioText("studio_thumb", "Thumbnail") + '</label><input name="thumb" type="file" accept="image/*"></div>' +
       '</section>' +
       modules +
       '<button class="btn btn-outline" type="button" data-studio-add-module>' + studioText("studio_add_module", "Add module") + '</button>' +
       '<p class="form-note">' + studioText("studio_saved", "Outline updated in this preview only.") + '</p>' +
     '</form><aside class="panel" data-studio-preview></aside></div>';
+  const typeField = root.querySelector('[name="type"]');
+  const statusField = root.querySelector('[name="status"]');
+  const previewField = root.querySelector('[name="preview"]');
+  if (typeField) typeField.value = studioCourse.type || "standard";
+  if (statusField) statusField.value = studioCourse.status || "draft";
+  if (previewField) previewField.value = studioCourse.preview === false ? "off" : "on";
   renderStudioPreview();
 }
 
@@ -71,7 +83,7 @@ function renderStudioPreview() {
   const box = document.querySelector("[data-studio-preview]");
   if (!box) return;
   if (!studioQuizLesson) {
-    box.innerHTML = '<h2>' + studioText("studio_preview", "Preview") + '</h2><p>' + (studioCourse.title || studioText("studio_course_title", "Course title")) + '</p><p>₼' + (studioCourse.price || "0") + '</p>';
+    box.innerHTML = '<h2>' + studioText("studio_preview", "Preview") + '</h2><p>' + (studioCourse.title || studioText("studio_course_title", "Course title")) + '</p><p>' + studioText("course_type_" + (studioCourse.type || "standard"), studioCourse.type || "standard") + '</p><p>' + (studioCourse.type === "demo" ? studioText("plan_free_price", "Free") : "₼" + (studioCourse.price || "0")) + '</p>';
     return;
   }
   const questions = studioQuizLesson.quiz.map(function (item, index) {
@@ -101,7 +113,25 @@ function readStudioFields() {
   studioCourse.description = form.querySelector('[name="description"]').value;
   studioCourse.level = form.querySelector('[name="level"]').value;
   studioCourse.language = form.querySelector('[name="language"]').value;
-  studioCourse.price = form.querySelector('[name="price"]').value;
+  studioCourse.type = form.querySelector('[name="type"]').value || "standard";
+  studioCourse.status = form.querySelector('[name="status"]').value || "draft";
+  studioCourse.preview = form.querySelector('[name="preview"]').value !== "off";
+  const rawPrice = String(form.querySelector('[name="price"]').value || "").trim().replace(",", ".");
+  const amount = Number(rawPrice);
+  const priceNote = form.querySelector("[data-studio-price-note]");
+  if (studioCourse.type === "demo") {
+    studioCourse.price = "0";
+    if (priceNote) priceNote.hidden = true;
+  } else if (!rawPrice || !Number.isFinite(amount) || amount <= 0) {
+    studioCourse.price = "";
+    if (priceNote) {
+      priceNote.hidden = false;
+      priceNote.textContent = studioText("course_price_required", "Standard and Premium prices must be a number.");
+    }
+  } else {
+    studioCourse.price = String(amount);
+    if (priceNote) priceNote.hidden = true;
+  }
   form.querySelectorAll("[data-studio-module]").forEach(function (input) {
     const module = studioCourse.modules.find(function (item) { return item.id === input.getAttribute("data-studio-module"); });
     if (module) module.title = input.value;

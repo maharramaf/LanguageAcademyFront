@@ -7,7 +7,13 @@ function initCourseCatalog() {
     if (!price || !card.dataset.cost || typeof formatPrice !== "function") return;
     const small = price.querySelector("small");
     const extra = small ? small.outerHTML : "";
-    price.innerHTML = formatPrice(card.dataset.cost) + extra;
+    const cost = Number(card.dataset.cost);
+    if (cost === 0) {
+      const label = typeof window.mfT === "function" ? window.mfT("plan_free_price", "Free") : "Free";
+      price.innerHTML = '<span class="plan-free-price">' + label + "</span>" + extra;
+    } else {
+      price.innerHTML = formatPrice(card.dataset.cost) + extra;
+    }
   });
   const empty = document.querySelector(".lms-empty");
   const pager = document.querySelector("[data-lms-pager]");
@@ -40,6 +46,8 @@ function initCourseCatalog() {
       if (price === "under50" && cost >= 50) return false;
       if (price === "under200" && cost >= 200) return false;
       if (rating === "top" && stars < 4.8) return false;
+      const kind = value("type");
+      if (kind !== "all" && card.dataset.access !== kind) return false;
       return true;
     });
     const sort = value("sort");
@@ -98,7 +106,7 @@ function initCourseCatalog() {
   }
 
   const searchInput = document.querySelector(".lms-search");
-  document.querySelectorAll("[data-lms-level], [data-lms-language], [data-lms-duration], [data-lms-price], [data-lms-rating], [data-lms-sort], .lms-search").forEach(function (field) {
+  document.querySelectorAll("[data-lms-level], [data-lms-language], [data-lms-duration], [data-lms-price], [data-lms-rating], [data-lms-type], [data-lms-sort], .lms-search").forEach(function (field) {
     field.addEventListener("input", function () {
       page = 1;
       apply();

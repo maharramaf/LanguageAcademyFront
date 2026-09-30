@@ -9,10 +9,11 @@ window.formatPrice = formatPrice;
 
 const courses = {
     "english-beginner": {
+      type: "demo",
       title: "English A1 — Complete Beginner Course",
       level: "Beginner",
       duration: "8 weeks",
-      price: 49,
+      price: 0,
       lessons: "32 lessons",
       image: "images/course-beginner.jpg",
       summary: "Start English from zero with guided speaking, everyday vocabulary, and clear grammar you can use the same day.",
@@ -26,11 +27,11 @@ const courses = {
       ]
     },
     "english-intermediate": {
-      access: "premium",
+      type: "premium",
       title: "English Intermediate",
       level: "Intermediate",
       duration: "10 weeks",
-      price: 210,
+      price: 119,
       lessons: "20 live lessons",
       image: "images/course-intermediate.jpg",
       summary: "Move from careful sentences to fluent discussion. You will practice opinion, story, and workplace English.",
@@ -44,11 +45,11 @@ const courses = {
       ]
     },
     ielts: {
-      access: "premium",
+      type: "premium",
       title: "IELTS Preparation",
       level: "Upper intermediate",
       duration: "8 weeks",
-      price: 260,
+      price: 119,
       lessons: "16 live lessons",
       image: "images/course-ielts.jpg",
       summary: "Train for the Academic IELTS with timed tasks, score-focused feedback, and strategies for each paper.",
@@ -62,11 +63,11 @@ const courses = {
       ]
     },
     "business-english": {
-      access: "premium",
+      type: "standard",
       title: "Business English",
       level: "Intermediate",
       duration: "8 weeks",
-      price: 240,
+      price: 59,
       lessons: "16 live lessons",
       image: "images/course-business.jpg",
       summary: "Sound clear and credible in meetings, presentations, and professional email.",
@@ -80,10 +81,11 @@ const courses = {
       ]
     },
     german: {
+      type: "standard",
       title: "German Language",
       level: "Beginner",
       duration: "10 weeks",
-      price: 190,
+      price: 59,
       lessons: "20 live lessons",
       image: "images/course-german.jpg",
       summary: "Start German with practical dialogues, clear grammar, and pronunciation you can trust.",
@@ -97,10 +99,11 @@ const courses = {
       ]
     },
     spanish: {
+      type: "standard",
       title: "Spanish Language",
       level: "Beginner",
       duration: "10 weeks",
-      price: 190,
+      price: 59,
       lessons: "20 live lessons",
       image: "images/course-spanish.jpg",
       summary: "Learn Spanish you can speak from the first class, with culture notes woven into every topic.",
@@ -114,10 +117,11 @@ const courses = {
       ]
     },
     french: {
+      type: "standard",
       title: "French Beginner",
       level: "Beginner",
       duration: "10 weeks",
-      price: 190,
+      price: 59,
       lessons: "20 live lessons",
       image: "images/course-french.jpg",
       summary: "A friendly start in French, with pronunciation coaching and conversations for travel and study.",
@@ -131,10 +135,11 @@ const courses = {
       ]
     },
     conversation: {
+      type: "demo",
       title: "Conversation Workshop",
       level: "All levels",
       duration: "6 weeks",
-      price: 150,
+      price: 0,
       lessons: "12 live lessons",
       image: "images/course-conversation.jpg",
       summary: "A speaking-first workshop for learners who understand more than they say.",
@@ -390,7 +395,7 @@ function renderCourseDetail() {
     const bind = function (name) {
       return document.querySelector('[data-bind="' + name + '"]');
     };
-    const selected = new URLSearchParams(window.location.search).get("course") || "english-beginner";
+    const selected = (typeof window.mfCourseSlug === "function" && window.mfCourseSlug()) || new URLSearchParams(window.location.search).get("course") || "english-beginner";
     const course = courses[selected] || courses["english-beginner"];
     const text = function (value) {
       return window.mfText ? window.mfText(value) : value;

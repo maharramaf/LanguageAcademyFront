@@ -2,6 +2,7 @@
 let mfLearnState = { done: {}, current: "l1", score: null };
 const MF_LEARN_LESSONS = [
   { id: "l1", moduleKey: "learn_m1", titleKey: "learn_l1", kind: "text" },
+  { id: "l5", moduleKey: "learn_m1", titleKey: "learn_l5", kind: "text" },
   { id: "l2", moduleKey: "learn_m1", titleKey: "learn_l2", kind: "video" },
   { id: "l3", moduleKey: "learn_m2", titleKey: "learn_l3", kind: "quiz" },
   { id: "l4", moduleKey: "learn_m2", titleKey: "learn_l4", kind: "text" }
@@ -36,11 +37,16 @@ function renderLearn() {
   const state = learnState();
   const current = MF_LEARN_LESSONS.find(function (lesson) { return lesson.id === state.current; }) || MF_LEARN_LESSONS[0];
   const percent = learnProgress(state);
+  const paid = typeof window.mfHasPaidEnrollment === "function" && window.mfHasPaidEnrollment();
   const list = MF_LEARN_LESSONS.map(function (lesson) {
+    const locked = lesson.id === "l4" && !paid;
     const mark = state.done[lesson.id] ? "is-done" : (lesson.id === current.id ? "is-current" : "");
-    return '<button type="button" class="learn-item ' + mark + '" data-learn-open="' + lesson.id + '"><span>' + learnText(lesson.titleKey, lesson.id) + '</span><small>' + learnText("learn_kind_" + lesson.kind, lesson.kind) + '</small></button>';
+    return '<button type="button" class="learn-item ' + mark + '" data-learn-open="' + lesson.id + '"><span>' + learnText(lesson.titleKey, lesson.id) + '</span><small>' + (locked ? learnText("course_locked", "Locked lesson") : learnText("learn_kind_" + lesson.kind, lesson.kind)) + '</small></button>';
   }).join("");
-  const body = current.kind === "video"
+  const lockedNow = current.id === "l4" && !paid;
+  const body = lockedNow
+    ? '<p class="plan-lock"><i class="bi bi-lock" aria-hidden="true"></i> ' + learnText("course_locked_text", "Purchase the full course to unlock this lesson.") + '</p><p><a class="btn btn-outline btn-sm" href="course-details.html?course=business-english">' + learnText("course_upgrade_standard", "Upgrade to Standard") + '</a> <a class="btn btn-outline btn-sm" href="course-details.html?course=ielts">' + learnText("course_upgrade_premium", "Upgrade to Premium") + '</a></p>'
+    : current.kind === "video"
     ? '<div class="learn-video"><i class="bi bi-play-circle" aria-hidden="true"></i><p>' + learnText("learn_video_note", "Video preview. A real player will use a lesson URL from the server.") + '</p></div>'
     : current.kind === "quiz"
       ? '<div data-learn-quiz></div>'
@@ -140,6 +146,7 @@ function initLearn() {
       return;
     }
     if (event.target.closest("[data-learn-done]")) {
+      if (state.current === "l4" && !(typeof window.mfHasPaidEnrollment === "function" && window.mfHasPaidEnrollment())) return;
       state.done[state.current] = true;
       saveLearnState(state);
       renderLearn();

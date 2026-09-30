@@ -1356,8 +1356,114 @@ body:has(.ai-assistant.is-open) .back-to-top { opacity: 0; pointer-events: none;
 .plan-lock i { color: var(--primary); font-size: 1.2rem; }
 .plan-offers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 16px; }
 .plan-inline { margin: 0 0 12px; font-weight: 700; color: var(--heading); }
-.plan-badge { display: inline-flex; align-items: center; margin: 10px 10px 0; padding: 4px 8px; border-radius: 999px; border: 1px solid var(--border); background: var(--white); color: var(--heading); font-size: 0.78rem; font-weight: 700; }
-.plan-badge.is-premium { border-color: var(--primary); color: var(--primary); }
+.course-kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 28px;
+  margin: 0 0 12px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--heading);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.course-kind.is-premium { background: var(--primary); color: #fff; border-color: transparent; }
+.course-kind.is-premium::before { content: "★"; font-size: 0.68rem; }
+.price-lg.is-free { display: none; }
+.course-offer { padding-top: 12px; }
+.offer-list { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; }
+.offer-list li { display: flex; align-items: flex-start; gap: 8px; color: var(--text); }
+.offer-list i { color: var(--primary); margin-top: 2px; }
+@media (max-width: 576px) { .offer-list { grid-template-columns: 1fr; } }
+.course-media .plan-badge,
+.mini-course .plan-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  margin: 0;
+}
+.plan-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--heading);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-decoration: none;
+  box-shadow: 0 1px 2px rgba(16, 24, 32, 0.08);
+}
+.plan-badge.is-demo { background: var(--light); color: var(--heading); }
+.plan-badge.is-standard { background: var(--white); color: var(--heading); }
+.course-kind.is-demo { background: var(--light); color: var(--heading); border-color: var(--border); }
+.course-hint { margin: 0 0 10px; color: var(--muted); font-size: 0.82rem; }
+.lesson-lock { margin: 8px 0 0; color: var(--muted); font-size: 0.92rem; }
+.accordion-item.is-locked { opacity: 0.72; }
+.course-kind.is-standard { background: var(--white); color: var(--heading); }
+.course-upgrades { display: grid; gap: 8px; margin-top: 8px; }
+.plan-badge.is-premium {
+  border-color: transparent;
+  background: var(--primary);
+  color: #fff;
+}
+.plan-badge.is-premium::before { content: "★"; font-size: 0.68rem; }
+.plan-free-price,
+.price.is-free,
+.price-lg.is-free {
+  font-family: var(--font-heading);
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  color: var(--primary-dark);
+}
+.price.is-free,
+.price-lg.is-free { font-size: 1.35rem; }
+.coupon-box { margin: 0 0 12px; }
+.coupon-label { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; font-weight: 700; color: var(--heading); }
+.coupon-form { display: flex; gap: 8px; }
+.coupon-form input {
+  flex: 1;
+  min-width: 0;
+  min-height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0 12px;
+  background: var(--white);
+  color: var(--heading);
+}
+.coupon-lines { list-style: none; margin: 8px 0; padding: 0; display: grid; gap: 6px; }
+.coupon-lines li { display: flex; justify-content: space-between; gap: 8px; color: var(--muted); }
+.coupon-lines strong { color: var(--heading); }
+.coupon-ok { display: flex; align-items: center; gap: 6px; margin: 0; color: var(--primary); font-weight: 700; }
+.coupon-error { color: var(--danger); font-weight: 700; margin: 8px 0 0; }
+.coupon-off {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  vertical-align: middle;
+}
+@media (max-width: 576px) {
+  .coupon-form { flex-direction: column; }
+  .coupon-form .btn { width: 100%; }
+}
 .course-card { position: relative; }
 .mini-course { position: relative; }
 [data-ai-plan] { display: inline-block; margin-left: 8px; color: var(--primary); font-size: 0.82rem; }

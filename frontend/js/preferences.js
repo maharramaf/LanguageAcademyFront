@@ -785,7 +785,82 @@ const translations = {
     plan_resources: "Premium materiallar",
     plan_support: "Üstün dəstək",
     plan_free_price: "Pulsuz",
-    plan_badge_free: "Pulsuz kurs",
+    coupon_have: "Kuponunuz var?",
+    coupon_placeholder: "Kupon kodunu yazın",
+    coupon_apply: "Tətbiq et",
+    coupon_remove: "Kuponu sil",
+    coupon_invalid: "Kupon kodu yanlışdır və ya müddəti bitib.",
+    coupon_ok: "Kupon uğurla tətbiq olundu",
+    coupon_original: "Əsas qiymət",
+    coupon_discount: "Endirim",
+    coupon_final: "Yekun qiymət",
+    coupon_code: "Kupon",
+    coupon_total: "Cəmi",
+    coupon_off: "ENDİRİM",
+    plan_enroll_free: "Pulsuz qoşul",
+    offer_title: "Nə əldə edirsiniz",
+    offer_free: "Demo kurs",
+    course_type_demo: "Demo",
+    course_type_standard: "Standard",
+    course_type_premium: "Premium",
+    course_start_demo: "Demoya başla",
+    course_upgrade_standard: "Standarta keç",
+    course_upgrade_premium: "Premium-a keç",
+    course_locked: "Kilidli dərs",
+    course_locked_text: "Bu dərsi açmaq üçün tam kursu alın.",
+    course_bought: "Kurs alındı",
+    course_bought_text: "Kurs uğurla alındı.",
+    course_enrolled: "Qeydiyyat tamamlandı",
+    course_enrolled_text: "{courseName} kursuna yazıldınız.",
+    offer_demo_lessons: "2 demo dərs",
+    offer_demo_video: "1 demo video",
+    offer_demo_quiz: "1 demo test",
+    offer_preview: "Kurs önizləməsi",
+    offer_locked: "Tam dərslər kilidlidir",
+    card_limited: "Məhdud məzmun",
+    card_full: "Tam kurs",
+    card_premium_features: "Premium imkanlar",
+    dash_demo_progress: "Demo tərəqqi",
+    dash_continue_demo: "Demoya davam et",
+    learn_l5: "İkinci demo dərs",
+    course_price_required: "Standart və Premium üçün qiymət rəqəm olmalıdır.",
+    offer_written: "Yazılı dərs məzmunu",
+    offer_resume: "Qaldığınız yerdən davam",
+    offer_reviews: "Rəylər və qiymətlər",
+    course_type: "Kurs növü",
+    course_status: "Status",
+    course_draft: "Qaralama",
+    course_published: "Dərc olunub",
+    course_preview: "Önizləmə",
+    course_preview_on: "Açıq",
+    course_preview_off: "Bağlı",
+    plan_type_demo: "Demo",
+    plan_type_standard: "Standard",
+    offer_premium: "Premium kurs",
+    offer_access: "Demo girişi",
+    offer_basic_video: "Əsas video dərslər",
+    offer_basic_quiz: "Əsas testlər",
+    offer_basic_progress: "Əsas tərəqqi",
+    offer_complete: "Kursu tamamlama",
+    offer_standard_cert: "Standart sertifikat",
+    offer_community: "İcma dəstəyi",
+    offer_full: "Tam kurs girişi",
+    offer_videos: "Tam video dərslər",
+    offer_files: "Yüklənən materiallar",
+    offer_analytics: "Ətraflı analitika",
+    offer_streak: "Öyrənmə seriyası",
+    offer_badges: "Nailiyyətlər",
+    offer_calendar: "Öyrənmə təqvimi",
+    offer_certificate: "Premium sertifikat",
+    offer_ai: "Ətraflı AI dəstəyi",
+    offer_exclusive: "Xüsusi məzmun",
+    offer_support: "Üstün dəstək",
+    offer_coupon: "Endirim kuponu",
+    plan_type: "Növ",
+    plan_type_all: "Bütün kurslar",
+    plan_type_free: "Demo",
+    plan_type_premium: "Premium kurslar",
+    plan_badge_free: "Demo",
     plan_badge_premium: "Premium",
     plan_badge_first: "İlk kurs",
     plan_badge_quiz: "İlk test",
@@ -795,7 +870,7 @@ const translations = {
     plan_course_lock: "Premium kurs",
     plan_course_lock_text: "Bu kurs Premium üzvlüklə açılır.",
     plan_ai: "Premium AI köməkçi",
-    plan_row_free_courses: "Pulsuz kurslar",
+    plan_row_free_courses: "Demo kurslar",
     plan_row_premium_courses: "Premium kurslar",
     plan_row_basic: "Əsas tərəqqi",
     plan_event_lesson: "Növbəti dərs · sabah 18:00",
@@ -1366,6 +1441,13 @@ const translations = {
     learn_l2: "Видео для аудирования",
     learn_l3: "Короткий тест",
     learn_l4: "Повседневные фразы",
+    learn_l5: "Второй демо-урок",
+    card_limited: "Ограниченный контент",
+    card_full: "Полный курс",
+    card_premium_features: "Premium-возможности",
+    dash_demo_progress: "Прогресс демо",
+    dash_continue_demo: "Продолжить демо",
+    course_price_required: "Для Standard и Premium укажите цену числом.",
     learn_kind_text: "Текст",
     learn_kind_video: "Видео",
     learn_kind_file: "Файл",
@@ -1420,7 +1502,75 @@ const translations = {
     plan_resources: "Premium-материалы",
     plan_support: "Приоритетная поддержка",
     plan_free_price: "Бесплатно",
-    plan_badge_free: "Бесплатный курс",
+    coupon_have: "Есть купон?",
+    coupon_placeholder: "Введите код купона",
+    coupon_apply: "Применить",
+    coupon_remove: "Удалить купон",
+    coupon_invalid: "Код купона неверный или истёк.",
+    coupon_ok: "Купон успешно применён",
+    coupon_original: "Исходная цена",
+    coupon_discount: "Скидка",
+    coupon_final: "Итоговая цена",
+    coupon_code: "Купон",
+    coupon_total: "Итого",
+    coupon_off: "СКИДКА",
+    plan_enroll_free: "Записаться бесплатно",
+    offer_title: "Что вы получите",
+    offer_free: "Демо-курс",
+    course_type_demo: "Демо",
+    course_type_standard: "Стандарт",
+    course_type_premium: "Premium",
+    course_start_demo: "Начать демо",
+    course_upgrade_standard: "Перейти на Стандарт",
+    course_upgrade_premium: "Перейти на Premium",
+    course_locked: "Закрытый урок",
+    course_locked_text: "Купите полный курс, чтобы открыть этот урок.",
+    course_bought: "Курс куплен",
+    course_bought_text: "Курс успешно куплен.",
+    course_enrolled: "Запись завершена",
+    course_enrolled_text: "Вы записаны на курс {courseName}.",
+    offer_demo_lessons: "2 демо-урока",
+    offer_demo_video: "1 демо-видео",
+    offer_demo_quiz: "1 демо-тест",
+    offer_preview: "Предпросмотр курса",
+    offer_locked: "Полные уроки закрыты",
+    offer_written: "Текстовые уроки",
+    offer_resume: "Продолжение с места остановки",
+    offer_reviews: "Отзывы и оценки",
+    course_type: "Тип курса",
+    course_status: "Статус",
+    course_draft: "Черновик",
+    course_published: "Опубликован",
+    course_preview: "Предпросмотр",
+    course_preview_on: "Включён",
+    course_preview_off: "Выключен",
+    plan_type_demo: "Демо",
+    plan_type_standard: "Стандарт",
+    offer_premium: "Premium-курс",
+    offer_access: "Доступ к демо",
+    offer_basic_video: "Базовые видеоуроки",
+    offer_basic_quiz: "Базовые тесты",
+    offer_basic_progress: "Базовый прогресс",
+    offer_complete: "Завершение курса",
+    offer_standard_cert: "Стандартный сертификат",
+    offer_community: "Поддержка сообщества",
+    offer_full: "Полный доступ к курсу",
+    offer_videos: "Полные видеоуроки",
+    offer_files: "Материалы для скачивания",
+    offer_analytics: "Подробная аналитика",
+    offer_streak: "Серия обучения",
+    offer_badges: "Достижения",
+    offer_calendar: "Календарь обучения",
+    offer_certificate: "Premium-сертификат",
+    offer_ai: "Расширенная поддержка AI",
+    offer_exclusive: "Эксклюзивный контент",
+    offer_support: "Приоритетная поддержка",
+    offer_coupon: "Купон на скидку",
+    plan_type: "Тип",
+    plan_type_all: "Все курсы",
+    plan_type_free: "Демо",
+    plan_type_premium: "Premium-курсы",
+    plan_badge_free: "Демо",
     plan_badge_premium: "Premium",
     plan_badge_first: "Первый курс",
     plan_badge_quiz: "Первый тест",
@@ -1430,7 +1580,7 @@ const translations = {
     plan_course_lock: "Premium-курс",
     plan_course_lock_text: "Этот курс открывается с подпиской Premium.",
     plan_ai: "Premium AI-помощник",
-    plan_row_free_courses: "Бесплатные курсы",
+    plan_row_free_courses: "Демо-курсы",
     plan_row_premium_courses: "Premium-курсы",
     plan_row_basic: "Базовый прогресс",
     plan_event_lesson: "Следующий урок · завтра 18:00",
@@ -1656,6 +1806,13 @@ translations.en.learn_l1 = "Greetings";
 translations.en.learn_l2 = "Listening video";
 translations.en.learn_l3 = "Short quiz";
 translations.en.learn_l4 = "Everyday phrases";
+translations.en.learn_l5 = "Second demo lesson";
+translations.en.card_limited = "Limited content";
+translations.en.card_full = "Full course";
+translations.en.card_premium_features = "Premium features";
+translations.en.dash_demo_progress = "Demo progress";
+translations.en.dash_continue_demo = "Continue Demo";
+translations.en.course_price_required = "Standard and Premium prices must be a number.";
 translations.en.learn_kind_text = "Text";
 translations.en.learn_kind_video = "Video";
 translations.en.learn_kind_file = "File";
@@ -1710,7 +1867,75 @@ translations.en.plan_calendar_lock = "The calendar is available with Premium.";
 translations.en.plan_resources = "Premium resources";
 translations.en.plan_support = "Premium support";
 translations.en.plan_free_price = "Free";
-translations.en.plan_badge_free = "Free course";
+translations.en.coupon_have = "Have a coupon?";
+translations.en.coupon_placeholder = "Enter coupon code";
+translations.en.coupon_apply = "Apply";
+translations.en.coupon_remove = "Remove Coupon";
+translations.en.coupon_invalid = "Invalid or expired coupon code.";
+translations.en.coupon_ok = "Coupon applied successfully";
+translations.en.coupon_original = "Original Price";
+translations.en.coupon_discount = "Discount";
+translations.en.coupon_final = "Final Price";
+translations.en.coupon_code = "Coupon";
+translations.en.coupon_total = "Total";
+translations.en.coupon_off = "OFF";
+translations.en.plan_enroll_free = "Enroll Free";
+translations.en.offer_title = "What you'll get";
+translations.en.offer_free = "Demo Course";
+translations.en.course_type_demo = "Demo";
+translations.en.course_type_standard = "Standard";
+translations.en.course_type_premium = "Premium";
+translations.en.course_start_demo = "Start Demo";
+translations.en.course_upgrade_standard = "Upgrade to Standard";
+translations.en.course_upgrade_premium = "Upgrade to Premium";
+translations.en.course_locked = "Locked lesson";
+translations.en.course_locked_text = "Purchase the full course to unlock this lesson.";
+translations.en.course_bought = "Course purchased";
+translations.en.course_bought_text = "Course purchased successfully.";
+translations.en.course_enrolled = "Enrollment complete";
+translations.en.course_enrolled_text = "You are now enrolled in {courseName}.";
+translations.en.offer_demo_lessons = "2 demo lessons";
+translations.en.offer_demo_video = "1 demo video";
+translations.en.offer_demo_quiz = "1 demo quiz";
+translations.en.offer_preview = "Course preview";
+translations.en.offer_locked = "Full lessons stay locked";
+translations.en.offer_written = "Written lesson content";
+translations.en.offer_resume = "Resume learning";
+translations.en.offer_reviews = "Reviews and ratings";
+translations.en.course_type = "Course type";
+translations.en.course_status = "Status";
+translations.en.course_draft = "Draft";
+translations.en.course_published = "Published";
+translations.en.course_preview = "Preview";
+translations.en.course_preview_on = "Enabled";
+translations.en.course_preview_off = "Disabled";
+translations.en.plan_type_demo = "Demo";
+translations.en.plan_type_standard = "Standard";
+translations.en.offer_premium = "Premium Course";
+translations.en.offer_access = "Demo access";
+translations.en.offer_basic_video = "Basic video lessons";
+translations.en.offer_basic_quiz = "Basic quizzes";
+translations.en.offer_basic_progress = "Basic progress tracking";
+translations.en.offer_complete = "Course completion";
+translations.en.offer_standard_cert = "Standard certificate";
+translations.en.offer_community = "Community support";
+translations.en.offer_full = "Full course access";
+translations.en.offer_videos = "Complete video lessons";
+translations.en.offer_files = "Downloadable resources";
+translations.en.offer_analytics = "Advanced analytics";
+translations.en.offer_streak = "Learning streak";
+translations.en.offer_badges = "Achievements";
+translations.en.offer_calendar = "Learning calendar";
+translations.en.offer_certificate = "Premium certificate";
+translations.en.offer_ai = "Advanced AI learning support";
+translations.en.offer_exclusive = "Exclusive content";
+translations.en.offer_support = "Priority support";
+translations.en.offer_coupon = "Discount coupon support";
+translations.en.plan_type = "Type";
+translations.en.plan_type_all = "All courses";
+translations.en.plan_type_free = "Demo";
+translations.en.plan_type_premium = "Premium courses";
+translations.en.plan_badge_free = "Demo";
 translations.en.plan_badge_premium = "Premium";
 translations.en.plan_badge_first = "First course";
 translations.en.plan_badge_quiz = "First quiz";
@@ -1720,7 +1945,7 @@ translations.en.plan_badge_streak = "7 day streak";
 translations.en.plan_course_lock = "Premium Course";
 translations.en.plan_course_lock_text = "This course is available with Premium membership.";
 translations.en.plan_ai = "Premium AI Assistant";
-translations.en.plan_row_free_courses = "Free courses";
+translations.en.plan_row_free_courses = "Demo courses";
 translations.en.plan_row_premium_courses = "Premium courses";
 translations.en.plan_row_basic = "Basic progress";
 translations.en.plan_event_lesson = "Upcoming lesson · tomorrow 18:00";
@@ -1967,6 +2192,7 @@ function setElementText(el, text) {
 
 function applyTranslations() {
   document.querySelectorAll("[data-i18n]").forEach(function (el) {
+    if (el.hasAttribute("data-bind")) return;
     const value = mfT(el.getAttribute("data-i18n"), null);
     if (value == null) return;
     setElementText(el, value);
