@@ -1,15 +1,14 @@
-/* Frontend notification prototype. Read state key: mf-notifications. No network calls. */
+/* Frontend notification prototype. Shown in this visit only. No network calls. */
 const MF_NOTIFICATIONS = [
   { id: 1, type: "course", titleKey: "notification_new_course", messageKey: "notification_new_course_message", detailKey: "course_ielts", timeKey: "time_5_minutes", href: "catalog.html", read: false },
   { id: 2, type: "lesson", titleKey: "notification_new_lesson", messageKey: "notification_new_lesson_message", detailKey: "course_speaking", timeKey: "time_20_minutes", href: "course-details.html?course=english-beginner", read: false },
-  { id: 3, type: "quiz", titleKey: "notification_quiz_result", messageKey: "notification_quiz_result_message", detailKey: "course_business", timeKey: "time_1_hour", href: "dashboard.html#my-courses-section", read: true },
-  { id: 4, type: "certificate", titleKey: "notification_certificate", messageKey: "notification_certificate_message", detailKey: "course_spanish", timeKey: "time_yesterday", href: "dashboard.html#my-courses-section", read: true },
+  { id: 3, type: "quiz", titleKey: "notification_quiz_result", messageKey: "notification_quiz_result_message", detailKey: "course_business", timeKey: "time_1_hour", href: "learn.html#grades", read: true },
+  { id: 4, type: "certificate", titleKey: "notification_certificate", messageKey: "notification_certificate_message", detailKey: "course_spanish", timeKey: "time_yesterday", href: "certificate.html?course=english-a2", read: true },
   { id: 5, type: "enrollment", titleKey: "notification_enrollment", messageKey: "notification_enrollment_message", detailKey: "course_en_beginner", timeKey: "time_yesterday", href: "dashboard.html#my-courses-section", read: true },
   { id: 6, type: "announcement", titleKey: "notification_announcement", messageKey: "notification_announcement_message", detailKey: "", timeKey: "time_just_now", href: "notifications.html", read: false },
   { id: 7, type: "instructor", titleKey: "notification_new_student", messageKey: "notification_new_student_message", detailKey: "course_business", timeKey: "time_1_hour", href: "dashboard.html#students-section", read: true }
 ];
 
-const MF_NOTIFY_KEY = "mf-notifications";
 const MF_NOTIFY_ICONS = {
   course: "bi-journal-bookmark",
   lesson: "bi-play-circle",
@@ -24,53 +23,15 @@ let mfNotifyItems = MF_NOTIFICATIONS.map(function (item) { return Object.assign(
 let mfNotifyFilter = "all";
 let mfNotifyIssued = {};
 
-function readNotifyStore() {
-  try { return JSON.parse(localStorage.getItem(MF_NOTIFY_KEY) || "{}"); }
-  catch (error) { return {}; }
-}
-
 function mfNotifyText(key, fallback) {
   if (!key) return "";
   if (typeof window.mfT === "function") return window.mfT(key, fallback || key);
   return fallback || key;
 }
 
-function loadNotificationState() {
-  const saved = readNotifyStore();
-  const read = saved.read || {};
-  mfNotifyIssued = saved.issued || {};
-  (saved.extra || []).forEach(function (item) {
-    if (!mfNotifyItems.some(function (entry) { return String(entry.id) === String(item.id); })) {
-      mfNotifyItems.push(item);
-    }
-  });
-  mfNotifyItems.forEach(function (item) {
-    if (read[String(item.id)]) item.read = true;
-  });
-}
+function loadNotificationState() {}
 
-function saveNotificationState() {
-  const read = {};
-  mfNotifyItems.forEach(function (item) {
-    if (item.read) read[String(item.id)] = true;
-  });
-  const extra = mfNotifyItems.filter(function (item) { return item.extra; }).map(function (item) {
-    return {
-      id: item.id,
-      type: item.type,
-      titleKey: item.titleKey,
-      messageKey: item.messageKey,
-      courseKey: item.courseKey || "",
-      timeKey: item.timeKey,
-      href: item.href,
-      read: Boolean(item.read),
-      extra: true
-    };
-  });
-  try {
-    localStorage.setItem(MF_NOTIFY_KEY, JSON.stringify({ read: read, issued: mfNotifyIssued, extra: extra }));
-  } catch (error) { /* storage may be blocked */ }
-}
+function saveNotificationState() {}
 
 function unreadNotificationCount() {
   return mfNotifyItems.filter(function (item) { return !item.read; }).length;

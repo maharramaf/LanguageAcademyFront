@@ -31,12 +31,16 @@
       <nav class="dash-nav" aria-label="Portal" data-i18n-aria-label="auth_portal">
         <button class="is-active" type="button" data-view-target="dashboard-section" data-title="Dashboard" data-i18n-title="dash_home" data-i18n="dash_home"><i class="bi bi-grid"></i> Dashboard</button>
         <button type="button" data-view-target="my-courses-section" data-title="My Courses" data-i18n-title="dash_my_courses" data-i18n="dash_my_courses"><i class="bi bi-book"></i> My Courses</button>
+        <button type="button" data-view-target="plans-section" data-title="Plans" data-i18n-title="plan_nav" data-i18n="plan_nav"><i class="bi bi-stars"></i> Plans</button>
         <button type="button" data-view-target="course-catalog-section" data-title="Courses" data-i18n-title="nav_courses" data-i18n="nav_courses"><i class="bi bi-journal-bookmark"></i> Courses</button>
         <button type="button" data-view-target="teachers-section" data-title="Teachers" data-i18n-title="nav_teachers" data-i18n="nav_teachers"><i class="bi bi-person-workspace"></i> Teachers</button>
         <button type="button" data-view-target="students-section" data-title="Students" data-i18n-title="nav_students" data-i18n="nav_students"><i class="bi bi-people"></i> Students</button>
         <button type="button" data-view-target="messages-section" data-title="Messages" data-i18n-title="dash_messages" data-i18n="dash_messages"><i class="bi bi-chat-dots"></i> Messages</button>
         <button type="button" data-view-target="profile-section" data-title="Profile" data-i18n-title="dash_profile" data-i18n="dash_profile"><i class="bi bi-person-circle"></i> Profile</button>
         <button type="button" data-view-target="settings-section" data-title="Settings" data-i18n-title="dash_settings" data-i18n="dash_settings"><i class="bi bi-gear"></i> Settings</button>
+        <a href="learn.html" data-i18n="learn_continue"><i class="bi bi-play-circle"></i> Continue learning</a>
+        <a href="studio.html" data-i18n="studio_open"><i class="bi bi-easel"></i> Course studio</a>
+        <button type="button" data-view-target="applications-section" data-title="Teacher applications" data-i18n-title="apply_admin" data-i18n="apply_admin"><i class="bi bi-file-earmark-person"></i> Teacher applications</button>
         <a class="logout" href="login.html" data-i18n="dash_logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
       </nav>
       <div class="side-user">
@@ -81,6 +85,7 @@
             </div>
             <a class="btn btn-light" href="courses.html" data-i18n="btn_browse_catalog">Browse catalog</a>
           </div>
+          <div data-student-membership></div>
           <div class="dash-stats">
             <div class="dash-stat"><span data-i18n="nav_students">Students</span><strong>1,000+</strong></div>
             <div class="dash-stat"><span data-i18n="dash_active_courses">Active courses</span><strong>20</strong></div>
@@ -151,12 +156,20 @@
         </section>
 
         <section id="my-courses-section" class="dash-view">
+          <div data-my-plan></div>
           <div class="mini-grid">
             <div class="mini-course" data-course-slug="english-a2" data-course-progress="100"><img src="images/course-beginner.jpg" alt="English A2 materials" data-i18n-alt="course_en_a2"><div><h3 data-i18n="course_en_a2">English A2</h3><p data-i18n="course_en_a2_progress">Completed · 100%</p><div class="progress" aria-label="100 percent complete"><span style="width:100%"></span></div></div></div>
-            <div class="mini-course"><img src="images/course-ielts.jpg" alt="IELTS class materials" data-i18n-alt="xqqoas3"><div><h3 data-i18n="course_ielts">IELTS Preparation</h3><p><span data-i18n="xzjqmvf">Evening · 62% through the plan</span></p><div class="progress"><span style="width:62%"></span></div></div></div>
+            <div class="mini-course" data-access="premium"><img src="images/course-ielts.jpg" alt="IELTS class materials" data-i18n-alt="xqqoas3"><div><h3 data-i18n="course_ielts">IELTS Preparation</h3><p><span data-i18n="xzjqmvf">Evening · 62% through the plan</span></p><div class="progress"><span style="width:62%"></span></div></div></div>
             <div class="mini-course"><img src="images/course-beginner.jpg" alt="Beginner English materials" data-i18n-alt="x1jp4hf2"><div><h3 data-i18n="course_en_beginner">English Beginner</h3><p><span data-i18n="xeiwfv3">Morning · 40% through the plan</span></p><div class="progress"><span style="width:40%"></span></div></div></div>
             <div class="mini-course"><img src="images/course-german.jpg" alt="German class materials" data-i18n-alt="x1jh1n9m"><div><h3 data-i18n="course_german">German Language</h3><p><span data-i18n="xozj4ba">Weekend · 28% through the plan</span></p><div class="progress"><span style="width:28%"></span></div></div></div>
           </div>
+          <p style="margin-top:16px;"><a class="btn btn-primary" href="learn.html" data-i18n="learn_continue">Continue learning</a></p>
+          <section class="panel" style="margin-top:16px;">
+            <h3 data-i18n="grade_title">Grade book</h3>
+            <p data-i18n="grade_lead">Quiz scores and course progress for this preview.</p>
+            <p><span data-i18n="course_en_beginner">English Beginner</span> · 40% · <span data-i18n="grade_quiz">Quiz</span> 8/10</p>
+            <a class="btn btn-outline btn-sm" href="learn.html#grades" data-i18n="grade_open">Open grade book</a>
+          </section>
           <section class="panel" style="margin-top:16px;">
             <h3 data-i18n="cert_my">My Certificates</h3>
             <div data-certificate-list></div>
@@ -262,6 +275,24 @@
           </section>
         </section>
 
+        <section id="applications-section" class="dash-view">
+          <section class="panel">
+            <h2 data-i18n="apply_admin">Teacher applications</h2>
+            <div data-applications></div>
+          </section>
+          <div class="modal" data-modal="application" hidden>
+            <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="applicationTitle">
+              <button class="modal-close" type="button" data-modal-close aria-label="Close" data-i18n-aria-label="btn_close">&times;</button>
+              <h2 id="applicationTitle" data-i18n="apply_details">Application details</h2>
+              <div data-application-detail></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="plans-section" class="dash-view">
+          <div data-plans></div>
+        </section>
+
         <section id="settings-section" class="dash-view">
           <section class="panel" style="max-width:640px;">
             <h3><span data-i18n="x1ohpuc8">Preferences</span></h3>
@@ -285,9 +316,12 @@
   <script src="js/i18n-extra.js" defer></script>
   <script src="js/preferences.js" defer></script>
   <script src="js/notifications.js" defer></script>
+  <script src="js/membership.js" defer></script>
+  <script src="js/teacher-applications.js" defer></script>
   <script src="js/certificates.js" defer></script>
   <script src="js/demoQuizQuestions.js" defer></script>
   <script src="js/demoQuiz.js" defer></script>
+  <script src="js/checkout.js" defer></script>
   <script src="js/pages.js" defer></script>
   <script src="js/router.js" defer></script>
 </body>

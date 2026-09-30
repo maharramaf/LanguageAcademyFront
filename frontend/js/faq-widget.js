@@ -2,10 +2,10 @@ function faqItem(questionKey, answerKey) {
   return (
     '<div class="accordion-item">' +
       '<button class="accordion-trigger" type="button" aria-expanded="false">' +
-        '<span data-i18n="' + questionKey + '"></span>' +
+        '<span data-i18n="' + questionKey + '">' + questionKey + '</span>' +
         '<i class="bi bi-plus-lg" aria-hidden="true"></i>' +
       '</button>' +
-      '<div class="accordion-panel"><p data-i18n="' + answerKey + '"></p></div>' +
+      '<div class="accordion-panel"><p data-i18n="' + answerKey + '">' + answerKey + '</p></div>' +
     '</div>'
   );
 }
@@ -22,7 +22,9 @@ function initFAQAccordion(root) {
   if (!root || root.dataset.faqAccordion === "1") return;
   root.dataset.faqAccordion = "1";
   root.querySelectorAll(".accordion-trigger").forEach(function (button) {
-    button.addEventListener("click", function () {
+    button.dataset.accBound = "1";
+    button.addEventListener("click", function (event) {
+      event.stopImmediatePropagation();
       const item = button.closest(".accordion-item");
       if (!item) return;
       const open = item.classList.contains("is-open");
@@ -96,8 +98,8 @@ function initGlobalFAQ() {
           '<a href="catalog.html"><i class="bi bi-journal-bookmark" aria-hidden="true"></i><span data-i18n="faq_browse">Browse courses</span></a>' +
           '<a href="dashboard.html"><i class="bi bi-grid" aria-hidden="true"></i><span data-i18n="dash_home">Dashboard</span></a>' +
           '<a href="learning-paths.html"><i class="bi bi-signpost" aria-hidden="true"></i><span data-i18n="faq_learning">Learning</span></a>' +
-          '<a href="dashboard.html#my-courses-section"><i class="bi bi-patch-question" aria-hidden="true"></i><span data-i18n="faq_quiz">Quiz and grades</span></a>' +
-          '<a href="dashboard.html#my-courses-section"><i class="bi bi-award" aria-hidden="true"></i><span data-i18n="dash_certificates">Certificates</span></a>' +
+          '<a href="learn.html#grades"><i class="bi bi-patch-question" aria-hidden="true"></i><span data-i18n="faq_quiz">Quiz and grades</span></a>' +
+          '<a href="certificate.html?course=english-a2"><i class="bi bi-award" aria-hidden="true"></i><span data-i18n="dash_certificates">Certificates</span></a>' +
           '<a href="contact.html#contact-section"><i class="bi bi-headset" aria-hidden="true"></i><span data-i18n="faq_contact_support">Contact support</span></a>' +
         '</div>' +
         faqGroup("faq_cat_courses", [["faq_q_enroll", "faq_a_enroll"], ["faq_q_view", "faq_a_view"], ["faq_q_access", "faq_a_access"]]) +
@@ -114,6 +116,7 @@ function initGlobalFAQ() {
   const panel = root.querySelector(".faq-panel");
   initFAQModal(button, panel);
   initFAQAccordion(panel);
+  if (typeof window.applyTranslations === "function") window.applyTranslations();
 }
 
 document.addEventListener("DOMContentLoaded", function () {

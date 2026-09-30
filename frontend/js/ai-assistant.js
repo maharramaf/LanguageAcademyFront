@@ -13,7 +13,10 @@ function getMockAIResponse(message) {
   if (text.indexOf("present perfect") !== -1 || text.indexOf("indiki bitmiş") !== -1 || text.indexOf("перфект") !== -1) {
     return aiText("ai_present", "Present perfect connects a past action with the present. For example: I have finished my homework.");
   }
-  if (text.indexOf("learn english") !== -1 || text.indexOf("ingilis") !== -1 || text.indexOf("англий") !== -1 || text.indexOf("help me") !== -1 || text.indexOf("kömək") !== -1 || text.indexOf("помог") !== -1) {
+  if (text.indexOf("learn english") !== -1 || text.indexOf("ingilis") !== -1 || text.indexOf("англий") !== -1 || text.indexOf("help me") !== -1 || text.indexOf("kömək") !== -1 || text.indexOf("помог") !== -1 || text.indexOf("plan") !== -1 || text.indexOf("premium") !== -1) {
+    if (typeof window.mfIsPremium === "function" && window.mfIsPremium()) {
+      return aiText("ai_premium", "Premium suggestion: study 20 minutes today, review yesterday's quiz, then continue English A1 lesson 21.");
+    }
     return aiText("ai_help", "I can help you practice grammar, vocabulary, speaking and writing.");
   }
   return aiText("ai_demo", "I'm currently in demo mode. The real AI assistant will be connected through the backend later.");
@@ -85,7 +88,7 @@ function initAIAssistant() {
   root.innerHTML =
     '<div class="ai-panel" data-ai-panel role="dialog" aria-hidden="true" aria-labelledby="aiAssistantTitle">' +
       '<div class="ai-panel-head">' +
-        '<strong id="aiAssistantTitle" data-i18n="ai_title">MF AI Assistant</strong>' +
+        '<strong id="aiAssistantTitle" data-i18n="ai_title">MF AI Assistant</strong><span data-ai-plan hidden></span>' +
         '<button class="modal-close" type="button" data-ai-close data-i18n-aria-label="btn_close" aria-label="Close">&times;</button>' +
       '</div>' +
       '<div class="ai-log" data-ai-log">' +

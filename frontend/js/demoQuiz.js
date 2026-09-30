@@ -1,10 +1,9 @@
-/* Demo English placement. Browser history only. No passwords, no network calls. */
-const MF_VISITOR_KEY = "mf-demo-visitor-id";
-const MF_QUIZ_HISTORY_KEY = "mf-demo-quiz-history";
-const MF_QUIZ_ACTIVE_KEY = "mf-demo-quiz-active";
-const MF_QUIZ_INVITE_KEY = "mf-demo-quiz-invite";
-const MF_QUIZ_EMAIL_KEY = "mf-demo-quiz-email";
-const MF_QUIZ_START_KEY = "mf-demo-quiz-start";
+/* Demo English placement. On-screen only. No passwords, no network calls. */
+let mfQuizHistory = { visitorId: "v-session", seenIds: [], dismissedEmails: [], attempts: [] };
+let mfActiveQuiz = null;
+let mfQuizInvite = "";
+let mfQuizEmail = "";
+let mfQuizStart = false;
 const MF_QUIZ_SIZE = 10;
 
 function quizText(key, fallback) {
@@ -24,33 +23,15 @@ function quizPhrase(entry) {
 }
 
 function getOrCreateVisitorId() {
-  try {
-    const saved = localStorage.getItem(MF_VISITOR_KEY);
-    if (saved) return saved;
-    const id = "v-" + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
-    localStorage.setItem(MF_VISITOR_KEY, id);
-    return id;
-  } catch (error) {
-    return "v-session";
-  }
+  return mfQuizHistory.visitorId;
 }
 
 function getQuizHistory() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(MF_QUIZ_HISTORY_KEY) || "{}");
-    return {
-      visitorId: saved.visitorId || getOrCreateVisitorId(),
-      seenIds: Array.isArray(saved.seenIds) ? saved.seenIds : [],
-      dismissedEmails: Array.isArray(saved.dismissedEmails) ? saved.dismissedEmails : [],
-      attempts: Array.isArray(saved.attempts) ? saved.attempts : []
-    };
-  } catch (error) {
-    return { visitorId: getOrCreateVisitorId(), seenIds: [], dismissedEmails: [], attempts: [] };
-  }
+  return mfQuizHistory;
 }
 
 function saveQuizHistory(history) {
-  try { localStorage.setItem(MF_QUIZ_HISTORY_KEY, JSON.stringify(history)); } catch (error) { /* storage may be blocked */ }
+  mfQuizHistory = history;
 }
 
 function shuffleList(list) {
@@ -94,14 +75,11 @@ function getRandomQuestions(count) {
 }
 
 function readActiveQuiz() {
-  try { return JSON.parse(sessionStorage.getItem(MF_QUIZ_ACTIVE_KEY) || "null"); } catch (error) { return null; }
+  return mfActiveQuiz;
 }
 
 function writeActiveQuiz(quiz) {
-  try {
-    if (!quiz) sessionStorage.removeItem(MF_QUIZ_ACTIVE_KEY);
-    else sessionStorage.setItem(MF_QUIZ_ACTIVE_KEY, JSON.stringify(quiz));
-  } catch (error) { /* ignore */ }
+  mfActiveQuiz = quiz || null;
 }
 
 function startAssessment(email) {
@@ -139,7 +117,7 @@ function renderQuestion() {
   if (!root) return;
   const quiz = currentQuiz();
   if (!quiz) {
-    startAssessment(sessionStorage.getItem(MF_QUIZ_EMAIL_KEY) || "");
+    startAssessment(mfQuizEmail);
     return;
   }
   if (quiz.result) {
@@ -286,7 +264,9 @@ function renderRecommendedCourses(level) {
   return '<div class="course-grid quiz-courses">' + entries.map(function (entry) {
     const title = typeof window.mfText === "function" ? window.mfText(entry.course.title) : entry.course.title;
     const summary = typeof window.mfText === "function" ? window.mfText(entry.course.summary) : entry.course.summary;
-    const price = typeof window.formatPrice === "function" ? window.formatPrice(entry.course.price) : "";
+    const price = entry.course.access === "premium"
+      ? (typeof window.formatPrice === "function" ? window.formatPrice(entry.course.price) : "")
+      : (typeof window.mfT === "function" ? window.mfT("plan_free_price", "Free") : "Free");
     return (
       '<a class="course-card" href="course-details.html?course=' + entry.key + '">' +
         '<div class="course-media"><img src="' + entry.course.image + '" alt=""></div>' +
@@ -319,8 +299,7 @@ function removeAssessmentToast() {
 
 function renderAssessmentToast() {
   if (document.querySelector("[data-quiz-toast]")) return;
-  let email = "";
-  try { email = sessionStorage.getItem(MF_QUIZ_INVITE_KEY) || ""; } catch (error) { return; }
+  const email = mfQuizInvite;
   if (!email) return;
   const history = getQuizHistory();
   if (history.dismissedEmails.indexOf(email) !== -1) return;
@@ -345,33 +324,29 @@ function showAssessmentNotification(email) {
   if (!key) return;
   const history = getQuizHistory();
   if (history.dismissedEmails.indexOf(key) !== -1) return;
-  try {
-    sessionStorage.setItem(MF_QUIZ_INVITE_KEY, key);
-    sessionStorage.setItem(MF_QUIZ_EMAIL_KEY, key);
-  } catch (error) { /* ignore */ }
+  mfQuizInvite = key;
+  mfQuizEmail = key;
   removeAssessmentToast();
   renderAssessmentToast();
 }
 
 function dismissAssessmentInvite() {
-  let email = "";
-  try { email = sessionStorage.getItem(MF_QUIZ_INVITE_KEY) || ""; } catch (error) { email = ""; }
+  const email = mfQuizInvite;
   if (email) {
     const history = getQuizHistory();
     if (history.dismissedEmails.indexOf(email) === -1) history.dismissedEmails.push(email);
     saveQuizHistory(history);
   }
-  try { sessionStorage.removeItem(MF_QUIZ_INVITE_KEY); } catch (error) { /* ignore */ }
+  mfQuizInvite = "";
   removeAssessmentToast();
 }
 
 function initDemoAssessment() {
   const root = document.querySelector("[data-assessment]");
-  let shouldStart = false;
-  try { shouldStart = sessionStorage.getItem(MF_QUIZ_START_KEY) === "1"; } catch (error) { shouldStart = false; }
+  const shouldStart = mfQuizStart;
   if (root && shouldStart) {
-    try { sessionStorage.removeItem(MF_QUIZ_START_KEY); } catch (error) { /* ignore */ }
-    startAssessment(sessionStorage.getItem(MF_QUIZ_EMAIL_KEY) || "");
+    mfQuizStart = false;
+    startAssessment(mfQuizEmail);
   } else if (root) {
     renderQuestion();
   }
@@ -385,8 +360,9 @@ function initDemoAssessment() {
       return;
     }
     if (event.target.closest("[data-quiz-start]")) {
-      try { sessionStorage.setItem(MF_QUIZ_START_KEY, "1"); } catch (error) { /* ignore */ }
-      dismissAssessmentInvite();
+      mfQuizStart = true;
+      mfQuizInvite = "";
+      removeAssessmentToast();
       return;
     }
     if (event.target.closest("[data-quiz-next]")) {
@@ -415,7 +391,7 @@ function initDemoAssessment() {
       if (quiz && quiz.result) renderAssessmentResult();
       else if (quiz) renderQuestion();
     }
-    if (sessionStorage.getItem(MF_QUIZ_INVITE_KEY)) {
+    if (mfQuizInvite) {
       removeAssessmentToast();
       renderAssessmentToast();
     }

@@ -163,6 +163,14 @@
     return ensureScript("js/lms.js").then(function () {
       return ensureScript("js/course-details.js");
     }).then(function () {
+      return ensureScript("js/learn.js");
+    }).then(function () {
+      return ensureScript("js/studio.js");
+    }).then(function () {
+      return ensureScript("js/teacher-applications.js");
+    }).then(function () {
+      return ensureScript("js/membership.js");
+    }).then(function () {
       if (bell) window.initNotifications = bell;
       if (!keepChrome) {
         if (typeof initNavigation === "function") initNavigation();
@@ -200,6 +208,11 @@
       if (typeof window.initDemoAssessment === "function") window.initDemoAssessment();
       if (typeof window.initAIAssistant === "function") window.initAIAssistant();
       if (typeof window.applyTranslations === "function") window.applyTranslations();
+      if (typeof window.initCheckout === "function") window.initCheckout();
+      if (typeof window.initLearn === "function") window.initLearn();
+      if (typeof window.initStudio === "function") window.initStudio();
+      if (typeof window.initTeacherApplications === "function") window.initTeacherApplications();
+      if (typeof window.initMembership === "function") window.initMembership();
       if (pageFile(displayedUrl()) === "course-details.html" && typeof renderCourseDetail === "function") renderCourseDetail();
       showHash();
       markNav();
@@ -217,6 +230,7 @@
     if (typeof initSearchResults === "function") initSearchResults();
     if (pageFile(displayedUrl()) === "course-details.html" && typeof renderCourseDetail === "function") renderCourseDetail();
     if (pageFile(displayedUrl()) === "certificate.html" && typeof renderCertificatePage === "function") renderCertificatePage();
+    if (pageFile(displayedUrl()) === "checkout.html" && typeof window.initCheckout === "function") window.initCheckout();
     markNav();
   }
 

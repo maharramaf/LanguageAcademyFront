@@ -531,7 +531,7 @@ const translations = {
     cert_none_text: "İlk sertifikatınızı almaq üçün kursu tamamlayın.",
     cert_awarded: "Bu sertifikat verilir",
     cert_for: "kursunu uğurla bitirdiyinə görə",
-    cert_back: "İdarə panelinə qayıt",
+    cert_back: "Dərslərə qayıt",
     cert_missing: "Sertifikat tapılmadı",
     cert_sign_role: "Akademik direktor",
     course_en_a2: "İngilis dili A2",
@@ -660,21 +660,21 @@ const translations = {
     faq_q_enroll: "Kursa necə qoşuluram?",
     faq_a_enroll: "Kataloqdan kurs seçin, kurs səhifəsini açın və İndi qoşul düyməsinə basın.",
     faq_q_view: "Kursuma necə baxım?",
-    faq_a_view: "İdarə panelində Kurslarım bölməsini açın və ya kurs səhifəsinə qayıdın.",
+    faq_a_view: "Kurs səhifəsini açın və ya dərs səhifəsində davam edin. Son açılan dərs siyahıda seçili qalır.",
     faq_q_access: "Kursa nə qədər girişim var?",
     faq_a_access: "Bu önizləmədə giriş müddəti kurs səhifəsində göstərilir. Hesab qoşulandan sonra müddət orada saxlanılacaq.",
     faq_q_continue: "Dayandığım yerdən necə davam edim?",
-    faq_a_continue: "İdarə panelində davam edən kursu açın. Son açıq dərs siyahının yuxarısında qalır.",
+    faq_a_continue: "Dərs səhifəsini açın. Sol siyahıda son dərs seçili qalır, onu basıb davam edin.",
     faq_q_complete: "Dərsi tamamlanmış kimi necə işarələyim?",
-    faq_a_complete: "Dərsi sona qədər açın. Tamamlanma vəziyyəti tələbə hesabı qoşulanda yadda saxlanılacaq.",
+    faq_a_complete: "Dərs səhifəsində Tamamlandı kimi işarələ düyməsinə basın. Bu, yalnız ekrandakı önizləmədir.",
     faq_q_quiz: "Testlər necə işləyir?",
-    faq_a_quiz: "Hər modul qısa testlə bitir. Sualları cavablayın və nəticəni həmin səhifədə görün.",
+    faq_a_quiz: "Dərs səhifəsində Qısa test dərsini açın, cavabı seçin və Göndər düyməsinə basın. Nəticə elə həmin səhifədə görünür.",
     faq_q_score: "Balımı harada görüm?",
-    faq_a_score: "Test nəticəsi bildirişlərdə və idarə panelindəki kurs tərəqqisində görünür.",
+    faq_a_score: "Balı dərs səhifəsinin yuxarısındakı qiymət cədvəlində görün. Test və qiymətlər keçidi sizi ora aparır.",
     faq_q_cert_when: "Sertifikatı nə vaxt alıram?",
     faq_a_cert_when: "Kursun dərsləri və testləri tamamlananda bitirmə sertifikatı hazır olur.",
     faq_q_cert_where: "Sertifikatları harada görüm?",
-    faq_a_cert_where: "İdarə panelində Sertifikatlar siyahısını açın.",
+    faq_a_cert_where: "Sertifikatlar keçidini açın. Səhifədə ad, kurs, müəllim, tarix və sertifikat nömrəsi görünür.",
     faq_q_profile: "Profili necə yeniləyim?",
     faq_a_profile: "Profil səhifəsində ad, əlaqə və haqqınızda məlumatı dəyişib saxlayın.",
     faq_q_password: "Şifrəni necə dəyişim?",
@@ -688,6 +688,189 @@ const translations = {
     show_password: "Şifrəni göstər",
     hide_password: "Şifrəni gizlət",
     enroll_requested: "Qoşulma sorğusu göndərildi",
+    pay_title: "Ödəniş",
+    pay_summary: "Kurs xülasəsi",
+    pay_instructor: "Müəllim",
+    pay_customer: "Müştəri məlumatı",
+    pay_method: "Ödəniş üsulu",
+    pay_card: "Bank kartı",
+    pay_card_name: "Kartdakı ad",
+    pay_card_number: "Kart nömrəsi",
+    pay_expiry: "Bitmə tarixi",
+    pay_cvv: "CVV",
+    pay_secure: "Bu demo ödənişdir. Kart məlumatı saxlanmır və real əməliyyat aparılmır.",
+    pay_submit: "Ödənişi tamamla",
+    pay_processing: "Yoxlanılır...",
+    pay_success_title: "Ödəniş uğurla tamamlandı!",
+    pay_success_lead: "Kursa qoşulma uğurla tamamlandı.",
+    pay_amount: "Məbləğ",
+    pay_order: "Sifariş nömrəsi",
+    pay_date: "Tarix",
+    pay_start: "Öyrənməyə başla",
+    pay_courses: "Kurslarıma keç",
+    pay_fail_title: "Ödəniş alınmadı",
+    pay_fail_lead: "Demo rejimində bu kart rədd edildi. Heç bir məbləğ çıxılmayıb.",
+    pay_retry: "Yenidən cəhd et",
+    pay_err_required: "Bu sahə mütləqdir.",
+    pay_err_email: "Düzgün e-poçt daxil edin.",
+    pay_err_card: "Kart nömrəsi 16 rəqəm olmalıdır.",
+    pay_err_expiry: "Tarixi AA/İİ formatında daxil edin.",
+    pay_err_cvv: "CVV 3 və ya 4 rəqəm olmalıdır.",
+    pay_demo_hint: "Demo: nömrəsi 0000 ilə bitən kart uğursuz ödəniş göstərir.",
+    reg_student: "Tələbə",
+    reg_instructor: "Müəllim",
+    learn_continue: "Öyrənməyə davam et",
+    learn_outline: "Dərslər",
+    learn_complete: "Tamamlandı kimi işarələ",
+    learn_text: "Dərsi oxuyun, sonra tamamlandı kimi işarələyin. Tərəqqi yalnız bu brauzer önizləməsində qalır.",
+    learn_video_note: "Video önizləməsi. Real pleyer dərs ünvanını serverdən alacaq.",
+    learn_cert_locked: "Sertifikat bütün dərslər tamamlananda görünür.",
+    learn_m1: "Modul 1 · Başlanğıc",
+    learn_m2: "Modul 2 · Məşq",
+    learn_l1: "Salamlaşma",
+    learn_l2: "Dinləmə videosu",
+    learn_l3: "Qısa test",
+    learn_l4: "Gündəlik ifadələr",
+    learn_kind_text: "Mətn",
+    learn_kind_video: "Video",
+    learn_kind_file: "Fayl",
+    learn_kind_quiz: "Test",
+    learn_q1: "She ___ a student.",
+    learn_q2: "She ___ to the market yesterday.",
+    learn_q3: "This is ___ apple.",
+    learn_q4: "The book is ___ the table.",
+    grade_title: "Qiymət cədvəli",
+    grade_lead: "Bu önizləmədə test balları və kurs tərəqqisi.",
+    grade_quiz: "Test",
+    grade_open: "Qiymət cədvəlini aç",
+    grade_empty: "Hələ test balı yoxdur. Test dərsini açın və göndərin.",
+    grade_take: "Testi aç",
+    plan_nav: "Planlar",
+    plan_free: "Pulsuz plan",
+    plan_premium: "Premium",
+    plan_free_lead: "Hazırda Pulsuz plandasınız.",
+    plan_premium_lead: "Bütün Premium imkanlar açıqdır.",
+    plan_upgrade: "Premium-a keç",
+    plan_manage: "Planı idarə et",
+    plan_unlock: "Premium ilə aç",
+    plan_monthly: "Aylıq",
+    plan_membership: "Üzvlük",
+    plan_month: "ay",
+    plan_per_month: "aylıq",
+    plan_summary: "Üzvlük",
+    plan_success: "Premium aktivdir",
+    plan_success_lead: "Təbriklər! Premium üzvlüyünüz indi aktivdir.",
+    plan_status: "Status",
+    plan_active: "Aktiv",
+    plan_price: "Qiymət",
+    plan_next: "Növbəti ödəniş tarixi",
+    plan_feature: "İmkan",
+    plan_continue: "Öyrənməyə davam",
+    plan_current_lesson: "Cari dərs",
+    plan_streak: "Öyrənmə seriyası",
+    plan_streak_lock: "Premium ilə əlçatandır.",
+    plan_days: "gün",
+    plan_longest: "Ən uzun seriya",
+    plan_progress: "Öyrənmə tərəqqisi",
+    plan_completion: "Ümumi tamamlanma",
+    plan_quiz_avg: "Test orta balı",
+    plan_lessons_done: "Tamamlanan dərslər",
+    plan_hours: "Öyrənmə saatı",
+    plan_analytics: "Ətraflı analitika",
+    plan_analytics_lock: "Ətraflı analitikanı Premium ilə açın.",
+    plan_active_courses: "Aktiv kurslar",
+    plan_achievements: "Nailiyyətlər",
+    plan_calendar: "Öyrənmə təqvimi",
+    plan_calendar_lock: "Təqvim Premium ilə əlçatandır.",
+    plan_resources: "Premium materiallar",
+    plan_support: "Üstün dəstək",
+    plan_free_price: "Pulsuz",
+    plan_badge_free: "Pulsuz kurs",
+    plan_badge_premium: "Premium",
+    plan_badge_first: "İlk kurs",
+    plan_badge_quiz: "İlk test",
+    plan_badge_done: "Kurs tamamlandı",
+    plan_badge_master: "Test ustası",
+    plan_badge_streak: "7 günlük seriya",
+    plan_course_lock: "Premium kurs",
+    plan_course_lock_text: "Bu kurs Premium üzvlüklə açılır.",
+    plan_ai: "Premium AI köməkçi",
+    plan_row_free_courses: "Pulsuz kurslar",
+    plan_row_premium_courses: "Premium kurslar",
+    plan_row_basic: "Əsas tərəqqi",
+    plan_event_lesson: "Növbəti dərs · sabah 18:00",
+    plan_event_quiz: "Qısa test · cümə",
+    plan_event_study: "Məşq sessiyası · 25 dəqiqə",
+    plan_event_live: "Canlı dərs · şənbə",
+    plan_note_active: "Premium aktivdir",
+    plan_note_active_text: "Təbriklər! Premium üzvlüyünüz indi aktivdir.",
+    plan_note_unlocked: "Premium imkan açıldı",
+    plan_note_unlocked_text: "Analitika, seriya və təqvim indi açıqdır.",
+    ai_premium: "Premium təklif: bu gün 20 dəqiqə oxuyun, dünənki testi təkrarlayın, sonra İngilis A1 dərs 21-ə davam edin.",
+    studio_open: "Kurs studiyası",
+    studio_title: "Kurs studiyası",
+    studio_lead: "Kurs planını brauzerdə qurun. Serverə heç nə yazılmır.",
+    studio_details: "Kurs məlumatı",
+    studio_course_title: "Kurs adı",
+    studio_description: "Təsvir",
+    studio_thumb: "Şəkil",
+    studio_subject: "Fənn",
+    studio_module: "Modul",
+    studio_module_title: "Modul adı",
+    studio_add_module: "Modul əlavə et",
+    studio_add_lesson: "Dərs əlavə et",
+    studio_lesson: "Dərs",
+    studio_remove: "Sil",
+    studio_quiz: "Test",
+    studio_preview: "Önizləmə",
+    studio_question: "Sual",
+    studio_answers: "Cavablar, | ilə ayırın",
+    studio_correct: "Düzgün cavabın nömrəsi",
+    studio_add_question: "Sual əlavə et",
+    studio_saved: "Plan yalnız bu önizləmədə yeniləndi.",
+    apply_country: "Ölkə",
+    apply_education: "Təhsil",
+    apply_institution: "Universitet / müəssisə",
+    apply_experience: "Müəllimlik təcrübəsi",
+    apply_years: "Təcrübə ili",
+    apply_languages: "Dillər",
+    apply_bio: "Qısa bioqrafiya",
+    apply_portfolio: "LinkedIn / portfolio ünvanı",
+    apply_photo: "Profil şəkli",
+    apply_cv: "CV / rezume PDF",
+    apply_upload_photo: "Şəkil seçin",
+    apply_upload_photo_hint: "İstəyə görə",
+    apply_upload_cv: "PDF CV yüklə",
+    apply_upload_cv_hint: "Yalnız PDF faylı",
+    apply_change: "Dəyiş",
+    apply_remove: "Sil",
+    apply_cv_required: "PDF formatında CV yükləyin.",
+    apply_cv_pdf: "CV yalnız PDF olmalıdır.",
+    apply_submitted: "Müraciət göndərildi",
+    apply_submitted_text: "Müəllim müraciətiniz qəbul olundu. Komandamız məlumatlarınızı və CV-nizi yoxlayacaq.",
+    apply_status: "Status",
+    apply_pending: "Baxış gözləyir",
+    apply_approved: "Təsdiqlənib",
+    apply_rejected: "Rədd edilib",
+    apply_admin: "Müəllim müraciətləri",
+    apply_details: "Müraciət detalları",
+    apply_view: "Bax",
+    apply_preview: "CV-yə bax",
+    apply_download: "CV-ni yüklə",
+    apply_empty: "Hələ müəllim müraciəti yoxdur.",
+    apply_cv_session: "CV önizləməsi yükləndiyi brauzer sessiyasında açılır.",
+    apply_reason: "Rədd səbəbi",
+    apply_approve: "Təsdiqlə",
+    apply_reject: "Rədd et",
+    apply_note_submitted: "Müraciət göndərildi",
+    apply_note_submitted_text: "Müəllim müraciətiniz baxış gözləyir.",
+    apply_note_approved: "Müraciət təsdiqləndi",
+    apply_note_approved_text: "Müəllim müraciətiniz təsdiqləndi.",
+    apply_note_rejected: "Müraciət rədd edildi",
+    apply_note_rejected_text: "Müəllim müraciətiniz rədd edildi.",
+    apply_status_pending: "Müəllim müraciətiniz hazırda yoxlanılır.",
+    apply_status_approved: "Müəllim müraciətiniz təsdiqləndi. Müəllim alətləri önizləmə kimi açıq qalır.",
+    apply_status_rejected: "Müəllim müraciətiniz rədd edildi.",
     search_all: "bütün kurslar",
     duration_8: "8 həftə",
     duration_10: "10 həftə",
@@ -983,7 +1166,7 @@ const translations = {
     cert_none_text: "Завершите курс, чтобы получить первый сертификат.",
     cert_awarded: "Сертификат вручается",
     cert_for: "за успешное окончание курса",
-    cert_back: "Назад к панели",
+    cert_back: "Назад к урокам",
     cert_missing: "Сертификат не найден",
     cert_sign_role: "Академический директор",
     course_en_a2: "Английский A2",
@@ -1112,21 +1295,21 @@ const translations = {
     faq_q_enroll: "Как записаться на курс?",
     faq_a_enroll: "Выберите курс в каталоге, откройте страницу курса и нажмите «Записаться».",
     faq_q_view: "Как открыть свой курс?",
-    faq_a_view: "Откройте «Мои курсы» на панели или вернитесь на страницу курса.",
+    faq_a_view: "Откройте страницу курса или продолжите на странице урока. Последний урок остаётся выбранным в списке.",
     faq_q_access: "Как долго открыт доступ к курсу?",
     faq_a_access: "В этом просмотре срок указан на странице курса. После подключения аккаунта он будет храниться там.",
     faq_q_continue: "Как продолжить с места остановки?",
-    faq_a_continue: "Откройте текущий курс на панели. Последний открытый урок остаётся вверху списка.",
+    faq_a_continue: "Откройте страницу урока. В списке слева выбран последний урок — нажмите его и продолжайте.",
     faq_q_complete: "Как отметить урок пройденным?",
-    faq_a_complete: "Откройте урок до конца. Статус сохранится, когда будет подключён аккаунт студента.",
+    faq_a_complete: "На странице урока нажмите «Отметить выполненным». Это только экранное превью.",
     faq_q_quiz: "Как работают тесты?",
-    faq_a_quiz: "Каждый модуль заканчивается коротким тестом. Ответьте на вопросы и посмотрите результат на той же странице.",
+    faq_a_quiz: "На странице урока откройте короткий тест, выберите ответ и нажмите «Отправить». Результат появится на той же странице.",
     faq_q_score: "Где посмотреть балл?",
-    faq_a_score: "Результат теста виден в уведомлениях и в прогрессе курса на панели.",
+    faq_a_score: "Балл виден в журнале вверху страницы урока. Ссылка «Тесты и оценки» открывает это место.",
     faq_q_cert_when: "Когда я получу сертификат?",
     faq_a_cert_when: "Сертификат об окончании готов, когда уроки и тесты курса завершены.",
     faq_q_cert_where: "Где смотреть сертификаты?",
-    faq_a_cert_where: "Откройте список сертификатов на панели.",
+    faq_a_cert_where: "Откройте ссылку «Сертификаты». На странице видны имя, курс, преподаватель, дата и номер.",
     faq_q_profile: "Как обновить профиль?",
     faq_a_profile: "На странице профиля измените имя, контакты и поле «О себе», затем сохраните.",
     faq_q_password: "Как сменить пароль?",
@@ -1140,6 +1323,189 @@ const translations = {
     show_password: "Показать пароль",
     hide_password: "Скрыть пароль",
     enroll_requested: "Заявка отправлена",
+    pay_title: "Оплата",
+    pay_summary: "О курсе",
+    pay_instructor: "Преподаватель",
+    pay_customer: "Данные покупателя",
+    pay_method: "Способ оплаты",
+    pay_card: "Банковская карта",
+    pay_card_name: "Имя на карте",
+    pay_card_number: "Номер карты",
+    pay_expiry: "Срок действия",
+    pay_cvv: "CVV",
+    pay_secure: "Это демо-оплата. Данные карты не сохраняются и реальный платёж не проводится.",
+    pay_submit: "Завершить оплату",
+    pay_processing: "Проверка...",
+    pay_success_title: "Оплата прошла успешно!",
+    pay_success_lead: "Запись на курс успешно завершена.",
+    pay_amount: "Сумма",
+    pay_order: "Номер заказа",
+    pay_date: "Дата",
+    pay_start: "Начать обучение",
+    pay_courses: "К моим курсам",
+    pay_fail_title: "Оплата не прошла",
+    pay_fail_lead: "В демо-режиме эта карта отклонена. Списание не выполнялось.",
+    pay_retry: "Попробовать снова",
+    pay_err_required: "Это поле обязательно.",
+    pay_err_email: "Введите корректную почту.",
+    pay_err_card: "Номер карты должен содержать 16 цифр.",
+    pay_err_expiry: "Введите срок в формате ММ/ГГ.",
+    pay_err_cvv: "CVV должен содержать 3 или 4 цифры.",
+    pay_demo_hint: "Демо: карта, оканчивающаяся на 0000, показывает неуспешную оплату.",
+    reg_student: "Студент",
+    reg_instructor: "Преподаватель",
+    learn_continue: "Продолжить обучение",
+    learn_outline: "Уроки",
+    learn_complete: "Отметить выполненным",
+    learn_text: "Прочитайте урок и отметьте его выполненным. Прогресс хранится только в этом превью.",
+    learn_video_note: "Превью видео. Настоящий плеер получит адрес урока с сервера.",
+    learn_cert_locked: "Сертификат появится, когда все уроки будут завершены.",
+    learn_m1: "Модуль 1 · Начало",
+    learn_m2: "Модуль 2 · Практика",
+    learn_l1: "Приветствия",
+    learn_l2: "Видео для аудирования",
+    learn_l3: "Короткий тест",
+    learn_l4: "Повседневные фразы",
+    learn_kind_text: "Текст",
+    learn_kind_video: "Видео",
+    learn_kind_file: "Файл",
+    learn_kind_quiz: "Тест",
+    learn_q1: "She ___ a student.",
+    learn_q2: "She ___ to the market yesterday.",
+    learn_q3: "This is ___ apple.",
+    learn_q4: "The book is ___ the table.",
+    grade_title: "Журнал оценок",
+    grade_lead: "Баллы теста и прогресс курса в этом превью.",
+    grade_quiz: "Тест",
+    grade_open: "Открыть журнал",
+    grade_empty: "Балла пока нет. Откройте урок с тестом и отправьте его.",
+    grade_take: "Открыть тест",
+    plan_nav: "Планы",
+    plan_free: "Бесплатный план",
+    plan_premium: "Premium",
+    plan_free_lead: "Сейчас у вас бесплатный план.",
+    plan_premium_lead: "Все возможности Premium открыты.",
+    plan_upgrade: "Перейти на Premium",
+    plan_manage: "Управлять планом",
+    plan_unlock: "Открыть с Premium",
+    plan_monthly: "Ежемесячно",
+    plan_membership: "Подписка",
+    plan_month: "месяц",
+    plan_per_month: "в месяц",
+    plan_summary: "Подписка",
+    plan_success: "Premium активен",
+    plan_success_lead: "Поздравляем! Подписка Premium теперь активна.",
+    plan_status: "Статус",
+    plan_active: "Активен",
+    plan_price: "Цена",
+    plan_next: "Следующая дата оплаты",
+    plan_feature: "Возможность",
+    plan_continue: "Продолжить обучение",
+    plan_current_lesson: "Текущий урок",
+    plan_streak: "Серия обучения",
+    plan_streak_lock: "Доступно с Premium.",
+    plan_days: "дней",
+    plan_longest: "Самая длинная серия",
+    plan_progress: "Прогресс обучения",
+    plan_completion: "Общее завершение",
+    plan_quiz_avg: "Средний балл теста",
+    plan_lessons_done: "Пройденные уроки",
+    plan_hours: "Часы обучения",
+    plan_analytics: "Подробная аналитика",
+    plan_analytics_lock: "Откройте подробную аналитику с Premium.",
+    plan_active_courses: "Активные курсы",
+    plan_achievements: "Достижения",
+    plan_calendar: "Календарь обучения",
+    plan_calendar_lock: "Календарь доступен с Premium.",
+    plan_resources: "Premium-материалы",
+    plan_support: "Приоритетная поддержка",
+    plan_free_price: "Бесплатно",
+    plan_badge_free: "Бесплатный курс",
+    plan_badge_premium: "Premium",
+    plan_badge_first: "Первый курс",
+    plan_badge_quiz: "Первый тест",
+    plan_badge_done: "Курс завершён",
+    plan_badge_master: "Мастер тестов",
+    plan_badge_streak: "Серия 7 дней",
+    plan_course_lock: "Premium-курс",
+    plan_course_lock_text: "Этот курс открывается с подпиской Premium.",
+    plan_ai: "Premium AI-помощник",
+    plan_row_free_courses: "Бесплатные курсы",
+    plan_row_premium_courses: "Premium-курсы",
+    plan_row_basic: "Базовый прогресс",
+    plan_event_lesson: "Следующий урок · завтра 18:00",
+    plan_event_quiz: "Короткий тест · пятница",
+    plan_event_study: "Занятие · 25 минут",
+    plan_event_live: "Живой урок · суббота",
+    plan_note_active: "Premium активен",
+    plan_note_active_text: "Поздравляем! Подписка Premium теперь активна.",
+    plan_note_unlocked: "Возможность Premium открыта",
+    plan_note_unlocked_text: "Аналитика, серия и календарь теперь открыты.",
+    ai_premium: "Совет Premium: сегодня 20 минут учёбы, повтор вчерашнего теста, затем урок 21 английского A1.",
+    studio_open: "Студия курса",
+    studio_title: "Студия курса",
+    studio_lead: "Соберите план курса в браузере. На сервер ничего не записывается.",
+    studio_details: "О курсе",
+    studio_course_title: "Название курса",
+    studio_description: "Описание",
+    studio_thumb: "Изображение",
+    studio_subject: "Предмет",
+    studio_module: "Модуль",
+    studio_module_title: "Название модуля",
+    studio_add_module: "Добавить модуль",
+    studio_add_lesson: "Добавить урок",
+    studio_lesson: "Урок",
+    studio_remove: "Удалить",
+    studio_quiz: "Тест",
+    studio_preview: "Предпросмотр",
+    studio_question: "Вопрос",
+    studio_answers: "Ответы через |",
+    studio_correct: "Номер правильного ответа",
+    studio_add_question: "Добавить вопрос",
+    studio_saved: "План обновлён только в этом превью.",
+    apply_country: "Страна",
+    apply_education: "Образование",
+    apply_institution: "Университет / организация",
+    apply_experience: "Преподавательский опыт",
+    apply_years: "Лет опыта",
+    apply_languages: "Языки",
+    apply_bio: "Краткая биография",
+    apply_portfolio: "LinkedIn / портфолио",
+    apply_photo: "Фото профиля",
+    apply_cv: "CV / резюме PDF",
+    apply_upload_photo: "Выберите фото",
+    apply_upload_photo_hint: "Необязательно",
+    apply_upload_cv: "Загрузить PDF",
+    apply_upload_cv_hint: "Только PDF",
+    apply_change: "Изменить",
+    apply_remove: "Удалить",
+    apply_cv_required: "Загрузите CV в формате PDF.",
+    apply_cv_pdf: "CV должен быть файлом PDF.",
+    apply_submitted: "Заявка отправлена",
+    apply_submitted_text: "Заявка преподавателя принята. Команда проверит данные и CV.",
+    apply_status: "Статус",
+    apply_pending: "На проверке",
+    apply_approved: "Одобрено",
+    apply_rejected: "Отклонено",
+    apply_admin: "Заявки преподавателей",
+    apply_details: "Детали заявки",
+    apply_view: "Открыть",
+    apply_preview: "Смотреть CV",
+    apply_download: "Скачать CV",
+    apply_empty: "Заявок преподавателей пока нет.",
+    apply_cv_session: "Предпросмотр CV открывается в той же сессии браузера.",
+    apply_reason: "Причина отказа",
+    apply_approve: "Одобрить",
+    apply_reject: "Отклонить",
+    apply_note_submitted: "Заявка отправлена",
+    apply_note_submitted_text: "Заявка преподавателя ожидает проверки.",
+    apply_note_approved: "Заявка одобрена",
+    apply_note_approved_text: "Ваша заявка преподавателя одобрена.",
+    apply_note_rejected: "Заявка отклонена",
+    apply_note_rejected_text: "Ваша заявка преподавателя отклонена.",
+    apply_status_pending: "Заявка преподавателя сейчас на проверке.",
+    apply_status_approved: "Заявка преподавателя одобрена. Инструменты преподавателя остаются превью.",
+    apply_status_rejected: "Заявка преподавателя отклонена.",
     search_all: "все курсы",
     duration_8: "8 недель",
     duration_10: "10 недель",
@@ -1247,6 +1613,189 @@ translations.en.ai_hello = "Hello! How can I help you at MF Language Academy?";
 translations.en.ai_help = "I can help you practice grammar, vocabulary, speaking and writing.";
 translations.en.ai_present = "Present perfect is used to connect past actions with the present. For example: I have finished my homework.";
 translations.en.ai_demo = "I'm in demo mode. The real AI feature will be available after the backend is connected.";
+translations.en.pay_title = "Checkout";
+translations.en.pay_summary = "Course summary";
+translations.en.pay_instructor = "Instructor";
+translations.en.pay_customer = "Customer information";
+translations.en.pay_method = "Payment method";
+translations.en.pay_card = "Bank card";
+translations.en.pay_card_name = "Cardholder name";
+translations.en.pay_card_number = "Card number";
+translations.en.pay_expiry = "Expiry date";
+translations.en.pay_cvv = "CVV";
+translations.en.pay_secure = "This is a demo payment. Card details are not stored and no real charge is made.";
+translations.en.pay_submit = "Complete payment";
+translations.en.pay_processing = "Checking...";
+translations.en.pay_success_title = "Payment completed successfully!";
+translations.en.pay_success_lead = "Course enrollment completed successfully.";
+translations.en.pay_amount = "Amount";
+translations.en.pay_order = "Order number";
+translations.en.pay_date = "Date";
+translations.en.pay_start = "Start learning";
+translations.en.pay_courses = "Go to my courses";
+translations.en.pay_fail_title = "Payment failed";
+translations.en.pay_fail_lead = "In this demo the card was declined. Nothing was charged.";
+translations.en.pay_retry = "Try again";
+translations.en.pay_err_required = "This field is required.";
+translations.en.pay_err_email = "Enter a valid email.";
+translations.en.pay_err_card = "Card number must be 16 digits.";
+translations.en.pay_err_expiry = "Enter the date as MM/YY.";
+translations.en.pay_err_cvv = "CVV must be 3 or 4 digits.";
+translations.en.pay_demo_hint = "Demo: a card ending in 0000 shows a failed payment.";
+translations.en.reg_student = "Student";
+translations.en.reg_instructor = "Instructor";
+translations.en.learn_continue = "Continue learning";
+translations.en.learn_outline = "Lessons";
+translations.en.learn_complete = "Mark complete";
+translations.en.learn_text = "Read the lesson, then mark it complete. Progress stays in this browser preview only.";
+translations.en.learn_video_note = "Video preview. A real player will use a lesson URL from the server.";
+translations.en.learn_cert_locked = "The certificate appears when every lesson is complete.";
+translations.en.learn_m1 = "Module 1 · Start";
+translations.en.learn_m2 = "Module 2 · Practice";
+translations.en.learn_l1 = "Greetings";
+translations.en.learn_l2 = "Listening video";
+translations.en.learn_l3 = "Short quiz";
+translations.en.learn_l4 = "Everyday phrases";
+translations.en.learn_kind_text = "Text";
+translations.en.learn_kind_video = "Video";
+translations.en.learn_kind_file = "File";
+translations.en.learn_kind_quiz = "Quiz";
+translations.en.learn_q1 = "She ___ a student.";
+translations.en.learn_q2 = "She ___ to the market yesterday.";
+translations.en.learn_q3 = "This is ___ apple.";
+translations.en.learn_q4 = "The book is ___ the table.";
+translations.en.grade_title = "Grade book";
+translations.en.grade_lead = "Quiz scores and course progress for this preview.";
+translations.en.grade_quiz = "Quiz";
+translations.en.grade_open = "Open grade book";
+translations.en.grade_empty = "No quiz score yet. Open the quiz lesson and submit it.";
+translations.en.grade_take = "Open the quiz";
+translations.en.plan_nav = "Plans";
+translations.en.plan_free = "Free Plan";
+translations.en.plan_premium = "Premium";
+translations.en.plan_free_lead = "You're currently using the Free plan.";
+translations.en.plan_premium_lead = "All premium features are unlocked.";
+translations.en.plan_upgrade = "Upgrade to Premium";
+translations.en.plan_manage = "Manage Plan";
+translations.en.plan_unlock = "Unlock with Premium";
+translations.en.plan_monthly = "Monthly";
+translations.en.plan_membership = "Membership";
+translations.en.plan_month = "month";
+translations.en.plan_per_month = "per month";
+translations.en.plan_summary = "Membership";
+translations.en.plan_success = "Premium is active";
+translations.en.plan_success_lead = "Congratulations! Your Premium membership is now active.";
+translations.en.plan_status = "Status";
+translations.en.plan_active = "Active";
+translations.en.plan_price = "Price";
+translations.en.plan_next = "Next billing date";
+translations.en.plan_feature = "Feature";
+translations.en.plan_continue = "Continue learning";
+translations.en.plan_current_lesson = "Current lesson";
+translations.en.plan_streak = "Learning Streak";
+translations.en.plan_streak_lock = "Available with Premium.";
+translations.en.plan_days = "Days";
+translations.en.plan_longest = "Longest streak";
+translations.en.plan_progress = "Learning Progress";
+translations.en.plan_completion = "Overall completion";
+translations.en.plan_quiz_avg = "Quiz average";
+translations.en.plan_lessons_done = "Completed lessons";
+translations.en.plan_hours = "Learning hours";
+translations.en.plan_analytics = "Advanced Analytics";
+translations.en.plan_analytics_lock = "Unlock detailed learning analytics with Premium.";
+translations.en.plan_active_courses = "Active courses";
+translations.en.plan_achievements = "Achievements";
+translations.en.plan_calendar = "Learning Calendar";
+translations.en.plan_calendar_lock = "The calendar is available with Premium.";
+translations.en.plan_resources = "Premium resources";
+translations.en.plan_support = "Premium support";
+translations.en.plan_free_price = "Free";
+translations.en.plan_badge_free = "Free course";
+translations.en.plan_badge_premium = "Premium";
+translations.en.plan_badge_first = "First course";
+translations.en.plan_badge_quiz = "First quiz";
+translations.en.plan_badge_done = "Course completed";
+translations.en.plan_badge_master = "Quiz master";
+translations.en.plan_badge_streak = "7 day streak";
+translations.en.plan_course_lock = "Premium Course";
+translations.en.plan_course_lock_text = "This course is available with Premium membership.";
+translations.en.plan_ai = "Premium AI Assistant";
+translations.en.plan_row_free_courses = "Free courses";
+translations.en.plan_row_premium_courses = "Premium courses";
+translations.en.plan_row_basic = "Basic progress";
+translations.en.plan_event_lesson = "Upcoming lesson · tomorrow 18:00";
+translations.en.plan_event_quiz = "Short quiz · Friday";
+translations.en.plan_event_study = "Study session · 25 minutes";
+translations.en.plan_event_live = "Live lesson · Saturday";
+translations.en.plan_note_active = "Premium activated";
+translations.en.plan_note_active_text = "Congratulations! Your Premium membership is now active.";
+translations.en.plan_note_unlocked = "Premium feature unlocked";
+translations.en.plan_note_unlocked_text = "Analytics, streak and calendar are now open.";
+translations.en.ai_premium = "Premium suggestion: study 20 minutes today, review yesterday's quiz, then continue English A1 lesson 21.";
+translations.en.studio_open = "Course studio";
+translations.en.studio_title = "Course studio";
+translations.en.studio_lead = "Build a course outline in the browser. Nothing is saved on a server.";
+translations.en.studio_details = "Course details";
+translations.en.studio_course_title = "Course title";
+translations.en.studio_description = "Description";
+translations.en.studio_thumb = "Thumbnail";
+translations.en.studio_subject = "Subject";
+translations.en.studio_module = "Module";
+translations.en.studio_module_title = "Module title";
+translations.en.studio_add_module = "Add module";
+translations.en.studio_add_lesson = "Add lesson";
+translations.en.studio_lesson = "Lesson";
+translations.en.studio_remove = "Remove";
+translations.en.studio_quiz = "Quiz";
+translations.en.studio_preview = "Preview";
+translations.en.studio_question = "Question";
+translations.en.studio_answers = "Answers, separated by |";
+translations.en.studio_correct = "Correct answer number";
+translations.en.studio_add_question = "Add question";
+translations.en.studio_saved = "Outline updated in this preview only.";
+translations.en.apply_country = "Country";
+translations.en.apply_education = "Education";
+translations.en.apply_institution = "University / Institution";
+translations.en.apply_experience = "Teaching experience";
+translations.en.apply_years = "Years of experience";
+translations.en.apply_languages = "Languages";
+translations.en.apply_bio = "Short biography";
+translations.en.apply_portfolio = "LinkedIn / portfolio URL";
+translations.en.apply_photo = "Profile photo";
+translations.en.apply_cv = "CV / Resume PDF";
+translations.en.apply_upload_photo = "Choose a photo";
+translations.en.apply_upload_photo_hint = "Optional";
+translations.en.apply_upload_cv = "Upload CV";
+translations.en.apply_upload_cv_hint = "PDF only";
+translations.en.apply_change = "Change";
+translations.en.apply_remove = "Remove";
+translations.en.apply_cv_required = "Upload a PDF CV.";
+translations.en.apply_cv_pdf = "The CV must be a PDF file.";
+translations.en.apply_submitted = "Application submitted";
+translations.en.apply_submitted_text = "Your teacher application has been submitted successfully. Our administration team will review your information and CV.";
+translations.en.apply_status = "Status";
+translations.en.apply_pending = "Pending review";
+translations.en.apply_approved = "Approved";
+translations.en.apply_rejected = "Rejected";
+translations.en.apply_admin = "Teacher applications";
+translations.en.apply_details = "Application details";
+translations.en.apply_view = "View";
+translations.en.apply_preview = "Preview CV";
+translations.en.apply_download = "Download CV";
+translations.en.apply_empty = "No teacher applications yet.";
+translations.en.apply_cv_session = "Open the CV preview in the same browser session it was uploaded.";
+translations.en.apply_reason = "Rejection reason";
+translations.en.apply_approve = "Approve";
+translations.en.apply_reject = "Reject";
+translations.en.apply_note_submitted = "Application submitted";
+translations.en.apply_note_submitted_text = "Your teacher application is waiting for review.";
+translations.en.apply_note_approved = "Application approved";
+translations.en.apply_note_approved_text = "Your teacher application has been approved.";
+translations.en.apply_note_rejected = "Application rejected";
+translations.en.apply_note_rejected_text = "Your teacher application has been rejected.";
+translations.en.apply_status_pending = "Your teacher application is currently under review.";
+translations.en.apply_status_approved = "Your teacher application has been approved. Instructor tools stay available as a preview.";
+translations.en.apply_status_rejected = "Your teacher application was rejected.";
 translations.en.faq_open = "Help and questions";
 translations.en.support_label = "Support";
 translations.en.faq_courses_certs = "Course and certificate FAQ";
@@ -1296,7 +1845,7 @@ translations.en.cert_none_title = "No certificates yet";
 translations.en.cert_none_text = "Complete a course to earn your first certificate.";
 translations.en.cert_awarded = "This certificate is awarded to";
 translations.en.cert_for = "for successfully completing";
-translations.en.cert_back = "Back to dashboard";
+translations.en.cert_back = "Back to lessons";
 translations.en.cert_missing = "Certificate not found";
 translations.en.cert_sign_role = "Academic director";
 translations.en.course_en_a2 = "English A2";
@@ -1344,21 +1893,21 @@ translations.en.faq_cat_tech = "Technical support";
 translations.en.faq_q_enroll = "How do I enroll in a course?";
 translations.en.faq_a_enroll = "Choose a course from the catalog, open the course details page, and click Enroll.";
 translations.en.faq_q_view = "How can I view my course?";
-translations.en.faq_a_view = "Open My Courses on the dashboard, or return to the course page.";
+translations.en.faq_a_view = "Open the course page, or continue on the lesson page. The last lesson stays selected in the list.";
 translations.en.faq_q_access = "How long do I have access?";
 translations.en.faq_a_access = "This preview shows the access period on the course page. A student account will store it there later.";
 translations.en.faq_q_continue = "How do I continue where I stopped?";
-translations.en.faq_a_continue = "Open the course in progress on the dashboard. The last opened lesson stays at the top of the list.";
+translations.en.faq_a_continue = "Open the lesson page. The last lesson stays selected in the list on the left. Click it to continue.";
 translations.en.faq_q_complete = "How do I mark a lesson as completed?";
-translations.en.faq_a_complete = "Open the lesson through to the end. Completion is saved once a student account is connected.";
+translations.en.faq_a_complete = "On the lesson page, click Mark complete. This is an on-screen preview only.";
 translations.en.faq_q_quiz = "How do quizzes work?";
-translations.en.faq_a_quiz = "Each module ends with a short quiz. Answer the questions and review the result on that page.";
+translations.en.faq_a_quiz = "On the lesson page, open the short quiz, choose an answer, and click Submit. The result appears on the same page.";
 translations.en.faq_q_score = "Where can I see my score?";
-translations.en.faq_a_score = "Quiz results appear in notifications and in the course progress on the dashboard.";
+translations.en.faq_a_score = "The score appears in the grade book at the top of the lesson page. The Quiz and grades link opens that section.";
 translations.en.faq_q_cert_when = "When do I receive my certificate?";
 translations.en.faq_a_cert_when = "A certificate of completion is ready when the course lessons and quizzes are finished.";
 translations.en.faq_q_cert_where = "Where can I view my certificates?";
-translations.en.faq_a_cert_where = "Open the certificates list on the dashboard.";
+translations.en.faq_a_cert_where = "Open the Certificates link. The page shows the name, course, instructor, date, and certificate number.";
 translations.en.faq_q_profile = "How do I update my profile?";
 translations.en.faq_a_profile = "On the profile page, edit your name, contact details, and bio, then save.";
 translations.en.faq_q_password = "How do I change my password?";
@@ -1532,6 +2081,10 @@ function setLanguage(language) {
   }
 
   if (typeof window.renderCourseDetail === "function") window.renderCourseDetail();
+  if (typeof window.refreshCheckoutLanguage === "function") window.refreshCheckoutLanguage();
+  if (document.querySelector("[data-assessment]") && typeof window.renderQuestion === "function") window.renderQuestion();
+  if (typeof window.renderCertificatePage === "function") window.renderCertificatePage();
+  if (typeof window.renderCertificateList === "function") window.renderCertificateList();
   document.dispatchEvent(new CustomEvent("mf-language"));
   applyTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light");
 }

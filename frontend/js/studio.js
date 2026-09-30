@@ -1,0 +1,208 @@
+/* Instructor course and quiz builder. UI template only. No roles or network calls. */
+function studioText(key, fallback) {
+  if (typeof window.mfT === "function") return window.mfT(key, fallback || key);
+  return fallback || key;
+}
+
+function blankStudio() {
+  return {
+    title: "",
+    description: "",
+    level: "A1",
+    language: "English",
+    price: "49",
+    modules: [
+      { id: "m1", title: "Module 1", lessons: [
+        { id: "s1", title: "Welcome", kind: "text", body: "", video: "", file: "", quiz: [] }
+      ] }
+    ]
+  };
+}
+
+let studioCourse = blankStudio();
+let studioQuizLesson = null;
+
+function renderStudio() {
+  const root = document.querySelector("[data-studio]");
+  if (!root) return;
+  const modules = studioCourse.modules.map(function (module, moduleIndex) {
+    const lessons = module.lessons.map(function (lesson, lessonIndex) {
+      return '<li class="studio-lesson" draggable="true" data-studio-drag="' + module.id + ':' + lesson.id + '">' +
+        '<input data-studio-lesson="' + module.id + ':' + lesson.id + '" value="' + lesson.title.replace(/"/g, "&quot;") + '">' +
+        '<select data-studio-kind="' + module.id + ':' + lesson.id + '">' +
+          ["text", "video", "file", "quiz"].map(function (kind) {
+            return '<option value="' + kind + '"' + (lesson.kind === kind ? " selected" : "") + '>' + studioText("learn_kind_" + kind, kind) + '</option>';
+          }).join("") +
+        '</select>' +
+        '<button type="button" data-studio-up="' + moduleIndex + ':' + lessonIndex + '" aria-label="Up">↑</button>' +
+        '<button type="button" data-studio-down="' + moduleIndex + ':' + lessonIndex + '" aria-label="Down">↓</button>' +
+        '<button type="button" data-studio-quiz="' + module.id + ':' + lesson.id + '">' + studioText("studio_quiz", "Quiz") + '</button>' +
+        '<button type="button" data-studio-remove="' + module.id + ':' + lesson.id + '">' + studioText("studio_remove", "Remove") + '</button>' +
+      '</li>';
+    }).join("");
+    return '<section class="pay-block"><h2>' + studioText("studio_module", "Module") + ' ' + (moduleIndex + 1) + '</h2>' +
+      '<div class="field"><label>' + studioText("studio_module_title", "Module title") + '</label><input data-studio-module="' + module.id + '" value="' + module.title.replace(/"/g, "&quot;") + '"></div>' +
+      '<ul class="studio-lessons">' + lessons + '</ul>' +
+      '<button class="btn btn-outline btn-sm" type="button" data-studio-add-lesson="' + module.id + '">' + studioText("studio_add_lesson", "Add lesson") + '</button>' +
+      '<button class="btn btn-outline btn-sm" type="button" data-studio-remove-module="' + module.id + '">' + studioText("studio_remove", "Remove") + '</button>' +
+    '</section>';
+  }).join("");
+  root.innerHTML =
+    '<header class="checkout-head"><h1>' + studioText("studio_title", "Course studio") + '</h1><p>' + studioText("studio_lead", "Build a course outline in the browser. Nothing is saved on a server.") + '</p></header>' +
+    '<div class="checkout-grid"><form class="checkout-form" data-studio-form>' +
+      '<section class="pay-block"><h2>' + studioText("studio_details", "Course details") + '</h2>' +
+        '<div class="field"><label>' + studioText("studio_course_title", "Course title") + '</label><input name="title" value="' + studioCourse.title.replace(/"/g, "&quot;") + '"></div>' +
+        '<div class="field"><label>' + studioText("studio_description", "Description") + '</label><textarea name="description">' + studioCourse.description + '</textarea></div>' +
+        '<div class="form-row">' +
+          '<div class="field"><label>' + studioText("label_level", "Level") + '</label><input name="level" value="' + studioCourse.level + '"></div>' +
+          '<div class="field"><label>' + studioText("label_language", "Language") + '</label><input name="language" value="' + studioCourse.language + '"></div>' +
+          '<div class="field"><label>' + studioText("label_price", "Price") + '</label><input name="price" value="' + studioCourse.price + '"></div>' +
+        '</div>' +
+        '<div class="field"><label>' + studioText("studio_thumb", "Thumbnail") + '</label><input name="thumb" type="file" accept="image/*"></div>' +
+      '</section>' +
+      modules +
+      '<button class="btn btn-outline" type="button" data-studio-add-module>' + studioText("studio_add_module", "Add module") + '</button>' +
+      '<p class="form-note">' + studioText("studio_saved", "Outline updated in this preview only.") + '</p>' +
+    '</form><aside class="panel" data-studio-preview></aside></div>';
+  renderStudioPreview();
+}
+
+function renderStudioPreview() {
+  const box = document.querySelector("[data-studio-preview]");
+  if (!box) return;
+  if (!studioQuizLesson) {
+    box.innerHTML = '<h2>' + studioText("studio_preview", "Preview") + '</h2><p>' + (studioCourse.title || studioText("studio_course_title", "Course title")) + '</p><p>₼' + (studioCourse.price || "0") + '</p>';
+    return;
+  }
+  const questions = studioQuizLesson.quiz.map(function (item, index) {
+    return '<div class="learn-q"><strong>' + (index + 1) + '. ' + item.text + '</strong><p>' + item.options.join(" · ") + '</p><button type="button" data-studio-delete-q="' + index + '">' + studioText("studio_remove", "Remove") + '</button></div>';
+  }).join("");
+  box.innerHTML =
+    '<h2>' + studioText("studio_quiz", "Quiz") + '</h2>' +
+    '<p>' + studioQuizLesson.title + '</p>' +
+    questions +
+    '<form data-studio-question><div class="field"><label>' + studioText("studio_question", "Question") + '</label><input name="text"></div>' +
+    '<div class="field"><label>' + studioText("studio_answers", "Answers, separated by |") + '</label><input name="options" placeholder="am | is | are | be"></div>' +
+    '<div class="field"><label>' + studioText("studio_correct", "Correct answer number") + '</label><input name="correct" value="1"></div>' +
+    '<button class="btn btn-primary btn-sm" type="submit">' + studioText("studio_add_question", "Add question") + '</button></form>';
+}
+
+function findLesson(key) {
+  const parts = key.split(":");
+  const module = studioCourse.modules.find(function (item) { return item.id === parts[0]; });
+  if (!module) return null;
+  return module.lessons.find(function (item) { return item.id === parts[1]; }) || null;
+}
+
+function readStudioFields() {
+  const form = document.querySelector("[data-studio-form]");
+  if (!form) return;
+  studioCourse.title = form.querySelector('[name="title"]').value;
+  studioCourse.description = form.querySelector('[name="description"]').value;
+  studioCourse.level = form.querySelector('[name="level"]').value;
+  studioCourse.language = form.querySelector('[name="language"]').value;
+  studioCourse.price = form.querySelector('[name="price"]').value;
+  form.querySelectorAll("[data-studio-module]").forEach(function (input) {
+    const module = studioCourse.modules.find(function (item) { return item.id === input.getAttribute("data-studio-module"); });
+    if (module) module.title = input.value;
+  });
+  form.querySelectorAll("[data-studio-lesson]").forEach(function (input) {
+    const lesson = findLesson(input.getAttribute("data-studio-lesson"));
+    if (lesson) lesson.title = input.value;
+  });
+}
+
+function initStudio() {
+  const root = document.querySelector("[data-studio]");
+  if (!root) return;
+  if (root.dataset.studioBound !== "1") {
+    root.dataset.studioBound = "1";
+    root.addEventListener("click", function (event) {
+      readStudioFields();
+      const addModule = event.target.closest("[data-studio-add-module]");
+      const addLesson = event.target.closest("[data-studio-add-lesson]");
+      const removeModule = event.target.closest("[data-studio-remove-module]");
+      const removeLesson = event.target.closest("[data-studio-remove]");
+      const up = event.target.closest("[data-studio-up]");
+      const down = event.target.closest("[data-studio-down]");
+      const quiz = event.target.closest("[data-studio-quiz]");
+      const deleteQ = event.target.closest("[data-studio-delete-q]");
+      if (addModule) studioCourse.modules.push({ id: "m" + Date.now(), title: studioText("studio_module", "Module"), lessons: [] });
+      if (addLesson) {
+        const module = studioCourse.modules.find(function (item) { return item.id === addLesson.getAttribute("data-studio-add-lesson"); });
+        if (module) module.lessons.push({ id: "s" + Date.now(), title: studioText("studio_lesson", "Lesson"), kind: "text", quiz: [] });
+      }
+      if (removeModule) studioCourse.modules = studioCourse.modules.filter(function (item) { return item.id !== removeModule.getAttribute("data-studio-remove-module"); });
+      if (removeLesson) {
+        const key = removeLesson.getAttribute("data-studio-remove").split(":");
+        const module = studioCourse.modules.find(function (item) { return item.id === key[0]; });
+        if (module) module.lessons = module.lessons.filter(function (item) { return item.id !== key[1]; });
+      }
+      if (up || down) {
+        const raw = (up || down).getAttribute(up ? "data-studio-up" : "data-studio-down").split(":");
+        const module = studioCourse.modules[Number(raw[0])];
+        const index = Number(raw[1]);
+        const next = up ? index - 1 : index + 1;
+        if (module && module.lessons[next]) {
+          const item = module.lessons[index];
+          module.lessons[index] = module.lessons[next];
+          module.lessons[next] = item;
+        }
+      }
+      if (quiz) {
+        studioQuizLesson = findLesson(quiz.getAttribute("data-studio-quiz"));
+        if (studioQuizLesson) studioQuizLesson.kind = "quiz";
+      }
+      if (deleteQ && studioQuizLesson) studioQuizLesson.quiz.splice(Number(deleteQ.getAttribute("data-studio-delete-q")), 1);
+      if (addModule || addLesson || removeModule || removeLesson || up || down || quiz || deleteQ) renderStudio();
+    });
+    root.addEventListener("change", function (event) {
+      const kind = event.target.closest("[data-studio-kind]");
+      if (!kind) return;
+      const lesson = findLesson(kind.getAttribute("data-studio-kind"));
+      if (lesson) lesson.kind = kind.value;
+    });
+    root.addEventListener("submit", function (event) {
+      const form = event.target.closest("[data-studio-question]");
+      if (!form || !studioQuizLesson) return;
+      event.preventDefault();
+      const text = form.querySelector('[name="text"]').value.trim();
+      const options = form.querySelector('[name="options"]').value.split("|").map(function (item) { return item.trim(); }).filter(Boolean);
+      const correct = Number(form.querySelector('[name="correct"]').value) || 1;
+      if (!text || options.length < 2) return;
+      studioQuizLesson.quiz.push({ text: text, options: options, correct: correct });
+      renderStudio();
+    });
+    root.addEventListener("dragstart", function (event) {
+      const row = event.target.closest("[data-studio-drag]");
+      if (!row) return;
+      event.dataTransfer.setData("text/plain", row.getAttribute("data-studio-drag"));
+    });
+    root.addEventListener("dragover", function (event) {
+      if (event.target.closest("[data-studio-drag]")) event.preventDefault();
+    });
+    root.addEventListener("drop", function (event) {
+      const target = event.target.closest("[data-studio-drag]");
+      if (!target) return;
+      event.preventDefault();
+      const from = event.dataTransfer.getData("text/plain").split(":");
+      const to = target.getAttribute("data-studio-drag").split(":");
+      const sourceModule = studioCourse.modules.find(function (item) { return item.id === from[0]; });
+      const targetModule = studioCourse.modules.find(function (item) { return item.id === to[0]; });
+      if (!sourceModule || !targetModule) return;
+      const index = sourceModule.lessons.findIndex(function (item) { return item.id === from[1]; });
+      if (index < 0) return;
+      const [lesson] = sourceModule.lessons.splice(index, 1);
+      const targetIndex = targetModule.lessons.findIndex(function (item) { return item.id === to[1]; });
+      targetModule.lessons.splice(targetIndex < 0 ? targetModule.lessons.length : targetIndex, 0, lesson);
+      renderStudio();
+    });
+  }
+  renderStudio();
+}
+
+window.initStudio = initStudio;
+document.addEventListener("DOMContentLoaded", initStudio);
+document.addEventListener("mf-language", function () {
+  if (document.querySelector("[data-studio]")) renderStudio();
+});

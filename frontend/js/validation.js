@@ -1,8 +1,6 @@
 // 09. Forms
 function initForms() {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const rememberKey = "mf-remember-email";
-
   function fieldOf(form, name) {
     return form.querySelector('[name="' + name + '"]');
   }
@@ -72,14 +70,6 @@ function initForms() {
 
   const loginForm = document.querySelector('[data-form="login"]');
   if (loginForm) {
-    const saved = localStorage.getItem(rememberKey);
-    if (saved) {
-      const email = fieldOf(loginForm, "email");
-      const remember = fieldOf(loginForm, "remember");
-      if (email) email.value = saved;
-      if (remember) remember.checked = true;
-    }
-
     if (loginForm.dataset.formBound !== "1") {
     loginForm.dataset.formBound = "1";
     loginForm.addEventListener("submit", function (event) {
@@ -87,9 +77,6 @@ function initForms() {
       const emailOk = validateEmail(loginForm, "email");
       const passwordOk = validatePassword(loginForm, "password");
       if (!emailOk || !passwordOk) return;
-      const remember = fieldOf(loginForm, "remember");
-      if (remember?.checked) localStorage.setItem(rememberKey, fieldOf(loginForm, "email").value.trim());
-      else localStorage.removeItem(rememberKey);
       showSuccess(loginForm);
     });
     }
@@ -98,8 +85,29 @@ function initForms() {
   const registerForm = document.querySelector('[data-form="register"]');
   if (registerForm && registerForm.dataset.formBound !== "1") {
   registerForm.dataset.formBound = "1";
+  document.querySelectorAll("[data-reg-role]").forEach(function (button) {
+    if (button.dataset.roleBound === "1") return;
+    button.dataset.roleBound = "1";
+    button.addEventListener("click", function () {
+      document.querySelectorAll("[data-reg-role]").forEach(function (item) {
+        item.classList.toggle("is-active", item === button);
+      });
+      const show = button.getAttribute("data-reg-role") === "instructor";
+      document.querySelectorAll("[data-instructor-field]").forEach(function (field) {
+        field.hidden = !show;
+      });
+      document.querySelectorAll("[data-student-field]").forEach(function (field) {
+        field.hidden = show;
+      });
+    });
+  });
   registerForm.addEventListener("submit", function (event) {
     event.preventDefault();
+    const instructorOn = document.querySelector('[data-reg-role="instructor"].is-active');
+    if (instructorOn && typeof window.submitTeacherApplication === "function") {
+      window.submitTeacherApplication(registerForm);
+      return;
+    }
     const checks = [
       required(registerForm, "firstName", "err_first_required", "First name is required."),
       required(registerForm, "lastName", "err_last_required", "Last name is required."),

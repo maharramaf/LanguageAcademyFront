@@ -26,6 +26,7 @@ const courses = {
       ]
     },
     "english-intermediate": {
+      access: "premium",
       title: "English Intermediate",
       level: "Intermediate",
       duration: "10 weeks",
@@ -43,6 +44,7 @@ const courses = {
       ]
     },
     ielts: {
+      access: "premium",
       title: "IELTS Preparation",
       level: "Upper intermediate",
       duration: "8 weeks",
@@ -60,6 +62,7 @@ const courses = {
       ]
     },
     "business-english": {
+      access: "premium",
       title: "Business English",
       level: "Intermediate",
       duration: "8 weeks",
@@ -411,6 +414,10 @@ function renderCourseDetail() {
       image.alt = title + " course";
     }
     document.title = title + " | MF Language Academy";
+    document.querySelectorAll("a[data-enroll]").forEach(function (link) {
+      link.setAttribute("href", "checkout.html?course=" + encodeURIComponent(selected));
+    });
+    if (typeof window.mfApplyCourseAccess === "function") window.mfApplyCourseAccess(selected);
 
     const learn = bind("learn");
     if (learn) {
@@ -455,7 +462,7 @@ function renderCourseDetail() {
 
 function initCoursePage() {
   document.querySelectorAll(".accordion-trigger").forEach(function (trigger) {
-    if (trigger.dataset.accBound === "1") return;
+    if (trigger.dataset.accBound === "1" || trigger.closest(".faq-panel")) return;
     trigger.dataset.accBound = "1";
     trigger.addEventListener("click", function () {
         const item = trigger.closest(".accordion-item");
@@ -589,13 +596,8 @@ function initDashboard() {
   });
 
   document.querySelectorAll("[data-switch]").forEach(function (toggle) {
-    const key = "mf-setting-" + toggle.dataset.switch;
-    const stored = localStorage.getItem(key);
-    if (stored === "on") toggle.classList.add("is-on");
-    if (stored === "off") toggle.classList.remove("is-on");
     toggle.addEventListener("click", function () {
       toggle.classList.toggle("is-on");
-      localStorage.setItem(key, toggle.classList.contains("is-on") ? "on" : "off");
     });
   });
 
@@ -615,6 +617,7 @@ function initDashboard() {
 }
 
 // 11. Initialization
+window.courses = courses;
 document.addEventListener("DOMContentLoaded", function () {
   initNavigation();
   initMobileMenu();

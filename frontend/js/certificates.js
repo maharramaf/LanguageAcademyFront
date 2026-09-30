@@ -1,5 +1,5 @@
 /* Frontend certificate mock. Eligible only at 100% progress. No network calls.
-   Later an API can replace MF_CERTIFICATES. Issued ids live in mf-notifications. */
+   Later an API can replace MF_CERTIFICATES. */
 const MF_CERTIFICATES = [
   {
     id: "MF-ENG-A2-2026-0001",
@@ -131,24 +131,23 @@ function initCertificates() {
       }
       const link = event.target.closest("[data-cert-print-link]");
       if (!link) return;
-      try { sessionStorage.setItem("mf-cert-print", "1"); } catch (error) { /* ignore */ }
+      window.mfCertPrint = true;
     });
     document.addEventListener("mf-language", function () {
       renderCertificateList();
       renderCertificatePage();
     });
   }
-  try {
-    if (sessionStorage.getItem("mf-cert-print") === "1" && document.querySelector("[data-certificate]") && !document.querySelector("[data-certificate]").hidden) {
-      sessionStorage.removeItem("mf-cert-print");
-      window.setTimeout(function () { window.print(); }, 300);
-    }
-  } catch (error) { /* ignore */ }
+  if (window.mfCertPrint && document.querySelector("[data-certificate]") && !document.querySelector("[data-certificate]").hidden) {
+    window.mfCertPrint = false;
+    window.setTimeout(function () { window.print(); }, 300);
+  }
 }
 
 window.MF_CERTIFICATES = MF_CERTIFICATES;
 window.initCertificates = initCertificates;
 window.renderCertificatePage = renderCertificatePage;
+window.renderCertificateList = renderCertificateList;
 
 document.addEventListener("DOMContentLoaded", function () {
   initCertificates();

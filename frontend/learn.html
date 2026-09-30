@@ -1,20 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script>
-(function () {
-  try {
-    var theme = localStorage.getItem("mf-theme");
-    if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
-    var language = localStorage.getItem("mf-language") || "az";
-    if (language === "az" || language === "ru" || language === "en") document.documentElement.lang = language;
-  } catch (e) {}
-})();
-</script>
+  <script src="js/preferences-boot.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FAQ | MF Language Academy</title>
-  <meta name="description" content="Answers about courses, certificates, and access.">
+  <title>Learn | MF Language Academy</title>
+  <meta name="description" content="Lesson player, progress, quiz and grade book preview.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +31,7 @@
     </div></div>
     <div class="container header-inner">
       <a class="logo" href="index.html"><span class="logo-mark">MF</span><span class="logo-text"><strong>MF Language</strong><small>Academy</small></span></a>
-      <nav class="nav" aria-label="Primary" data-i18n-aria-label="aria_primary"><ul class="nav-list"><li><a href="index.html" data-i18n="nav_home">Home</a></li><li><a href="about.html" data-i18n="nav_about">About</a></li><li><a href="courses.html" data-i18n="nav_courses">Courses</a></li><li><a href="teachers.html" data-i18n="nav_teachers">Teachers</a></li><li><a href="students.html" data-i18n="nav_students">Students</a></li><li><a class="active" aria-current="page" href="contact.html" data-i18n="nav_contact">Contact</a></li></ul>
+      <nav class="nav" aria-label="Primary" data-i18n-aria-label="aria_primary"><ul class="nav-list"><li><a href="index.html" data-i18n="nav_home">Home</a></li><li><a href="about.html" data-i18n="nav_about">About</a></li><li><a href="courses.html" data-i18n="nav_courses">Courses</a></li><li><a href="teachers.html" data-i18n="nav_teachers">Teachers</a></li><li><a href="students.html" data-i18n="nav_students">Students</a></li><li><a href="contact.html" data-i18n="nav_contact">Contact</a></li></ul>
         <div class="nav-actions"><a class="btn btn-outline" href="login.html" data-i18n="nav_login">Login</a><a class="btn btn-secondary" href="register.html" data-i18n="nav_register">Register</a></div>
       </nav>
       <form class="header-search" action="search.html" method="get" role="search">
@@ -73,24 +64,9 @@
     <div class="nav-overlay"></div>
   </header>
   <main>
-    
-    <section id="page-start" class="page-hero"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb" data-i18n-aria-label="aria_breadcrumb"><a href="index.html" data-i18n="nav_home">Home</a><span>/</span><span data-i18n="faq_crumb">FAQ</span></nav><h1 data-i18n="faq_title">Frequently asked questions</h1></div></section>
-    <section id="faq-section" class="section"><div class="container"><div class="course-faq" data-lms-faq>
-      <div class="course-faq-item is-open"><button class="course-faq-toggle" type="button" aria-expanded="true"><span><span data-i18n="xbdh5tk">How do I choose a course?</span></span><i class="bi bi-plus-lg"></i></button><div class="course-faq-panel"><p><span data-i18n="xsqe58q">Start with your level: beginner, intermediate, or advanced. The catalog filters keep the list short.</span></p></div></div><div class="course-faq-item"><button class="course-faq-toggle" type="button" aria-expanded="false"><span><span data-i18n="x1a6xlop">How does enrollment work?</span></span><i class="bi bi-plus-lg"></i></button><div class="course-faq-panel"><p><span data-i18n="xz9qwc1">Use Enroll Now on a course page. This preview only checks the form.</span></p></div></div><div class="course-faq-item"><button class="course-faq-toggle" type="button" aria-expanded="false"><span><span data-i18n="x19pup5j">When do I get a certificate?</span></span><i class="bi bi-plus-lg"></i></button><div class="course-faq-panel"><p><span data-i18n="x11vs69y">After the lessons and quizzes in that course are marked complete.</span></p></div></div><div class="course-faq-item"><button class="course-faq-toggle" type="button" aria-expanded="false"><span data-i18n="faq_quizzes">Are quizzes included?</span><i class="bi bi-plus-lg"></i></button><div class="course-faq-panel"><p><span data-i18n="x158wycz">Yes. Modules end with a short quiz.</span></p></div></div><div class="course-faq-item"><button class="course-faq-toggle" type="button" aria-expanded="false"><span><span data-i18n="xiqt0s4">How do payments work later?</span></span><i class="bi bi-plus-lg"></i></button><div class="course-faq-panel"><p><span data-i18n="x7j6297">Prices are shown now. Checkout will be added with the API.</span></p></div></div><div class="course-faq-item"><button class="course-faq-toggle" type="button" aria-expanded="false"><span><span data-i18n="xjveg">How long do I keep access?</span></span><i class="bi bi-plus-lg"></i></button><div class="course-faq-panel"><p><span data-i18n="xbnwtro">Listings currently show lifetime access as sample copy.</span></p></div></div><div class="course-faq-item"><button class="course-faq-toggle" type="button" aria-expanded="false"><span><span data-i18n="x1mkpcp5">Can instructors edit a course?</span></span><i class="bi bi-plus-lg"></i></button><div class="course-faq-panel"><p><span data-i18n="xt5os4l">The instructor dashboard previews published and draft courses.</span></p></div></div>
-    </div></div></section>
-    <section id="academy-links-section" class="section">
+    <section id="page-start" class="section">
       <div class="container">
-        <div class="lms-links">
-          <a href="catalog.html"><span data-i18n="x10pxywp">Catalog</span></a>
-          <a href="learning-paths.html" data-i18n="paths_crumb">Learning paths</a>
-          <a href="events.html" data-i18n="events_crumb">Events</a>
-          <a href="blog.html" data-i18n="blog_crumb">Blog</a>
-          <a href="instructors.html" data-i18n="instructors_crumb">Instructors</a>
-          <a href="faq.html" data-i18n="faq_crumb">FAQ</a>
-          <a href="notifications.html" data-i18n="notes_title">Notifications</a>
-          <a href="dashboard.html" data-i18n="dash_home">Dashboard</a>
-          <a href="profile.html" data-i18n="dash_profile">Profile</a>
-        </div>
+        <div data-learn></div>
       </div>
     </section>
   </main>
@@ -123,6 +99,7 @@
   <script src="js/demoQuizQuestions.js" defer></script>
   <script src="js/demoQuiz.js" defer></script>
   <script src="js/checkout.js" defer></script>
+  <script src="js/learn.js" defer></script>
   <script src="js/pages.js" defer></script>
   <script src="js/router.js" defer></script>
 </body>
