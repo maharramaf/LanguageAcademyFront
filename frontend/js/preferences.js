@@ -634,6 +634,17 @@ const translations = {
     btn_close: "Bağla",
     faq_label: "FAQ",
     faq_open: "Kömək və suallar",
+    ai_title: "MF AI köməkçi",
+    ai_subtitle: "Size necə kömək edə bilərəm?",
+    ai_welcome: "Salam! MF Language Academy-yə xoş gəlmisiniz 👋",
+    ai_placeholder: "Mesajınızı yazın...",
+    ai_send: "Göndər",
+    ai_typing: "AI yazır...",
+    ai_open: "AI köməkçini aç",
+    ai_hello: "Salam! MF Language Academy-də sizə necə kömək edə bilərəm?",
+    ai_help: "Qrammatika, lüğət, danışıq və yazı üzrə məşq etməyə kömək edə bilərəm.",
+    ai_present: "Present perfect keçmişdəki işi indiki zamanla bağlayır. Məsələn: I have finished my homework.",
+    ai_demo: "Demo rejimindəyəm. Real AI funksiyası backend inteqrasiyasından sonra aktiv olacaq.",
     support_label: "Dəstək",
     faq_courses_certs: "Kurs və sertifikat sualları",
     faq_browse: "Kurslara bax",
@@ -1075,6 +1086,17 @@ const translations = {
     btn_close: "Закрыть",
     faq_label: "FAQ",
     faq_open: "Помощь и вопросы",
+    ai_title: "MF ИИ-помощник",
+    ai_subtitle: "Чем я могу помочь?",
+    ai_welcome: "Здравствуйте! Чем помочь с изучением английского?",
+    ai_placeholder: "Спросите что-нибудь...",
+    ai_send: "Отправить",
+    ai_typing: "ИИ печатает...",
+    ai_open: "Открыть ИИ-помощника",
+    ai_hello: "Здравствуйте! Добро пожаловать в MF Language Academy. Чем помочь сегодня?",
+    ai_help: "Я могу помочь с грамматикой, словарём, говорением и письмом.",
+    ai_present: "Present perfect связывает прошлое действие с настоящим. Например: I have finished my homework.",
+    ai_demo: "Сейчас я в демо-режиме. Настоящий ИИ-помощник позже будет подключён через сервер.",
     support_label: "Поддержка",
     faq_courses_certs: "Вопросы о курсах и сертификатах",
     faq_browse: "Смотреть курсы",
@@ -1212,6 +1234,19 @@ translations.en.toggle_theme = "Switch light and dark mode";
 translations.en.theme_light = "Light mode is on";
 translations.en.theme_dark = "Dark mode is on";
 translations.en.faq_label = "FAQ";
+translations.en.ai_title = "MF AI Assistant";
+translations.en.ai_subtitle = "How can I help you?";
+translations.en.ai_welcome = "Hello! Welcome to MF Language Academy.";
+translations.en.ai_placeholder = "Write your message...";
+translations.en.ai_hello = "Hello! How can I help you at MF Language Academy?";
+translations.en.ai_demo = "I'm in demo mode. The real AI feature will be available after the backend is connected.";
+translations.en.ai_send = "Send";
+translations.en.ai_typing = "AI is typing...";
+translations.en.ai_open = "Open AI Assistant";
+translations.en.ai_hello = "Hello! How can I help you at MF Language Academy?";
+translations.en.ai_help = "I can help you practice grammar, vocabulary, speaking and writing.";
+translations.en.ai_present = "Present perfect is used to connect past actions with the present. For example: I have finished my homework.";
+translations.en.ai_demo = "I'm in demo mode. The real AI feature will be available after the backend is connected.";
 translations.en.faq_open = "Help and questions";
 translations.en.support_label = "Support";
 translations.en.faq_courses_certs = "Course and certificate FAQ";

@@ -75,7 +75,7 @@
     if (node.tagName === "SCRIPT") return true;
     if (node.tagName === "FOOTER") return true;
     if (!node.classList) return false;
-    return node.classList.contains("global-faq") || node.classList.contains("site-header") || node.classList.contains("skip-link") || node.classList.contains("back-to-top");
+    return node.classList.contains("global-faq") || node.classList.contains("ai-assistant") || node.classList.contains("site-header") || node.classList.contains("skip-link") || node.classList.contains("back-to-top");
   }
 
   function shellNodes(root) {
@@ -86,6 +86,7 @@
 
   function replaceShell(doc, keepChrome) {
     const faq = document.querySelector(".global-faq");
+    const assistant = document.querySelector(".ai-assistant");
     if (keepChrome) {
       shellNodes(document.body).forEach(function (node) { node.remove(); });
       const footer = document.querySelector("footer");
@@ -97,21 +98,23 @@
       const skip = document.querySelector(".skip-link");
       if (skip && nextSkip) skip.setAttribute("href", nextSkip.getAttribute("href") || "#");
       if (faq) document.body.appendChild(faq);
+      if (assistant) document.body.appendChild(assistant);
       return;
     }
     const keepFaq = faq;
     Array.from(document.body.children).forEach(function (node) {
       if (node.tagName === "SCRIPT") return;
-      if (node.classList && node.classList.contains("global-faq")) return;
+      if (node.classList && (node.classList.contains("global-faq") || node.classList.contains("ai-assistant"))) return;
       node.remove();
     });
     const anchor = document.body.querySelector("script") || keepFaq;
     Array.from(doc.body.children).forEach(function (node) {
       if (node.tagName === "SCRIPT") return;
-      if (node.classList && node.classList.contains("global-faq")) return;
+      if (node.classList && (node.classList.contains("global-faq") || node.classList.contains("ai-assistant"))) return;
       document.body.insertBefore(document.importNode(node, true), anchor);
     });
     if (keepFaq) document.body.appendChild(keepFaq);
+    if (assistant) document.body.appendChild(assistant);
   }
 
   function showMissing() {
@@ -195,6 +198,7 @@
       if (typeof window.initNotifications === "function") window.initNotifications();
       if (typeof window.initCertificates === "function") window.initCertificates();
       if (typeof window.initDemoAssessment === "function") window.initDemoAssessment();
+      if (typeof window.initAIAssistant === "function") window.initAIAssistant();
       if (typeof window.applyTranslations === "function") window.applyTranslations();
       if (pageFile(displayedUrl()) === "course-details.html" && typeof renderCourseDetail === "function") renderCourseDetail();
       showHash();
