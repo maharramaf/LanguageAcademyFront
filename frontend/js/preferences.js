@@ -517,6 +517,48 @@ const translations = {
     notification_quiz_result_message: "Test nəticənizə baxa bilərsiniz.",
     notification_certificate: "Sertifikat hazırdır",
     notification_certificate_message: "Təbriklər! Sertifikatınız hazırdır.",
+    cert_congrats_title: "Təbriklər",
+    cert_congrats_message: "Təbriklər! Siz {courseName} kursunu tamamladınız və sertifikat qazandınız.",
+    cert_title: "Bitirmə sertifikatı",
+    cert_my: "Sertifikatlarım",
+    cert_view: "Sertifikata bax",
+    cert_download: "Sertifikatı yüklə",
+    cert_print: "Sertifikatı çap et",
+    cert_id: "Sertifikat nömrəsi",
+    cert_completed_on: "Tamamlanma tarixi",
+    cert_instructor: "Müəllim",
+    cert_none_title: "Hələ sertifikat yoxdur",
+    cert_none_text: "İlk sertifikatınızı almaq üçün kursu tamamlayın.",
+    cert_awarded: "Bu sertifikat verilir",
+    cert_for: "kursunu uğurla bitirdiyinə görə",
+    cert_back: "İdarə panelinə qayıt",
+    cert_missing: "Sertifikat tapılmadı",
+    cert_sign_role: "Akademik direktor",
+    course_en_a2: "İngilis dili A2",
+    cert_date_en_a2: "30 sentyabr 2026",
+    course_en_a2_progress: "Tamamlanıb · 100%",
+    quiz_notify_title: "Qeydiyyat uğurla tamamlandı!",
+    quiz_notify_text: "Pulsuz ingilis dili səviyyə testini keçin və təxmini səviyyənizi öyrənin.",
+    quiz_notify_btn: "Testə başla",
+    quiz_close: "Bağla",
+    quiz_title: "İngilis dili səviyyə testi",
+    quiz_lead: "Bu qısa demo testdir. Nəticə rəsmi CEFR sertifikatı deyil.",
+    quiz_progress: "Sual {current} / {total}",
+    quiz_previous: "Əvvəlki",
+    quiz_next: "Növbəti",
+    quiz_submit: "Göndər",
+    quiz_choose: "Davam etmək üçün bir cavab seçin.",
+    quiz_result_title: "Test nəticəniz",
+    quiz_score_label: "Bal",
+    quiz_level_label: "Təxmini səviyyə",
+    quiz_demo_note: "Bu, təxmini demo yerləşdirmə nəticəsidir. Rəsmi CEFR sertifikatı deyil.",
+    quiz_recommend: "Tövsiyə olunan kurslar",
+    quiz_no_courses: "Bu səviyyə üçün hazırda uyğun kurs yoxdur.",
+    quiz_level_a1: "A1 — Başlanğıc",
+    quiz_level_a2: "A2 — Elementar",
+    quiz_level_b1: "B1 — Orta",
+    quiz_level_b2: "B2 — Orta-irəli",
+    quiz_level_c1: "C1 — İrəli",
     notification_enrollment: "Qoşulma uğurlu oldu",
     notification_enrollment_message: "Kursa uğurla qoşuldunuz.",
     notification_new_student: "Yeni tələbə qoşuldu",
@@ -704,7 +746,9 @@ const translations = {
     label_confirm: "Şifrəni təsdiqlə",
     auth_new: "Yeni tələbə",
     auth_back: "Sayta qayıt",
-    auth_login_hint: "Düzgün forma idarə panelinin önizləməsini açır.",
+    auth_login_hint: "Bu önizləmə yalnız formanı yoxlayır. Giriş etmir.",
+    auth_login_ready: "Məlumat yoxlanıldı",
+    auth_login_ready_text: "Bu önizləmə hesabı açmır və sizi idarə panelinə keçirmir. Hesaba kimin girəcəyini sonra server müəyyən edəcək.",
     auth_register_note: "Məlumatlarınızı doldurun. Forma onları yerində yoxlayır və hesab yaratmır.",
     auth_register_aside: "Tələbə profili yaradın, sonra səviyyənizə və cədvəlinizə uyğun kurs seçin.",
     auth_email_checked: "E-poçt yoxlanıldı",
@@ -914,6 +958,48 @@ const translations = {
     notification_quiz_result_message: "Результат теста можно посмотреть.",
     notification_certificate: "Сертификат готов",
     notification_certificate_message: "Поздравляем! Сертификат готов.",
+    cert_congrats_title: "Поздравляем",
+    cert_congrats_message: "Поздравляем! Вы завершили курс «{courseName}» и получили сертификат.",
+    cert_title: "Сертификат об окончании",
+    cert_my: "Мои сертификаты",
+    cert_view: "Открыть сертификат",
+    cert_download: "Скачать сертификат",
+    cert_print: "Печать сертификата",
+    cert_id: "Номер сертификата",
+    cert_completed_on: "Дата завершения",
+    cert_instructor: "Преподаватель",
+    cert_none_title: "Сертификатов пока нет",
+    cert_none_text: "Завершите курс, чтобы получить первый сертификат.",
+    cert_awarded: "Сертификат вручается",
+    cert_for: "за успешное окончание курса",
+    cert_back: "Назад к панели",
+    cert_missing: "Сертификат не найден",
+    cert_sign_role: "Академический директор",
+    course_en_a2: "Английский A2",
+    cert_date_en_a2: "30 сентября 2026",
+    course_en_a2_progress: "Завершено · 100%",
+    quiz_notify_title: "Регистрация прошла успешно!",
+    quiz_notify_text: "Пройдите бесплатный тест по английскому и узнайте примерный уровень.",
+    quiz_notify_btn: "Пройти тест",
+    quiz_close: "Закрыть",
+    quiz_title: "Тест уровня английского",
+    quiz_lead: "Это короткий демонстрационный тест. Результат не является официальным сертификатом CEFR.",
+    quiz_progress: "Вопрос {current} из {total}",
+    quiz_previous: "Назад",
+    quiz_next: "Далее",
+    quiz_submit: "Отправить",
+    quiz_choose: "Выберите ответ, чтобы продолжить.",
+    quiz_result_title: "Результат теста",
+    quiz_score_label: "Балл",
+    quiz_level_label: "Примерный уровень",
+    quiz_demo_note: "Это примерный демонстрационный результат. Это не официальный сертификат CEFR.",
+    quiz_recommend: "Рекомендуемые курсы",
+    quiz_no_courses: "Для этого уровня пока нет подходящего курса.",
+    quiz_level_a1: "A1 — Начальный",
+    quiz_level_a2: "A2 — Элементарный",
+    quiz_level_b1: "B1 — Средний",
+    quiz_level_b2: "B2 — Выше среднего",
+    quiz_level_c1: "C1 — Продвинутый",
     notification_enrollment: "Запись прошла успешно",
     notification_enrollment_message: "Вы успешно записались на курс.",
     notification_new_student: "Записался новый студент",
@@ -1101,7 +1187,9 @@ const translations = {
     label_confirm: "Подтвердите пароль",
     auth_new: "Новый студент",
     auth_back: "На сайт",
-    auth_login_hint: "Корректная форма открывает предпросмотр панели.",
+    auth_login_hint: "Это превью только проверяет форму. Вход не выполняется.",
+    auth_login_ready: "Данные проверены",
+    auth_login_ready_text: "Это превью не открывает панель. Вход и доступ позже определит сервер.",
     auth_register_note: "Заполните данные. Форма проверяет их локально и не создаёт аккаунт.",
     auth_register_aside: "Создайте профиль студента и выберите курс под уровень и расписание.",
     auth_email_checked: "Почта проверена",
@@ -1116,6 +1204,9 @@ const translations = {
 Object.keys(phraseKeys).forEach(function (phrase) {
   translations.en[phraseKeys[phrase]] = phrase;
 });
+translations.en.auth_login_hint = "This preview only checks the form. It does not sign you in.";
+translations.en.auth_login_ready = "Details checked";
+translations.en.auth_login_ready_text = "This preview does not open a dashboard. Sign-in and access will be decided by the server later.";
 translations.en.language_menu = "Language";
 translations.en.toggle_theme = "Switch light and dark mode";
 translations.en.theme_light = "Light mode is on";
@@ -1156,6 +1247,48 @@ translations.en.notification_quiz_result = "Quiz result available";
 translations.en.notification_quiz_result_message = "Your quiz result is ready.";
 translations.en.notification_certificate = "Certificate available";
 translations.en.notification_certificate_message = "Congratulations! Your certificate is ready.";
+translations.en.cert_congrats_title = "Congratulations";
+translations.en.cert_congrats_message = "Congratulations! You have completed {courseName} and earned your certificate.";
+translations.en.cert_title = "Certificate of Completion";
+translations.en.cert_my = "My Certificates";
+translations.en.cert_view = "View Certificate";
+translations.en.cert_download = "Download Certificate";
+translations.en.cert_print = "Print Certificate";
+translations.en.cert_id = "Certificate ID";
+translations.en.cert_completed_on = "Completed on";
+translations.en.cert_instructor = "Instructor";
+translations.en.cert_none_title = "No certificates yet";
+translations.en.cert_none_text = "Complete a course to earn your first certificate.";
+translations.en.cert_awarded = "This certificate is awarded to";
+translations.en.cert_for = "for successfully completing";
+translations.en.cert_back = "Back to dashboard";
+translations.en.cert_missing = "Certificate not found";
+translations.en.cert_sign_role = "Academic director";
+translations.en.course_en_a2 = "English A2";
+translations.en.cert_date_en_a2 = "30 September 2026";
+translations.en.course_en_a2_progress = "Completed · 100%";
+translations.en.quiz_notify_title = "Registration successful!";
+translations.en.quiz_notify_text = "Take a free English level assessment and discover your approximate level.";
+translations.en.quiz_notify_btn = "Take Assessment";
+translations.en.quiz_close = "Close";
+translations.en.quiz_title = "English level assessment";
+translations.en.quiz_lead = "This is a short demo test. The result is not an official CEFR certificate.";
+translations.en.quiz_progress = "Question {current} of {total}";
+translations.en.quiz_previous = "Previous";
+translations.en.quiz_next = "Next";
+translations.en.quiz_submit = "Submit";
+translations.en.quiz_choose = "Choose an answer to continue.";
+translations.en.quiz_result_title = "Your assessment result";
+translations.en.quiz_score_label = "Score";
+translations.en.quiz_level_label = "Estimated level";
+translations.en.quiz_demo_note = "This is an approximate demo placement result. It is not an official CEFR certificate.";
+translations.en.quiz_recommend = "Recommended courses";
+translations.en.quiz_no_courses = "No matching course is available for this level yet.";
+translations.en.quiz_level_a1 = "A1 — Beginner";
+translations.en.quiz_level_a2 = "A2 — Elementary";
+translations.en.quiz_level_b1 = "B1 — Intermediate";
+translations.en.quiz_level_b2 = "B2 — Upper intermediate";
+translations.en.quiz_level_c1 = "C1 — Advanced";
 translations.en.notification_enrollment = "Enrollment successful";
 translations.en.notification_enrollment_message = "You have successfully enrolled in a course.";
 translations.en.notification_new_student = "New student enrolled";

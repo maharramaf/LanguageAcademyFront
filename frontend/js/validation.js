@@ -90,8 +90,7 @@ function initForms() {
       const remember = fieldOf(loginForm, "remember");
       if (remember?.checked) localStorage.setItem(rememberKey, fieldOf(loginForm, "email").value.trim());
       else localStorage.removeItem(rememberKey);
-      if (typeof window.mfNavigate === "function") window.mfNavigate("dashboard.html");
-      else window.location.href = "dashboard.html";
+      showSuccess(loginForm);
     });
     }
   }
@@ -113,7 +112,13 @@ function initForms() {
     if (!confirm) checks.push(setError(registerForm, "confirm", msg("err_confirm_required", "Confirm your password.")));
     else if (confirm !== password) checks.push(setError(registerForm, "confirm", msg("err_confirm_mismatch", "Passwords do not match.")));
     else checks.push(setError(registerForm, "confirm", ""));
-    if (checks.every(Boolean)) showSuccess(registerForm);
+    if (checks.every(Boolean)) {
+      showSuccess(registerForm);
+      const email = (fieldOf(registerForm, "email")?.value || "").trim();
+      if (typeof window.showAssessmentNotification === "function") window.showAssessmentNotification(email);
+      if (typeof window.mfNavigate === "function") window.mfNavigate("index.html");
+      else window.location.href = "index.html";
+    }
   });
   }
 

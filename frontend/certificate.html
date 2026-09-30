@@ -1,20 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script>
-(function () {
-  try {
-    var theme = localStorage.getItem("mf-theme");
-    if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
-    var language = localStorage.getItem("mf-language") || "az";
-    if (language === "az" || language === "ru" || language === "en") document.documentElement.lang = language;
-  } catch (e) {}
-})();
-</script>
+  <script src="js/preferences-boot.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog | MF Language Academy</title>
-  <meta name="description" content="English learning articles from MF Language Academy.">
+  <title>Certificate | MF Language Academy</title>
+  <meta name="description" content="Certificate of completion from MF Language Academy.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +31,7 @@
     </div></div>
     <div class="container header-inner">
       <a class="logo" href="index.html"><span class="logo-mark">MF</span><span class="logo-text"><strong>MF Language</strong><small>Academy</small></span></a>
-      <nav class="nav" aria-label="Primary" data-i18n-aria-label="aria_primary"><ul class="nav-list"><li><a href="index.html" data-i18n="nav_home">Home</a></li><li><a class="active" aria-current="page" href="about.html" data-i18n="nav_about">About</a></li><li><a href="courses.html" data-i18n="nav_courses">Courses</a></li><li><a href="teachers.html" data-i18n="nav_teachers">Teachers</a></li><li><a href="students.html" data-i18n="nav_students">Students</a></li><li><a href="contact.html" data-i18n="nav_contact">Contact</a></li></ul>
+      <nav class="nav" aria-label="Primary" data-i18n-aria-label="aria_primary"><ul class="nav-list"><li><a href="index.html" data-i18n="nav_home">Home</a></li><li><a href="about.html" data-i18n="nav_about">About</a></li><li><a href="courses.html" data-i18n="nav_courses">Courses</a></li><li><a href="teachers.html" data-i18n="nav_teachers">Teachers</a></li><li><a href="students.html" data-i18n="nav_students">Students</a></li><li><a href="contact.html" data-i18n="nav_contact">Contact</a></li></ul>
         <div class="nav-actions"><a class="btn btn-outline" href="login.html" data-i18n="nav_login">Login</a><a class="btn btn-secondary" href="register.html" data-i18n="nav_register">Register</a></div>
       </nav>
       <form class="header-search" action="search.html" method="get" role="search">
@@ -73,41 +64,33 @@
     <div class="nav-overlay"></div>
   </header>
   <main>
-    
-    <section id="page-start" class="page-hero"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb" data-i18n-aria-label="aria_breadcrumb"><a href="index.html" data-i18n="nav_home">Home</a><span>/</span><span data-i18n="blog_crumb">Blog</span></nav><h1 data-i18n="blog_title">Learning articles</h1></div></section>
-    <section id="blog-section" class="section" data-blog>
+    <section id="page-start" class="section cert-page">
       <div class="container">
-        <div class="toolbar">
-          <div class="filters">
-            <button class="filter-btn is-active" type="button" data-blog-filter="all" data-i18n="filter_all">All</button>
-            <button class="filter-btn" type="button" data-blog-filter="speaking" data-i18n="filter_speaking">Speaking</button>
-            <button class="filter-btn" type="button" data-blog-filter="ielts"><span data-i18n="x15enu7">IELTS</span></button>
-            <button class="filter-btn" type="button" data-blog-filter="vocabulary" data-i18n="filter_vocab">Vocabulary</button>
+        <div class="cert-toolbar">
+          <a href="dashboard.html#my-courses-section" data-i18n="cert_back">Back to dashboard</a>
+          <button class="btn btn-primary" type="button" data-cert-print data-i18n="cert_print">Print Certificate</button>
+        </div>
+        <div class="certificate-sheet" data-certificate hidden>
+          <p class="cert-brand">MF Language Academy</p>
+          <p class="cert-kicker" data-i18n="cert_title">Certificate of Completion</p>
+          <p class="cert-awarded" data-i18n="cert_awarded">This certificate is awarded to</p>
+          <p class="cert-student" data-cert="student"></p>
+          <p class="cert-for" data-i18n="cert_for">for successfully completing</p>
+          <p class="cert-course" data-cert="course"></p>
+          <div class="cert-meta">
+            <p><span data-i18n="cert_instructor">Instructor</span><strong data-cert="instructor"></strong></p>
+            <p><span data-i18n="cert_completed_on">Completed on</span><strong data-cert="date"></strong></p>
+            <p><span data-i18n="cert_id">Certificate ID</span><strong data-cert="id"></strong></p>
           </div>
-          <label class="search-field"><i class="bi bi-search"></i><input class="blog-search" type="search" placeholder="Search articles" data-i18n-placeholder="search_articles" aria-label="Search articles" data-i18n-aria-label="search_articles"></label>
+          <div class="cert-sign">
+            <span class="cert-line"></span>
+            <strong>Elena Marquez</strong>
+            <span data-i18n="cert_sign_role">Academic director</span>
+          </div>
         </div>
-        <div class="featured-article" data-article="how to improve english speaking tips" data-topic="speaking">
-          <img src="images/course-conversation.jpg" alt="Students practicing speaking" data-i18n-alt="x1i8rpzk">
-          <div><span class="eyebrow" data-i18n="blog_featured">Featured</span><h2 data-i18n="blog_speaking_title">How to improve English speaking</h2><p><span data-i18n="x15efpdv">Sarah Johnson · March 2, 2026 · 6 min read</span></p><p data-i18n="blog_speaking_text">Short daily speaking beats long silent study. Use one real situation each day.</p><a class="btn btn-primary" href="blog.html#speaking-article" data-i18n="btn_read_more">Read More</a></div>
-        </div>
-        <div class="blog-grid" style="margin-top:18px;">
-          <div class="blog-card" id="speaking-article" data-article="mistakes grammar" data-topic="speaking"><h3><span data-i18n="x1lq475l">10 common English mistakes</span></h3><p><span data-i18n="x16f9ljy">Elena Marquez · Feb 18, 2026 · 4 min read</span></p><a class="btn btn-sm btn-outline" href="blog.html" data-i18n="btn_read_more">Read More</a></div><div class="blog-card" id="" data-article="ielts exam plan" data-topic="ielts"><h3><span data-i18n="x1o6dtxm">How to prepare for IELTS</span></h3><p><span data-i18n="ximki1x">Daniel Okonkwo · Feb 9, 2026 · 8 min read</span></p><a class="btn btn-sm btn-outline" href="blog.html" data-i18n="btn_read_more">Read More</a></div><div class="blog-card" id="" data-article="vocabulary phrases" data-topic="vocabulary"><h3><span data-i18n="x1ni9pgn">Best ways to learn vocabulary</span></h3><p><span data-i18n="x1lfsum2">Aiko Tanaka · Jan 22, 2026 · 5 min read</span></p><a class="btn btn-sm btn-outline" href="blog.html" data-i18n="btn_read_more">Read More</a></div><div class="blog-card" id="" data-article="tips schedule" data-topic="speaking"><h3><span data-i18n="x10ipoqt">English learning tips for busy weeks</span></h3><p><span data-i18n="x1v7j5fg">James Whitfield · Jan 8, 2026 · 3 min read</span></p><a class="btn btn-sm btn-outline" href="blog.html" data-i18n="btn_read_more">Read More</a></div>
-        </div>
-        <p class="empty-state blog-empty" hidden><span data-i18n="xat4kgc">No articles match that search.</span></p>
-      </div>
-    </section>
-    <section id="academy-links-section" class="section">
-      <div class="container">
-        <div class="lms-links">
-          <a href="catalog.html"><span data-i18n="x10pxywp">Catalog</span></a>
-          <a href="learning-paths.html" data-i18n="paths_crumb">Learning paths</a>
-          <a href="events.html" data-i18n="events_crumb">Events</a>
-          <a href="blog.html" data-i18n="blog_crumb">Blog</a>
-          <a href="instructors.html" data-i18n="instructors_crumb">Instructors</a>
-          <a href="faq.html" data-i18n="faq_crumb">FAQ</a>
-          <a href="notifications.html" data-i18n="notes_title">Notifications</a>
-          <a href="dashboard.html" data-i18n="dash_home">Dashboard</a>
-          <a href="profile.html" data-i18n="dash_profile">Profile</a>
+        <div class="cert-empty" data-certificate-missing hidden>
+          <strong data-i18n="cert_missing">Certificate not found</strong>
+          <p><a href="dashboard.html#my-courses-section" data-i18n="cert_back">Back to dashboard</a></p>
         </div>
       </div>
     </section>

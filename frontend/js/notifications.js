@@ -22,6 +22,12 @@ const MF_NOTIFY_ICONS = {
 
 let mfNotifyItems = MF_NOTIFICATIONS.map(function (item) { return Object.assign({}, item); });
 let mfNotifyFilter = "all";
+let mfNotifyIssued = {};
+
+function readNotifyStore() {
+  try { return JSON.parse(localStorage.getItem(MF_NOTIFY_KEY) || "{}"); }
+  catch (error) { return {}; }
+}
 
 function mfNotifyText(key, fallback) {
   if (!key) return "";
@@ -30,13 +36,17 @@ function mfNotifyText(key, fallback) {
 }
 
 function loadNotificationState() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(MF_NOTIFY_KEY) || "{}");
-    const read = saved.read || {};
-    mfNotifyItems.forEach(function (item) {
-      if (read[String(item.id)]) item.read = true;
-    });
-  } catch (error) { /* keep seed state */ }
+  const saved = readNotifyStore();
+  const read = saved.read || {};
+  mfNotifyIssued = saved.issued || {};
+  (saved.extra || []).forEach(function (item) {
+    if (!mfNotifyItems.some(function (entry) { return String(entry.id) === String(item.id); })) {
+      mfNotifyItems.push(item);
+    }
+  });
+  mfNotifyItems.forEach(function (item) {
+    if (read[String(item.id)]) item.read = true;
+  });
 }
 
 function saveNotificationState() {
@@ -44,7 +54,22 @@ function saveNotificationState() {
   mfNotifyItems.forEach(function (item) {
     if (item.read) read[String(item.id)] = true;
   });
-  try { localStorage.setItem(MF_NOTIFY_KEY, JSON.stringify({ read: read })); } catch (error) { /* storage may be blocked */ }
+  const extra = mfNotifyItems.filter(function (item) { return item.extra; }).map(function (item) {
+    return {
+      id: item.id,
+      type: item.type,
+      titleKey: item.titleKey,
+      messageKey: item.messageKey,
+      courseKey: item.courseKey || "",
+      timeKey: item.timeKey,
+      href: item.href,
+      read: Boolean(item.read),
+      extra: true
+    };
+  });
+  try {
+    localStorage.setItem(MF_NOTIFY_KEY, JSON.stringify({ read: read, issued: mfNotifyIssued, extra: extra }));
+  } catch (error) { /* storage may be blocked */ }
 }
 
 function unreadNotificationCount() {
@@ -65,14 +90,16 @@ function updateNotificationBadge() {
 
 function notificationMarkup(item, compact) {
   const icon = MF_NOTIFY_ICONS[item.type] || "bi-bell";
-  const detail = item.detailKey ? mfNotifyText(item.detailKey, "") : "";
+  const course = item.courseKey ? mfNotifyText(item.courseKey, "") : (item.detailKey ? mfNotifyText(item.detailKey, "") : "");
+  let message = mfNotifyText(item.messageKey);
+  if (item.courseKey) message = message.replace(/\{courseName\}/g, course);
   return (
     '<button class="notify-item' + (item.read ? "" : " is-unread") + '" type="button" data-notify-id="' + item.id + '">' +
       '<i class="bi ' + icon + '" aria-hidden="true"></i>' +
       '<span>' +
         '<strong>' + mfNotifyText(item.titleKey) + '</strong>' +
-        (detail ? '<em>' + detail + '</em>' : '') +
-        (compact ? '' : '<small>' + mfNotifyText(item.messageKey) + '</small>') +
+        (course ? '<em>' + course + '</em>' : '') +
+        (compact ? '' : '<small>' + message + '</small>') +
         '<time>' + mfNotifyText(item.timeKey) + '</time>' +
       '</span>' +
     '</button>'
@@ -272,6 +299,12 @@ window.markNotificationAsRead = markNotificationAsRead;
 window.markAllNotificationsAsRead = markAllNotificationsAsRead;
 window.toggleNotificationPanel = toggleNotificationPanel;
 window.closeNotificationPanel = closeNotificationPanel;
+window.mfNotifyIssued = function () { return mfNotifyIssued; };
+window.mfIssueCertificateNotice = function (id) {
+  if (mfNotifyIssued[id]) return false;
+  mfNotifyIssued[id] = true;
+  return true;
+};
 
 document.addEventListener("DOMContentLoaded", function () {
   initNotifications();

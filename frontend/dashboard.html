@@ -91,7 +91,7 @@
             <div class="dash-stat"><span data-i18n="dash_my_courses_stat">My courses</span><strong>6</strong></div>
             <div class="dash-stat"><span data-i18n="dash_completed">Completed</span><strong>2</strong></div>
             <div class="dash-stat"><span data-i18n="dash_progress">In progress</span><strong>3</strong></div>
-            <div class="dash-stat"><span data-i18n="dash_certificates">Certificates</span><strong>2</strong></div>
+            <div class="dash-stat"><span data-i18n="dash_certificates">Certificates</span><strong data-certificate-count>1</strong></div>
           </div>
           <div class="panel" style="margin-top:16px;">
             <h3><span data-i18n="xnpedsn">Continue learning</span></h3>
@@ -152,14 +152,14 @@
 
         <section id="my-courses-section" class="dash-view">
           <div class="mini-grid">
+            <div class="mini-course" data-course-slug="english-a2" data-course-progress="100"><img src="images/course-beginner.jpg" alt="English A2 materials" data-i18n-alt="course_en_a2"><div><h3 data-i18n="course_en_a2">English A2</h3><p data-i18n="course_en_a2_progress">Completed · 100%</p><div class="progress" aria-label="100 percent complete"><span style="width:100%"></span></div></div></div>
             <div class="mini-course"><img src="images/course-ielts.jpg" alt="IELTS class materials" data-i18n-alt="xqqoas3"><div><h3 data-i18n="course_ielts">IELTS Preparation</h3><p><span data-i18n="xzjqmvf">Evening · 62% through the plan</span></p><div class="progress"><span style="width:62%"></span></div></div></div>
             <div class="mini-course"><img src="images/course-beginner.jpg" alt="Beginner English materials" data-i18n-alt="x1jp4hf2"><div><h3 data-i18n="course_en_beginner">English Beginner</h3><p><span data-i18n="xeiwfv3">Morning · 40% through the plan</span></p><div class="progress"><span style="width:40%"></span></div></div></div>
             <div class="mini-course"><img src="images/course-german.jpg" alt="German class materials" data-i18n-alt="x1jh1n9m"><div><h3 data-i18n="course_german">German Language</h3><p><span data-i18n="xozj4ba">Weekend · 28% through the plan</span></p><div class="progress"><span style="width:28%"></span></div></div></div>
           </div>
           <section class="panel" style="margin-top:16px;">
-            <h3 data-i18n="dash_certificates">Certificates</h3>
-            <p><span data-i18n="x1qtswu5">Spanish Language · January 2026</span></p>
-            <p><span data-i18n="x1nwrkcq">Conversation Workshop · November 2025</span></p>
+            <h3 data-i18n="cert_my">My Certificates</h3>
+            <div data-certificate-list></div>
           </section>
         </section>
 
@@ -284,6 +284,9 @@
   <script src="js/i18n-extra.js" defer></script>
   <script src="js/preferences.js" defer></script>
   <script src="js/notifications.js" defer></script>
+  <script src="js/certificates.js" defer></script>
+  <script src="js/demoQuizQuestions.js" defer></script>
+  <script src="js/demoQuiz.js" defer></script>
   <script src="js/pages.js" defer></script>
   <script src="js/router.js" defer></script>
 </body>

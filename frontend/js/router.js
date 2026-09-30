@@ -193,6 +193,8 @@
       if (typeof initCourseActions === "function") initCourseActions();
       if (typeof applyTheme === "function") applyTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light");
       if (typeof window.initNotifications === "function") window.initNotifications();
+      if (typeof window.initCertificates === "function") window.initCertificates();
+      if (typeof window.initDemoAssessment === "function") window.initDemoAssessment();
       if (typeof window.applyTranslations === "function") window.applyTranslations();
       if (pageFile(displayedUrl()) === "course-details.html" && typeof renderCourseDetail === "function") renderCourseDetail();
       showHash();
@@ -210,6 +212,7 @@
     });
     if (typeof initSearchResults === "function") initSearchResults();
     if (pageFile(displayedUrl()) === "course-details.html" && typeof renderCourseDetail === "function") renderCourseDetail();
+    if (pageFile(displayedUrl()) === "certificate.html" && typeof renderCertificatePage === "function") renderCertificatePage();
     markNav();
   }
 
