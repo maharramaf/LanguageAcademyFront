@@ -1,8 +1,7 @@
 function formatPrice(amount) {
   const azn = Number(amount);
   if (!Number.isFinite(azn)) return "";
-  const usd = Math.round(azn / 1.7);
-  return "₼" + azn.toFixed(0) + " ($" + usd + ")";
+  return "₼" + azn.toFixed(0);
 }
 
 window.formatPrice = formatPrice;
@@ -553,31 +552,69 @@ function initDashboard() {
   const sidebar = document.querySelector(".dash-sidebar");
   const sideToggle = document.querySelector(".side-toggle") || document.getElementById("sideToggle");
   const sideOverlay = document.querySelector(".side-overlay");
+  if (!document.querySelector(".dash")) return;
 
   function setSidebar(open) {
     sidebar?.classList.toggle("is-open", open);
     sideOverlay?.classList.toggle("is-open", open);
   }
 
-  sideToggle?.addEventListener("click", function () {
-    setSidebar(!sidebar.classList.contains("is-open"));
-  });
-  sideOverlay?.addEventListener("click", function () { setSidebar(false); });
+  function showDashView(id, titleText) {
+    if (!id) return;
+    document.querySelectorAll(".dash-view").forEach(function (view) {
+      view.classList.toggle("is-active", view.id === id);
+    });
+    document.querySelectorAll("[data-view-target]").forEach(function (item) {
+      item.classList.toggle("is-active", item.getAttribute("data-view-target") === id);
+    });
+    const title = document.querySelector(".dash-title") || document.getElementById("dashTitle");
+    if (title && titleText) title.textContent = titleText;
+    if (typeof window.initTeacherPlan === "function") window.initTeacherPlan();
+    if (typeof window.initRewards === "function") window.initRewards();
+    if (typeof window.initMembership === "function") window.initMembership();
+    setSidebar(false);
+  }
+
+  if (sideToggle && sideToggle.dataset.sideBound !== "1") {
+    sideToggle.dataset.sideBound = "1";
+    sideToggle.addEventListener("click", function () {
+      setSidebar(!sidebar.classList.contains("is-open"));
+    });
+  }
+  if (sideOverlay && sideOverlay.dataset.sideBound !== "1") {
+    sideOverlay.dataset.sideBound = "1";
+    sideOverlay.addEventListener("click", function () { setSidebar(false); });
+  }
 
   document.querySelectorAll("[data-view-target]").forEach(function (button) {
+    if (button.dataset.viewBound === "1") return;
+    button.dataset.viewBound = "1";
     button.addEventListener("click", function () {
       const id = button.dataset.viewTarget;
-      document.querySelectorAll(".dash-view").forEach(function (view) {
-        view.classList.toggle("is-active", view.id === id);
-      });
-      document.querySelectorAll("[data-view-target]").forEach(function (item) {
-        item.classList.toggle("is-active", item === button);
-      });
-      const title = document.querySelector(".dash-title") || document.getElementById("dashTitle");
-      if (title) title.textContent = button.dataset.title || "Dashboard";
-      setSidebar(false);
+      const label = button.dataset.title || button.textContent.trim() || "Dashboard";
+      showDashView(id, label);
     });
   });
+
+  if (typeof window.initTeacherPlan === "function") window.initTeacherPlan();
+  if (typeof window.initRewards === "function") window.initRewards();
+
+  function applyDashHash() {
+    const id = (window.location.hash || "").replace(/^#/, "");
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target || !target.classList.contains("dash-view")) return;
+    const button = document.querySelector('[data-view-target="' + id + '"]');
+    const label = button
+      ? (button.dataset.title || button.textContent.trim())
+      : id;
+    showDashView(id, label);
+  }
+  applyDashHash();
+  if (!initDashboard.hashBound) {
+    initDashboard.hashBound = true;
+    window.addEventListener("hashchange", applyDashHash);
+  }
 
   const studentFilter = document.querySelector(".student-filter") || document.getElementById("studentFilter");
   studentFilter?.addEventListener("input", function () {

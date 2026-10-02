@@ -17,9 +17,30 @@ function payText(key, fallback) {
 
 function checkoutPlan() {
   const params = new URLSearchParams(window.location.search);
-  if (params.get("plan") === "premium") return "premium";
-  if (window.location.hash.indexOf("plan=premium") !== -1) return "premium";
+  let plan = params.get("plan") || "";
+  if (!plan && window.location.hash.indexOf("plan=") !== -1) {
+    plan = new URLSearchParams(window.location.hash.slice(window.location.hash.indexOf("?") + 1)).get("plan") || "";
+    if (!plan) {
+      const match = window.location.hash.match(/plan=([a-z0-9-]+)/i);
+      if (match) plan = match[1];
+    }
+  }
+  if (plan === "premium" || plan === "teacher-standard" || plan === "teacher-premium") return plan;
   return "";
+}
+
+function checkoutSelection() {
+  const plan = checkoutPlan();
+  if (plan === "premium") {
+    return { key: "premium", plan: true, course: { title: payText("plan_premium", "Premium"), level: payText("plan_monthly", "Monthly"), duration: payText("plan_membership", "Membership"), price: 49, image: "images/course-ielts.jpg" } };
+  }
+  if (plan === "teacher-standard") {
+    return { key: "teacher-standard", plan: true, teacherPlan: "standard", course: { title: payText("tp_standard", "Standard Teacher"), level: payText("plan_monthly", "Monthly"), duration: payText("tp_title", "Teacher Subscription"), price: 19, image: "images/course-business.jpg" } };
+  }
+  if (plan === "teacher-premium") {
+    return { key: "teacher-premium", plan: true, teacherPlan: "premium", course: { title: payText("tp_premium", "Premium Teacher"), level: payText("plan_monthly", "Monthly"), duration: payText("tp_title", "Teacher Subscription"), price: 39, image: "images/course-ielts.jpg" } };
+  }
+  return checkoutCourse();
 }
 
 function checkoutCourse() {
@@ -92,14 +113,17 @@ function validExpiry(value) {
 function renderCheckout() {
   const root = document.querySelector("[data-checkout]");
   if (!root || root.dataset.payReady === "1") return;
-  const selected = checkoutPlan() === "premium"
-    ? { key: "premium", plan: true, course: { title: payText("plan_premium", "Premium"), level: payText("plan_monthly", "Monthly"), duration: payText("plan_membership", "Membership"), price: 49, image: "images/course-ielts.jpg" } }
-    : checkoutCourse();
+  const selected = checkoutSelection();
   if (!selected.course) return;
   root.dataset.payReady = "1";
   const course = selected.course;
   const coupon = selected.plan ? null : checkoutCoupon(course);
   const teacher = MF_CHECKOUT_TEACHERS[selected.key] || "MF Language Academy";
+  const summaryTitle = selected.teacherPlan
+    ? course.title
+    : selected.plan
+      ? payText("plan_premium", "Premium")
+      : payLabel(course.title);
   root.innerHTML =
     '<header class="checkout-head"><h1>' + payText("pay_title", "Checkout") + '</h1><p>' + payText("pay_secure", "This is a demo payment.") + '</p></header>' +
     '<div class="checkout-grid">' +
@@ -130,7 +154,7 @@ function renderCheckout() {
         '<img src="' + course.image + '" alt="">' +
         '<div class="pay-summary-body">' +
           '<p class="eyebrow">' + payText(selected.plan ? "plan_summary" : "pay_summary", selected.plan ? "Membership" : "Course summary") + '</p>' +
-          '<h2>' + (selected.plan ? payText("plan_premium", "Premium") : payLabel(course.title)) + '</h2>' +
+          '<h2>' + summaryTitle + '</h2>' +
           '<ul class="pay-lines">' +
             '<li><span>' + payText("pay_instructor", "Instructor") + '</span><strong>' + teacher + '</strong></li>' +
             '<li><span>' + payLabel(course.level) + '</span><strong>' + payLabel(course.duration) + '</strong></li>' +
@@ -196,7 +220,11 @@ function showPayResult(form, selected, declined) {
   const course = selected.course;
   const when = new Date().toLocaleDateString(document.documentElement.lang || "az");
   const order = "MF-" + Date.now().toString(36).toUpperCase();
-  if (!declined && selected.plan && typeof window.mfActivatePremium === "function") window.mfActivatePremium();
+  if (!declined && selected.teacherPlan && typeof window.mfActivateTeacherPlan === "function") {
+    window.mfActivateTeacherPlan(selected.teacherPlan);
+  } else if (!declined && selected.plan && typeof window.mfActivatePremium === "function") {
+    window.mfActivatePremium();
+  }
   if (!declined && !selected.plan && typeof window.mfEnrollCourse === "function") window.mfEnrollCourse(selected.key);
   if (declined) {
     box.innerHTML =
@@ -207,17 +235,19 @@ function showPayResult(form, selected, declined) {
     box.querySelector("[data-pay-retry]").addEventListener("click", function () { box.hidden = true; });
     return;
   }
+  const successTitle = selected.teacherPlan ? "tp_note_upgraded" : selected.plan ? "plan_success" : "pay_success_title";
+  const successLead = selected.teacherPlan ? "tp_note_upgraded_text" : selected.plan ? "plan_success_lead" : "pay_success_lead";
+  const manageHref = selected.teacherPlan ? "dashboard.html#teacher-plan-section" : selected.plan ? "dashboard.html#plans-section" : ("course-details.html?course=" + selected.key);
+  const manageLabel = selected.plan ? payText("plan_manage", "Manage Plan") : payText("pay_start", "Start learning");
   box.innerHTML =
-    '<h2>' + payText(selected.plan ? "plan_success" : "pay_success_title", "Payment completed successfully!") + '</h2>' +
-    '<p>' + payText(selected.plan ? "plan_success_lead" : "pay_success_lead", selected.plan ? "Your Premium membership is now active." : "Course enrollment completed successfully.") + '</p>' +
-    '<p><strong>' + (selected.plan ? payText("plan_premium", "Premium") : payLabel(course.title)) + '</strong></p>' +
+    '<h2>' + payText(successTitle, "Payment completed successfully!") + '</h2>' +
+    '<p>' + payText(successLead, selected.plan ? "Your plan is now active." : "Course enrollment completed successfully.") + '</p>' +
+    '<p><strong>' + (selected.plan ? course.title : payLabel(course.title)) + '</strong></p>' +
     '<p>' + payText("pay_amount", "Amount") + ': ' + (selected.coupon ? payMoney(selected.coupon.final) : (selected.plan || courseIsPaid(course) ? payMoney(course.price) : payText("plan_free_price", "Free"))) + '</p>' +
     '<p>' + payText("pay_order", "Order number") + ': ' + order + '</p>' +
     '<p>' + payText("pay_date", "Date") + ': ' + when + '</p>' +
     '<div class="cert-card-actions">' +
-      (selected.plan
-        ? '<a class="btn btn-primary" href="dashboard.html#plans-section">' + payText("plan_manage", "Manage Plan") + '</a>'
-        : '<a class="btn btn-primary" href="course-details.html?course=' + selected.key + '">' + payText("pay_start", "Start learning") + '</a>') +
+      '<a class="btn btn-primary" href="' + manageHref + '">' + manageLabel + '</a>' +
       '<a class="btn btn-outline" href="dashboard.html#my-courses-section">' + payText("pay_courses", "Go to my courses") + '</a>' +
     '</div>';
   box.hidden = false;
@@ -246,7 +276,7 @@ function refreshCheckoutLanguage() {
 function initCheckout() {
   const root = document.querySelector("[data-checkout]");
   if (!root) return;
-  const selected = checkoutPlan() === "premium" ? { key: "premium" } : checkoutCourse();
+  const selected = checkoutSelection();
   if (root.dataset.payCourse === selected.key && root.dataset.payReady === "1") return;
   root.dataset.payReady = "";
   root.dataset.payCourse = selected.key;

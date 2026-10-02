@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script>
-(function () {
-  try {
-    var theme = localStorage.getItem("mf-theme");
-    if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
-    var language = localStorage.getItem("mf-language") || "az";
-    if (language === "az" || language === "ru" || language === "en") document.documentElement.lang = language;
-  } catch (e) {}
-})();
-</script>
+<script src="js/preferences-boot.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard | MF Language Academy</title>
@@ -32,6 +23,9 @@
         <button class="is-active" type="button" data-view-target="dashboard-section" data-title="Dashboard" data-i18n-title="dash_home" data-i18n="dash_home"><i class="bi bi-grid"></i> Dashboard</button>
         <button type="button" data-view-target="my-courses-section" data-title="My Courses" data-i18n-title="dash_my_courses" data-i18n="dash_my_courses"><i class="bi bi-book"></i> My Courses</button>
         <button type="button" data-view-target="plans-section" data-title="Plans" data-i18n-title="plan_nav" data-i18n="plan_nav"><i class="bi bi-stars"></i> Plans</button>
+        <button type="button" data-view-target="teacher-plan-section" data-title="Teacher Subscription" data-i18n-title="tp_title" data-i18n="tp_title"><i class="bi bi-person-badge"></i> Teacher Subscription</button>
+        <button type="button" data-view-target="rewards-section" data-title="Rewards" data-i18n-title="reward_title" data-i18n="reward_title"><i class="bi bi-trophy"></i> Rewards</button>
+        <button type="button" data-view-target="earnings-section" data-title="Earnings" data-i18n-title="tp_earnings" data-i18n="tp_earnings"><i class="bi bi-cash-coin"></i> Earnings</button>
         <button type="button" data-view-target="course-catalog-section" data-title="Courses" data-i18n-title="nav_courses" data-i18n="nav_courses"><i class="bi bi-journal-bookmark"></i> Courses</button>
         <button type="button" data-view-target="teachers-section" data-title="Teachers" data-i18n-title="nav_teachers" data-i18n="nav_teachers"><i class="bi bi-person-workspace"></i> Teachers</button>
         <button type="button" data-view-target="students-section" data-title="Students" data-i18n-title="nav_students" data-i18n="nav_students"><i class="bi bi-people"></i> Students</button>
@@ -86,6 +80,21 @@
             <a class="btn btn-light" href="courses.html" data-i18n="btn_browse_catalog">Browse catalog</a>
           </div>
           <div data-student-membership></div>
+          <section class="panel" style="margin-top:16px;">
+            <p class="eyebrow" data-i18n="reward_title">Rewards</p>
+            <h3 data-i18n="reward_lead">Earn XP and MF Points as you learn.</h3>
+            <div data-student-rewards></div>
+            <p style="margin-top:12px;"><button class="btn btn-outline btn-sm" type="button" data-view-target="rewards-section" data-title="Rewards" data-i18n-title="reward_title" data-i18n="reward_title">Rewards</button></p>
+          </section>
+          <section class="panel" style="margin-top:16px;">
+            <p class="eyebrow" data-i18n="tp_title">Teacher Subscription</p>
+            <h3 data-i18n="tp_current">Current Teacher Plan</h3>
+            <div data-teacher-membership></div>
+            <p style="margin-top:12px; display:flex; flex-wrap:wrap; gap:8px;">
+              <button class="btn btn-outline btn-sm" type="button" data-view-target="teacher-plan-section" data-title="Teacher Subscription" data-i18n-title="tp_title" data-i18n="tp_title">Teacher Subscription</button>
+              <button class="btn btn-outline btn-sm" type="button" data-view-target="earnings-section" data-title="Earnings" data-i18n-title="tp_earnings" data-i18n="tp_earnings">Earnings</button>
+            </p>
+          </section>
           <div class="dash-stats">
             <div class="dash-stat"><span data-i18n="nav_students">Students</span><strong>1,000+</strong></div>
             <div class="dash-stat"><span data-i18n="dash_active_courses">Active courses</span><strong>20</strong></div>
@@ -184,11 +193,11 @@
                 <thead><tr><th><span data-i18n="xxh6z3v">Course</span></th><th data-i18n="course_type">Course type</th><th data-i18n="label_level">Level</th><th data-i18n="nav_students">Students</th><th data-i18n="label_price">Price</th></tr></thead>
                 <tbody>
                   <tr><td data-label="Course" data-i18n-label="xxh6z3v" data-i18n="course_en_beginner">English Beginner</td><td data-label="Type" data-i18n-label="course_type" data-course-type="demo">Demo</td><td data-label="Level" data-i18n-label="label_level" data-i18n="level_beginner">Beginner</td><td data-label="Students" data-i18n-label="nav_students">12</td><td data-label="Price" data-i18n-label="label_price">Free</td></tr>
-                  <tr><td data-label="Course" data-i18n-label="xxh6z3v" data-i18n="course_en_intermediate">English Intermediate</td><td data-label="Type" data-i18n-label="course_type" data-course-type="premium">Premium</td><td data-label="Level" data-i18n-label="label_level" data-i18n="level_intermediate">Intermediate</td><td data-label="Students" data-i18n-label="nav_students">10</td><td data-label="Price" data-i18n-label="label_price">₼119 ($70)</td></tr>
-                  <tr><td data-label="Course" data-i18n-label="xxh6z3v" data-i18n="course_ielts">IELTS Preparation</td><td data-label="Type" data-i18n-label="course_type" data-course-type="premium">Premium</td><td data-label="Level" data-i18n-label="label_level" data-i18n="level_upper">Upper intermediate</td><td data-label="Students" data-i18n-label="nav_students">18</td><td data-label="Price" data-i18n-label="label_price">₼119 ($70)</td></tr>
-                  <tr><td data-label="Course" data-i18n-label="xxh6z3v" data-i18n="course_business">Business English</td><td data-label="Type" data-i18n-label="course_type" data-course-type="standard">Standard</td><td data-label="Level" data-i18n-label="label_level" data-i18n="level_intermediate">Intermediate</td><td data-label="Students" data-i18n-label="nav_students">9</td><td data-label="Price" data-i18n-label="label_price">₼59 ($35)</td></tr>
-                  <tr><td data-label="Course" data-i18n-label="xxh6z3v" data-i18n="course_german">German Language</td><td data-label="Type" data-i18n-label="course_type" data-course-type="standard">Standard</td><td data-label="Level" data-i18n-label="label_level" data-i18n="level_beginner">Beginner</td><td data-label="Students" data-i18n-label="nav_students">11</td><td data-label="Price" data-i18n-label="label_price">₼59 ($35)</td></tr>
-                  <tr><td data-label="Course" data-i18n-label="xxh6z3v" data-i18n="course_spanish">Spanish Language</td><td data-label="Type" data-i18n-label="course_type" data-course-type="standard">Standard</td><td data-label="Level" data-i18n-label="label_level" data-i18n="level_beginner">Beginner</td><td data-label="Students" data-i18n-label="nav_students">14</td><td data-label="Price" data-i18n-label="label_price">₼59 ($35)</td></tr>
+                  <tr><td data-label="Course" data-i18n-label="xxh6z3v" data-i18n="course_en_intermediate">English Intermediate</td><td data-label="Type" data-i18n-label="course_type" data-course-type="premium">Premium</td><td data-label="Level" data-i18n-label="label_level" data-i18n="level_intermediate">Intermediate</td><td data-label="Students" data-i18n-label="nav_students">10</td><td data-label="Price" data-i18n-label="label_price">₼119</td></tr>
+                  <tr><td data-label="Course" data-i18n-label="xxh6z3v" data-i18n="course_ielts">IELTS Preparation</td><td data-label="Type" data-i18n-label="course_type" data-course-type="premium">Premium</td><td data-label="Level" data-i18n-label="label_level" data-i18n="level_upper">Upper intermediate</td><td data-label="Students" data-i18n-label="nav_students">18</td><td data-label="Price" data-i18n-label="label_price">₼119</td></tr>
+                  <tr><td data-label="Course" data-i18n-label="xxh6z3v" data-i18n="course_business">Business English</td><td data-label="Type" data-i18n-label="course_type" data-course-type="standard">Standard</td><td data-label="Level" data-i18n-label="label_level" data-i18n="level_intermediate">Intermediate</td><td data-label="Students" data-i18n-label="nav_students">9</td><td data-label="Price" data-i18n-label="label_price">₼59</td></tr>
+                  <tr><td data-label="Course" data-i18n-label="xxh6z3v" data-i18n="course_german">German Language</td><td data-label="Type" data-i18n-label="course_type" data-course-type="standard">Standard</td><td data-label="Level" data-i18n-label="label_level" data-i18n="level_beginner">Beginner</td><td data-label="Students" data-i18n-label="nav_students">11</td><td data-label="Price" data-i18n-label="label_price">₼59</td></tr>
+                  <tr><td data-label="Course" data-i18n-label="xxh6z3v" data-i18n="course_spanish">Spanish Language</td><td data-label="Type" data-i18n-label="course_type" data-course-type="standard">Standard</td><td data-label="Level" data-i18n-label="label_level" data-i18n="level_beginner">Beginner</td><td data-label="Students" data-i18n-label="nav_students">14</td><td data-label="Price" data-i18n-label="label_price">₼59</td></tr>
                 </tbody>
               </table>
             </div>
@@ -293,6 +302,18 @@
           <div data-plans></div>
         </section>
 
+        <section id="teacher-plan-section" class="dash-view">
+          <div data-teacher-plans></div>
+        </section>
+
+        <section id="rewards-section" class="dash-view">
+          <div data-rewards-page></div>
+        </section>
+
+        <section id="earnings-section" class="dash-view">
+          <div data-teacher-membership></div>
+        </section>
+
         <section id="settings-section" class="dash-view">
           <section class="panel" style="max-width:640px;">
             <h3><span data-i18n="x1ohpuc8">Preferences</span></h3>
@@ -317,12 +338,12 @@
   <script src="js/preferences.js" defer></script>
   <script src="js/notifications.js" defer></script>
   <script src="js/membership.js" defer></script>
+  <script src="js/teacher-plan.js" defer></script>
+  <script src="js/rewards.js" defer></script>
   <script src="js/teacher-applications.js" defer></script>
   <script src="js/certificates.js" defer></script>
   <script src="js/demoQuizQuestions.js" defer></script>
   <script src="js/demoQuiz.js" defer></script>
   <script src="js/checkout.js" defer></script>
-  <script src="js/pages.js" defer></script>
-  <script src="js/router.js" defer></script>
 </body>
 </html>

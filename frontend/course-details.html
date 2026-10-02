@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script>
-(function () {
-  try {
-    var theme = localStorage.getItem("mf-theme");
-    if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
-    var language = localStorage.getItem("mf-language") || "az";
-    if (language === "az" || language === "ru" || language === "en") document.documentElement.lang = language;
-  } catch (e) {}
-})();
-</script>
+<script src="js/preferences-boot.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>English Beginner | MF Language Academy</title>
@@ -127,7 +118,7 @@
             </ul>
           </div>
           <aside class="side-card course-purchase">
-            <p class="price-lg" data-bind="price">₼49 ($29)</p>
+            <p class="price-lg" data-bind="price">₼49</p>
             <ul class="purchase-list">
               <li><i class="bi bi-check2"></i> <span data-i18n="xxsztm">32 Lessons</span></li>
               <li><i class="bi bi-check2"></i> <span data-i18n="x1l53y7r">8 Weeks</span></li>
@@ -425,35 +416,35 @@
         </div>
         <div class="course-grid">
           <div class="course-card">
-            <div class="course-media"><img src="images/course-intermediate.jpg" alt="English A2 study materials" data-i18n-alt="xkkoh1y" width="1000" height="700"><span class="badge" data-i18n="level_intermediate">Intermediate</span></div>
+            <a class="course-media" href="course-details.html?course=english-intermediate"><img src="images/course-intermediate.jpg" alt="English A2 study materials" data-i18n-alt="xkkoh1y" width="1000" height="700"><span class="badge" data-i18n="level_intermediate">Intermediate</span></a>
             <div class="course-body">
-              <h3 data-i18n="course_a2">English A2</h3>
+              <h3><a href="course-details.html?course=english-intermediate" data-i18n="course_a2">English A2</a></h3>
               <p data-i18n="course_a2_text">Longer conversations and clearer everyday writing.</p>
-              <div class="course-foot"><span class="price">₼210 ($124)<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=english-intermediate" data-i18n="btn_view_course">View Course</a></div>
+              <div class="course-foot"><span class="price">₼119<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=english-intermediate" data-i18n="btn_view_course">View Course</a></div>
             </div>
           </div>
           <div class="course-card">
-            <div class="course-media"><img src="images/course-ielts.jpg" alt="IELTS preparation notes" data-i18n-alt="xalvolj" width="1000" height="700"><span class="badge" data-i18n="badge_exam">Exam</span></div>
+            <a class="course-media" href="course-details.html?course=ielts"><img src="images/course-ielts.jpg" alt="IELTS preparation notes" data-i18n-alt="xalvolj" width="1000" height="700"><span class="badge" data-i18n="badge_exam">Exam</span></a>
             <div class="course-body">
-              <h3 data-i18n="course_ielts">IELTS Preparation</h3>
+              <h3><a href="course-details.html?course=ielts" data-i18n="course_ielts">IELTS Preparation</a></h3>
               <p data-i18n="course_ielts_card">Timed practice for listening, reading, writing, and speaking.</p>
-              <div class="course-foot"><span class="price">₼260 ($153)<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=ielts" data-i18n="btn_view_course">View Course</a></div>
+              <div class="course-foot"><span class="price">₼119<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=ielts" data-i18n="btn_view_course">View Course</a></div>
             </div>
           </div>
           <div class="course-card">
-            <div class="course-media"><img src="images/course-conversation.jpg" alt="Students speaking together" data-i18n-alt="xqod2ci" width="1000" height="700"><span class="badge" data-i18n="filter_speaking">Speaking</span></div>
+            <a class="course-media" href="course-details.html?course=conversation"><img src="images/course-conversation.jpg" alt="Students speaking together" data-i18n-alt="xqod2ci" width="1000" height="700"><span class="badge" data-i18n="filter_speaking">Speaking</span></a>
             <div class="course-body">
-              <h3 data-i18n="course_speaking">English Speaking</h3>
+              <h3><a href="course-details.html?course=conversation" data-i18n="course_speaking">English Speaking</a></h3>
               <p data-i18n="course_speaking_text">A speaking-first workshop for longer turns.</p>
-              <div class="course-foot"><span class="price">₼150 ($88)<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=conversation" data-i18n="btn_view_course">View Course</a></div>
+              <div class="course-foot"><span class="price"><span class="plan-free-price">Free</span><small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=conversation" data-i18n="btn_view_course">View Course</a></div>
             </div>
           </div>
           <div class="course-card">
-            <div class="course-media"><img src="images/course-business.jpg" alt="Business English workshop" data-i18n-alt="x4jtxg7" width="1000" height="700"><span class="badge"><span data-i18n="xh6tw7b">Professional</span></span></div>
+            <a class="course-media" href="course-details.html?course=business-english"><img src="images/course-business.jpg" alt="Business English workshop" data-i18n-alt="x4jtxg7" width="1000" height="700"><span class="badge"><span data-i18n="xh6tw7b">Professional</span></span></a>
             <div class="course-body">
-              <h3 data-i18n="course_business">Business English</h3>
+              <h3><a href="course-details.html?course=business-english" data-i18n="course_business">Business English</a></h3>
               <p><span data-i18n="xdsow6e">Meetings, email, and short presentations.</span></p>
-              <div class="course-foot"><span class="price">₼240 ($141)<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=business-english" data-i18n="btn_view_course">View Course</a></div>
+              <div class="course-foot"><span class="price">₼59<small data-i18n="price_per_course">per course</small></span><a class="btn btn-sm btn-primary" href="course-details.html?course=business-english" data-i18n="btn_view_course">View Course</a></div>
             </div>
           </div>
         </div>
@@ -625,7 +616,5 @@
   <script src="js/demoQuizQuestions.js" defer></script>
   <script src="js/demoQuiz.js" defer></script>
   <script src="js/checkout.js" defer></script>
-  <script src="js/pages.js" defer></script>
-  <script src="js/router.js" defer></script>
 </body>
 </html>

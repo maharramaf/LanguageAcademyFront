@@ -269,11 +269,17 @@ function paintCardPrice(card, slug) {
   hint.textContent = planText(hintKey, hintKey);
   const button = card.querySelector(".course-foot a");
   if (button) {
-    const enrolled = mfIsEnrolled(slug);
-    const key = access === "demo" ? "course_start_demo" : enrolled ? "learn_continue" : "btn_enroll";
-    const fallback = access === "demo" ? "Start Demo" : enrolled ? "Continue learning" : "Enroll Now";
-    button.setAttribute("data-i18n", key);
-    button.textContent = planText(key, fallback);
+    if (card.closest("#related-courses-section")) {
+      button.setAttribute("href", "course-details.html?course=" + encodeURIComponent(slug));
+      button.setAttribute("data-i18n", "btn_view_course");
+      button.textContent = planText("btn_view_course", "View Course");
+    } else {
+      const enrolled = mfIsEnrolled(slug);
+      const key = access === "demo" ? "course_start_demo" : enrolled ? "learn_continue" : "btn_enroll";
+      const fallback = access === "demo" ? "Start Demo" : enrolled ? "Continue learning" : "Enroll Now";
+      button.setAttribute("data-i18n", key);
+      button.textContent = planText(key, fallback);
+    }
   }
 }
 
@@ -287,11 +293,11 @@ function paintCourseBadges() {
     const media = card.querySelector(".course-media") || card;
     let badge = card.querySelector(".plan-badge");
     if (!badge) {
-      badge = document.createElement("a");
+      badge = document.createElement(media.tagName === "A" ? "span" : "a");
       badge.className = "plan-badge";
       media.appendChild(badge);
     }
-    badge.setAttribute("href", link.getAttribute("href"));
+    if (badge.tagName === "A") badge.setAttribute("href", link.getAttribute("href"));
     badge.classList.toggle("is-premium", access === "premium");
     badge.classList.toggle("is-standard", access === "standard");
     badge.classList.toggle("is-demo", access === "demo");

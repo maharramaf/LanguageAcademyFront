@@ -823,6 +823,110 @@ const translations = {
     dash_demo_progress: "Demo tərəqqi",
     dash_continue_demo: "Demoya davam et",
     learn_l5: "İkinci demo dərs",
+    learn_l6: "Ev tapşırığı",
+    learn_kind_homework: "Ev tapşırığı",
+    learn_homework_text: "Həftəniz haqqında Present Perfect ilə beş cümlə yazın və tapşırığı göndərin.",
+    learn_homework_answer: "Cavabınız",
+    learn_homework_submit: "Tapşırığı göndər",
+    learn_homework_done: "Bu önizləmə üçün ev tapşırığı tamamlandı.",
+    video_my_notes: "Qeydlərim",
+    video_add_note: "Qeyd əlavə et",
+    video_edit_note: "Redaktə et",
+    video_delete_note: "Sil",
+    video_note_placeholder: "Bu an üçün qeyd yazın…",
+    video_notes_empty: "Hələ qeyd yoxdur. Dayandırın və vaxt möhürü ilə qeyd əlavə edin.",
+    video_bookmarks: "Əlfəcinlər",
+    video_add_bookmark: "Əlfəcin əlavə et",
+    video_remove_bookmark: "Əlfəcini sil",
+    video_bookmarks_empty: "Hələ əlfəcin yoxdur.",
+    video_resume_at: "Buradan davam et",
+    video_play: "Oynat",
+    video_seek: "Axtarış",
+    video_volume: "Səs",
+    video_fullscreen: "Tam ekran",
+    video_duration_label: "Müddət",
+    video_course_progress: "Kurs tərəqqisi",
+    tp_title: "Müəllim abunəliyi",
+    tp_compare: "Müəllim planlarını müqayisə et",
+    tp_lead: "MF Language Academy-də kurs dərc etmək üçün plan seçin. Yalnız demo ödəniş.",
+    tp_current: "Cari müəllim planı",
+    tp_free: "Pulsuz müəllim",
+    tp_standard: "Standard müəllim",
+    tp_premium: "Premium müəllim",
+    tp_current_btn: "Cari plan",
+    tp_switch: "Planı dəyiş",
+    tp_upgrade_standard: "Standarta keç",
+    tp_upgrade_premium: "Premium-a keç",
+    tp_limit_reached: "Pulsuz müəllim limitinizə çatdınız.",
+    tp_courses_used: "İstifadə olunan kurslar",
+    tp_lessons_limit: "Kurs üzrə dərslər",
+    tp_students_used: "Tələbələr",
+    tp_earnings: "Müəllim gəliri",
+    tp_earnings_note: "Mock önizləmə məlumatı. Real maliyyə məlumatı deyil.",
+    tp_total_sales: "Ümumi satış",
+    tp_teacher_share: "Müəllim gəliri",
+    tp_platform_share: "Platforma komissiyası",
+    tp_courses_sold: "Satılan kurslar",
+    tp_this_month: "Bu ay",
+    tp_commission_rate: "Komissiya dərəcəsi",
+    tp_feat_1_course: "1 kurs",
+    tp_feat_limited_lessons: "Məhdud dərslər",
+    tp_feat_limited_students: "Məhdud tələbələr",
+    tp_feat_basic_analytics: "Əsas analitika",
+    tp_feat_publish: "Kurs dərc etmək olar",
+    tp_feat_10_courses: "10 kursadək",
+    tp_feat_more_lessons: "Daha çox dərs",
+    tp_feat_more_students: "Daha çox tələbə",
+    tp_feat_analytics: "Kurs analitikası",
+    tp_feat_students: "Tələbə idarəetməsi",
+    tp_feat_unlimited_courses: "Daha yüksək/limitsiz kurs limiti",
+    tp_feat_advanced_analytics: "Ətraflı analitika",
+    tp_feat_advanced_ai: "Ətraflı AI",
+    tp_feat_premium_resources: "Premium materiallar",
+    tp_feat_priority: "Üstün dəstək",
+    tp_note_upgraded: "Müəllim abunəliyi yeniləndi",
+    tp_note_upgraded_text: "Müəllim planınız uğurla yeniləndi.",
+    reward_title: "Mükafatlar",
+    reward_lead: "Öyrəndikcə XP və MF Points qazanın.",
+    reward_xp: "XP-niz",
+    reward_level: "Cari səviyyə",
+    reward_next_level: "Növbəti səviyyəyə tərəqqi",
+    reward_max_level: "Maksimum səviyyəyə çatdınız",
+    reward_mf_points: "MF Points",
+    reward_points_note: "Ballar sonra endirim kuponuna çevrilə bilər. Yalnız demo.",
+    reward_great: "Əla iş!",
+    reward_homework: "Ev tapşırığı mükafatları",
+    reward_homework_lead: "Öyrənmə səhifəsində ev tapşırığını tamamlayaraq +50 XP və +20 MF Points qazanın.",
+    reward_homework_done: "Ev tapşırığı tamamlandı!",
+    reward_lesson_done: "Dərs tamamlandı!",
+    reward_quiz_done: "Test tamamlandı!",
+    reward_course_done: "Kurs tamamlandı!",
+    reward_unlocked: "AÇILDI",
+    reward_locked: "KİLİDLİ",
+    reward_level_up: "Yeni səviyyəyə çatdınız!",
+    reward_level_1: "Beginner",
+    reward_level_2: "Learner",
+    reward_level_3: "Active Student",
+    reward_level_4: "Language Explorer",
+    reward_level_5: "Language Master",
+    reward_ach_unlocked: "Nailiyyət açıldı",
+    reward_ach_homework_hero: "Homework Hero",
+    reward_ach_quiz_master: "Quiz Master",
+    reward_ach_streak_7: "7 Day Streak",
+    reward_ach_course_champion: "Course Champion",
+    reward_ach_fast_learner: "Fast Learner",
+    reward_xp_title: "XP qazandınız",
+    reward_xp_lesson: "Dərs tamamlandı! +20 XP",
+    reward_xp_homework: "Ev tapşırığı tamamlandı! +50 XP",
+    reward_xp_quiz: "Test tamamlandı! +50 XP",
+    reward_xp_course: "Kurs tamamlandı! +200 XP",
+    reward_points_title: "MF Points",
+    reward_points_homework: "20 MF Points qazandınız.",
+    reward_points_quiz: "30 MF Points qazandınız.",
+    reward_points_course: "100 MF Points qazandınız.",
+    course_complete_title: "Kurs 100% tamamlandı",
+    course_complete_text: "Təbriklər! {courseName} kursunu tamamladınız və sertifikat qazandınız.",
+
     course_price_required: "Standart və Premium üçün qiymət rəqəm olmalıdır.",
     offer_written: "Yazılı dərs məzmunu",
     offer_resume: "Qaldığınız yerdən davam",
@@ -1442,6 +1546,110 @@ const translations = {
     learn_l3: "Короткий тест",
     learn_l4: "Повседневные фразы",
     learn_l5: "Второй демо-урок",
+    learn_l6: "Домашнее задание",
+    learn_kind_homework: "Домашнее задание",
+    learn_homework_text: "Напишите пять предложений в Present Perfect о вашей неделе и отправьте задание.",
+    learn_homework_answer: "Ваш ответ",
+    learn_homework_submit: "Отправить задание",
+    learn_homework_done: "Домашнее задание для этого превью выполнено.",
+    video_my_notes: "Мои заметки",
+    video_add_note: "Добавить заметку",
+    video_edit_note: "Изменить",
+    video_delete_note: "Удалить",
+    video_note_placeholder: "Напишите заметку к этому моменту…",
+    video_notes_empty: "Заметок пока нет. Поставьте на паузу и добавьте заметку с таймкодом.",
+    video_bookmarks: "Закладки",
+    video_add_bookmark: "Добавить закладку",
+    video_remove_bookmark: "Удалить закладку",
+    video_bookmarks_empty: "Закладок пока нет.",
+    video_resume_at: "Продолжить с",
+    video_play: "Воспроизвести",
+    video_seek: "Перемотка",
+    video_volume: "Громкость",
+    video_fullscreen: "Полный экран",
+    video_duration_label: "Длительность",
+    video_course_progress: "Прогресс курса",
+    tp_title: "Подписка преподавателя",
+    tp_compare: "Сравните планы преподавателя",
+    tp_lead: "Выберите план, чтобы публиковать курсы. Только демо-оплата.",
+    tp_current: "Текущий план преподавателя",
+    tp_free: "Бесплатный преподаватель",
+    tp_standard: "Standard преподаватель",
+    tp_premium: "Premium преподаватель",
+    tp_current_btn: "Текущий план",
+    tp_switch: "Сменить план",
+    tp_upgrade_standard: "Перейти на Standard",
+    tp_upgrade_premium: "Перейти на Premium",
+    tp_limit_reached: "Вы достигли лимита бесплатного преподавателя.",
+    tp_courses_used: "Использованные курсы",
+    tp_lessons_limit: "Уроков на курс",
+    tp_students_used: "Студенты",
+    tp_earnings: "Доход преподавателя",
+    tp_earnings_note: "Демо-данные. Это не реальная финансовая информация.",
+    tp_total_sales: "Всего продаж",
+    tp_teacher_share: "Доход преподавателя",
+    tp_platform_share: "Комиссия платформы",
+    tp_courses_sold: "Проданные курсы",
+    tp_this_month: "В этом месяце",
+    tp_commission_rate: "Ставка комиссии",
+    tp_feat_1_course: "1 курс",
+    tp_feat_limited_lessons: "Ограниченные уроки",
+    tp_feat_limited_students: "Ограниченные студенты",
+    tp_feat_basic_analytics: "Базовая аналитика",
+    tp_feat_publish: "Можно публиковать курс",
+    tp_feat_10_courses: "До 10 курсов",
+    tp_feat_more_lessons: "Больше уроков",
+    tp_feat_more_students: "Больше студентов",
+    tp_feat_analytics: "Аналитика курса",
+    tp_feat_students: "Управление студентами",
+    tp_feat_unlimited_courses: "Высокий/безлимитный лимит курсов",
+    tp_feat_advanced_analytics: "Расширенная аналитика",
+    tp_feat_advanced_ai: "Продвинутый AI",
+    tp_feat_premium_resources: "Premium-материалы",
+    tp_feat_priority: "Приоритетная поддержка",
+    tp_note_upgraded: "Подписка преподавателя обновлена",
+    tp_note_upgraded_text: "Ваш план преподавателя успешно обновлён.",
+    reward_title: "Награды",
+    reward_lead: "Зарабатывайте XP и MF Points во время обучения.",
+    reward_xp: "Ваш XP",
+    reward_level: "Текущий уровень",
+    reward_next_level: "Прогресс до следующего уровня",
+    reward_max_level: "Достигнут максимальный уровень",
+    reward_mf_points: "MF Points",
+    reward_points_note: "Баллы позже можно обменять на купоны. Только демо.",
+    reward_great: "Отлично!",
+    reward_homework: "Награды за домашнее задание",
+    reward_homework_lead: "Выполните домашнее задание на странице обучения и получите +50 XP и +20 MF Points.",
+    reward_homework_done: "Домашнее задание выполнено!",
+    reward_lesson_done: "Урок завершён!",
+    reward_quiz_done: "Тест завершён!",
+    reward_course_done: "Курс завершён!",
+    reward_unlocked: "ОТКРЫТО",
+    reward_locked: "ЗАКРЫТО",
+    reward_level_up: "Вы достигли нового уровня!",
+    reward_level_1: "Beginner",
+    reward_level_2: "Learner",
+    reward_level_3: "Active Student",
+    reward_level_4: "Language Explorer",
+    reward_level_5: "Language Master",
+    reward_ach_unlocked: "Достижение открыто",
+    reward_ach_homework_hero: "Homework Hero",
+    reward_ach_quiz_master: "Quiz Master",
+    reward_ach_streak_7: "7 Day Streak",
+    reward_ach_course_champion: "Course Champion",
+    reward_ach_fast_learner: "Fast Learner",
+    reward_xp_title: "Вы получили XP",
+    reward_xp_lesson: "Урок завершён! +20 XP",
+    reward_xp_homework: "Домашнее задание выполнено! +50 XP",
+    reward_xp_quiz: "Тест завершён! +50 XP",
+    reward_xp_course: "Курс завершён! +200 XP",
+    reward_points_title: "MF Points",
+    reward_points_homework: "Вы получили 20 MF Points.",
+    reward_points_quiz: "Вы получили 30 MF Points.",
+    reward_points_course: "Вы получили 100 MF Points.",
+    course_complete_title: "Курс завершён на 100%",
+    course_complete_text: "Поздравляем! Вы завершили {courseName} и получили сертификат.",
+
     card_limited: "Ограниченный контент",
     card_full: "Полный курс",
     card_premium_features: "Premium-возможности",
@@ -1807,6 +2015,110 @@ translations.en.learn_l2 = "Listening video";
 translations.en.learn_l3 = "Short quiz";
 translations.en.learn_l4 = "Everyday phrases";
 translations.en.learn_l5 = "Second demo lesson";
+translations.en.learn_l6 = "Homework";
+translations.en.learn_kind_homework = "Homework";
+translations.en.learn_homework_text = "Write five Present Perfect sentences about your week, then submit the homework.";
+translations.en.learn_homework_answer = "Your answer";
+translations.en.learn_homework_submit = "Submit homework";
+translations.en.learn_homework_done = "Homework completed for this preview.";
+translations.en.video_my_notes = "My Notes";
+translations.en.video_add_note = "Add Note";
+translations.en.video_edit_note = "Edit";
+translations.en.video_delete_note = "Delete";
+translations.en.video_note_placeholder = "Write a note for this moment…";
+translations.en.video_notes_empty = "No notes yet. Pause and add a timestamp note.";
+translations.en.video_bookmarks = "Bookmarks";
+translations.en.video_add_bookmark = "Add Bookmark";
+translations.en.video_remove_bookmark = "Remove bookmark";
+translations.en.video_bookmarks_empty = "No bookmarks yet.";
+translations.en.video_resume_at = "Continue from";
+translations.en.video_play = "Play";
+translations.en.video_seek = "Seek";
+translations.en.video_volume = "Volume";
+translations.en.video_fullscreen = "Fullscreen";
+translations.en.video_duration_label = "Duration";
+translations.en.video_course_progress = "Course progress";
+translations.en.tp_title = "Teacher Subscription";
+translations.en.tp_compare = "Compare Teacher Plans";
+translations.en.tp_lead = "Choose a plan to publish courses on MF Language Academy. Demo billing only.";
+translations.en.tp_current = "Current Teacher Plan";
+translations.en.tp_free = "Free Teacher";
+translations.en.tp_standard = "Standard Teacher";
+translations.en.tp_premium = "Premium Teacher";
+translations.en.tp_current_btn = "Current Plan";
+translations.en.tp_switch = "Switch plan";
+translations.en.tp_upgrade_standard = "Upgrade to Standard";
+translations.en.tp_upgrade_premium = "Upgrade to Premium";
+translations.en.tp_limit_reached = "You've reached your Free Teacher limit.";
+translations.en.tp_courses_used = "Courses used";
+translations.en.tp_lessons_limit = "Lessons per course";
+translations.en.tp_students_used = "Students";
+translations.en.tp_earnings = "Teacher Earnings";
+translations.en.tp_earnings_note = "Mock preview data. Not real financial information.";
+translations.en.tp_total_sales = "Total Sales";
+translations.en.tp_teacher_share = "Teacher Earnings";
+translations.en.tp_platform_share = "Platform Commission";
+translations.en.tp_courses_sold = "Courses Sold";
+translations.en.tp_this_month = "This Month";
+translations.en.tp_commission_rate = "Commission rate";
+translations.en.tp_feat_1_course = "1 Course";
+translations.en.tp_feat_limited_lessons = "Limited Lessons";
+translations.en.tp_feat_limited_students = "Limited Students";
+translations.en.tp_feat_basic_analytics = "Basic Analytics";
+translations.en.tp_feat_publish = "Can publish a course";
+translations.en.tp_feat_10_courses = "Up to 10 Courses";
+translations.en.tp_feat_more_lessons = "More Lessons";
+translations.en.tp_feat_more_students = "More Students";
+translations.en.tp_feat_analytics = "Course Analytics";
+translations.en.tp_feat_students = "Student Management";
+translations.en.tp_feat_unlimited_courses = "Higher/Unlimited Course Limit";
+translations.en.tp_feat_advanced_analytics = "Advanced Analytics";
+translations.en.tp_feat_advanced_ai = "Advanced AI";
+translations.en.tp_feat_premium_resources = "Premium Resources";
+translations.en.tp_feat_priority = "Priority Support";
+translations.en.tp_note_upgraded = "Teacher subscription upgraded";
+translations.en.tp_note_upgraded_text = "Your teacher plan was upgraded successfully.";
+translations.en.reward_title = "Rewards";
+translations.en.reward_lead = "Earn XP and MF Points as you learn.";
+translations.en.reward_xp = "Your XP";
+translations.en.reward_level = "Current Level";
+translations.en.reward_next_level = "Progress to next level";
+translations.en.reward_max_level = "Max level reached";
+translations.en.reward_mf_points = "MF Points";
+translations.en.reward_points_note = "Points can later become discount coupons. Demo only.";
+translations.en.reward_great = "Great Job!";
+translations.en.reward_homework = "Homework Rewards";
+translations.en.reward_homework_lead = "Complete homework on the learning page to earn +50 XP and +20 MF Points.";
+translations.en.reward_homework_done = "Homework completed!";
+translations.en.reward_lesson_done = "Lesson completed!";
+translations.en.reward_quiz_done = "Quiz completed!";
+translations.en.reward_course_done = "Course completed!";
+translations.en.reward_unlocked = "UNLOCKED";
+translations.en.reward_locked = "LOCKED";
+translations.en.reward_level_up = "You reached a new level!";
+translations.en.reward_level_1 = "Beginner";
+translations.en.reward_level_2 = "Learner";
+translations.en.reward_level_3 = "Active Student";
+translations.en.reward_level_4 = "Language Explorer";
+translations.en.reward_level_5 = "Language Master";
+translations.en.reward_ach_unlocked = "Achievement unlocked";
+translations.en.reward_ach_homework_hero = "Homework Hero";
+translations.en.reward_ach_quiz_master = "Quiz Master";
+translations.en.reward_ach_streak_7 = "7 Day Streak";
+translations.en.reward_ach_course_champion = "Course Champion";
+translations.en.reward_ach_fast_learner = "Fast Learner";
+translations.en.reward_xp_title = "XP earned";
+translations.en.reward_xp_lesson = "Lesson completed! +20 XP";
+translations.en.reward_xp_homework = "Homework completed! +50 XP";
+translations.en.reward_xp_quiz = "Quiz completed! +50 XP";
+translations.en.reward_xp_course = "Course completed! +200 XP";
+translations.en.reward_points_title = "MF Points";
+translations.en.reward_points_homework = "You earned 20 MF Points.";
+translations.en.reward_points_quiz = "You earned 30 MF Points.";
+translations.en.reward_points_course = "You earned 100 MF Points.";
+translations.en.course_complete_title = "Course 100% complete";
+translations.en.course_complete_text = "Congratulations! You completed {courseName} and earned your certificate.";
+
 translations.en.card_limited = "Limited content";
 translations.en.card_full = "Full course";
 translations.en.card_premium_features = "Premium features";

@@ -124,8 +124,7 @@ function initForms() {
       showSuccess(registerForm);
       const email = (fieldOf(registerForm, "email")?.value || "").trim();
       if (typeof window.showAssessmentNotification === "function") window.showAssessmentNotification(email);
-      if (typeof window.mfNavigate === "function") window.mfNavigate("index.html");
-      else window.location.href = "index.html";
+      window.location.href = "index.html";
     }
   });
   }

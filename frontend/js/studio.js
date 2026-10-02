@@ -51,7 +51,7 @@ function renderStudio() {
     '</section>';
   }).join("");
   root.innerHTML =
-    '<header class="checkout-head"><h1>' + studioText("studio_title", "Course studio") + '</h1><p>' + studioText("studio_lead", "Build a course outline in the browser. Nothing is saved on a server.") + '</p></header>' +
+    '<header class="checkout-head"><h1>' + studioText("studio_title", "Course studio") + '</h1><p>' + studioText("studio_lead", "Build a course outline in the browser. Nothing is saved on a server.") + '</p><p class="form-note" data-studio-plan></p><div data-studio-limit hidden></div></header>' +
     '<div class="checkout-grid"><form class="checkout-form" data-studio-form>' +
       '<section class="pay-block"><h2>' + studioText("studio_details", "Course details") + '</h2>' +
         '<div class="field"><label>' + studioText("studio_course_title", "Course title") + '</label><input name="title" value="' + studioCourse.title.replace(/"/g, "&quot;") + '"></div>' +
@@ -77,6 +77,7 @@ function renderStudio() {
   if (statusField) statusField.value = studioCourse.status || "draft";
   if (previewField) previewField.value = studioCourse.preview === false ? "off" : "on";
   renderStudioPreview();
+  if (typeof window.initTeacherPlan === "function") window.initTeacherPlan();
 }
 
 function renderStudioPreview() {
@@ -160,6 +161,17 @@ function initStudio() {
       if (addModule) studioCourse.modules.push({ id: "m" + Date.now(), title: studioText("studio_module", "Module"), lessons: [] });
       if (addLesson) {
         const module = studioCourse.modules.find(function (item) { return item.id === addLesson.getAttribute("data-studio-add-lesson"); });
+        const lessonCount = studioCourse.modules.reduce(function (sum, item) { return sum + item.lessons.length; }, 0);
+        if (typeof window.mfTeacherCanAddLesson === "function" && !window.mfTeacherCanAddLesson(lessonCount)) {
+          const limit = document.querySelector("[data-studio-limit]");
+          if (limit) {
+            limit.hidden = false;
+            limit.innerHTML = '<p class="plan-lock"><i class="bi bi-lock" aria-hidden="true"></i> ' + studioText("tp_limit_reached", "You've reached your Free Teacher limit.") + '</p>' +
+              '<p><a class="btn btn-outline btn-sm" href="checkout.html?plan=teacher-standard">' + studioText("tp_upgrade_standard", "Upgrade to Standard") + '</a> ' +
+              '<a class="btn btn-outline btn-sm" href="checkout.html?plan=teacher-premium">' + studioText("tp_upgrade_premium", "Upgrade to Premium") + '</a></p>';
+          }
+          return;
+        }
         if (module) module.lessons.push({ id: "s" + Date.now(), title: studioText("studio_lesson", "Lesson"), kind: "text", quiz: [] });
       }
       if (removeModule) studioCourse.modules = studioCourse.modules.filter(function (item) { return item.id !== removeModule.getAttribute("data-studio-remove-module"); });

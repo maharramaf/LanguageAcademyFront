@@ -150,8 +150,7 @@ function bindNotificationList(root) {
     if (!button || !root.contains(button)) return;
     const item = markNotificationAsRead(button.getAttribute("data-notify-id"));
     if (item && item.href && root.classList.contains("notify-list")) {
-      if (typeof window.mfNavigate === "function") window.mfNavigate(item.href);
-      else window.location.href = item.href;
+      window.location.href = item.href;
     }
   });
 }
