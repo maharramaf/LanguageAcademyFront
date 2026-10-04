@@ -723,7 +723,7 @@ const translations = {
     learn_outline: "Dərslər",
     learn_complete: "Tamamlandı kimi işarələ",
     learn_text: "Dərsi oxuyun, sonra tamamlandı kimi işarələyin. Tərəqqi yalnız bu brauzer önizləməsində qalır.",
-    learn_video_note: "Video önizləməsi. Real pleyer dərs ünvanını serverdən alacaq.",
+    learn_video_note: "Demo təhsil videosu. Oynat, səs və tam ekran üçün pleyer idarələrindən istifadə edin. Aşağıdakı tərəqqi çubuğu qeydlər və brauzerdə davam üçündür.",
     learn_cert_locked: "Sertifikat bütün dərslər tamamlananda görünür.",
     learn_m1: "Modul 1 · Başlanğıc",
     learn_m2: "Modul 2 · Məşq",
@@ -822,7 +822,7 @@ const translations = {
     card_premium_features: "Premium imkanlar",
     dash_demo_progress: "Demo tərəqqi",
     dash_continue_demo: "Demoya davam et",
-    learn_l5: "İkinci demo dərs",
+    learn_l5: "Kiçik söhbət məşqi",
     learn_l6: "Ev tapşırığı",
     learn_kind_homework: "Ev tapşırığı",
     learn_homework_text: "Həftəniz haqqında Present Perfect ilə beş cümlə yazın və tapşırığı göndərin.",
@@ -846,6 +846,61 @@ const translations = {
     video_fullscreen: "Tam ekran",
     video_duration_label: "Müddət",
     video_course_progress: "Kurs tərəqqisi",
+    video_loading: "Video yüklənir…",
+    video_placeholder: "Demo yer tutucu — bu dərs üçün yoxlanılmış video ünvanı yoxdur.",
+    video_preview_note: "Bu kurs üçün demo təhsil videosu. Sonra API-dən Lesson.VideoUrl istifadə olunacaq.",
+    vid_kind_video: "Video",
+    vid_kind_quiz: "Test",
+    vid_kind_reading: "Oxu",
+    vid_kind_download: "Yükləmə",
+    vid_min: "dəq",
+    vid_mod_en_m1: "Modul 01 — İngilis dilinə giriş",
+    vid_mod_en_m1_meta: "4 dərs · 45 dəq",
+    vid_eb_m1_l1: "Dərs 01 — Salamlaşmalar",
+    vid_eb_m1_l2: "Dərs 02 — Özünü təqdimetmə",
+    vid_eb_m1_l3: "Dərs 03 — Əsas lüğət",
+    vid_eb_m1_q1: "Test — Giriş yoxlaması",
+    vid_mod_en_m2: "Modul 02 — Gündəlik ingilis dili",
+    vid_mod_en_m2_meta: "5 dərs · 58 dəq",
+    vid_eb_m2_l1: "Dərs 01 — Gündəlik rejim",
+    vid_eb_m2_l2: "Dərs 02 — Present Simple",
+    vid_eb_m2_l3: "Dərs 03 — Suallar vermə",
+    vid_eb_m2_l4: "Məşq vərəqi",
+    vid_eb_m2_q1: "Test — Gündəlik ingilis dili",
+    vid_mod_int_m1: "Modul 01 — Axıcılıq vərdişləri",
+    vid_mod_int_m1_meta: "3 dərs · 40 dəq",
+    vid_ei_m1_l1: "Dərs 01 — Kiçik söhbət",
+    vid_ei_m1_l2: "Dərs 02 — Aydın danışmaq",
+    vid_ei_m1_l3: "Dərs 03 — Daha ağıllı öyrən",
+    vid_mod_ielts_m1: "Modul 01 — Speaking meyarları",
+    vid_mod_ielts_m1_meta: "3 dərs · 35 dəq",
+    vid_ielts_m1_l1: "Dərs 01 — Fluency & coherence",
+    vid_ielts_m1_l2: "Dərs 02 — Present Perfect icmalı",
+    vid_ielts_m1_l3: "Dərs 03 — Ever & never",
+    vid_mod_biz_m1: "Modul 01 — Görüşlər",
+    vid_mod_biz_m1_meta: "3 dərs · 30 dəq",
+    vid_biz_m1_l1: "Dərs 01 — Görüşdə danışmaq",
+    vid_biz_m1_l2: "Dərs 02 — Görüşlər haqqında",
+    vid_biz_m1_l3: "Dərs 03 — Peşəkar görünüş",
+    vid_mod_de_m1: "Modul 01 — İlk əlaqə",
+    vid_mod_de_m1_meta: "2 dərs · 20 dəq",
+    vid_de_m1_l1: "Dərs 01 — Əlifba və fonetika",
+    vid_de_m1_l2: "Dərs 02 — Alman əlifbası A–Z",
+    vid_mod_es_m1: "Modul 01 — İnsanlar və yerlər",
+    vid_mod_es_m1_meta: "3 dərs · 25 dəq",
+    vid_es_m1_l1: "Dərs 01 — Salamlaşma və tanışlıq",
+    vid_es_m1_l2: "Dərs 02 — Salamlaşma lüğəti",
+    vid_es_m1_l3: "Dərs 03 — Qısa salamlaşmalar",
+    vid_mod_fr_m1: "Modul 01 — Səslər və salamlaşmalar",
+    vid_mod_fr_m1_meta: "3 dərs · 35 dəq",
+    vid_fr_m1_l1: "Dərs 01 — Tələffüz əsasları",
+    vid_fr_m1_l2: "Dərs 02 — Tələffüz qaydaları",
+    vid_fr_m1_l3: "Dərs 03 — Fransız saitləri",
+    vid_mod_conv_m1: "Modul 01 — İnam",
+    vid_mod_conv_m1_meta: "3 dərs · 40 dəq",
+    vid_cv_m1_l1: "Dərs 01 — Dinlənilən danışıq",
+    vid_cv_m1_l2: "Dərs 02 — Asan söhbətlər",
+    vid_cv_m1_l3: "Dərs 03 — Kiçik söhbət məşqi",
     tp_title: "Müəllim abunəliyi",
     tp_compare: "Müəllim planlarını müqayisə et",
     tp_lead: "MF Language Academy-də kurs dərc etmək üçün plan seçin. Yalnız demo ödəniş.",
@@ -1537,7 +1592,7 @@ const translations = {
     learn_outline: "Уроки",
     learn_complete: "Отметить выполненным",
     learn_text: "Прочитайте урок и отметьте его выполненным. Прогресс хранится только в этом превью.",
-    learn_video_note: "Превью видео. Настоящий плеер получит адрес урока с сервера.",
+    learn_video_note: "Демо-учебное видео. Используйте элементы плеера для воспроизведения, громкости и полного экрана. Полоса прогресса ниже — для заметок и продолжения в браузере.",
     learn_cert_locked: "Сертификат появится, когда все уроки будут завершены.",
     learn_m1: "Модуль 1 · Начало",
     learn_m2: "Модуль 2 · Практика",
@@ -1545,7 +1600,7 @@ const translations = {
     learn_l2: "Видео для аудирования",
     learn_l3: "Короткий тест",
     learn_l4: "Повседневные фразы",
-    learn_l5: "Второй демо-урок",
+    learn_l5: "Практика small talk",
     learn_l6: "Домашнее задание",
     learn_kind_homework: "Домашнее задание",
     learn_homework_text: "Напишите пять предложений в Present Perfect о вашей неделе и отправьте задание.",
@@ -1569,6 +1624,61 @@ const translations = {
     video_fullscreen: "Полный экран",
     video_duration_label: "Длительность",
     video_course_progress: "Прогресс курса",
+    video_loading: "Загрузка видео…",
+    video_placeholder: "Демо-заглушка — для этого урока нет проверенного URL видео.",
+    video_preview_note: "Демо-учебное видео для этого курса. Позже будет использоваться Lesson.VideoUrl из API.",
+    vid_kind_video: "Видео",
+    vid_kind_quiz: "Тест",
+    vid_kind_reading: "Чтение",
+    vid_kind_download: "Скачать",
+    vid_min: "мин",
+    vid_mod_en_m1: "Модуль 01 — Введение в английский",
+    vid_mod_en_m1_meta: "4 урока · 45 мин",
+    vid_eb_m1_l1: "Урок 01 — Приветствия",
+    vid_eb_m1_l2: "Урок 02 — Представление себя",
+    vid_eb_m1_l3: "Урок 03 — Базовый словарь",
+    vid_eb_m1_q1: "Тест — Проверка введения",
+    vid_mod_en_m2: "Модуль 02 — Повседневный английский",
+    vid_mod_en_m2_meta: "5 уроков · 58 мин",
+    vid_eb_m2_l1: "Урок 01 — Распорядок дня",
+    vid_eb_m2_l2: "Урок 02 — Present Simple",
+    vid_eb_m2_l3: "Урок 03 — Вопросы",
+    vid_eb_m2_l4: "Практический лист",
+    vid_eb_m2_q1: "Тест — Повседневный английский",
+    vid_mod_int_m1: "Модуль 01 — Привычки беглости",
+    vid_mod_int_m1_meta: "3 урока · 40 мин",
+    vid_ei_m1_l1: "Урок 01 — Small talk",
+    vid_ei_m1_l2: "Урок 02 — Говорить ясно",
+    vid_ei_m1_l3: "Урок 03 — Учиться эффективнее",
+    vid_mod_ielts_m1: "Модуль 01 — Критерии Speaking",
+    vid_mod_ielts_m1_meta: "3 урока · 35 мин",
+    vid_ielts_m1_l1: "Урок 01 — Fluency & coherence",
+    vid_ielts_m1_l2: "Урок 02 — Обзор Present Perfect",
+    vid_ielts_m1_l3: "Урок 03 — Ever & never",
+    vid_mod_biz_m1: "Модуль 01 — Встречи",
+    vid_mod_biz_m1_meta: "3 урока · 30 мин",
+    vid_biz_m1_l1: "Урок 01 — Речь на встречах",
+    vid_biz_m1_l2: "Урок 02 — О встречах",
+    vid_biz_m1_l3: "Урок 03 — Профессиональный образ",
+    vid_mod_de_m1: "Модуль 01 — Первый контакт",
+    vid_mod_de_m1_meta: "2 урока · 20 мин",
+    vid_de_m1_l1: "Урок 01 — Алфавит и фонетика",
+    vid_de_m1_l2: "Урок 02 — Немецкий алфавит A–Z",
+    vid_mod_es_m1: "Модуль 01 — Люди и места",
+    vid_mod_es_m1_meta: "3 урока · 25 мин",
+    vid_es_m1_l1: "Урок 01 — Приветствия и знакомство",
+    vid_es_m1_l2: "Урок 02 — Словарь приветствий",
+    vid_es_m1_l3: "Урок 03 — Короткие приветствия",
+    vid_mod_fr_m1: "Модуль 01 — Звуки и приветствия",
+    vid_mod_fr_m1_meta: "3 урока · 35 мин",
+    vid_fr_m1_l1: "Урок 01 — Основы произношения",
+    vid_fr_m1_l2: "Урок 02 — Правила произношения",
+    vid_fr_m1_l3: "Урок 03 — Французские гласные",
+    vid_mod_conv_m1: "Модуль 01 — Уверенность",
+    vid_mod_conv_m1_meta: "3 урока · 40 мин",
+    vid_cv_m1_l1: "Урок 01 — Говорить так, чтобы слушали",
+    vid_cv_m1_l2: "Урок 02 — Лёгкие разговоры",
+    vid_cv_m1_l3: "Урок 03 — Практика small talk",
     tp_title: "Подписка преподавателя",
     tp_compare: "Сравните планы преподавателя",
     tp_lead: "Выберите план, чтобы публиковать курсы. Только демо-оплата.",
@@ -2006,7 +2116,7 @@ translations.en.learn_continue = "Continue learning";
 translations.en.learn_outline = "Lessons";
 translations.en.learn_complete = "Mark complete";
 translations.en.learn_text = "Read the lesson, then mark it complete. Progress stays in this browser preview only.";
-translations.en.learn_video_note = "Video preview. A real player will use a lesson URL from the server.";
+translations.en.learn_video_note = "Demo educational video. Use the player controls for play, volume, and fullscreen. The progress bar below is for notes and resume in this browser.";
 translations.en.learn_cert_locked = "The certificate appears when every lesson is complete.";
 translations.en.learn_m1 = "Module 1 · Start";
 translations.en.learn_m2 = "Module 2 · Practice";
@@ -2014,7 +2124,7 @@ translations.en.learn_l1 = "Greetings";
 translations.en.learn_l2 = "Listening video";
 translations.en.learn_l3 = "Short quiz";
 translations.en.learn_l4 = "Everyday phrases";
-translations.en.learn_l5 = "Second demo lesson";
+translations.en.learn_l5 = "Small talk practice";
 translations.en.learn_l6 = "Homework";
 translations.en.learn_kind_homework = "Homework";
 translations.en.learn_homework_text = "Write five Present Perfect sentences about your week, then submit the homework.";
@@ -2038,6 +2148,61 @@ translations.en.video_volume = "Volume";
 translations.en.video_fullscreen = "Fullscreen";
 translations.en.video_duration_label = "Duration";
 translations.en.video_course_progress = "Course progress";
+translations.en.video_loading = "Loading video…";
+translations.en.video_placeholder = "Demo placeholder — no verified video URL for this lesson yet.";
+translations.en.video_preview_note = "Demo educational video for this course. Later this will use Lesson.VideoUrl from the API.";
+translations.en.vid_kind_video = "Video";
+translations.en.vid_kind_quiz = "Quiz";
+translations.en.vid_kind_reading = "Reading";
+translations.en.vid_kind_download = "Download";
+translations.en.vid_min = "min";
+translations.en.vid_mod_en_m1 = "Module 01 — Introduction to English";
+translations.en.vid_mod_en_m1_meta = "4 lessons · 45 min";
+translations.en.vid_eb_m1_l1 = "Lesson 01 — Greetings";
+translations.en.vid_eb_m1_l2 = "Lesson 02 — Introducing Yourself";
+translations.en.vid_eb_m1_l3 = "Lesson 03 — Basic Vocabulary";
+translations.en.vid_eb_m1_q1 = "Quiz — Introduction check";
+translations.en.vid_mod_en_m2 = "Module 02 — Everyday English";
+translations.en.vid_mod_en_m2_meta = "5 lessons · 58 min";
+translations.en.vid_eb_m2_l1 = "Lesson 01 — Daily Routines";
+translations.en.vid_eb_m2_l2 = "Lesson 02 — Present Simple";
+translations.en.vid_eb_m2_l3 = "Lesson 03 — Asking Questions";
+translations.en.vid_eb_m2_l4 = "Practice sheet";
+translations.en.vid_eb_m2_q1 = "Quiz — Everyday English";
+translations.en.vid_mod_int_m1 = "Module 01 — Fluency habits";
+translations.en.vid_mod_int_m1_meta = "3 lessons · 40 min";
+translations.en.vid_ei_m1_l1 = "Lesson 01 — Small talk";
+translations.en.vid_ei_m1_l2 = "Lesson 02 — Speaking clearly";
+translations.en.vid_ei_m1_l3 = "Lesson 03 — Study smarter";
+translations.en.vid_mod_ielts_m1 = "Module 01 — Speaking criteria";
+translations.en.vid_mod_ielts_m1_meta = "3 lessons · 35 min";
+translations.en.vid_ielts_m1_l1 = "Lesson 01 — Fluency & coherence";
+translations.en.vid_ielts_m1_l2 = "Lesson 02 — Present Perfect review";
+translations.en.vid_ielts_m1_l3 = "Lesson 03 — Ever & never";
+translations.en.vid_mod_biz_m1 = "Module 01 — Meetings";
+translations.en.vid_mod_biz_m1_meta = "3 lessons · 30 min";
+translations.en.vid_biz_m1_l1 = "Lesson 01 — Speaking in meetings";
+translations.en.vid_biz_m1_l2 = "Lesson 02 — Talking about meetings";
+translations.en.vid_biz_m1_l3 = "Lesson 03 — Professional presence";
+translations.en.vid_mod_de_m1 = "Module 01 — First contact";
+translations.en.vid_mod_de_m1_meta = "2 lessons · 20 min";
+translations.en.vid_de_m1_l1 = "Lesson 01 — Alphabet & phonetics";
+translations.en.vid_de_m1_l2 = "Lesson 02 — German alphabet A–Z";
+translations.en.vid_mod_es_m1 = "Module 01 — People and places";
+translations.en.vid_mod_es_m1_meta = "3 lessons · 25 min";
+translations.en.vid_es_m1_l1 = "Lesson 01 — Greetings & introductions";
+translations.en.vid_es_m1_l2 = "Lesson 02 — Greetings vocabulary";
+translations.en.vid_es_m1_l3 = "Lesson 03 — Quick greetings";
+translations.en.vid_mod_fr_m1 = "Module 01 — Sounds and greetings";
+translations.en.vid_mod_fr_m1_meta = "3 lessons · 35 min";
+translations.en.vid_fr_m1_l1 = "Lesson 01 — Pronunciation basics";
+translations.en.vid_fr_m1_l2 = "Lesson 02 — Pronunciation rules";
+translations.en.vid_fr_m1_l3 = "Lesson 03 — French vowel sounds";
+translations.en.vid_mod_conv_m1 = "Module 01 — Confidence";
+translations.en.vid_mod_conv_m1_meta = "3 lessons · 40 min";
+translations.en.vid_cv_m1_l1 = "Lesson 01 — Speak so people listen";
+translations.en.vid_cv_m1_l2 = "Lesson 02 — Easy conversations";
+translations.en.vid_cv_m1_l3 = "Lesson 03 — Small talk practice";
 translations.en.tp_title = "Teacher Subscription";
 translations.en.tp_compare = "Compare Teacher Plans";
 translations.en.tp_lead = "Choose a plan to publish courses on MF Language Academy. Demo billing only.";

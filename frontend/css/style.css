@@ -2646,6 +2646,66 @@ body.faq-open { overflow: hidden; }
   color: #e5e7eb;
 }
 .video-screen i { font-size: 2.4rem; }
+.video-embed-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #111827;
+  overflow: hidden;
+}
+.video-embed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.video-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-content: center;
+  background: rgba(17, 24, 39, 0.88);
+  color: #e5e7eb;
+  font-size: 0.92rem;
+  padding: 16px;
+  text-align: center;
+}
+.video-loading[hidden] { display: none !important; }
+.video-embed-note { margin: 0; padding: 8px 12px; }
+.preview-stage .video-embed-wrap,
+.preview-stage .preview-placeholder { min-height: 220px; }
+.preview-stage .preview-placeholder {
+  display: grid;
+  place-content: center;
+  text-align: center;
+  gap: 8px;
+  padding: 24px;
+  background: linear-gradient(160deg, #1f2937, #111827);
+  color: #e5e7eb;
+}
+.lesson-row.is-video-lesson { cursor: pointer; }
+.lesson-row.is-video-lesson:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.video-stage:fullscreen,
+.video-stage:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.video-stage:fullscreen .video-embed-wrap,
+.video-stage:-webkit-full-screen .video-embed-wrap {
+  flex: 1;
+  max-height: calc(100% - 72px);
+}
 .video-controls {
   display: flex;
   align-items: center;
@@ -2681,6 +2741,9 @@ body.faq-open { overflow: hidden; }
 [data-theme="dark"] .video-bookmark,
 [data-theme="dark"] .reward-toast,
 [data-theme="dark"] .video-btn { background: var(--panel); }
+[data-theme="dark"] .video-embed-wrap,
+[data-theme="dark"] .preview-stage .preview-placeholder { background: #0b1220; }
+[data-theme="dark"] .video-stage { background: var(--panel); }
 
 @media (max-width: 992px) {
   .teacher-plan-offers,
@@ -2691,6 +2754,16 @@ body.faq-open { overflow: hidden; }
 @media (max-width: 576px) {
   .reward-toast { right: 12px; left: 12px; max-width: none; bottom: 88px; }
   .video-controls { flex-wrap: wrap; }
+  .video-time { width: 100%; }
+  .video-learn,
+  .video-stage,
+  .video-embed-wrap,
+  .preview-stage { max-width: 100%; overflow: hidden; }
+}
+
+@media (max-width: 375px) {
+  .video-controls { gap: 6px; padding: 8px; }
+  .video-btn { width: 32px; height: 32px; }
 }
 
 @media print {

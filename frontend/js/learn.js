@@ -1,13 +1,29 @@
 /* Student lesson, quiz, homework, mock video, notes, bookmarks, progress. Frontend demo only. */
 let mfLearnState = { done: {}, current: "l1", score: null };
 const MF_LEARN_LESSONS = [
-  { id: "l1", moduleKey: "learn_m1", titleKey: "learn_l1", kind: "text" },
-  { id: "l5", moduleKey: "learn_m1", titleKey: "learn_l5", kind: "text" },
-  { id: "l2", moduleKey: "learn_m1", titleKey: "learn_l2", kind: "video", duration: 4800 },
+  { id: "l1", moduleKey: "learn_m1", titleKey: "learn_l1", kind: "video", duration: 360 },
+  { id: "l5", moduleKey: "learn_m1", titleKey: "learn_l5", kind: "video", duration: 900 },
+  { id: "l2", moduleKey: "learn_m1", titleKey: "learn_l2", kind: "video", duration: 361 },
   { id: "l6", moduleKey: "learn_m2", titleKey: "learn_l6", kind: "homework" },
   { id: "l3", moduleKey: "learn_m2", titleKey: "learn_l3", kind: "quiz" },
   { id: "l4", moduleKey: "learn_m2", titleKey: "learn_l4", kind: "text" }
 ];
+
+function resolveLessonVideo(lesson) {
+  const fromCentral = typeof window.mfGetLearnLessonVideo === "function"
+    ? window.mfGetLearnLessonVideo(lesson.id)
+    : null;
+  const videoUrl = (fromCentral && fromCentral.videoUrl)
+    || lesson.videoUrl
+    || "";
+  const normalized = typeof window.mfNormalizeVideoUrl === "function"
+    ? window.mfNormalizeVideoUrl(videoUrl)
+    : videoUrl;
+  const duration = (fromCentral && fromCentral.duration)
+    || lesson.duration
+    || 600;
+  return { videoUrl: normalized, duration: duration };
+}
 const MF_VIDEO_KEY = "mf-video-progress";
 const MF_NOTES_KEY = "mf-video-notes";
 const MF_BOOKMARKS_KEY = "mf-video-bookmarks";
@@ -130,10 +146,12 @@ function startVideoTimer(duration) {
 }
 
 function renderVideoPlayer(lesson) {
-  const duration = lesson.duration || 4800;
-  const resume = videoProgress(lesson.id);
+  const media = resolveLessonVideo(lesson);
+  const duration = Math.max(1, media.duration || lesson.duration || 600);
+  const resume = Math.min(videoProgress(lesson.id), duration);
   const notes = lessonNotes(lesson.id);
   const marks = lessonBookmarks(lesson.id);
+  const hasEmbed = !!media.videoUrl;
   const noteList = notes.length
     ? notes.map(function (note) {
       return '<li class="video-note-item' + (note.important ? " is-important" : "") + '">' +
@@ -152,9 +170,21 @@ function renderVideoPlayer(lesson) {
         '<button type="button" class="btn btn-outline btn-sm" data-bookmark-remove="' + mark.id + '" aria-label="' + learnText("video_remove_bookmark", "Remove bookmark") + '">&times;</button>';
     }).join(" ")
     : '<p class="form-note">' + learnText("video_bookmarks_empty", "No bookmarks yet.") + '</p>';
-  return '<div class="video-learn" data-video-lesson="' + lesson.id + '" data-video-duration="' + duration + '">' +
-    '<div class="video-stage">' +
-      '<div class="video-screen" aria-hidden="true"><i class="bi bi-play-circle"></i><p>' + learnText("learn_video_note", "Video preview. A real player will use a lesson URL from the server.") + '</p><p>' + learnText("video_duration_label", "Duration") + ': 1h 20m</p></div>' +
+  const screen = hasEmbed
+    ? '<div class="video-embed-wrap" data-video-embed-wrap>' +
+        '<div class="video-loading" data-video-loading>' + learnText("video_loading", "Loading video…") + '</div>' +
+        '<iframe class="video-embed" data-video-frame title="' + learnText(lesson.titleKey, "Lesson video") + '" ' +
+          'src="' + media.videoUrl.replace(/"/g, "") + '" ' +
+          'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" ' +
+          'allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>' +
+      '</div>'
+    : '<div class="video-screen" aria-hidden="true"><i class="bi bi-play-circle"></i><p>' +
+        learnText("video_placeholder", "Demo placeholder — no verified video URL for this lesson yet.") +
+      '</p></div>';
+  return '<div class="video-learn" data-video-lesson="' + lesson.id + '" data-video-duration="' + duration + '" data-video-url="' + (media.videoUrl || "").replace(/"/g, "") + '">' +
+    '<div class="video-stage" data-video-stage>' +
+      screen +
+      '<p class="video-embed-note form-note">' + learnText("learn_video_note", "Demo educational video. Use the player controls for play, volume, and fullscreen. The progress bar below is for notes and resume in this browser.") + '</p>' +
       '<div class="video-controls">' +
         '<button type="button" class="icon-btn video-btn" data-video-play aria-label="' + learnText("video_play", "Play") + '"><i class="bi bi-play-fill" aria-hidden="true"></i></button>' +
         '<div class="video-track"><span data-video-fill style="width:' + Math.round(resume * 100 / duration) + '%"></span>' +
@@ -244,6 +274,16 @@ function renderLearn() {
       '</section>' +
     '</div>';
   if (current.kind === "quiz") renderLearnQuiz(state);
+  if (current.kind === "video") bindVideoEmbedLoad(root);
+}
+
+function bindVideoEmbedLoad(root) {
+  const frame = root.querySelector("[data-video-frame]");
+  const loading = root.querySelector("[data-video-loading]");
+  if (!frame || !loading) return;
+  function hideLoading() { loading.hidden = true; }
+  frame.addEventListener("load", hideLoading);
+  window.setTimeout(hideLoading, 4000);
 }
 
 function renderLearnQuiz(state) {
@@ -389,7 +429,7 @@ function initLearn() {
     const play = event.target.closest("[data-video-play]");
     if (play) {
       const wrap = root.querySelector("[data-video-lesson]");
-      const duration = Number(wrap && wrap.getAttribute("data-video-duration") || 4800);
+      const duration = Number(wrap && wrap.getAttribute("data-video-duration") || 600);
       if (mfVideoPlaying) {
         stopVideoTimer();
         play.innerHTML = '<i class="bi bi-play-fill" aria-hidden="true"></i>';
@@ -398,10 +438,31 @@ function initLearn() {
       }
       return;
     }
+    if (event.target.closest("[data-video-mute]")) {
+      const muteBtn = root.querySelector("[data-video-mute]");
+      if (muteBtn) {
+        const muted = muteBtn.getAttribute("data-muted") === "1";
+        muteBtn.setAttribute("data-muted", muted ? "0" : "1");
+        muteBtn.innerHTML = muted
+          ? '<i class="bi bi-volume-up" aria-hidden="true"></i>'
+          : '<i class="bi bi-volume-mute" aria-hidden="true"></i>';
+      }
+      return;
+    }
+    if (event.target.closest("[data-video-full]")) {
+      const stage = root.querySelector("[data-video-stage]");
+      if (!stage) return;
+      if (!document.fullscreenElement) {
+        if (stage.requestFullscreen) stage.requestFullscreen().catch(function () { /* ignore */ });
+      } else if (document.exitFullscreen) {
+        document.exitFullscreen().catch(function () { /* ignore */ });
+      }
+      return;
+    }
     const jump = event.target.closest("[data-video-jump]");
     if (jump) {
       const wrap = root.querySelector("[data-video-lesson]");
-      const duration = Number(wrap && wrap.getAttribute("data-video-duration") || 4800);
+      const duration = Number(wrap && wrap.getAttribute("data-video-duration") || 600);
       setVideoSeconds(Number(jump.getAttribute("data-video-jump") || 0), duration);
       const stamp = root.querySelector("[data-note-stamp]");
       if (stamp) stamp.textContent = formatTime(currentVideoSeconds());
@@ -462,7 +523,7 @@ function initLearn() {
   root.addEventListener("input", function (event) {
     if (!event.target.matches("[data-video-seek]")) return;
     const wrap = root.querySelector("[data-video-lesson]");
-    const duration = Number(wrap && wrap.getAttribute("data-video-duration") || 4800);
+    const duration = Number(wrap && wrap.getAttribute("data-video-duration") || 600);
     setVideoSeconds(Number(event.target.value || 0), duration);
     const stamp = root.querySelector("[data-note-stamp]");
     if (stamp) stamp.textContent = formatTime(currentVideoSeconds());

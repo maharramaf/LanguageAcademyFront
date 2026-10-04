@@ -529,11 +529,11 @@
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
       <button class="modal-close" type="button" data-modal-close aria-label="Close" data-i18n-aria-label="btn_close">&times;</button>
       <h2 id="previewTitle"><span data-i18n="x1qxekbp">Preview this course</span></h2>
-      <div class="preview-stage">
+      <div class="preview-stage" data-preview-stage>
         <img src="images/course-beginner.jpg" alt="English A1 lesson preview" data-i18n-alt="x1aih40">
         <i class="bi bi-play-circle-fill"></i>
       </div>
-      <p><span data-i18n="x15esw7b">This is a frontend preview. The full video will play here after the lesson player is connected.</span></p>
+      <p data-preview-note><span data-i18n="video_preview_note">Demo educational video for this course. Later this will use Lesson.VideoUrl from the API.</span></p>
     </div>
   </div>
   <div class="modal" data-modal="review" hidden>
@@ -604,6 +604,7 @@
   <script src="js/navbar.js" defer></script>
   <script src="js/slider.js" defer></script>
   <script src="js/validation.js" defer></script>
+  <script src="js/lesson-videos.js" defer></script>
   <script src="js/course-details.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/faq-widget.js" defer></script>
